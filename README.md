@@ -13,6 +13,10 @@
 
 This project is a basic example of website using **React** with **Typescript** and an endpoint using **NodeJS** with **express**.
 
+## Contributors
+
+- Francisco Coya Abajo (UO257239)
+
 ## Quick start guide
 <mark>In case you already have node.js and npm, make sure you update them before attempting to build the images</mark>
 
