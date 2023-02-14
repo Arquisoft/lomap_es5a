@@ -492,7 +492,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_posibles_riesgos">11.1. Posibles riesgos</a></li>
+<li><a href="#_deuda_técnica">11.2. Deuda técnica</a></li>
+</ul>
+</li>
 <li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
@@ -556,45 +561,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>LoMap es el proyecto del curso actual de la asignatura Arquitectura del Software, que será desarrollado por el equipo 5A compuesto por los integrantes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Ricardo Marqués Garay</p>
-</li>
-<li>
-<p>Miguel González Navarro</p>
-</li>
-<li>
-<p>Francisco Coya Abajo</p>
-</li>
-<li>
-<p>Marcos Valín Fernández</p>
-</li>
-<li>
-<p>Oscar Abad López</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Y, con la ayuda del profesorado:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Jose Emilio Labra Gayo</p>
-</li>
-<li>
-<p>Irene Cid Rico</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Consiste en una aplicación donde los ciudadanos podrán disponer de mapas personalizados sobre lugares
-y negocios actuales de la ciudad.</p>
-</div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="sidebarblock arc42help">
@@ -620,31 +586,6 @@ If requirements documents exist this overview should refer to these documents.</
 </div>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>El sistema permitirá a los usuarios añadir localizaciones a los mapas en diversas categorías. Además los usuarios podrán añadir comentarios, puntuaciones, etc. sobre dichas localizaciones.</p>
-</li>
-<li>
-<p>El sistema permitirá a los usuarios mostrar localizaciones en una ventana de tipo mapa</p>
-</li>
-<li>
-<p>El sistema gestionará la información almacenada sobre una localización por cada usuario de forma descentralizada. Se pueden dar excepciones por rendimiento siempre que se respete la privacidad de los usuarios.</p>
-</li>
-<li>
-<p>El sistema permitirá a los usuarios gestionar la información que comparten con otros usuarios. Y, siempre que lo permitan, acceder a localizaciones e información relativa a ellas compartida por sus amigos.</p>
-</li>
-<li>
-<p>El sistema permitirá a los usuarios emplear filtros a la hora de visualizar el mapa.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Se puede consultar el siguiente documento, que contiene una descripción de la aplicación a desarrollar, así como una lista de requisitos funcionales más detallada:</p>
-</div>
-<div class="paragraph">
-<p><a href="https://arquisoft.github.io/course2223/labEnunciadoPractica.html" class="bare">https://arquisoft.github.io/course2223/labEnunciadoPractica.html</a></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_quality_goals">1.2. Quality Goals</h3>
@@ -665,40 +606,6 @@ If you as an architect do not know how the quality of your work will be judged �
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Segun ISO/IEC 25010</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Objetivo de Calidad</th>
-<th class="tableblock halign-left valign-top">Motivación</th>
-<th class="tableblock halign-left valign-top">Prioridad</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para que el producto sea consumible por los usuarios finales, ha de tener un diseño moderno y minimalista, centrado en un público de edades diversas. Para ello, tiene que ser intuitivo y fácil de usar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar aplicaciones 100% seguras a día de hoy es imposible, pero ello no quiere decir que sea posible implementar medidas de protección ante ataques comunmente conocidos. La descentralización del sistema, contribuye a un incremento de la seguridad. Además, implementar medidas tanto para el lado cliente como para el servidor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lo primero es la privacidad de los usuarios. Por ello, la gestión de mapas mediante el uso de SOLID, almacenando los datos en un sistema distribuido. Cada usuario tendrá un POD personal, no visible a otros usuarios</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
@@ -741,37 +648,27 @@ These stakeholders determine the extent and the level of detail of your work and
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Rol</th>
-<th class="tableblock halign-left valign-top">Descripción</th>
-<th class="tableblock halign-left valign-top">Expectativas</th>
+<th class="tableblock halign-left valign-top">Role/Name</th>
+<th class="tableblock halign-left valign-top">Contact</th>
+<th class="tableblock halign-left valign-top">Expectations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cliente</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Empresa que nos contrata, ficticia (HappySw), representada por los profesores de la asignatura</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Que la aplicación desarrollada cumpla con los requisitos mencionados en el apartado 1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-1&gt;</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Oscar Abad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usuarios</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El conjunto de personas que van a utilizar el producto final desarrollado</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Que la aplicación funcione correctamente y que cumpla, implícitamente, con los objetivos de calidad</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ayuntamiento de Bruselas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Organismo público que contrata al Cliente</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mismas expectativas que nuestro Cliente (HappySw)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-2&gt;</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1696,6 +1593,9 @@ concrete and measurable.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/arbol_de_calidad.PNG" alt="Arbol de calidad"></span></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
@@ -1737,6 +1637,37 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Atributo de calidad</th>
+<th class="tableblock halign-left valign-top">Escenario de calidad</th>
+<th class="tableblock halign-left valign-top">Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación deberá tener una interfaz clara y entendible para todo tipo de usuarios, incluso aquellos con discapacidad podrán satisfacer sus necesidades. El usuario sabe en todo momento en que punto se encuentra de la aplicación y que debe de hacer para continuar navegando, el objetivo en todo momento es garantizar una experiencia cómoda a los clientes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los datos del usuario estarán protegidos en todo momento, no serán prestados a terceros para su uso. El usuario se debe de registrar con su cuenta y contraseñas (validadas correctamente). Evitar ataques, por lo que debemos minimizar las vulnerabilidades en el sistema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sólo el usuario podrá acceder a su información, ya que es confidencial, y ningún otro usuario podrá acceder a ella. El objetivo que queremos alcanzar es la protección de los datos de los usuarios para descentralizar los datos personales y mejorar la privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1763,7 +1694,87 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_posibles_riesgos">11.1. Posibles riesgos</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Riesgo</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+<th class="tableblock halign-left valign-top">Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vamos a estar continuamente condicionados por el tiempo para entregar el proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No hemos trabajado tan a fondo con GitHub, tenemos una base pequeña sobre lo básico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pullRequest, issues, commits&#8230;&#8203;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nuevas tecnologías</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para la mayoría del grupo la falta de conocimiento de tecnologías como React, Node.js o Solid; supondrá un extra añadido a la dificultad del desarrollo de la aplicación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comunicación del equipo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La comunicación no es inmediata y mucho menos de todos los miembros del grupo al mismo tiempo, cada miembro tiene unos horarios y asignaturas diferentes, luego será un factor añadido en contra para nosotros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Posible abandono de algún miembro del grupo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uno o varios miembros podrían abandonar la asignatura debido a la carga de trabajo acumulada a lo largo del semestre</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intentaremos aliviar la situación reforzando el trabajo en grupo y el apoyo extra en las tareas, en especial a aquellas que son críticas para el proyecto</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_deuda_técnica">11.2. Deuda técnica</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Deuda técnica</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Código limpio para el desarrollo ágil del software</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El código debe ser claro y refactorizado, sobre todo en la parte del backend; y también el frontend, para hacerlo más conciso y modificable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Investigación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Una búsqueda amplica de información acerca de cómo trabajar con Typescript, React y Solid facilitará el trabajo una vez iniciado el proyecto. Solo hemos utilizado JavaScript, nunca Typescript, luego supondrá un periodo de adaptación a dicha tecnología</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toma de decisiones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es importante decidir con cabeza y con un buen razonamiento la arquitectura del proyecto, hay que evitar improvisar en todo momento, ya que puede afectar negativamente al proyecto en gran medida</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El desconocimiento inicial por parte de la mayoría de los miembros del grupo supondrá una deuda técnica, trataremos de colaborar el máximo y reforzar los conocimientos de manera progresiva, con el objetivo de ganar estabilidad y constancia a lo largo del proyecto.</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1848,7 +1859,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-03 12:14:28 +0100
+Last updated 2023-02-09 09:54:21 +0100
 </div>
 </div>
 </body>
