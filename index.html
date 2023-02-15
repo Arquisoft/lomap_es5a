@@ -561,6 +561,45 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>LoMap es el proyecto del curso actual de la asignatura Arquitectura del Software, que será desarrollado por el equipo 5A compuesto por los integrantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ricardo Marqués Garay</p>
+</li>
+<li>
+<p>Miguel González Navarro</p>
+</li>
+<li>
+<p>Francisco Coya Abajo</p>
+</li>
+<li>
+<p>Marcos Valín Fernández</p>
+</li>
+<li>
+<p>Oscar Abad López</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Y, con la ayuda del profesorado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Jose Emilio Labra Gayo</p>
+</li>
+<li>
+<p>Irene Cid Rico</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consiste en una aplicación donde los ciudadanos podrán disponer de mapas personalizados sobre lugares
+y negocios actuales de la ciudad.</p>
+</div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="sidebarblock arc42help">
@@ -586,6 +625,31 @@ If requirements documents exist this overview should refer to these documents.</
 </div>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>El sistema permitirá a los usuarios añadir localizaciones a los mapas en diversas categorías. Además los usuarios podrán añadir comentarios, puntuaciones, etc. sobre dichas localizaciones.</p>
+</li>
+<li>
+<p>El sistema permitirá a los usuarios mostrar localizaciones en una ventana de tipo mapa</p>
+</li>
+<li>
+<p>El sistema gestionará la información almacenada sobre una localización por cada usuario de forma descentralizada. Se pueden dar excepciones por rendimiento siempre que se respete la privacidad de los usuarios.</p>
+</li>
+<li>
+<p>El sistema permitirá a los usuarios gestionar la información que comparten con otros usuarios. Y, siempre que lo permitan, acceder a localizaciones e información relativa a ellas compartida por sus amigos.</p>
+</li>
+<li>
+<p>El sistema permitirá a los usuarios emplear filtros a la hora de visualizar el mapa.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Se puede consultar el siguiente documento, que contiene una descripción de la aplicación a desarrollar, así como una lista de requisitos funcionales más detallada:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://arquisoft.github.io/course2223/labEnunciadoPractica.html" class="bare">https://arquisoft.github.io/course2223/labEnunciadoPractica.html</a></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_quality_goals">1.2. Quality Goals</h3>
@@ -606,6 +670,40 @@ If you as an architect do not know how the quality of your work will be judged �
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Segun ISO/IEC 25010</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objetivo de Calidad</th>
+<th class="tableblock halign-left valign-top">Motivación</th>
+<th class="tableblock halign-left valign-top">Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para que el producto sea consumible por los usuarios finales, ha de tener un diseño moderno y minimalista, centrado en un público de edades diversas. Para ello, tiene que ser intuitivo y fácil de usar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar aplicaciones 100% seguras a día de hoy es imposible, pero ello no quiere decir que sea posible implementar medidas de protección ante ataques comunmente conocidos. La descentralización del sistema, contribuye a un incremento de la seguridad. Además, implementar medidas tanto para el lado cliente como para el servidor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lo primero es la privacidad de los usuarios. Por ello, la gestión de mapas mediante el uso de SOLID, almacenando los datos en un sistema distribuido. Cada usuario tendrá un POD personal, no visible a otros usuarios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
@@ -648,27 +746,37 @@ These stakeholders determine the extent and the level of detail of your work and
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Role/Name</th>
-<th class="tableblock halign-left valign-top">Contact</th>
-<th class="tableblock halign-left valign-top">Expectations</th>
+<th class="tableblock halign-left valign-top">Rol</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">Expectativas</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cliente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empresa que nos contrata, ficticia (HappySw), representada por los profesores de la asignatura</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Que la aplicación desarrollada cumpla con los requisitos mencionados en el apartado 1.1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Oscar Abad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usuarios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El conjunto de personas que van a utilizar el producto final desarrollado</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Que la aplicación funcione correctamente y que cumpla, implícitamente, con los objetivos de calidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ayuntamiento de Bruselas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organismo público que contrata al Cliente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mismas expectativas que nuestro Cliente (HappySw)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1859,7 +1967,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-09 09:54:21 +0100
+Last updated 2023-02-03 12:14:28 +0100
 </div>
 </div>
 </body>
