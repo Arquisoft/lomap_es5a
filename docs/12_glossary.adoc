@@ -25,7 +25,12 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Término      | Definición
+| Discord     | Servicio de mensajería instantánea y chat de voz VolP, donde nos comunicaremos en las reuniones extraordinarias de manera virtual- Este servicio cuenta con la posibilidad de compartir el escritorio de cada uno de los miembros a la vez,
+lo cuál facilitará la resolución de dudas y conceptos
+| Arc42     | Plantilla para la documentación de la arquitectura del sistema
+| Github    | Plataforma donde se alojará el proyecto, con sus distintas ramas de desarrollador (tanto para el código como para la documentación)
+| Issue     | Es una nota en un repositorio que trata de llamar la atención sobre un problema o un tema. Puede ser un error a corregir, una petición para añadir una nueva opción o característica, una pregunta para aclarar algún tema que no está correctamente aclarado o muchas otras cosas diferentes. Se utilizará para contar las tareas que se van desarrollando y quién las realiza
+| Pull request     | Es la acción de validar un código que se va a mergear de una rama a otra, una petición para que el propietario del repositorio original incorpore los commits que están en la rama
+| Commit    | Consiste en confirmar un conjunto de cambios provisionales de forma permanente. Los utilizaremos para poder medir el trabajo de cada uno en el proyecto
 |===

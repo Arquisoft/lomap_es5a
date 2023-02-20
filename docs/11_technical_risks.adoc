@@ -15,3 +15,55 @@ This should be your motto for systematic detection and evaluation of risks and t
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
+=== Possible risks
+
+[%header, cols=3]
+|===
+|Riesgo
+|Explicación
+|Solución
+
+|Tiempo
+|Vamos a estar continuamente condicionados por el tiempo para entregar el proyecto
+|Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario
+
+|Github
+|No hemos trabajado tan a fondo con GitHub, tenemos una base pequeña sobre lo básico
+|Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pull Request, issues, commits...)
+
+|Nuevas tecnologías
+|Para la mayoría del grupo la falta de conocimiento de tecnologías como React, Node.js o Solid; supondrá un extra añadido a la dificultad del desarrollo de la aplicación
+|Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo
+
+|Comunicación del equipo
+|La comunicación no es inmediata y mucho menos de todos los miembros del grupo al mismo tiempo, cada miembro tiene unos horarios y asignaturas diferentes, luego será un factor añadido en contra para nosotros
+|Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente
+
+|Posible abandono de algún miembro del grupo
+|Uno o varios miembros podrían abandonar la asignatura debido a la carga de trabajo acumulada a lo largo del semestre
+|Intentaremos aliviar la situación reforzando el trabajo en grupo y el apoyo extra en las tareas, en especial a aquellas que son críticas para el proyecto
+
+|===
+
+=== Technical Debt
+
+[%header, cols=2]
+|===
+|Deuda técnica
+|Explicación
+
+|Usabilidad
+|Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles
+
+|Código limpio para el desarrollo ágil del software
+|El código debe ser claro y refactorizado, sobre todo en la parte del backend; y también el frontend, para hacerlo más conciso y modificable.
+
+|Investigación
+|Una búsqueda amplica de información acerca de cómo trabajar con Typescript, React y Solid facilitará el trabajo una vez iniciado el proyecto. Solo hemos utilizado JavaScript, nunca Typescript, luego supondrá un periodo de adaptación a dicha tecnología
+
+|Toma de decisiones
+|Es importante decidir con cabeza y con un buen razonamiento la arquitectura del proyecto, hay que evitar improvisar en todo momento, ya que puede afectar negativamente al proyecto en gran medida
+
+|===
+
+El desconocimiento inicial por parte de la mayoría de los miembros del grupo supondrá una deuda técnica, trataremos de colaborar el máximo y reforzar los conocimientos de manera progresiva, con el objetivo de ganar estabilidad y constancia a lo largo del proyecto.
