@@ -29,7 +29,8 @@ List of risks and/or technical debts, probably including suggested measures to m
 
 |Github
 |No hemos trabajado tan a fondo con GitHub, tenemos una base pequeña sobre lo básico
-|Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pullRequest, issues, commits...)
+
+|Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pull Request, issues, commits...)
 
 |Nuevas tecnologías
 |Para la mayoría del grupo la falta de conocimiento de tecnologías como React, Node.js o Solid; supondrá un extra añadido a la dificultad del desarrollo de la aplicación

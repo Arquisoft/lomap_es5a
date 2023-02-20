@@ -25,7 +25,16 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Término      | Definición
+| Arc42     | Plantilla para la documentación de la arquitectura del sistema.
+| Azure | Servicio de nube que ofrece, entre otros muchos, servicios de virtualización para máquinas. Se utiliza para desplegar aplicaciones y servicios en servidores remotos (Propietarios de Microsoft).
+| Commit    | Consiste en confirmar un conjunto de cambios provisionales de forma permanente. Los utilizaremos para poder medir el trabajo de cada uno en el proyecto.
+| Docker | Herramienta de código abierto (Open Source) que permite gestionar contenedores. Se ejecuta bajo un entorno virtualizado y contiene todas las librerías y dependencias del proyecto que lo integra, evitando la instalación y gestión de dichas herramientas en un entorno local.
+| Discord     | Servicio de mensajería instantánea y chat de voz VolP, donde nos comunicaremos en las reuniones extraordinarias de manera virtual- Este servicio cuenta con la posibilidad de compartir el escritorio de cada uno de los miembros a la vez, lo cuál facilitará la resolución de dudas y conceptos
+| Github    | Plataforma donde se alojará el proyecto, con sus distintas ramas de desarrollador (tanto para el código como para la documentación)
+| Issue     | Es una nota en un repositorio que trata de llamar la atención sobre un problema o un tema. Puede ser un error a corregir, una petición para añadir una nueva opción o característica, una pregunta para aclarar algún tema que no está correctamente aclarado o muchas otras cosas diferentes. Se utilizará para contar las tareas que se van desarrollando y quién las realiza
+| ReactJS | Marco de trabajo (framework) basado en JavaScript para crear aplicaciones web en el entorno cliente. Permite crear aplicaciones web reactivas a cambios (en tiempo real) y se organiza en componentes. Entre sus características principales, destaca la incorporación de un DOM virtual, que es una copia del árbol DOM pero dinámico, sin afectar directamente al árbol DOM original.
+| Pod | Referente al proyecto SOLID, es un mecanismo de almacenamiento distribuido que almacena la información de un usuario de forma privada y segura. Se puede comunicar con otros PODS. Se identifica mediante una URL.
+| Pull request     | Es la acción de validar un código que se va a mergear de una rama a otra, una petición para que el propietario del repositorio original incorpore los commits que están en la rama
+| WebId | Referente al proyecto SOLID, es un identificador que representa de manera única a un usuario. 
 |===
