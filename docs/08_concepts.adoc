@@ -55,23 +55,23 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 [plantuml, "ModeloDeDominio", png]
 ----
 
-Object Person{
+Object Persona{
     id:String
     role:String
     verified:boolean
 }
-Object Group{
+Object Grupo{
     id:String
     persons:Person[]
 }
 
-Object Point{
+Object Punto{
     name:String
     description:String
     adress:String
 }
 
-Object Map{
+Object Mapa{
     code:String
     points: Points[]
 }
@@ -82,11 +82,11 @@ Object Opinion{
     note : int
 }
 
-Opinion *--->Person
-Opinion *--->Point
-Point *---Map
-Map *--->Person
-Group *---> Person
+Opinion *--->Persona
+Opinion *--->Punto
+Punto *--->Mapa
+Mapa *--->Persona
+Grupo *---> Persona
 
 
 Point 
