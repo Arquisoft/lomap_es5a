@@ -4,6 +4,8 @@
 
 [role="arc42help"]
 ****
+
+
 .Contents
 Important, expensive, large scale or risky architecture decisions including rationals.
 With "decisions" we mean selecting one alternative based on given criteria.
@@ -24,3 +26,69 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+=== Decisiones aceptadas
+Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
+
+[%header, cols=4]
+|===
+|Decision arquitectonica
+|Ventajas
+|Desventajas
+|Enlace al ADR
+
+|TypeScript
+|Resuelve uno de los grandes problemas de JavaScript, el enlace dinámico.
+|Ninguno de nosotros hemos usado nunca, y debemos aprender.
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje)
+
+|React js
+|Actualiza componentes y vistas en tiempo real, permite modularizar la interfaz de usuario en componentes.
+|Documentación muy escueta, dificultando el aprendizaje.
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS)
+
+|SOLID
+|Organiza de forma descentralizada
+|Dificil de utilizar
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D)
+
+|NodeJS
+|Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.
+|Monohilo, la integración de asincronía puede hacer el codigo inmantenible.
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D)
+
+|React Leflet
+|Calidad-coste superior a las demás.
+|Nunca hemos trabajado con el.
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D)
+
+
+|Styled Components
+|Facilita enormemente el trabajo, altamente probados y validados por la comunidad.
+|Se depende del mantenimiento de y licencia de uso de esta libreria.
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components)
+
+|Azure
+|Nos aseguramos tener una base de otras asignaturas y disponemos de credito
+|A veces da bastantes problemas
+|[ADR](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D)
+|PostgreSQL y Firebase Cloud Storage
+| Tienen integración con Azure que es donde desplegaremos la maquina virtual.
+| Es un modelo de datos relacional, que no quizas no sea tan interesante.
+| [ADR] (https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos)
+
+|Visual Studio Code
+|Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
+| Necesidad de instalar muchos pluggins.
+|[ADR] (https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE)
+
+|JEST 
+|Buena documentación y recursos, paralización de test y facil configuración.
+|No tenemos conocimiento con esta libreria
+|[ADR1](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End)/n
+
+[ADR2](https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End)
+|===
+
+
+
