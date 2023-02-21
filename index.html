@@ -457,46 +457,54 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#section-solution-strategy">4. Solution Strategy</a></li>
-<li><a href="#section-building-block-view">5. Building Block View</a>
+<li><a href="#_decisiones_tecnológicas">5. Decisiones Tecnológicas</a></li>
+<li><a href="#_enfoques_para_alcanzar_los_objetivos_de_calidad">6. Enfoques para alcanzar los objetivos de calidad</a></li>
+<li><a href="#_decisiones_organizativas_relevantes">7. Decisiones organizativas relevantes</a></li>
+<li><a href="#section-building-block-view">8. Building Block View</a>
 <ul class="sectlevel2">
-<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
-<li><a href="#_level_2">5.2. Level 2</a></li>
-<li><a href="#_level_3">5.3. Level 3</a></li>
+<li><a href="#_whitebox_overall_system">8.1. Whitebox Overall System</a></li>
+<li><a href="#_level_2">8.2. Level 2</a></li>
+<li><a href="#_level_3">8.3. Level 3</a></li>
 </ul>
 </li>
-<li><a href="#section-runtime-view">6. Runtime View</a>
+<li><a href="#section-runtime-view">9. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_inicio_de_sesión">6.1. Inicio de sesión</a></li>
-<li><a href="#_registro_de_un_usuario">6.2. Registro de un usuario</a></li>
-<li><a href="#_añadir_un_punto_de_interés_al_mapa">6.3. Añadir un punto de interés al mapa</a></li>
+<li><a href="#_inicio_de_sesión">9.1. Inicio de sesión</a></li>
+<li><a href="#_registro_de_un_usuario">9.2. Registro de un usuario</a></li>
+<li><a href="#_añadir_un_punto_de_interés_al_mapa">9.3. Añadir un punto de interés al mapa</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a>
+<li><a href="#section-deployment-view">10. Deployment View</a>
 <ul class="sectlevel2">
-<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_infrastructure_level_1">10.1. Infrastructure Level 1</a></li>
 </ul>
 </li>
-<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<li><a href="#section-concepts">11. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
-<li><a href="#_domain_model">8.1. Domain model</a></li>
-<li><a href="#_concept_2">8.2. <em>&lt;Concept 2&gt;</em></a></li>
-<li><a href="#_concept_n">8.3. <em>&lt;Concept n&gt;</em></a></li>
+<li><a href="#_modelo_de_dominio">11.1. Modelo de dominio</a></li>
+<li><a href="#_seguridad">11.2. Seguridad</a></li>
+<li><a href="#_testeabilidad">11.3. Testeabilidad</a></li>
+<li><a href="#_usabilidad">11.4. Usabilidad</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">9. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<li><a href="#section-design-decisions">12. Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+<li><a href="#_decisiones_aceptadas">12.1. Decisiones aceptadas</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
+<li><a href="#section-quality-scenarios">13. Quality Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_possible_risks">11.1. Possible risks</a></li>
-<li><a href="#_technical_debt">11.2. Technical Debt</a></li>
+<li><a href="#_quality_tree">13.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">13.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-technical-risks">14. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_possible_risks">14.1. Possible risks</a></li>
+<li><a href="#_technical_debt">14.2. Technical Debt</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">15. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -943,11 +951,113 @@ Refer to details in the following sections.</p>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decisiones_tecnológicas">5. Decisiones Tecnológicas</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tecnología</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema de control de versiones de software.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio basado en la nube que aloja al sistema de control de versiones antes mencionado, Git.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Especificación que permite almacenar datos de forma segura en almacenes descentralizados de datos denominados Pods.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entorno de ejecución para JavaScript empleado para desarrollar aplicaciones escalables del lado del servidor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework para la construcción de aplicaciones web en Node.js.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje de programación construido a un nivel superior de JavaScript que ofrece una mayor seguridad, escalabilidad y limpieza en el código.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Biblioteca de JavaScript que nos permite creear interfaces de usuario interactivas de manera sencilla. Se basa en componentes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Leaflet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Biblioteca de mapas, open-source y basada en OpenStreetMaps.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker es una herramienta que facilita la creación, implementación y ejecución de aplicaciones mediante el uso de contenedores. Los contenedores permiten empaquetar una aplicación con todas las partes que necesita, como bibliotecas y otras dependencias, y desplegarla como un solo paquete.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB (Aún tenemos dudas)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema gestor de bases de datos NoSQL, orientado a documentos. Almacena estructuras de datos BSON (similar a JSON) haciendo que la integración de los datos en ciertas aplicaciones sea más sencilla y rápida.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework de pruebas para JavaScript.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enfoques_para_alcanzar_los_objetivos_de_calidad">6. Enfoques para alcanzar los objetivos de calidad</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.</p>
+</li>
+<li>
+<p>Seguridad y Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.</p>
+</li>
+<li>
+<p>Mantenibilidad: un objetivo a perseguir por todos los miembros del equipo será el desarrollar un código limpio y fácil de leer. Además, un código fácilmente mantenible. Para ello, emplearemos alguno de los patrones estudiados en la asignatura Diseño del Software, siempre que sea necesario y todas las convenciones de programación aprendidas hasta ahora.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decisiones_organizativas_relevantes">7. Decisiones organizativas relevantes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.</p>
+</li>
+<li>
+<p>La comunicación entre los miembros del equipo se produce, principalmente, a través de un grupo de WhatsApp, pero cualquier problema que surja también se refleja como una issue en Github.</p>
+</li>
+<li>
+<p>Empleamos un tablero Kanban dentro de github para tener bien organizadas y de forma muy clara las tareas que tiene que realizar/está realizando cada miembro del equipo.</p>
+</li>
+</ul>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-building-block-view">5. Building Block View</h2>
+<h2 id="section-building-block-view">8. Building Block View</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -991,7 +1101,7 @@ Thus it contains the white box description of selected building blocks of level 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
+<h3 id="_whitebox_overall_system">8.1. Whitebox Overall System</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1087,7 +1197,7 @@ Its headline is the name of the black box.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_name_black_box_1">5.1.1. &lt;Name black box 1&gt;</h4>
+<h4 id="_name_black_box_1">8.1.1. &lt;Name black box 1&gt;</h4>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1138,30 +1248,30 @@ according the the following black box template:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_name_black_box_2">5.1.2. &lt;Name black box 2&gt;</h4>
+<h4 id="_name_black_box_2">8.1.2. &lt;Name black box 2&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;black box template&gt;</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_name_black_box_n">5.1.3. &lt;Name black box n&gt;</h4>
+<h4 id="_name_black_box_n">8.1.3. &lt;Name black box n&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;black box template&gt;</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_name_interface_1">5.1.4. &lt;Name interface 1&gt;</h4>
+<h4 id="_name_interface_1">8.1.4. &lt;Name interface 1&gt;</h4>
 <div class="paragraph">
 <p>&#8230;&#8203;</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_name_interface_m">5.1.5. &lt;Name interface m&gt;</h4>
+<h4 id="_name_interface_m">8.1.5. &lt;Name interface m&gt;</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_level_2">5.2. Level 2</h3>
+<h3 id="_level_2">8.2. Level 2</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1175,7 +1285,7 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_1">5.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
+<h4 id="_white_box_building_block_1">8.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1188,7 +1298,7 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_2">5.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
+<h4 id="_white_box_building_block_2">8.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
@@ -1197,14 +1307,14 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_m">5.2.3. White Box <em>&lt;building block m&gt;</em></h4>
+<h4 id="_white_box_building_block_m">8.2.3. White Box <em>&lt;building block m&gt;</em></h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_level_3">5.3. Level 3</h3>
+<h3 id="_level_3">8.3. Level 3</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1217,7 +1327,7 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_x_1">5.3.1. White Box &lt;_building block x.1_&gt;</h4>
+<h4 id="_white_box_building_block_x_1">8.3.1. White Box &lt;_building block x.1_&gt;</h4>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1230,13 +1340,13 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_x_2">5.3.2. White Box &lt;_building block x.2_&gt;</h4>
+<h4 id="_white_box_building_block_x_2">8.3.2. White Box &lt;_building block x.2_&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_white_box_building_block_y_1">5.3.3. White Box &lt;_building block y.1_&gt;</h4>
+<h4 id="_white_box_building_block_y_1">8.3.3. White Box &lt;_building block y.1_&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
@@ -1246,10 +1356,10 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
+<h2 id="section-runtime-view">9. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_inicio_de_sesión">6.1. Inicio de sesión</h3>
+<h3 id="_inicio_de_sesión">9.1. Inicio de sesión</h3>
 <div class="paragraph">
 <p>Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODS recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario y mostrando un mensaje informativo.</p>
 </div>
@@ -1260,7 +1370,7 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_registro_de_un_usuario">6.2. Registro de un usuario</h3>
+<h3 id="_registro_de_un_usuario">9.2. Registro de un usuario</h3>
 <div class="paragraph">
 <p>Un usuario de la aplicación, para registrarse ha de introducir los siguientes datos: Nombre, nombre de usuario, correo electrónico y contraseña. Los datos del usuario se almacenan en su POD personal del proveedor dispuesto en la aplicación. La transacción se realiza desde el lado del cliente a través de su api, enviando los datos del formulario al proveedor, donde este comprobará si existe un usuario registrado con el email indicado. En caso de existir un usuario en el proveedor, se redireccionará a la página del formulario con un mensaje de error.</p>
 </div>
@@ -1271,7 +1381,7 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_añadir_un_punto_de_interés_al_mapa">6.3. Añadir un punto de interés al mapa</h3>
+<h3 id="_añadir_un_punto_de_interés_al_mapa">9.3. Añadir un punto de interés al mapa</h3>
 <div class="paragraph">
 <p>Para añadir un punto de interés en el mapa se contemplan varias opciones. El siguiente diagrama representa el escenario de añadir un punto de interés desde la vista privada del usuario (Dashboard).</p>
 </div>
@@ -1285,10 +1395,10 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
+<h2 id="section-deployment-view">10. Deployment View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
+<h3 id="_infrastructure_level_1">10.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/diagrama_despliegue.png" alt="diagrama despliegue">
@@ -1356,7 +1466,7 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<h2 id="section-concepts">11. Cross-cutting Concepts</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1455,31 +1565,37 @@ on this list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_domain_model">8.1. Domain model</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
+<h3 id="_modelo_de_dominio">11.1. Modelo de dominio</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="361" height="687">
 </div>
-</div>
-<div class="sect2">
-<h3 id="_concept_2">8.2. <em>&lt;Concept 2&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concept_n">8.3. <em>&lt;Concept n&gt;</em></h3>
+<h3 id="_seguridad">11.2. Seguridad</h3>
 <div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
+<p>La seguridad de la aplicación es una parte muy importante.
+Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testeabilidad">11.3. Testeabilidad</h3>
+<div class="paragraph">
+<p>Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componontes. Es importante unos test para que el usuario tenga la mejor experiencia posible.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usabilidad">11.4. Usabilidad</h3>
+<div class="paragraph">
+<p>Usaremos react con Typescript. React es un framework que facilita mucho la interactividad con la interfaz de usuario, por lo que es importante para llegar a los usuarios</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-design-decisions">9. Design Decisions</h2>
+<h2 id="section-design-decisions">12. Design Decisions</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1519,11 +1635,96 @@ here in this central section or whether you better document it locally
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_decisiones_aceptadas">12.1. Decisiones aceptadas</h3>
+<div class="paragraph">
+<p>Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Decision arquitectonica</th>
+<th class="tableblock halign-left valign-top">Ventajas</th>
+<th class="tableblock halign-left valign-top">Desventajas</th>
+<th class="tableblock halign-left valign-top">Enlace al ADR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resuelve uno de los grandes problemas de JavaScript, el enlace dinámico.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ninguno de nosotros hemos usado nunca, y debemos aprender.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actualiza componentes y vistas en tiempo real, permite modularizar la interfaz de usuario en componentes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentación muy escueta, dificultando el aprendizaje.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organiza de forma descentralizada</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dificil de utilizar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeJS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monohilo, la integración de asincronía puede hacer el codigo inmantenible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(<a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D)">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React Leflet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calidad-coste superior a las demás.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunca hemos trabajado con el.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Styled Components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Facilita enormemente el trabajo, altamente probados y validados por la comunidad.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se depende del mantenimiento de y licencia de uso de esta libreria.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nos aseguramos tener una base de otras asignaturas y disponemos de credito</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A veces da bastantes problemas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PostgreSQL y Firebase Cloud Storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tienen integración con Azure que es donde desplegaremos la maquina virtual.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es un modelo de datos relacional, que no quizas no sea tan interesante.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Necesidad de instalar muchos pluggins.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE">ADR</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JEST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Buena documentación y recursos, paralización de test y facil configuración.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No tenemos conocimiento con esta libreria</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End">ADR1</a></p>
+<p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End">ADR2</a></p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<h2 id="section-quality-scenarios">13. Quality Requirements</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1544,7 +1745,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_tree">10.1. Quality Tree</h3>
+<h3 id="_quality_tree">13.1. Quality Tree</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1579,7 +1780,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
+<h3 id="_quality_scenarios">13.2. Quality Scenarios</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1654,7 +1855,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">14. Risks and Technical Debts</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1676,7 +1877,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_possible_risks">11.1. Possible risks</h3>
+<h3 id="_possible_risks">14.1. Possible risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1720,7 +1921,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </table>
 </div>
 <div class="sect2">
-<h3 id="_technical_debt">11.2. Technical Debt</h3>
+<h3 id="_technical_debt">14.2. Technical Debt</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1759,7 +1960,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
+<h2 id="section-glossary">15. Glossary</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1806,13 +2007,24 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Discord</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de mensajería instantánea y chat de voz VolP, donde nos comunicaremos en las reuniones extraordinarias de manera virtual- Este servicio cuenta con la posibilidad de compartir el escritorio de cada uno de los miembros a la vez,
-lo cuál facilitará la resolución de dudas y conceptos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la documentación de la arquitectura del sistema.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la documentación de la arquitectura del sistema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de nube que ofrece, entre otros muchos, servicios de virtualización para máquinas. Se utiliza para desplegar aplicaciones y servicios en servidores remotos (Propietarios de Microsoft).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Commit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consiste en confirmar un conjunto de cambios provisionales de forma permanente. Los utilizaremos para poder medir el trabajo de cada uno en el proyecto.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Herramienta de código abierto (Open Source) que permite gestionar contenedores. Se ejecuta bajo un entorno virtualizado y contiene todas las librerías y dependencias del proyecto que lo integra, evitando la instalación y gestión de dichas herramientas en un entorno local.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discord</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de mensajería instantánea y chat de voz VolP, donde nos comunicaremos en las reuniones extraordinarias de manera virtual- Este servicio cuenta con la posibilidad de compartir el escritorio de cada uno de los miembros a la vez, lo cuál facilitará la resolución de dudas y conceptos</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
@@ -1823,12 +2035,28 @@ lo cuál facilitará la resolución de dudas y conceptos</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es una nota en un repositorio que trata de llamar la atención sobre un problema o un tema. Puede ser un error a corregir, una petición para añadir una nueva opción o característica, una pregunta para aclarar algún tema que no está correctamente aclarado o muchas otras cosas diferentes. Se utilizará para contar las tareas que se van desarrollando y quién las realiza</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReactJS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marco de trabajo (framework) basado en JavaScript para crear aplicaciones web en el entorno cliente. Permite crear aplicaciones web reactivas a cambios (en tiempo real) y se organiza en componentes. Entre sus características principales, destaca la incorporación de un DOM virtual, que es una copia del árbol DOM pero dinámico, sin afectar directamente al árbol DOM original.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Referente al proyecto SOLID, es un mecanismo de almacenamiento distribuido que almacena la información de un usuario de forma privada y segura. Se puede comunicar con otros PODS. Se identifica mediante una URL.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pull request</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es la acción de validar un código que se va a mergear de una rama a otra, una petición para que el propietario del repositorio original incorpore los commits que están en la rama</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Commit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consiste en confirmar un conjunto de cambios provisionales de forma permanente. Los utilizaremos para poder medir el trabajo de cada uno en el proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Referente al proyecto SOLID, es un identificador que representa de manera única a un usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas empiricas cuyo objetivo es proporcionar informacion sobre la calidad del producto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida en la cual un producto puede ser usado por usuarios con efectividad.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1857,7 +2085,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-20 18:27:37 +0100
+Last updated 2023-02-21 13:46:32 +0100
 </div>
 </div>
 </body>
