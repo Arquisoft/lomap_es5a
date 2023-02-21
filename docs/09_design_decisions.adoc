@@ -1,5 +1,5 @@
 [[section-design-decisions]]
-== Design Decisions
+== Decisiones de diseño
 
 
 [role="arc42help"]
@@ -40,54 +40,55 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |TypeScript
 |Resuelve uno de los grandes problemas de JavaScript, el enlace dinámico.
 |Ninguno de nosotros hemos usado nunca, y debemos aprender.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje[ADR 00]
 
 |React js
 |Actualiza componentes y vistas en tiempo real, permite modularizar la interfaz de usuario en componentes.
 |Documentación muy escueta, dificultando el aprendizaje.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS[ADR 01]
 
 |SOLID
 |Organiza de forma descentralizada
 |Dificil de utilizar
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D[ADR 03]
 
 |NodeJS
 |Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.
 |Monohilo, la integración de asincronía puede hacer el codigo inmantenible.
-|(https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D)[ADR]
+|(https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D)[ADR 02]
 
 |React Leflet
 |Calidad-coste superior a las demás.
 |Nunca hemos trabajado con el.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D[ADR 05]
 
 
 |Styled Components
 |Facilita enormemente el trabajo, altamente probados y validados por la comunidad.
 |Se depende del mantenimiento de y licencia de uso de esta libreria.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components[ADR 07]
 
 |Azure
 |Nos aseguramos tener una base de otras asignaturas y disponemos de credito
 |A veces da bastantes problemas
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
+
 |PostgreSQL y Firebase Cloud Storage
 | Tienen integración con Azure que es donde desplegaremos la maquina virtual.
 | Es un modelo de datos relacional, que no quizas no sea tan interesante.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos[ADR 08]
 
 |Visual Studio Code
 |Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
 | Necesidad de instalar muchos pluggins.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE[ADR]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE[ADR 09]
 
 |JEST 
 |Buena documentación y recursos, paralización de test y facil configuración.
 |No tenemos conocimiento con esta libreria
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End[ADR1]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End[ADR 10]
 
-https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR2]
+https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR 11]
 |===
 
 
