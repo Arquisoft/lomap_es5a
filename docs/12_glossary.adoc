@@ -37,4 +37,6 @@ Potentially more columns in case you need translations.
 | Pod | Referente al proyecto SOLID, es un mecanismo de almacenamiento distribuido que almacena la información de un usuario de forma privada y segura. Se puede comunicar con otros PODS. Se identifica mediante una URL.
 | Pull request     | Es la acción de validar un código que se va a mergear de una rama a otra, una petición para que el propietario del repositorio original incorpore los commits que están en la rama
 | WebId | Referente al proyecto SOLID, es un identificador que representa de manera única a un usuario. 
+| Test | Pruebas empiricas cuyo objetivo es proporcionar informacion sobre la calidad del producto
+| Usabilidad | Medida en la cual un producto puede ser usado por usuarios con efectividad.
 |===

@@ -50,18 +50,57 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 ****
 
 
-=== Domain model
+=== Modelo de dominio
 
-image:UmlDiagram.png["Example UML Diagram"]
+[plantuml, "ModeloDeDominio", png]
+----
+
+Object Person{
+    id:String
+    role:String
+    verified:boolean
+}
+Object Group{
+    id:String
+    persons:Person[]
+}
+
+Object Point{
+    name:String
+    description:String
+    adress:String
+}
+
+Object Map{
+    code:String
+    points: Points[]
+}
+
+Object Opinion{
+    id:String
+    description:String
+    note : int
+}
+
+Opinion *--->Person
+Opinion *--->Point
+Point *---Map
+Map *--->Person
+Group *---> Person
 
 
+Point 
+----
+=== Seguridad
 
-=== _<Concept 2>_
+La seguridad de la aplicación es una parte muy importante.
+Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.
 
-_<explanation>_
 
-...
+=== Testeabilidad
 
-=== _<Concept n>_
+Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componontes. Es importante unos test para que el usuario tenga la mejor experiencia posible.
 
-_<explanation>_
+=== Usabilidad
+
+Usaremos react con Typescript. React es un framework que facilita mucho la interactividad con la interfaz de usuario, por lo que es importante para llegar a los usuarios
