@@ -71,6 +71,7 @@ Refer to details in the following sections.
 
 == Decisiones organizativas relevantes
 En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:
+
 - Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.
 - La comunicación entre los miembros del equipo se produce, principalmente, a través de un grupo de WhatsApp, pero cualquier problema que surja también se refleja como una issue en Github.
 - Empleamos un tablero Kanban dentro de github para tener bien organizadas y de forma muy clara las tareas que tiene que realizar/está realizando cada miembro del equipo.
