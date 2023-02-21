@@ -18,7 +18,7 @@ technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
 
-== Restricciones técnicas
+Restricciones técnicas
 
 [options="header"]
 |================================================================================================================================================================================================================
@@ -35,7 +35,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |================================================================================================================================================================================================================
 
 
-== Restricciones organizativas 
+Restricciones organizativas 
 
 [options="header"]
 |================================================================================================================================================================================================================
@@ -45,7 +45,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | Fechas límites de las entregas    | Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.
 |================================================================================================================================================================================================================
 
-== Restricciones de convenios
+Restricciones de convenios
 
 [options="header"]
 |================================================================================================================================================================================================================
