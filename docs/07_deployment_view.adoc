@@ -1,7 +1,7 @@
 [[section-deployment-view]]
 
 
-== Deployment View
+== Vista de despliegue
 
 === Infrastructure Level 1
 :imagesdir: images
