@@ -68,6 +68,7 @@ Refer to details in the following sections.
 - Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.
 - Seguridad y Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
 - Mantenibilidad: un objetivo a perseguir por todos los miembros del equipo será el desarrollar un código limpio y fácil de leer. Además, un código fácilmente mantenible. Para ello, emplearemos alguno de los patrones estudiados en la asignatura Diseño del Software, siempre que sea necesario y todas las convenciones de programación aprendidas hasta ahora. 
+
 == Decisiones organizativas relevantes
 En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:
 - Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.
