@@ -22,3 +22,56 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+== Decisiones Tecnológicas
+[cols=2*,options="header"]
+|===
+|Tecnología
+|Descripción
+
+|Git
+|Sistema de control de versiones de software.
+
+|GitHub
+|Servicio basado en la nube que aloja al sistema de control de versiones antes mencionado, Git.
+
+|Solid
+|Especificación que permite almacenar datos de forma segura en almacenes descentralizados de datos denominados Pods.
+
+|Node.js
+|Entorno de ejecución para JavaScript empleado para desarrollar aplicaciones escalables del lado del servidor.
+
+|Express
+|Framework para la construcción de aplicaciones web en Node.js.
+
+|TypeScript
+|Lenguaje de programación construido a un nivel superior de JavaScript que ofrece una mayor seguridad, escalabilidad y limpieza en el código.
+
+|React
+|Biblioteca de JavaScript que nos permite creear interfaces de usuario interactivas de manera sencilla. Se basa en componentes.
+
+|Leaflet
+|Biblioteca de mapas, open-source y basada en OpenStreetMaps.
+
+|Docker
+|Docker es una herramienta que facilita la creación, implementación y ejecución de aplicaciones mediante el uso de contenedores. Los contenedores permiten empaquetar una aplicación con todas las partes que necesita, como bibliotecas y otras dependencias, y desplegarla como un solo paquete.
+
+|MongoDB (Aún tenemos dudas)
+|Sistema gestor de bases de datos NoSQL, orientado a documentos. Almacena estructuras de datos BSON (similar a JSON) haciendo que la integración de los datos en ciertas aplicaciones sea más sencilla y rápida.
+
+|Jest
+|Framework de pruebas para JavaScript. 
+|===
+
+
+== Enfoques para alcanzar los objetivos de calidad
+- Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.
+- Seguridad y Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
+- Mantenibilidad: un objetivo a perseguir por todos los miembros del equipo será el desarrollar un código limpio y fácil de leer. Además, un código fácilmente mantenible. Para ello, emplearemos alguno de los patrones estudiados en la asignatura Diseño del Software, siempre que sea necesario y todas las convenciones de programación aprendidas hasta ahora. 
+
+== Decisiones organizativas relevantes
+En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:
+
+- Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.
+- La comunicación entre los miembros del equipo se produce, principalmente, a través de un grupo de WhatsApp, pero cualquier problema que surja también se refleja como una issue en Github.
+- Empleamos un tablero Kanban dentro de github para tener bien organizadas y de forma muy clara las tareas que tiene que realizar/está realizando cada miembro del equipo.
