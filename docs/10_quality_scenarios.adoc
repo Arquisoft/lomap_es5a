@@ -1,23 +1,7 @@
 [[section-quality-scenarios]]
-== Quality Requirements
+== Requerimientos de calidad
 
-
-[role="arc42help"]
-****
-
-.Content
-This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)
-
-Here you can also capture quality requirements with lesser priority,
-which will not create high risks when they are not fully achieved.
-
-.Motivation
-Since quality requirements will have a lot of influence on architectural
-decisions you should know for every stakeholder what is really important to them,
-concrete and measurable.
-****
-
-=== Quality Tree
+=== Árbol de calidad
 
 [role="arc42help"]
 ****
@@ -39,7 +23,7 @@ In any case the tree should include links to the scenarios of the following sect
 :imagesdir: images/
 image:arbol_de_calidad.png["Árbol de calidad"]
 
-=== Quality Scenarios
+=== Escenarios de calidad
 
 [role="arc42help"]
 ****
