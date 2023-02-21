@@ -1,9 +1,8 @@
 [[section-design-decisions]]
-== Decisiones de diseño
+== Design decisions
 
+=== Accepted decisions
 
-
-=== Decisiones aceptadas
 Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 
 [%header, cols=4]

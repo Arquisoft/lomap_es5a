@@ -1,7 +1,8 @@
 [[section-concepts]]
-== Conceptos transversales
 
-=== Modelo de dominio
+== Cross-cutting Concepts
+
+=== Domain model
 
 [plantuml, "ModeloDeDominio", png]
 ----
@@ -40,16 +41,16 @@ Mapa *--->Persona
 Grupo *---> Persona
 
 ----
-=== Seguridad
+=== Security
 
 La seguridad de la aplicación es una parte muy importante.
 Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.
 
 
-=== Testeabilidad
+=== Testability
 
 Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componontes. Es importante unos test para que el usuario tenga la mejor experiencia posible.
 
-=== Usabilidad
+=== Usability
 
 Usaremos react con Typescript. React es un framework que facilita mucho la interactividad con la interfaz de usuario, por lo que es importante para llegar a los usuarios
