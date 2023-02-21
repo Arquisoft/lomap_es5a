@@ -1,4 +1,5 @@
 [[section-concepts]]
+
 == Cross-cutting Concepts
 
 === Domain model
