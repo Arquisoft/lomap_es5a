@@ -49,7 +49,7 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
 
 |MongoDB y Firebase Cloud Storage
-| Integración dentro del stack MERN, integración dentro del stack MERN, facilidad para el despliegue
+| Integración dentro del stack MERN, su capacidad de almacenamiento, facilidad para el despliegue
 | Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 12]
 
