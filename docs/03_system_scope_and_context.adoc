@@ -3,11 +3,11 @@
 
 === Business Context
 
-:imagesdir: images/
-image:contexto_de_negocio.png["Contexto de negocio"]
+:imagesdir: images
+image::Contexto_de_negocio.png[]
 
 === Technical Context
 
-:imagesdir: images/
-image:contexto_tecnico.png["Contexto técnico"]
+:imagesdir: images
+image::Contexto_tecnico.png[]
 
