@@ -30,7 +30,7 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |NodeJS
 |Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.
 |Monohilo, la integración de asincronía puede hacer el codigo inmantenible.
-|(https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D)[ADR 02]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D[ADR 02]
 
 |React Leflet
 |Calidad-coste superior a las demás.
@@ -48,10 +48,10 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |A veces da bastantes problemas
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
 
-|PostgreSQL y Firebase Cloud Storage
-| Tienen integración con Azure que es donde desplegaremos la maquina virtual.
-| Es un modelo de datos relacional, que no quizas no sea tan interesante.
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos[ADR 08]
+|MongoDB y Firebase Cloud Storage
+| Integración dentro del stack MERN, integración dentro del stack MERN, facilidad para el despliegue
+| Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 08]
 
 |Visual Studio Code
 |Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
