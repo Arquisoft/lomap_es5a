@@ -51,7 +51,7 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |MongoDB y Firebase Cloud Storage
 | Integración dentro del stack MERN, integración dentro del stack MERN, facilidad para el despliegue
 | Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 08]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 12]
 
 |Visual Studio Code
 |Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
