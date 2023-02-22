@@ -37,8 +37,11 @@
 |Docker
 |Docker es una herramienta que facilita la creación, implementación y ejecución de aplicaciones mediante el uso de contenedores. Los contenedores permiten empaquetar una aplicación con todas las partes que necesita, como bibliotecas y otras dependencias, y desplegarla como un solo paquete.
 
-|MongoDB (Aún tenemos dudas)
+|MongoDB
 |Sistema gestor de bases de datos NoSQL, orientado a documentos. Almacena estructuras de datos BSON (similar a JSON) haciendo que la integración de los datos en ciertas aplicaciones sea más sencilla y rápida.
+
+|Firebase Cloud Storage
+|Servicio empleado para almacenar contenido generado por los usuarios, por ejemplo, imágenes y vídeos.
 
 |Jest
 |Framework de pruebas para JavaScript. 
