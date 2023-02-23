@@ -471,14 +471,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_inicio_de_sesión">6.1. Inicio de sesión</a></li>
-<li><a href="#_registro_de_un_usuario">6.2. Registro de un usuario</a></li>
-<li><a href="#_añadir_un_punto_de_interés_al_mapa">6.3. Añadir un punto de interés al mapa</a></li>
+<li><a href="#_runtime_level_1">6.1. Runtime Level 1</a></li>
+<li><a href="#_runtime_level_2">6.2. Runtime Level 2</a></li>
+<li><a href="#_runtime_level_3">6.3. Runtime Level 3</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
 <ul class="sectlevel2">
 <li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
@@ -1030,38 +1031,105 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_inicio_de_sesión">6.1. Inicio de sesión</h3>
+<h3 id="_runtime_level_1">6.1. Runtime Level 1</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión">6.1.1. Inicio de sesión</h4>
+<div class="paragraph">
+<p>El inicio de sesión de la aplicación se gestiona a través del proveedor de SOLID Inrupt, que se encarga de almacenar las credenciales e información privada del usuario.
+El usuario se comunica con el sistema Lomap y accede a su POD personal. Al introducir el webId en el formulario, se redirecciona al proveedor Inrupt para su autenticación y, si los datos son verídicos, se redirecciona a lomap, mostrando en una vista de la aplicación el mapa con los puntos de interés añadidos (y que el usuario en sesión tenga permiso para ver).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-1.svg" alt="runtime 6 1 1" width="365" height="306">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_registro_de_un_usuario">6.1.2. Registro de un usuario</h4>
+<div class="paragraph">
+<p>El registro se realiza también a través del proveedor Inrupt, siguiendo unos pasos muy similares a los mencionados en el apartado anterior. En primer lugar, el usuario introduce sus datos (Especificados en el nivel 2 de esta sección), al pulsar el botón de registarse se le redirecciona al proveedor de PODS y por último, se redirecciona a la vista correspondiente (Vista Home por defecto).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-2.svg" alt="runtime 6 1 2" width="365" height="306">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_al_mapa">6.1.3. Añadir un punto de interés al mapa</h4>
+<div class="paragraph">
+<p>Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con la base de datos y actualizar la interfaz de usuario.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="451" height="362">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_level_2">6.2. Runtime Level 2</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión_2">6.2.1. Inicio de sesión</h4>
 <div class="paragraph">
 <p>Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODS recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario y mostrando un mensaje informativo.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama-inicio-sesion.png" alt="diagrama inicio sesion" width="658" height="436">
+<img src="./images/runtime-6-2-1.svg" alt="runtime 6 2 1" width="695" height="453">
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_registro_de_un_usuario">6.2. Registro de un usuario</h3>
+<div class="sect3">
+<h4 id="_registro_de_un_usuario_2">6.2.2. Registro de un usuario</h4>
 <div class="paragraph">
 <p>Un usuario de la aplicación, para registrarse ha de introducir los siguientes datos: Nombre, nombre de usuario, correo electrónico y contraseña. Los datos del usuario se almacenan en su POD personal del proveedor dispuesto en la aplicación. La transacción se realiza desde el lado del cliente a través de su api, enviando los datos del formulario al proveedor, donde este comprobará si existe un usuario registrado con el email indicado. En caso de existir un usuario en el proveedor, se redireccionará a la página del formulario con un mensaje de error.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama-registro-usuario.png" alt="diagrama registro usuario" width="875" height="466">
+<img src="./images/runtime-6-2-2.svg" alt="runtime 6 2 2" width="876" height="467">
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_añadir_un_punto_de_interés_al_mapa">6.3. Añadir un punto de interés al mapa</h3>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_en_el_mapa">6.2.3. Añadir un punto de interés en el mapa</h4>
 <div class="paragraph">
 <p>Para añadir un punto de interés en el mapa se contemplan varias opciones. El siguiente diagrama representa el escenario de añadir un punto de interés desde la vista privada del usuario (Dashboard).</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama-punto-interes-mapa.png" alt="diagrama punto interes mapa" width="812" height="509">
+<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="813" height="510">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_level_3">6.3. Runtime Level 3</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión_3">6.3.1. Inicio de sesión</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-1.svg" alt="runtime 6 3 1" width="688" height="465">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_registro_de_un_usuario_3">6.3.2. Registro de un usuario</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-2.svg" alt="runtime 6 3 2" width="885" height="479">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_en_el_mapa_2">6.3.3. Añadir un punto de interés en el mapa</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="2113" height="1150">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -1072,10 +1140,57 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama_despliegue.png" alt="diagrama despliegue">
+<img src="./images/diagrama_despliegue_L1_v1.svg" alt="diagrama despliegue L1 v1">
 </div>
 </div>
-<div class="dlist arc42help">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>La aplicación consta de dos partes claramente diferenciadas y separadas, que son lado cliente y lado servidor. En este primer nivel se puede apreciar una arquitectura cliente-servidor, donde el lado del cliente realiza y recibe peticiones HTTP (Mediante dicho protocolo) al lado del servidor, que lo forma una API Rest, la cual realiza consultas contra una base de datos no relacional documental (NoSQL) de MongoDB</p>
+</dd>
+<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nodo</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base de datos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servidor remoto que almacena y gestiona una base de datos NoSQL en MongoDB.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restapi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proveedor SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que representa al proveedor de PODS de SOLID de la empresa Inrupt. Almacenará los PODS personales de los usuario, donde se guardará información privada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/diagrama_despliegue_v1.svg" alt="diagrama despliegue v1">
+</div>
+</div>
+<div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
@@ -1117,6 +1232,10 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor Inrupt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor de bases de datos</p></td>
@@ -1486,7 +1605,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-21 13:46:32 +0100
+Last updated 2023-02-18 13:39:05 +0100
 </div>
 </div>
 </body>
