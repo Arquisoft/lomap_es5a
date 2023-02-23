@@ -459,14 +459,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-solution-strategy">4. Solution Strategy</a>
 <ul class="sectlevel2">
 <li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
-<li><a href="#_decisions_on_how_to_avhieve_quality_goals">4.2. Decisions on how to avhieve quality goals</a></li>
+<li><a href="#_decisions_on_how_to_achieve_quality_goals">4.2. Decisions on how to achieve quality goals</a></li>
 <li><a href="#_relevant_organizational_decisions">4.3. Relevant organizational decisions</a></li>
 </ul>
 </li>
 <li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
-<li><a href="#_level_1_whitebox_of_the_overall_system">5.1. Level 1: Whitebox of the Overall System</a></li>
-<li><a href="#_level_2">5.2. Level 2</a></li>
+<li><a href="#_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</a></li>
+<li><a href="#_level_1">5.2. Level 1</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
@@ -896,17 +896,17 @@ y negocios actuales de la ciudad.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_decisions_on_how_to_avhieve_quality_goals">4.2. Decisions on how to avhieve quality goals</h3>
+<h3 id="_decisions_on_how_to_achieve_quality_goals">4.2. Decisions on how to achieve quality goals</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.</p>
 </li>
 <li>
-<p>Seguridad y Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.</p>
+<p>Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.</p>
 </li>
 <li>
-<p>Mantenibilidad: un objetivo a perseguir por todos los miembros del equipo será el desarrollar un código limpio y fácil de leer. Además, un código fácilmente mantenible. Para ello, emplearemos alguno de los patrones estudiados en la asignatura Diseño del Software, siempre que sea necesario y todas las convenciones de programación aprendidas hasta ahora.</p>
+<p>Seguridad: nos preocuparemos de implementar todas las medidas que consideremos oportunas para securizar nuestra aplicación. Además, el mantener la información personal de los usuarios descentralizada constituye un gran paso en el proceso.</p>
 </li>
 </ul>
 </div>
@@ -937,7 +937,7 @@ y negocios actuales de la ciudad.</p>
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_level_1_whitebox_of_the_overall_system">5.1. Level 1: Whitebox of the Overall System</h3>
+<h3 id="_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="578" height="87">
@@ -981,10 +981,10 @@ La información personal del usuario se almacena de forma descentralizada en POD
 </table>
 </div>
 <div class="sect2">
-<h3 id="_level_2">5.2. Level 2</h3>
+<h3 id="_level_1">5.2. Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level-2.png" alt="level 2" width="623" height="268">
+<img src="./images/level-2.png" alt="level 2" width="615" height="258">
 </div>
 </div>
 <div class="dlist">
@@ -1287,17 +1287,17 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación deberá tener una interfaz clara y entendible para todo tipo de usuarios, incluso aquellos con discapacidad podrán satisfacer sus necesidades. El usuario sabe en todo momento en que punto se encuentra de la aplicación y que debe de hacer para continuar navegando, el objetivo en todo momento es garantizar una experiencia cómoda a los clientes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Queremos ofrecer al usuario la posibilidad de filtrar puntos del mapa por amigos, además de un servicio de acceso a información y almacenamiento de datos, en un sistema intuitivo y eficaz para los clientes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Los datos del usuario estarán protegidos en todo momento, no serán prestados a terceros para su uso. El usuario se debe de registrar con su cuenta y contraseñas (validadas correctamente). Evitar ataques, por lo que debemos minimizar las vulnerabilidades en el sistema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Garantizaremos la mayor seguridad posible, guardando los datos del usuario de forma segura e intentando prevenir cualquier tipo de ataque o riesgo. Securizar la api rest protegiendo determinadas rutas también será otro objetivo a llevar a cabo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sólo el usuario podrá acceder a su información, ya que es confidencial, y ningún otro usuario podrá acceder a ella. El objetivo que queremos alcanzar es la protección de los datos de los usuarios para descentralizar los datos personales y mejorar la privacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vamos a mantener la privacidad de los usuarios, los datos del usuario estarán protegidos. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
 </tr>
 </tbody>
