@@ -15,15 +15,15 @@ image:arbol_de_calidad.png["Árbol de calidad"]
 |Prioridad
 
 |Usabilidad
-|La aplicación deberá tener una interfaz clara y entendible para todo tipo de usuarios, incluso aquellos con discapacidad podrán satisfacer sus necesidades. El usuario sabe en todo momento en que punto se encuentra de la aplicación y que debe de hacer para continuar navegando, el objetivo en todo momento es garantizar una experiencia cómoda a los clientes
+|Queremos ofrecer al usuario la posibilidad de filtrar puntos del mapa por amigos, además de un servicio de acceso a información y almacenamiento de datos, en un sistema intuitivo y eficaz para los clientes
 |Alta
 
 |Seguridad
-|Los datos del usuario estarán protegidos en todo momento, no serán prestados a terceros para su uso. El usuario se debe de registrar con su cuenta y contraseñas (validadas correctamente). Evitar ataques, por lo que debemos minimizar las vulnerabilidades en el sistema
+|Garantizaremos la mayor seguridad posible, guardando los datos del usuario de forma segura e intentando prevenir cualquier tipo de ataque o riesgo. Securizar la api rest protegiendo determinadas rutas también será otro objetivo a llevar a cabo
 |Alta
 
 |Privacidad
-|Sólo el usuario podrá acceder a su información, ya que es confidencial, y ningún otro usuario podrá acceder a ella. El objetivo que queremos alcanzar es la protección de los datos de los usuarios para descentralizar los datos personales y mejorar la privacidad
+|Vamos a mantener la privacidad de los usuarios, los datos del usuario estarán protegidos. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada
 |Media
 
 |===
