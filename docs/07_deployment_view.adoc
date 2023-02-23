@@ -5,10 +5,36 @@
 
 === Infrastructure Level 1
 :imagesdir: images
+image::diagrama_despliegue_L1_v1.svg[]
+Motivation::
+
+La aplicación consta de dos partes claramente diferenciadas y separadas, que son lado cliente y lado servidor. En este primer nivel se puede apreciar una arquitectura cliente-servidor, donde el lado del cliente realiza y recibe peticiones HTTP (Mediante dicho protocolo) al lado del servidor, que lo forma una API Rest, la cual realiza consultas contra una base de datos no relacional documental (NoSQL) de MongoDB
+
+Mapping of Building Blocks to Infrastructure::
+
+[cols="1,2", stripes=even]
+|===
+|Nodo  |Descripción
+
+|Base de datos
+| Servidor remoto que almacena y gestiona una base de datos NoSQL en MongoDB.
+
+|webapp
+| Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.
+
+|restapi
+| Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.
+
+|Proveedor SOLID
+| Nodo que representa al proveedor de PODS de SOLID de la empresa Inrupt. Almacenará los PODS personales de los usuario, donde se guardará información privada.
+
+|=== 
+
+
+=== Infrastructure Level 2
+:imagesdir: images
 image::diagrama_despliegue_v1.svg[]
 
-
-[role="arc42help"]
 Motivation::
 
 El desplieque de la aplicación está orientado para ser integrado en un entorno de integración continua (CI/CD), con el propósito de tener en producción el producto desde el primer día. Para ello, se ha decidido, en base al entorno de pruebas proporcionado, utilizar los contenedores de Docker para empaquetar los respectivos lados de la aplicación (Cliente y servidor). Los contenedores, se albergan en una máquina virtual de Azure.
@@ -33,6 +59,9 @@ Mapping of Building Blocks to Infrastructure::
 |Servidor Inrupt
 | Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.
 
+|Firebase
+| Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".
+
 |Servidor de bases de datos
 | Servidor remoto que almacena y gestiona una base de datos NoSQL.
 
@@ -43,5 +72,3 @@ Mapping of Building Blocks to Infrastructure::
 | Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.
 
 |=== 
-
-
