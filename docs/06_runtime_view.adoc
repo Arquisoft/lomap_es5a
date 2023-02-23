@@ -161,12 +161,12 @@ database Pod as "Pod personal"
 end box
 
 Usuario -> form:
-form  --> Api: crear cuenta
-Api --> Api: Validar datos formulario
+form  -> Api: crear cuenta
+Api -> Api: Validar datos formulario
 Api --> form: Mostrar error validación
-Api --> Inrupt: crear cuenta
-Inrupt --> Inrupt: Comprobar si existe usuario
-Inrupt --> Pod: Crear POD personal
+Api -> Inrupt: crear cuenta
+Inrupt -> Inrupt: Comprobar si existe usuario
+Inrupt -> Pod: Crear POD personal
 Inrupt --> Api: Recibir datos del usuario
 Api --> personal: Redireccionar a página privada 
 ----
@@ -210,9 +210,10 @@ Api -> Axios: encapulateData()
 note left
 Enviar la información a través del 
 cliente HTTP Axios
+end note
+
 Axios -> Router: Petición POST "/api/maps/add"
 Router --> Axios: Código error 500
-end note
 
 activate Router
 
@@ -257,7 +258,7 @@ Axios --> Api: Mensaje de éxito
 deactivate Axios
 deactivate PointView
 
-Api --> Home: refleshMapComponent()
+Api --> Home: refreshMapComponent()
 deactivate Api
 
 return successMessage()
