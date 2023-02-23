@@ -1,26 +1,70 @@
 [[section-design-decisions]]
-== Design Decisions
+== Design decisions
+
+=== Accepted decisions
+
+Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
+
+[%header, cols=4]
+|===
+|Decision arquitectonica
+|Ventajas
+|Desventajas
+|Enlace al ADR
+
+|TypeScript
+|Resuelve uno de los grandes problemas de JavaScript, el enlace dinámico.
+|Ninguno de nosotros hemos usado nunca, y debemos aprender.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje[ADR 00]
+
+|React js
+|Actualiza componentes y vistas en tiempo real, permite modularizar la interfaz de usuario en componentes.
+|Documentación muy escueta, dificultando el aprendizaje.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS[ADR 01]
+
+|SOLID
+|Organiza de forma descentralizada
+|Dificil de utilizar
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D[ADR 03]
+
+|NodeJS
+|Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.
+|Monohilo, la integración de asincronía puede hacer el codigo inmantenible.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D[ADR 02]
+
+|React Leflet
+|Calidad-coste superior a las demás.
+|Nunca hemos trabajado con el.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D[ADR 05]
 
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+|Styled Components
+|Facilita enormemente el trabajo, altamente probados y validados por la comunidad.
+|Se depende del mantenimiento de y licencia de uso de esta libreria.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components[ADR 07]
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+|Azure
+|Nos aseguramos tener una base de otras asignaturas y disponemos de credito
+|A veces da bastantes problemas
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
+|MongoDB y Firebase Cloud Storage
+| Integración dentro del stack MERN, su capacidad de almacenamiento, facilidad para el despliegue
+| Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 12]
 
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
+|Visual Studio Code
+|Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
+| Necesidad de instalar muchos pluggins.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE[ADR 09]
 
-.Form
-Various options:
+|JEST 
+|Buena documentación y recursos, paralización de test y facil configuración.
+|No tenemos conocimiento con esta libreria
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End[ADR 10]
 
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR 11]
+|===
+
+
+

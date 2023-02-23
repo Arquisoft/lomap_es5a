@@ -1,75 +1,59 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+LoMap es el proyecto del curso actual de la asignatura Arquitectura del Software, que será desarrollado por el equipo 5A compuesto por los integrantes:
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+- Ricardo Marqués Garay
+- Miguel González Navarro
+- Francisco Coya Abajo
+- Marcos Valín Fernández
+- Oscar Abad López
+
+Y, con la ayuda del profesorado:
+
+- Jose Emilio Labra Gayo
+- Irene Cid Rico
+
+Consiste en una aplicación donde los ciudadanos podrán disponer de mapas personalizados sobre lugares
+y negocios actuales de la ciudad.
 
 === Requirements Overview
 
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+- El sistema permitirá a los usuarios añadir localizaciones a los mapas en diversas categorías. Además los usuarios podrán añadir comentarios, puntuaciones, etc. sobre dichas localizaciones.
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+- El sistema permitirá a los usuarios mostrar localizaciones en una ventana de tipo mapa
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+- El sistema gestionará la información almacenada sobre una localización por cada usuario de forma descentralizada. Se pueden dar excepciones por rendimiento siempre que se respete la privacidad de los usuarios.
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+- El sistema permitirá a los usuarios gestionar la información que comparten con otros usuarios. Y, siempre que lo permitan, acceder a localizaciones e información relativa a ellas compartida por sus amigos.
+
+- El sistema permitirá a los usuarios emplear filtros a la hora de visualizar el mapa.
+
+Se puede consultar el siguiente documento, que contiene una descripción de la aplicación a desarrollar, así como una lista de requisitos funcionales más detallada:
+
+https://arquisoft.github.io/course2223/labEnunciadoPractica.html
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+Segun ISO/IEC 25010
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+[options="header"]
+|=============================================================================================================================================================================================================================================================================================================================================================================
+| Objetivo de Calidad | Motivación                                                                                                                                                                                                                                                                                                                                 | Prioridad
+| Usabilidad          | Para que el producto sea consumible por los usuarios finales, ha de tener un diseño moderno y minimalista, centrado en un público de edades diversas. Para ello, tiene que ser intuitivo y fácil de usar                                                                                                                                   | 3        
+| Seguridad           | Desarrollar aplicaciones 100% seguras a día de hoy es imposible, pero ello no quiere decir que sea posible implementar medidas de protección ante ataques comunmente conocidos. La descentralización del sistema, contribuye a un incremento de la seguridad. Además, implementar medidas tanto para el lado cliente como para el servidor | 3        
+| Privacidad          | Lo primero es la privacidad de los usuarios. Por ello, la gestión de mapas mediante el uso de SOLID, almacenando los datos en un sistema distribuido. Cada usuario tendrá un POD personal, no visible a otros usuarios                                                                                                                     | 5        
+|=============================================================================================================================================================================================================================================================================================================================================================================
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
+[options="header"]
+|===============================================================================================================================================================================================================================================================================
+| Rol                      | Descripción                                                                                    | Expectativas                                                                                                                                      
+| Cliente                  | Empresa que nos contrata, ficticia (HappySw), representada por los profesores de la asignatura | Que la aplicación desarrollada cumpla con los requisitos mencionados en el apartado 1.1                                                           
+| Equipo de desarrollo     | Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Oscar Abad                    | Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso
+| Usuarios                 | El conjunto de personas que van a utilizar el producto final desarrollado                      | Que la aplicación funcione correctamente y que cumpla, implícitamente, con los objetivos de calidad                                               
+| Ayuntamiento de Bruselas | Organismo público que contrata al Cliente                                                      | Mismas expectativas que nuestro Cliente (HappySw)                                                                                                 
+|===============================================================================================================================================================================================================================================================================
 
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
-[options="header",cols="1,2,2"]
-|===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
-|===

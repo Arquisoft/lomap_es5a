@@ -1,19 +1,36 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
+[options="header"]
+|================================================================================================================================================================================================================
+| Restricción            | Descripción                                                                                                                                                                           
+| SOLID                  | Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro.                                  
+| TypeScript             | El lenguaje de programación que se empleará para realizar la aplicación será TypeScript.                                                                                              
+| React JS               | Se empleará React JS para realizar la parte de front end de la aplicación.                                                                                                            
+| Node JS                | Para el back end se utilizará Node JS.                                                                                                                                                
+| Firebase Cloud Storage | Con el objetivo de que la aplicación pueda mostrar imágenes de las ubicaciones, se utilizará el servicio Firebase Cloud Storage para almacenar el contenido multimedia.               
+| MongoDB             | Por otro lado, para almacenar el resto de la información necesaria que no se almacene en los pod de usuario ni en Firebase Cloud Storage, se hará uso de una base de datos MongoDB.
+| GitHub                 | GitHub será el controlador de versiones que emplearemos durante el proceso de desarrollo.                                                                                             
+| Jest                   | Con el fin de poder probar la funcionalidad de la aplicación se utilizará la librería de pruebas Jest.                                                                                
+| React Leaflet          | Para poder implementar la funcionalidad del mapa se hará uso de la librería React Leaflet.                                                                                            
+|================================================================================================================================================================================================================
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+Organizational Constraints 
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+[options="header"]
+|================================================================================================================================================================================================================
+| Restricción            | Descripción                                                                                                                                                                           
+| Equipo                  | El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Oscar Abad López                   
+| Reuniones             | El equipo deberá reunirse periodicamente de forma obligatoria.
+| Fechas límites de las entregas    | Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.
+|================================================================================================================================================================================================================
+
+Conventions
+
+[options="header"]
+|================================================================================================================================================================================================================
+| Restricción            | Descripción                                                                                                                                                                           
+| Arc42                  | Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42                 
+| Idioma             | La documentación estará redactada en español.
+|================================================================================================================================================================================================================

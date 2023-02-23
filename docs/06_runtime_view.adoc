@@ -1,57 +1,68 @@
 [[section-runtime-view]]
 == Runtime View
 
+=== Inicio de sesión
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODS recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario y mostrando un mensaje informativo.
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
-
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
+[plantuml, "diagrama-inicio-sesion", png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor Usuario
+participant form as "Formulario login"
+participant personal as "Vista privada Usuario"
+participant Api
+database Pod as "Pod personal"
+Usuario --> form:
+form  --> Api: iniciar sesión
+Api --> Api: Validar webId
+Api --> Pod: iniciar sesión
+Pod --> Pod: Comprobar webId
+Pod --> Api: Enviar datos Pod
+Api --> form: Enviar datos pod
+Api --> personal: mostrar página privada
 ----
-=== <Runtime Scenario 2>
 
-=== ...
+=== Registro de un usuario
+Un usuario de la aplicación, para registrarse ha de introducir los siguientes datos: Nombre, nombre de usuario, correo electrónico y contraseña. Los datos del usuario se almacenan en su POD personal del proveedor dispuesto en la aplicación. La transacción se realiza desde el lado del cliente a través de su api, enviando los datos del formulario al proveedor, donde este comprobará si existe un usuario registrado con el email indicado. En caso de existir un usuario en el proveedor, se redireccionará a la página del formulario con un mensaje de error.
 
-=== <Runtime Scenario n>
+[plantuml,"diagrama-registro-usuario", png]
+----
+actor Usuario
+participant form as "Formulario registro"
+participant personal as "Vista privada Usuario"
+participant Api
+participant Inrupt as "Proveedor POD"
+database Pod as "Pod personal"
+Usuario --> form:
+form  --> Api: crear cuenta
+Api --> Api: Validar datos formulario
+Api --> form: Mostrar error validación
+Api --> Inrupt: crear cuenta
+Inrupt --> Inrupt: Comprobar si existe usuario
+Inrupt --> Pod: Crear POD personal
+Inrupt --> Api: Recibir datos del usuario
+Api --> personal: Redireccionar a página privada 
+----
+
+=== Añadir un punto de interés al mapa
+Para añadir un punto de interés en el mapa se contemplan varias opciones. El siguiente diagrama representa el escenario de añadir un punto de interés desde la vista privada del usuario (Dashboard).
+
+[plantuml,"diagrama-punto-interes-mapa",png]
+----
+actor Usuario
+participant personal as "Vista privada"
+participant home as "Vista inicio"
+participant Api as "Api"
+participant backend as "<color:#red>API Rest" 
+database Db as "Base de datos"
+Usuario --> personal: 
+personal --> Api: crear punto interés 
+Api --> Api: Validar datos
+Api --> backend: Petición POST "/api/maps/add"
+backend --> backend: Validar datos recibidos
+backend --> Db: Almacenar datos del mapa
+backend --> Api: Respuesta HTTP
+Api --> home: mostrar mensaje
+home --> home: actualizar datos del mapa
+home --> Usuario: Mostrar mensaje
+----
