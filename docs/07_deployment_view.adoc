@@ -5,7 +5,7 @@
 
 === Infrastructure Level 1
 :imagesdir: images
-image::diagrama_despliegue.png[]
+image::diagrama_despliegue_v1.svg[]
 
 
 [role="arc42help"]
