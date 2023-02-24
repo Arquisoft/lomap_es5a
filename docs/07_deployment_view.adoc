@@ -53,7 +53,10 @@ Mapping of Building Blocks to Infrastructure::
 |===
 |Nodo  |Descripción
 
-|Leaftlet API 
+| Contenedor Docker
+| Utilidad que encapsula un entorno de ejecución de software, incluyendo todas las herramientas de compilación y despliegue necesarias.
+
+|Leaftlet
 |API Open Source para integración de mapas en el lado del cliente. Proporciona componentes para React. 
 
 |Servidor Inrupt
@@ -62,7 +65,7 @@ Mapping of Building Blocks to Infrastructure::
 |Firebase
 | Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".
 
-|Servidor de bases de datos
+|MondoDB Atlas
 | Servidor remoto que almacena y gestiona una base de datos NoSQL.
 
 |webapp
@@ -70,5 +73,8 @@ Mapping of Building Blocks to Infrastructure::
 
 |restapi
 | Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.
+
+| Dispositivo electrónico
+| Cualquier dispositivo con acceso a internet, que se conecte al servidor web. Este puede ser un smartphone, tableta, ordenador, consola, etc.
 
 |=== 
