@@ -117,7 +117,7 @@ backend -> backend: Validar datos recibidos
 backend -> Db: Almacenar datos del mapa
 backend --> Api: Respuesta HTTP
 Api --> home: mostrar mensaje
-home --> home: actualizar datos del mapa
+home -> home: actualizar datos del mapa
 home --> Usuario: Mostrar mensaje
 ----
 
