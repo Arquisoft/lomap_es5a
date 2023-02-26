@@ -1,5 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import {check} from 'express-validator';
+import { findAll } from './controllers/point.controller';
 
 const api:Router = express.Router()
 
