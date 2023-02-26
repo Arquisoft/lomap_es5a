@@ -11,7 +11,12 @@ interface User {
 
 //This is not a restapi as it mantains state but it is here for
 //simplicity. A database should be used instead.
-let users: Array<User> = [];
+let users: Array<User> = [
+  {
+    name: "Juan",
+    email: "asdfsd"
+  }
+];
 
 api.get(
     "/users/list",
