@@ -2,11 +2,11 @@ import express, {
   Application,
   RequestHandler,
 } from "express";
-import corsConfiguration from './config/cors'
+import corsConfiguration from './config/cors.config'
 import morgan from "morgan";
 import promBundle from "express-prom-bundle";
 import api from "./api";
-import { API_PORT } from "./config/dotenv";
+import { API_PORT } from "./config/dotenv.config";
 
 import pointRouter from "./routes/point.route";
 
