@@ -1,11 +1,16 @@
 type FirebaseConfig = {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
+  apiKey: string | undefined;
+  authDomain: string | undefined;
+  projectId: string | undefined;
+  storageBucket: string | undefined; 
   msgSenderId?: string;
-  appId: string;
+  appId: string | undefined;
 };
+
+type MongoDbConfig = {
+  uri: string | undefined, 
+  user: string | undefined
+}
 
 /**
  * Tipo de entorno de desarrollo.
@@ -15,4 +20,4 @@ enum NodeEnviorenment {
   Dev = "development",
 }
 
-export { FirebaseConfig, NodeEnviorenment };
+export { FirebaseConfig, NodeEnviorenment, MongoDbConfig };
