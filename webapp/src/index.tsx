@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, BrowserRouter } from "react-router-dom";
+import { SessionProvider } from "@inrupt/solid-ui-react";
 
 const router = createBrowserRouter([
   {
