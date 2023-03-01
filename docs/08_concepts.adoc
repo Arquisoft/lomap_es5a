@@ -34,12 +34,17 @@ object Opinion{
     note : int
 }
 
+object Imagen{
+    url:String
+}
+
 Opinion *--->Persona
 Opinion *--->Punto
 Punto *--->Mapa
 Mapa *--->Persona
 Grupo *---> Persona
-
+Persona *--->Imagen
+Mapa *--->Imagen
 ----
 === Security
 
