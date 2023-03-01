@@ -10,4 +10,10 @@ const findAllPointsByUser = (userId: string) => {
   };
 };
 
-export { findAllPointsByUser };
+const addPointByUser = (userId: string) => {
+  return {
+    data: `Punto de ${userId}`,
+  };
+};
+
+export { findAllPointsByUser, addPointByUser };

@@ -1,3 +1,6 @@
+import { IntegerType } from "mongodb";
+
+// configuración de firebase
 type FirebaseConfig = {
   apiKey: string | undefined;
   authDomain: string | undefined;
@@ -7,9 +10,45 @@ type FirebaseConfig = {
   appId: string | undefined;
 };
 
+// configuración de mongo
 type MongoDbConfig = {
   uri: string | undefined, 
   user: string | undefined
+}
+
+// tipos del modelo de dominio
+type Opinion = {
+  id: string | undefined, 
+  description: string | undefined,
+  note: number | undefined
+}
+
+type Punto = {
+  name: string | undefined, 
+  description: string | undefined,
+  coordX: number | undefined,
+  coordY: number | undefined,
+  direccion: string | undefined
+}
+
+type Grupo = {
+  id: string | undefined, 
+  personas: Persona[] | undefined
+}
+
+type Persona = {
+  id: string | undefined,
+  role: string | undefined,
+  verified: boolean | undefined
+}
+
+type Imagen = {
+  url: string | undefined
+}
+
+type Mapa = {
+  code: string | undefined,
+  puntos: Punto[] | undefined,
 }
 
 /**
@@ -20,4 +59,4 @@ enum NodeEnviorenment {
   Dev = "development",
 }
 
-export { FirebaseConfig, NodeEnviorenment, MongoDbConfig };
+export { FirebaseConfig, NodeEnviorenment, MongoDbConfig, Opinion, Punto, Grupo, Imagen, Mapa, Persona };
