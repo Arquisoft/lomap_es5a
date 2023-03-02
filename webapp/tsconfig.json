@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"],
-      "@pages/*": ["src/pages/*"],
-      "@shared/*": ["src/shared/*"],
-      "@config/*": ["src/config/*"],
-      "@api/*": ["src/api/*"]
-    },
+    // "paths": {
+    //   "@components/*": ["./src/components/*"],
+    //   "@utils/*": ["src/utils/*"],
+    //   "@pages/*": ["src/pages/*"],
+    //   "@shared/*": ["src/shared/*"],
+    //   "@config/*": ["src/config/*"],
+    //   "@api/*": ["src/api/*"],
+    //   "@routes/*": ["./src/routes/*"],
+    // },
 
     "allowJs": true,
     "skipLibCheck": true,
@@ -26,5 +27,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "e2e"]
+  "include": ["src", "e2e"],
 }

@@ -1,28 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-import { createBrowserRouter, BrowserRouter } from "react-router-dom";
 import { SessionProvider } from "@inrupt/solid-ui-react";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello world!</div>,
-  },
-]);
 
 const app = (
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <SessionProvider>
+        <App />
+      </SessionProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 ReactDOM.render(app, container);
 
 // If you want to start measuring performance in your app, pass a function
