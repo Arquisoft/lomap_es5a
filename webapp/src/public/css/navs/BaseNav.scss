@@ -1,0 +1,25 @@
+//@import "../functions/color";
+@use "../mixins" as mixins;
+@use "../functions" as funcs;
+@use "../variables" as vars;
+
+.base-nav-container {
+    @include mixins.flex(row, space-between, center, 10px);
+    width: 100%;
+    height: 80px;
+    padding: 0 20px;
+}
+
+#main-nav {
+    & > ul {
+        @include mixins.flex(row, space-between, center, 50px);
+
+        & a {
+            color: funcs.color("secondary", "base");
+
+            &:hover {
+                color: funcs.color("secondary", "highlight");
+            }
+        }
+    }
+}
