@@ -1,10 +1,13 @@
 import { useEffect } from "react";
+import PointListingAside from "src/components/asides/PointListingAside";
+import BaseMap from "src/components/maps/BaseMap";
 import { getUserDatasetByWebId } from "src/helpers/AuthHelper";
-import { Link } from "react-router-dom";
+import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
+import "../../public/css/pages/home/HomePage.scss";
 
 function HomePage() {
   const loadProfile = async () => {
-    const data = await getUserDatasetByWebId("https://id.inrupt.com/XXXXXXX");
+    const data = await getUserDatasetByWebId("https://id.inrupt.com/uo257239");
     console.log(data);
   };
 
@@ -14,11 +17,23 @@ function HomePage() {
 
   return (
     <div>
-      <p>Home</p>
-      <Link to="/login">Iniciar sesión</Link>
-      {/* <p>Email: {name}</p>
-      <p>WebID: {webId}</p>
-      <p>Nombre: {FOAF.name.iri.value}</p> */}
+      <AuthenticatedLayout
+        styles={{
+          padding: "0 50px",
+        }}
+      >
+        <div className="home-map-wrapper">
+          <BaseMap
+            position={[43.36297198377049, -5.851084856954243]}
+            styles={{
+              width: "100%",
+              height: "80vh",
+              borderRadius: "10px",
+            }}
+          />
+          <PointListingAside />
+        </div>
+      </AuthenticatedLayout>
     </div>
   );
 }
