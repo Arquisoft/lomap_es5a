@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+.base-popup-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 384px;
+  max-width: 384px;
+  height: 357px;
+  border-radius: 20px;
+  background-color: rgba(237, 242, 244, 0.65);
+  -webkit-backdrop-filter: blur(7.5px);
+          backdrop-filter: blur(7.5px);
+  isolation: isolate;
+  padding: 15px;
+}
+.base-popup-modal > .base-popup-modal__head {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.base-popup-modal > .base-popup-modal__head > img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=BasePopup.css.map */

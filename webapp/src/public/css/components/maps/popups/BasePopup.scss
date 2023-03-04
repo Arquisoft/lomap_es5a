@@ -1,0 +1,28 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mixins;
+
+
+.base-popup-modal{
+    @include mixins.flex(column, flex-start, center, 10px);
+    width: 384px;
+    max-width: 384px;
+    height: 357px;
+    border-radius: vars.$border-radius;
+    background-color: rgba(237, 242, 244, 0.65);
+    backdrop-filter: blur(7.5px);
+    isolation: isolate;
+    padding: 15px;
+
+    // Estilos imagen del punto
+    & > .base-popup-modal__head{
+        border-radius: vars.$border-radius;
+        overflow: hidden;
+        position: relative;
+        
+        & > img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+}
