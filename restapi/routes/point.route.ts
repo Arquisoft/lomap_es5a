@@ -7,7 +7,7 @@ const router: Router = express.Router();
 router.get("/all/:userId", findAll);
 router.post("/api/maps/add", addPoint);
 
-// rutas del point
+// rutas del point (point.route)
 
 // addPoint
 // getPointById
@@ -17,6 +17,12 @@ router.post("/api/maps/add", addPoint);
 // deletePointById
 // filtrarPuntoPorCategoria
 
-// (otra clase) Rutas para el usuario -> reviewPointByUser, getFriendsByUserId
+// (otra clase -> user.route) Rutas para el usuario -> reviewPointByUser, getFriendsByUserId
+
+// (otras posibles rutas)
+// login y validateFields (validadores de puntos)
+// /validadores/OrderValidator.ts
+
+// implementar en Controller todo y no hacer Service
 
 export default router;

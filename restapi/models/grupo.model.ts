@@ -7,7 +7,7 @@ interface IPersona extends Document {
 }
 
 interface IGrupo extends Document {
-    id: string; 
+    id: string;
     personas: IPersona[];
 }
 
