@@ -36,4 +36,20 @@
             @include mixins.flex(row, center, center, 10px);
         }
     }
+
+    & > .base-popup-modal__footer{
+        @include mixins.flex(row, space-between, center, 0);
+        width: 100%;
+
+        & > .popup-model-footer__contact-info{
+            @include mixins.flex(column, center, flex-start, 0);
+
+            & > p{
+                &:first-child{
+                    font-size: 1rem;
+                }
+                margin: 0;
+            }
+        }
+    }
 }
