@@ -1,4 +1,4 @@
-import React from "react";
+import "../../public/css/components/buttons/BaseButton.scss";
 
 type Props = {
   type: string;
