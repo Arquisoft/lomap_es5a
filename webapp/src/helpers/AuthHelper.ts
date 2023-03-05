@@ -1,18 +1,10 @@
-import { FOAF } from "@inrupt/lit-generated-vocab-common";
-import {
-  getPodUrlAllFrom,
-  getProfileAll,
-  getStringNoLocale,
-  getThing,
-  getThingAll,
-  getWebIdDataset,
-} from "@inrupt/solid-client";
+import { getThing, getWebIdDataset, getPodUrlAll  } from "@inrupt/solid-client";
 
 import {
   fetch,
   getDefaultSession,
   handleIncomingRedirect,
-  login,
+  login
 } from "@inrupt/solid-client-authn-browser";
 
 async function signIn(webId: string) {
@@ -40,19 +32,25 @@ async function signIn(webId: string) {
 }
 
 async function getUserDataFromPod(webId: string) {
-  const data = await getProfileAll(webId, { fetch: fetch });
+  const data = await getPodUrlAll(webId, { fetch: fetch });
+
+  data.forEach((mypod) => {
+    console.log(mypod);
+  });
+
   return data;
 }
 
 async function getUserDatasetByWebId(webId: string) {
   const profile = await getWebIdDataset(webId);
-  const podRoot = getPodUrlAllFrom({ webIdProfile: profile, altProfileAll: [] }, webId);
   const profileThing = getThing(profile, webId);
   //const name = getStringNoLocale(profileThing, FOAF.name);
 
-  console.log(profileThing);
+  //console.log(podRoot);
 
   //const name = getStringNoLocale(profileThing, FOAF.name);
 }
 
+
 export { signIn, getUserDataFromPod, getUserDatasetByWebId };
+

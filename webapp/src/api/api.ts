@@ -1,4 +1,7 @@
-import {User} from '../shared/shareddtypes';
+import { Session } from "@inrupt/solid-client-authn-browser";
+import { User } from '../shared/shareddtypes';
+
+const session = new Session();
 
 export async function addUser(user:User):Promise<boolean>{
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'

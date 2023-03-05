@@ -25,4 +25,15 @@
             object-fit: cover;
         }
     }
+
+    // Estilos cuerpo del popup (Contiene foto de perfil y detalles del punto de interes)
+    & > .base-popup-modal__body{
+        @include mixins.flex(row, space-between, center, 0);
+        width: 100%;
+
+        // Iconos de compartir y favorito
+        & > .popup-modal-social-icons{
+            @include mixins.flex(row, center, center, 10px);
+        }
+    }
 }

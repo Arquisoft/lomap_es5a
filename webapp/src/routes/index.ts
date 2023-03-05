@@ -12,4 +12,22 @@ const ACCOUNT_PATH: string = "/account";
 // listado de amigos
 const FRIENDS_PATH: string = "/friends";
 
-export { HOME_PATH, LOGIN_PATH, SIGNUP_PATH, ACCOUNT_PATH, FRIENDS_PATH };
+// Puntos de interes guardados por el ususario en sesion
+const SAVED_POINTS_PATH: string = "/saved";
+
+// Página de acerca de
+const ABOUT_PATH: string = "/about";
+
+// Preguntas frecuentes
+const FAQ_PATH: string = "/faq";
+
+export {
+  HOME_PATH,
+  LOGIN_PATH,
+  SIGNUP_PATH,
+  ACCOUNT_PATH,
+  FRIENDS_PATH,
+  SAVED_POINTS_PATH,
+  ABOUT_PATH,
+  FAQ_PATH,
+};

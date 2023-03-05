@@ -40,4 +40,19 @@
   height: auto;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.base-popup-modal > .base-popup-modal__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.base-popup-modal > .base-popup-modal__body > .popup-modal-social-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }/*# sourceMappingURL=BasePopup.css.map */

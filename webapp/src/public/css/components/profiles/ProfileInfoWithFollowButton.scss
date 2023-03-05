@@ -1,0 +1,35 @@
+@use "../../mixins" as mixins;
+@use "../../functions" as funcs;
+
+.profile-image-with-follow-container {
+    @include mixins.flex(row, flex-start, center, 10px);
+
+    // Estilos avatar del perfil
+    & > .profile-image-with-follow-container__avatar {
+        & > img {
+            width: 48px;
+            height: 48px;
+            border-radius: 100px;
+            object-fit: cover;
+        }
+    }
+
+    // Estilos nombre de usuario y boton de seguir
+    & > .profile-image-with-follow-container__details{    
+        @include mixins.flex(column, center, flex-start, 3px);
+
+        & > p{
+            margin: 0;
+        }
+
+        // Estilos boton de seguir del perfil
+        & > button{
+            outline: none;
+            border: none;
+            background: none;
+            font-weight: 500;
+            font-size: .9rem;
+            color: funcs.color(custom_blue, base);
+        }
+    }
+}

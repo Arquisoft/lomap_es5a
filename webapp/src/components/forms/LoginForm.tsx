@@ -1,10 +1,9 @@
-import { ChangeEvent, KeyboardEvent } from "react";
 import { Box, FormControl, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { signIn } from "src/helpers/AuthHelper";
 
-export default function LoginForm() {
+function LoginForm() {
   const [webId, setWebId] = useState("");
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,3 +42,5 @@ export default function LoginForm() {
     </Box>
   );
 }
+
+export default LoginForm;
