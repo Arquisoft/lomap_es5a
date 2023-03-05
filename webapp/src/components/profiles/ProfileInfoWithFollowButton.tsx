@@ -8,7 +8,7 @@ import "../../public/css/components/profiles/ProfileInfoWithFollowButton.scss";
             <img src="https://minimaltoolkit.com/images/randomdata/female/29.jpg" alt="" />
         </div>
         <div className='profile-image-with-follow-container__details'>
-            <p>Pablo Rodríguez</p>
+            <p>Lucía Fernández</p>
             <button>Seguir</button>
         </div>
     </div>
