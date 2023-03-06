@@ -1,6 +1,9 @@
 import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 import { ComercialInfo } from "src/components/about/ComercialInfo";
 import { PageInfo } from "src/components/about/PageInfo";
+
+import "../../public/css/pages/about/AboutPage.css"; // TODO: Cambiar a scss
+
 function AboutPage() {
   return (
     <div>    
