@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router";
+import AboutPage from "./pages/about/AboutPage";
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/login/LoginPage";
-import { HOME_PATH, LOGIN_PATH } from "./routes";
+import { ABOUT_PATH, HOME_PATH, LOGIN_PATH } from "./routes";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path={HOME_PATH} element={<HomePage />} />
         <Route path={LOGIN_PATH} element={<LoginPage />} />
+        <Route path={ABOUT_PATH} element={<AboutPage />} />
       </Routes>
     </>
   );
