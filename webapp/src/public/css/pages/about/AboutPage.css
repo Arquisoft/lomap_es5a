@@ -1,9 +1,11 @@
 
 
 .about-title{
-    position: absolute;
-    width: 202px;
-    height: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
     left: 619px;
     top: 121px;
 
@@ -20,8 +22,11 @@
     color: #000000;
 }
 .about-slogan{
-    position: absolute;
-    width: 736px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
     height: 136px;
     left: 352px;
     top: 121px;
@@ -37,4 +42,30 @@
     letter-spacing: -0.05em;
 
     color: #000000;
+}
+.about-comercialPosition{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 1148px;
+    height:491px;
+    left: 146px;
+    top: 236px;
+
+    background-image: url("../../../images/about-image.png");
+    border-radius: 40px;
+}
+
+.about-pageInfoPosition{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: 814px;
+    height: 205px;
+    left: 313px;
+    top: 793px;
 }

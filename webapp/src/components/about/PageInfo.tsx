@@ -6,4 +6,4 @@ function PageInfo(){
     )
 }
 
-export {PageInfo}
+export default PageInfo

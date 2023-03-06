@@ -1,10 +1,10 @@
 import BaseButton from "src/components/buttons/BaseButton"
-
+import "../../../public/css/components/about/comercial/ComercialBox.css"
 function ComercialBox(){
     return(
         <div className="comercialbox-total">
             <div className="comercialbox-title">
-                <div className="comercialbox-title-left">Lomap</div> <div className="comercialbox-title-rigth">Mapas</div>
+                <div className="comercialbox-title-left">Lomap </div> <div className="comercialbox-title-rigth">Mapas</div>
             </div>
             <div className="comercialbox-slogan">
                 ¡Explora todos los rincones de tu ciudad y compartelos con amigos y todo el mundo!
@@ -19,4 +19,4 @@ function ComercialBox(){
     )
 }
 
-export {ComercialBox}
+export default ComercialBox
