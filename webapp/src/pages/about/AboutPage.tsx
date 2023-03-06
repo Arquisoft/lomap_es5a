@@ -1,10 +1,14 @@
-
 import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
-
+import { ComercialInfo } from "src/components/about/ComercialInfo";
+import { PageInfo } from "src/components/about/PageInfo";
 function AboutPage() {
   return (
     <div>    
-      <AuthenticatedLayout>
+      <AuthenticatedLayout
+        styles={{
+          padding: "0 50px",
+        }}
+      >
         <div className="about-title">
           Acerca de
         </div>
@@ -13,13 +17,10 @@ function AboutPage() {
           Descubre nuevos lugares, comparte y más
         </div>
 
-        <div className="about-image">
+        <ComercialInfo />
 
-        </div>
-
-        <div className="about-info">
-
-        </div>
+        <PageInfo />
+        
       </AuthenticatedLayout>
     </div>
   );
