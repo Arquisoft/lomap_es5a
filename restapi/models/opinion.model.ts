@@ -24,3 +24,4 @@ const opinionSchema = new Schema<IOpinion>({
 const OpinionModel: Model<IOpinion> = model<IOpinion>('Opinion', opinionSchema);
 
 export default OpinionModel;
+export { IOpinion, opinionSchema };
