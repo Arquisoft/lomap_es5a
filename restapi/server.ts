@@ -7,7 +7,6 @@ import morgan from "morgan";
 import promBundle from "express-prom-bundle";
 import api from "./api";
 import { API_PORT } from "./config/dotenv.config";
-
 import pointRouter from "./routes/point.route";
 
 const app: Application = express();

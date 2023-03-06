@@ -13,9 +13,9 @@ const findAll = (req: Request, res: Response, next: NextFunction) => {
 }
 
 const addPoint = (req: Request, res: Response, next: NextFunction) => {
-    const { userId } = req.params;
+    const { userId } = req.body; // recibo los datos
     
-    const result = addPointByUser(userId);
+    const result = addPointByUser(userId); // llamo al servicio
 
     res.status(201).json({
         result: "hola"
