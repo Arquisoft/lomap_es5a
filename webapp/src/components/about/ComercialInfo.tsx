@@ -1,6 +1,10 @@
+import { ComercialBox } from "./comercial/ComercialBox"
+
 function ComercialInfo(){
     return(
-        <div> info</div>
+        <div className="comercial-container">
+            <ComercialBox />
+        </div>
     )
 }
 

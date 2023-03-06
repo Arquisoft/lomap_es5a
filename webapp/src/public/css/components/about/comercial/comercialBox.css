@@ -1,0 +1,103 @@
+.comercialbox-total{
+    position: absolute;
+    width: 501px;
+    height: 410px;
+    left: 192px;
+    top: 277px;
+
+    background: rgba(255,255,255,0.59);
+    backdrop-filter: blur(5px);
+
+    border-radius: 40px;
+}
+
+.comercialbox-title-left{
+    position: absolute;
+    width: 188px;
+    height: 55px;
+    left: 231px;
+    top: 312px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 72px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05em;
+
+    color: #2B2D42;
+}
+
+.comercialbox-title-rigth{
+    position: absolute;
+    width: 68px;
+    height: 20px;
+    left: 399px;
+    top: 336px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05em;
+
+    color: #2B2D42;
+}
+
+.comercialbox-slogan{
+    position: absolute;
+    width: 431px;
+    height: 73px;
+    left: 224px;
+    top: 395px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05em;
+
+    color: #000000;
+}
+
+.comercialbox-discount{
+    position: absolute;
+    width: 424px;
+    height: 46px;
+    left: 231px;
+    top: 495px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05em;
+
+    color: #2B2D42;
+}
+
+.comercialbox-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 424px;
+    height: 52px;
+    left: 231px;
+    top: 567px;
+}

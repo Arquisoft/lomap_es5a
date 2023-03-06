@@ -1,0 +1,9 @@
+.comercial.container{
+    position: absolute;
+    width: 1148px;
+    left: 146px;
+    top: 236px;
+
+    background:"src/public/images/about-image.jpg";
+    border-radius: 40px;
+}
