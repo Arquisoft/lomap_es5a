@@ -1,5 +1,5 @@
 import { Schema, Document, Model, model } from 'mongoose';
-
+ 
 interface IPersona extends Document {
     id: string;
     role: string;
