@@ -59,13 +59,10 @@
 }
 
 .about-pageInfoPosition{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
     
     width: 814px;
-    height: 205px;
-    left: 313px;
+    height: 350px;
+    left: 450px;
     top: 793px;
 }
