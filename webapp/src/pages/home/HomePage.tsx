@@ -2,16 +2,14 @@ import { useEffect } from "react";
 import PointListingAside from "src/components/asides/PointListingAside";
 import BaseFilterBar from "src/components/filters/BaseFilterBar";
 import BaseMap from "src/components/maps/BaseMap";
-import {
-  getUserDataFromPod
-} from "src/helpers/AuthHelper";
+import { getPodData } from "src/helpers/AuthHelper";
 import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 
 function HomePage() {
   const loadProfile = async () => {
     //const data = await getUserDatasetByWebId("https://id.inrupt.com/uo257239");
-    const data = await getUserDataFromPod("https://id.inrupt.com/uo257239");
+    const data = await getPodData("https://id.inrupt.com/uo257239");
     console.log(data);
   };
 

@@ -14,7 +14,7 @@ $pallete: (
         "dark": #d72036,
     ),
     "secondary": (
-        "base": #2B3467,
+        "base": #2b3467,
         "highlight": #404876,
         "dark": #272f5d,
     ),
@@ -25,13 +25,16 @@ $pallete: (
     ),
     "light_gray": (
         "base": #f0f0f0,
-        "high_light": rgba(240, 240, 240, 0.70),
+        "high_light": rgba(240, 240, 240, 0.7),
         "dark": #7f8a9d,
     ),
     "custom_blue": (
-        "base": #1C4FD8,
+        "base": #1c4fd8,
         "high_light": #3361dc,
         "dark": #143797,
+    ),
+    "custom_white": (
+        "base": #ffffff,
     ),
 );
 

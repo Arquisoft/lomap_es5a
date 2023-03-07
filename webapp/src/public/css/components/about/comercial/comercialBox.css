@@ -1,0 +1,14 @@
+.comercialbox-total{
+    background-color: rgba(255,255,255,0.59);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+}
+.comercialbox-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}

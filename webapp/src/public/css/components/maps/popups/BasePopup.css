@@ -55,4 +55,25 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+.base-popup-modal > .base-popup-modal__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.base-popup-modal > .base-popup-modal__footer > .popup-model-footer__contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+.base-popup-modal > .base-popup-modal__footer > .popup-model-footer__contact-info > p {
+  margin: 0;
+}
+.base-popup-modal > .base-popup-modal__footer > .popup-model-footer__contact-info > p:first-child {
+  font-size: 1rem;
 }/*# sourceMappingURL=BasePopup.css.map */
