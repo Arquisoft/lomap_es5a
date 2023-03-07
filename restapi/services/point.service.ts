@@ -7,8 +7,9 @@ import PointModel, { IPoint } from "../models/point.model";
  * @param webId webId del usuario.
  * @returns Lista de puntos de interés, si los tiene.
  */
-const findAllPointsByUser = (webId: string) => {
-    return PointModel.find({'webId' : webId});
+ const findAllPointsByUser = async (webId: string) => {
+    const result = await PointModel.find();    
+    return result; 
 };
 
 const addPointByUser = (userId: string) => {

@@ -8,8 +8,7 @@ type FirebaseConfig = {
   };
 
   type MongoDbConfig = {
-    uri: string | undefined, 
-    user: string | undefined
+    uri: string | undefined,     
   }
 
   /**

@@ -5,8 +5,8 @@ interface IPoint extends Document {
     webId: string;
     name: string;
     description: string;
-    coordX: number;
-    coordY: number;
+    lat: number;
+    lng: number;
     direction: string;
     opinion: IOpinion[];
 }
@@ -24,11 +24,11 @@ const pointSchema = new Schema<IPoint>({
         type: String,
         required: true
     },
-    coordX: {
+    lat: {
         type: Number,
         required: true
     },
-    coordY: {
+    lng: {
         type: Number,
         required: true
     },

@@ -1,5 +1,4 @@
 import { RequestHandler } from "express";
-
 import {findAllPointsByUser} from '../services/point.service'
 
 
@@ -10,10 +9,10 @@ import {findAllPointsByUser} from '../services/point.service'
  * @param res 
  * @param next 
  */
-const findAll : RequestHandler = (req,res) => {
+const findAll : RequestHandler = async (req,res) => {
     const { webId } = req.params;
-    const result = findAllPointsByUser(webId);
-    console.log(res.json(result));
+    const result = await findAllPointsByUser(webId);
+    res.status(200).json(result);    
 }
 
 // const addPoint = (req: Request, res: Response, next: NextFunction) => {
