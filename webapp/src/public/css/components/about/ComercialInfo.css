@@ -1,8 +1,8 @@
 
 .comercial-container{
-    position: absolute;
+    position: relative;
     width: 501px;
     height: 710px;
-    left: 430px;
-    top: 290px;
+    left: -270px;
+    top: 150px;
 }

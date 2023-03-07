@@ -12,8 +12,8 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 25px;
+    line-height: 40px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -34,7 +34,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 45px;
     line-height: 54px;
     display: flex;
     align-items: center;
@@ -44,11 +44,11 @@
     color: #000000;
 }
 .about-comercialPosition{
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     width: 1148px;
     height:491px;
     left: 146px;
@@ -59,13 +59,10 @@
 }
 
 .about-pageInfoPosition{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
     
     width: 814px;
-    height: 205px;
-    left: 313px;
+    height: 350px;
+    left: 450px;
     top: 793px;
 }

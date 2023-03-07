@@ -1,5 +1,5 @@
 import BaseButton from "src/components/buttons/BaseButton"
-import "../../../public/css/components/about/comercial/comercialBox.css"
+import "../../../public/css/components/about/comercial/ComercialBox.css"
 function ComercialBox(){
     return(
         <div className="comercialbox-total">
@@ -13,7 +13,12 @@ function ComercialBox(){
                 100% GRATIS
             </div>
             <div className="comercialbox-buttons">
-            <BaseButton type="button-red" text ="Compartir" /> <BaseButton type="button-red" text ="Únete" />
+                <div className="comercialbox-buttonleft"> 
+                    <BaseButton type="button-grey" text ="Compartir" />
+                </div>
+                <div className="comercialbox-buttonrigth">
+                <BaseButton type="button-red" text="Únete" />
+                </div>
             </div>
         </div>
     )
