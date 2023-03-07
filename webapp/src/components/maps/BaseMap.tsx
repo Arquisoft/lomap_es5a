@@ -45,6 +45,38 @@ function BaseMap({ position, styles }: Props) {
             <BaseMapPopup />
           </Popup>
         </Marker>
+
+        <Marker
+          position={[42.689342488732336, -5.014509897161181]}
+          icon={
+            new Icon({
+              iconUrl: customMarkerIcon,
+              iconSize: [32, 41],
+              iconAnchor: [0, 0],
+            })
+          }
+        >
+          <Popup className="map-current-point-popup">
+            <BaseMapPopup />
+          </Popup>
+        </Marker>
+
+        <Marker
+          position={[42.883267366785304, -2.676109097850461]}
+          icon={
+            new Icon({
+              iconUrl: customMarkerIcon,
+              iconSize: [32, 41],
+              iconAnchor: [0, 0],
+            })
+          }
+        >
+          <Popup className="map-current-point-popup">
+            <BaseMapPopup />
+          </Popup>
+        </Marker>
+
+
       </MapContainer>
     </div>
   );

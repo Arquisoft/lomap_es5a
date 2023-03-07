@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.point-summary-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  max-width: 311px;
+}
+.point-summary-card-container > img {
+  width: 48px;
+  height: 48px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 9px;
+}
+.point-summary-card-container > .point-summary-card-container__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p {
+  margin: 0;
+}
+.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p:first-of-type {
+  font-size: 14px;
+  font-weight: 400;
+}
+.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p:last-of-type {
+  font-size: 12px;
+  font-weight: 300;
+}
+.point-summary-card-container > .point-summary-card-container__details > span {
+  font-size: 0.8rem;
+  font-weight: 300;
+}/*# sourceMappingURL=PointSummaryCard.css.map */
