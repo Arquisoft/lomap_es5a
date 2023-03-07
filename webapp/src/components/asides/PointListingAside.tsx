@@ -8,7 +8,7 @@ function PointListingAside() {
     <div className="point-listing-aside-container">
       <div className="point-listing-aside__head">
         <p>Puntos de interés recientes</p>
-        <button>Ver todos</button>
+        <Link to="/points" className="point-listing_link">Ver todos</Link>
       </div>
 
       <div className="point-listing-aside__body">
