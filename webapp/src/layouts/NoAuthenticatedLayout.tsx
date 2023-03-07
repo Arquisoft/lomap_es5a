@@ -1,5 +1,5 @@
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 // TODO: Mover estilo en línea a fichero CSS externo
