@@ -1,10 +1,9 @@
 import "../../../public/css/components/about/info/InfoBox.css"
-
 function InfoBox(){
     return(
         <div className="infobox-main">
             <div className="infobox-image">
-                
+            
             </div>
             <div className="infobox-title">
                 Privacidad
