@@ -24,19 +24,21 @@
     border: none;
     border-radius: 100px;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 24px;
     outline: none;
     text-transform: uppercase;
     cursor: pointer;
     transition: all .2s ease;
 }
 .button-grey{
+    background: transparent;
     width: 210px;
     height: 57px;   
     border-radius: 100px;
     color: black;
     border-color: black;
-    font-size: 20px;
+    font-size: 24px;
+
     outline: none;
     text-transform: uppercase;
     cursor: pointer;
