@@ -1,10 +1,6 @@
 import "../../../public/css/components/about/info/InfoBox.css"
 
-type Props = {
-    image:string;
-    title:string;
-    description:string;
-}
+
 
 function InfoBox({...props}){
     return(
