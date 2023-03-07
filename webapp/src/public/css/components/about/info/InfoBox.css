@@ -3,6 +3,11 @@
     height: 310px;
 
 }
+.infobox-image{
+
+    text-align: center;
+    height: 120px;
+}
 
 .infobox-title{
     font-family: 'Poppins';

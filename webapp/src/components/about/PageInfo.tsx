@@ -6,7 +6,7 @@ function PageInfo(){
         <div className="info-principal">
             <div className="info-comp1">
                 <InfoBox 
-                    image=""
+                    image="/src/public/images/icons/about/privacidad.png"
                     title="Privacidad" 
                     description="Tu decides que puntos compartir. La información se almacena de forma distribuida."
                  />

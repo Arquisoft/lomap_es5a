@@ -1,7 +1,5 @@
 import "../../../public/css/components/about/info/InfoBox.css"
 
-
-
 function InfoBox({...props}){
     return(
         <div className="infobox-main">
@@ -17,6 +15,5 @@ function InfoBox({...props}){
         </div>
     )
 }
-
 
 export {InfoBox}
