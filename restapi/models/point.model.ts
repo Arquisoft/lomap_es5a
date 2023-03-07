@@ -1,22 +1,21 @@
 import { Schema, Document, Model, model } from 'mongoose';
+import { IOpinion, opinionSchema } from "./opinion.model";
 
-import { IOpinion, opinionSchema } from "../models/opinion.model";
-
-interface IPunto extends Document {
+interface IPoint extends Document {
+    webId: string;
     name: string;
     description: string;
     coordX: number;
     coordY: number;
-    direccion: string;
+    direction: string;
     opinion: IOpinion[];
 }
 
-interface IMapa extends Document {
-    code: string;
-    puntos: IPunto[];
-}
-
-const puntoSchema = new Schema<IPunto>({
+const pointSchema = new Schema<IPoint>({
+    webId: {
+        type : String,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -33,7 +32,7 @@ const puntoSchema = new Schema<IPunto>({
         type: Number,
         required: true
     },
-    direccion: {
+    direction: {
         type: String,
         required: true
     },
@@ -43,17 +42,8 @@ const puntoSchema = new Schema<IPunto>({
     }
 });
 
-const mapaSchema = new Schema<IMapa>({
-  code: {
-    type: String,
-    required: true
-  },
-  puntos: {
-    type: [puntoSchema],
-    required: true
-  }
-});
 
-const MapaModel: Model<IMapa> = model<IMapa>('Mapa', mapaSchema);
+const PointModel: Model<IPoint> = model<IPoint>('Point', pointSchema);
 
-export default MapaModel;
+export default PointModel;
+export { IPoint, pointSchema };
