@@ -1,15 +1,22 @@
 import "../../../public/css/components/about/info/InfoBox.css"
-function InfoBox(){
+
+type Props = {
+    image:string;
+    title:string;
+    description:string;
+}
+
+function InfoBox({...props}){
     return(
         <div className="infobox-main">
             <div className="infobox-image">
-            
+                <img src={props.image} />
             </div>
             <div className="infobox-title">
-                Privacidad
+                {props.title}
             </div>
             <div className="infobox-description">
-                Tu decides que puntos compartir. La información se almacena de forma distribuida.
+                {props.description}
             </div>
         </div>
     )

@@ -5,13 +5,25 @@ function PageInfo(){
     return(
         <div className="info-principal">
             <div className="info-comp1">
-                <InfoBox />
+                <InfoBox 
+                    image=""
+                    title="Privacidad" 
+                    description="Tu decides que puntos compartir. La información se almacena de forma distribuida."
+                 />
             </div>
             <div className="info-comp2">
-                <InfoBox />
+                <InfoBox 
+                    image=""
+                    title="Visibilidad" 
+                    description="Si eres un negocio local, compártelo con tus amigo y el resto de usuarios." 
+                />
             </div>
             <div className="info-comp3">
-                <InfoBox />
+                <InfoBox 
+                    image=""
+                    title="Seguridad" 
+                    description="Tu eres el propietario de tus publicaciones, no almacenamos tus publicaciones." 
+                />
             </div>
         </div>
     )
