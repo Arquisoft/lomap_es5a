@@ -9,8 +9,14 @@ const SIGNUP_PATH: string = "/create-account";
 // Cuenta personal del usuario en sesion
 const ACCOUNT_PATH: string = "/account";
 
-// listado de amigos
+// Listado de amigos
 const FRIENDS_PATH: string = "/friends";
+
+// Listado de todos los puntos registrados en la aplicacion
+const GENERAL_POINT_PATH: string = "/points";
+
+// Página de detalle de un punto de interés especifico
+const SINGLE_POINT_PATH: string = ":pointId";
 
 // Puntos de interes guardados por el ususario en sesion
 const SAVED_POINTS_PATH: string = "/saved";
@@ -30,4 +36,6 @@ export {
   SAVED_POINTS_PATH,
   ABOUT_PATH,
   FAQ_PATH,
+  GENERAL_POINT_PATH,
+  SINGLE_POINT_PATH
 };
