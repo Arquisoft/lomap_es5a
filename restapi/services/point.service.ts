@@ -1,4 +1,5 @@
 
+import { IOpinion } from "../models/opinion.model";
 import PointModel, { IPoint } from "../models/point.model";
 
 /**
@@ -12,14 +13,38 @@ import PointModel, { IPoint } from "../models/point.model";
     return result; 
 };
 
-// find
-//db.bios.findOne(
-//  { contribs: 'OOP' },
-//  { _id: 0, 'name.first': 0, birth: 0 }
-//)
-
-const addPointByUser = (userId: string) => {
-  // MapaModel.insertOne({name: "Hola", apellido: "Glez"});
+/**
+ * Añade los puntos creados por el usuario
+ *
+ * @param point point del usario.
+ * @returns result
+ */
+const addPointByUser = (point : IPoint) => {
+    const result = point.save();
+    return result;
 };
 
-export { findAllPointsByUser, addPointByUser };
+/**
+ * Elimina puntos que no desea el usuario
+ *
+ * @param idPoint id del punto del usuario.
+ * @returns result
+ */
+const deletePointByUser = (idPoint : string) => {
+    const result = PointModel.findByIdAndDelete(idPoint);    
+    return result; 
+};
+
+/**
+ * Añade una review de un punto realizada por el usuario 
+ *
+ * @param idPoint id del punto del usuario.
+ * @param opinion opinion del usuario.
+ * @returns result
+ */
+const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
+    const result = PointModel.findByIdAndUpdate(idPoint, opinion);    
+    return result; 
+};
+
+export { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser };

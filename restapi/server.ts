@@ -24,15 +24,9 @@ app.use(morgan("combined"));
 app.use(express.urlencoded({ extended: true }));
 app.use(corsConfiguration);
 
-
 // Rutas
 app.use("/api", api);
 app.use("/point", pointRouter);
-
-
-
-
-
 
 app
   .listen(port, (): void => {
