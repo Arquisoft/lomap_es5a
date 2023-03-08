@@ -1,25 +1,23 @@
-import { NextFunction, Request, Response } from "express";
+import { RequestHandler } from "express";
+import {findAllPointsByUser} from '../services/point.service'
 
-import {findAllPointsByUser, addPointByUser} from '../services/point.service'
 
-const findAll = (req: Request, res: Response, next: NextFunction) => {
-    const { userId } = req.params;
-    
-    const result = findAllPointsByUser(userId);
 
-    res.status(201).json({
-        result: "hola"
-    });
+/**
+ * Encuentra todos los puntos creados por un usuario
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+const findAll : RequestHandler = async (req,res) => {
+    const { webId } = req.params;
+    const result = await findAllPointsByUser(webId);
+    res.status(200).json(result);    
 }
 
-const addPoint = (req: Request, res: Response, next: NextFunction) => {
-    const { userId } = req.body; // recibo los datos
-    
-    const result = addPointByUser(userId); // llamo al servicio
+//     res.status(201).json({
+//         result: "hola"
+//     });
+// }
 
-    res.status(201).json({
-        result: "hola"
-    });
-}
-
-export { findAll, addPoint };
+export { findAll };

@@ -6,12 +6,11 @@ type FirebaseConfig = {
     msgSenderId?: string;
     appId: string | undefined;
   };
-  
+
   type MongoDbConfig = {
-    uri: string | undefined, 
-    user: string | undefined
+    uri: string | undefined,     
   }
-  
+
   /**
    * Tipo de entorno de desarrollo.
    */
@@ -19,6 +18,5 @@ type FirebaseConfig = {
     Prod = "production",
     Dev = "development",
   }
-  
-  export { FirebaseConfig, NodeEnviorenment, MongoDbConfig };
-  
+
+export { FirebaseConfig, NodeEnviorenment, MongoDbConfig };

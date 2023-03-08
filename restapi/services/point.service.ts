@@ -1,16 +1,15 @@
+
+import PointModel, { IPoint } from "../models/point.model";
+
 /**
  * Buscar todos los puntos de interés creados por un usuario
  *
- * @param userId Id del usuario.
+ * @param webId webId del usuario.
  * @returns Lista de puntos de interés, si los tiene.
  */
-import { db } from "../config/mongodb.config";
-import MapaModel from "../models/mapa.model";
-
-const findAllPointsByUser = (userId: string) => {
-  return {
-    data: `Punto de ${userId}`,
-  };
+ const findAllPointsByUser = async (webId: string) => {
+    const result = await PointModel.find();    
+    return result; 
 };
 
 // find
