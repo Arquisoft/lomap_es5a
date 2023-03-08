@@ -9,7 +9,7 @@ interface IPoint extends Document {
     lat: number;
     lng: number;
     direction: string;
-    opinion: IOpinion[];
+    opinion?: IOpinion[];
 }
 
 const pointSchema = new Schema<IPoint>({
@@ -43,12 +43,10 @@ const pointSchema = new Schema<IPoint>({
     },
     opinion: {
         type: [opinionSchema],
-        required: true
+        required: false
     }
 });
 
-
 const PointModel: Model<IPoint> = model<IPoint>('Point', pointSchema);
 
-export default PointModel;
-export { IPoint, pointSchema };
+export { PointModel, IPoint, pointSchema };
