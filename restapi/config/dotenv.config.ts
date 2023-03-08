@@ -27,8 +27,7 @@ const firebaseConfig: FirebaseConfig = {
 
 // Variables de MongoDB
 const mongoDbConfig: MongoDbConfig = {
-  uri: process.env.MONGODB_URI,
-  user: process.env.MONGODB_USER,
+  uri: process.env.MONGODB_URI,  
 };
 
 // Uri de mongoDb para entorno de pruebas

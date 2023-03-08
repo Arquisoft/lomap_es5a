@@ -1,19 +1,52 @@
+import { IOpinion } from "../models/opinion.model";
+import { IPoint, PointModel } from "../models/point.model";
+const mongoose = require('mongoose');
+
 /**
  * Buscar todos los puntos de interés creados por un usuario
  *
- * @param userId Id del usuario.
+ * @param webId webId del usuario.
  * @returns Lista de puntos de interés, si los tiene.
  */
-const findAllPointsByUser = (userId: string) => {
-  return {
-    data: `Punto de ${userId}`,
-  };
+ const findAllPointsByUser = async (webId: string) => {
+    const result = await PointModel.find();    
+    return result; 
 };
 
-const addPointByUser = (userId: string) => {
-  return {
-    data: `Punto de ${userId}`,
-  };
+/**
+ * Añade los puntos creados por el usuario
+ *
+ * @param point point del usario.
+ * @returns result
+ */
+const addPointByUser = (point : IPoint) => {
+    const result = point.save();
+    return result;
 };
 
-export { findAllPointsByUser, addPointByUser };
+/**
+ * Elimina puntos que no desea el usuario
+ *
+ * @param idPoint id del punto del usuario.
+ * @returns result
+ */
+const deletePointByUser = (idPoint : string) => {
+    const pointAsObject = mongoose.Types.ObjectId(idPoint);
+    const result = PointModel.findByIdAndDelete(pointAsObject);    
+    return result; 
+};
+
+/**
+ * Añade una review de un punto realizada por el usuario 
+ *
+ * @param idPoint id del punto del usuario.
+ * @param opinion opinion del usuario.
+ * @returns result
+ */
+const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
+    const result = PointModel.findByIdAndUpdate(idPoint, opinion);    
+    return result; 
+};
+
+export { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser };
+
