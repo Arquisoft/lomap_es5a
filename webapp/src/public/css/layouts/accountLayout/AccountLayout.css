@@ -1,0 +1,4 @@
+.account-layout-wrapper {
+  display: grid;
+  grid-template-areas: "aside banner" "aside content" "aside content";
+}/*# sourceMappingURL=AccountLayout.css.map */

@@ -1,0 +1,9 @@
+.account-layout-container {
+    display: grid;
+    grid-template-areas:
+        "aside banner"
+        "aside content"
+        "aside content";
+}
+
+

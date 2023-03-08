@@ -1,10 +1,8 @@
 
+import { ComponentClassName } from "../../shared/shareddtypes";
 
-function AccountAside(){
-    return(
-        <div></div>
-    )
-        
+function AccountAside({ _className }: ComponentClassName) {
+  return <div className={_className}></div>;
 }
 
-export default{AccountAside}
+export default AccountAside;

@@ -1,0 +1,5 @@
+@use "../../mixins" as mixins;
+
+.user-account-container{
+    @include mixins.flex(column, flex-start, flex-start, 20px);
+}
