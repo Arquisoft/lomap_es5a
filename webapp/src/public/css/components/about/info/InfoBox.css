@@ -1,0 +1,31 @@
+.infobox-main{
+    width: 260px;
+    height: 310px;
+
+}
+.infobox-image{
+    text-align: center;
+    height: 70px;
+
+}
+
+.infobox-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: -0.05em;
+    padding-bottom: 30px;
+}
+
+.infobox-description{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: -0.05em;
+}

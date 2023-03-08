@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.base-tooltip {
+  position: relative;
+}
+.base-tooltip > .base-tooltip__content {
+  display: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  background: rgba(240, 240, 240, 0.7);
+  padding: 5px 10px;
+  border-radius: 8px;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  transform: translateX(50%);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.base-tooltip:hover > .base-tooltip__content {
+  display: block;
+}/*# sourceMappingURL=BaseTooltip.css.map */

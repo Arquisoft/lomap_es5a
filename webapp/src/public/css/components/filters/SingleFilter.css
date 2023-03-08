@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+.single-filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 142px;
+  max-width: 100%;
+  opacity: 0.4;
+  transition: all 100ms cubic-bezier(0.17, 0.67, 0.84, 0.41);
+  position: relative;
+}
+.single-filter-container > .single-filter-container__icon {
+  width: 32px;
+  height: 32px;
+}
+.single-filter-container:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+.single-filter-container:hover:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  transform: translateX(50%);
+  background-color: #8d99ae;
+  opacity: 0.2;
+}/*# sourceMappingURL=SingleFilter.css.map */
