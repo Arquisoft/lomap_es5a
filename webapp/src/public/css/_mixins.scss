@@ -1,0 +1,20 @@
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+@mixin flex($direction: "row", $justify, $align, $gap: "20px") {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+@mixin grid($rows: 1fr, $columns, $gap: 20px) {
+    display: grid;
+    grid-template-rows: $rows;
+    grid-template-columns: $columns;
+    gap: $gap;
+}

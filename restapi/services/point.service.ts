@@ -1,5 +1,6 @@
 import { IOpinion } from "../models/opinion.model";
-import { PointModel, IPoint } from "../models/point.model";
+import { IPoint, PointModel } from "../models/point.model";
+const mongoose = require('mongoose');
 
 /**
  * Buscar todos los puntos de interés creados por un usuario
@@ -30,7 +31,8 @@ const addPointByUser = (point : IPoint) => {
  * @returns result
  */
 const deletePointByUser = (idPoint : string) => {
-    const result = PointModel.findByIdAndDelete(idPoint);    
+    const pointAsObject = mongoose.Types.ObjectId(idPoint);
+    const result = PointModel.findByIdAndDelete(pointAsObject);    
     return result; 
 };
 
@@ -47,3 +49,4 @@ const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
 };
 
 export { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser };
+
