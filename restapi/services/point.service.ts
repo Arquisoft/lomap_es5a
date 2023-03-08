@@ -1,5 +1,6 @@
 import { IOpinion } from "../models/opinion.model";
 import { IPoint, PointModel } from "../models/point.model";
+import { sendError } from "./helper/hellpers";
 const mongoose = require('mongoose');
 
 /**
@@ -8,8 +9,10 @@ const mongoose = require('mongoose');
  * @param webId webId del usuario.
  * @returns Lista de puntos de interés, si los tiene.
  */
- const findAllPointsByUser = async (webId: string) => {
-    const result = await PointModel.find();    
+ const findAllPointsByUser = async (webId: string, res:any) => {
+    const result = await PointModel.find()
+                    .then(result => res.status(200).send(result))
+		            .catch(error => sendError(error, res));    
     return result; 
 };
 
@@ -19,8 +22,10 @@ const mongoose = require('mongoose');
  * @param point point del usario.
  * @returns result
  */
-const addPointByUser = (point : IPoint) => {
-    const result = point.save();
+const addPointByUser = (point : IPoint, res:any) => {
+    const result = point.save()
+                    .then(result => res.status(200).send(result))
+		            .catch(error => sendError(error, res));
     return result;
 };
 
@@ -30,9 +35,11 @@ const addPointByUser = (point : IPoint) => {
  * @param idPoint id del punto del usuario.
  * @returns result
  */
-const deletePointByUser = (idPoint : string) => {
+const deletePointByUser = (idPoint : string, res:any) => {
     const pointAsObject = mongoose.Types.ObjectId(idPoint);
-    const result = PointModel.findByIdAndDelete(pointAsObject);    
+    const result = PointModel.findByIdAndDelete(pointAsObject)
+                    .then(result => res.status(200).send('Succesfully deleted point'))
+		            .catch(error => sendError(error, res))
     return result; 
 };
 
@@ -43,8 +50,10 @@ const deletePointByUser = (idPoint : string) => {
  * @param opinion opinion del usuario.
  * @returns result
  */
-const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
-    const result = PointModel.findByIdAndUpdate(idPoint, opinion);    
+const reviewPointByUser = (idPoint: string, opinion: IOpinion, res:any) => {
+    const result = PointModel.findByIdAndUpdate(idPoint, opinion)
+                    .then(result => res.status(200).send('Succesfully review added'))
+		            .catch(error => sendError(error, res));    
     return result; 
 };
 

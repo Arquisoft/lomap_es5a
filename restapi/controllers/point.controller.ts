@@ -15,7 +15,7 @@ import { PointModel } from "../models/point.model";
  */
 const findAll: RequestHandler = async (req, res) => {
   const { webId } = req.params;
-  const result = await findAllPointsByUser(webId);
+  const result = await findAllPointsByUser(webId, res);
   res.status(200).json(result);
 };
 
@@ -39,7 +39,7 @@ const addPoint: RequestHandler = async (req, res) => {
     direction: pointData.direction,
     opiniones: pointData.opinion,
   });
-  const result = await addPointByUser(point);
+  const result = await addPointByUser(point, res);
   res.status(200).json(result);
 };
 
@@ -52,7 +52,7 @@ const addPoint: RequestHandler = async (req, res) => {
 const deletePoint: RequestHandler = async (req, res) => {
   console.log(req);
   const { idPoint } = req.params;
-  const result = deletePointByUser(idPoint);
+  const result = deletePointByUser(idPoint, res);
   res.status(200).json(result);
 };
 
@@ -66,8 +66,8 @@ const reviewPoint: RequestHandler = async (req, res) => {
   console.log(req.params, req.body);
   const { id, description, note } = req.body;
 
-  //   const { idPoint } = req.params;
-  //   const { opinion } = req.body;
+  const { idPoint } = req.params;
+  const { opinion } = req.body;
 
   // TODO: REVISAR
   res.status(201).json({
@@ -76,7 +76,7 @@ const reviewPoint: RequestHandler = async (req, res) => {
     note,
   });
 
-  //const result = await reviewPointByUser(idPoint, opinion);
+  const result = await reviewPointByUser(idPoint, opinion, res);
   //res.status(200).json(result);
 };
 
