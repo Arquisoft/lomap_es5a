@@ -27,7 +27,7 @@ export async function addPoint(point: IPoint) {
 
   let response = await fetch(apiEndPoint + '/add', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string },
+    headers: { 'Content-Type': 'application/json', 'auth-token': sessionStorage.getItem('token') as string },
     body: JSON.stringify(point)
   });
   return response.status === 201;
@@ -37,7 +37,7 @@ export async function deletePoint(idPoint: string): Promise<boolean> {
   const apiEndPoint = process.env.REACT_APP_API_URI;
   let response = await fetch(apiEndPoint + '/delete/' + idPoint, {
       method: 'DELETE',
-      headers: {'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') as string},
+      headers: {'Content-Type': 'application/json', 'auth-token': sessionStorage.getItem('token') as string},
 
   });
   return response.status === 200;

@@ -1,6 +1,5 @@
-
 import { IOpinion } from "../models/opinion.model";
-import PointModel, { IPoint } from "../models/point.model";
+import { PointModel, IPoint } from "../models/point.model";
 
 /**
  * Buscar todos los puntos de interés creados por un usuario

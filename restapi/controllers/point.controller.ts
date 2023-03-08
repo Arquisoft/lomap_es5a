@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import {findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser} from '../services/point.service'
-import PointModel, { IPoint } from "../models/point.model";
+import { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser} from '../services/point.service'
+import { PointModel } from "../models/point.model";
 
 /**
  * Encuentra todos los puntos creados por un usuario
