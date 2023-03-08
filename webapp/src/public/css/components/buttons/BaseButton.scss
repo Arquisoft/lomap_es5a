@@ -1,0 +1,47 @@
+@use "../../functions" as funcs;
+
+.button-blue{
+    background-color: funcs.color(custom_blue, base);
+    width: 128px;
+    height: 38px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    &:hover{
+        background-color: funcs.color(custom_blue, high_light);
+    }
+}
+
+.button-red{
+    background-color: red;
+    width: 210px;
+    height: 57px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-size: 24px;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.button-grey{
+    background: transparent;
+    width: 210px;
+    height: 57px;   
+    border-radius: 100px;
+    color: black;
+    border-color: black;
+    font-size: 24px;
+
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+
+}

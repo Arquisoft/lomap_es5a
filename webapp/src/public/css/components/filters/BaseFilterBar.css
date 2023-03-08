@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+.base-filter-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  padding: 10px 0;
+}/*# sourceMappingURL=BaseFilterBar.css.map */

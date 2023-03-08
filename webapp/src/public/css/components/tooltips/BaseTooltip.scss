@@ -1,0 +1,26 @@
+@use "../../functions" as funcs;
+@use "../../variables" as vars;
+
+.base-tooltip {
+    position: relative;
+
+    & > .base-tooltip__content {
+        display: none;
+        font-size: 0.8rem;
+        font-weight: 300;
+        background: funcs.color(light_gray, high_light);
+        padding: 5px 10px;
+        border-radius: 8px;
+        position: absolute;
+        top: -30px;
+        left: 0;
+        transform: translateX(50%);
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &:hover {
+        & > .base-tooltip__content {
+            display: block;
+        }
+    }
+}
