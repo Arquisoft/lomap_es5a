@@ -3,6 +3,7 @@ import { IOpinion, opinionSchema } from "./opinion.model";
 
 interface IPoint extends Document {
     webId: string;
+    idPoint: string;
     name: string;
     description: string;
     lat: number;
@@ -13,6 +14,10 @@ interface IPoint extends Document {
 
 const pointSchema = new Schema<IPoint>({
     webId: {
+        type : String,
+        required: true
+    },
+    idPoint: {
         type : String,
         required: true
     },
