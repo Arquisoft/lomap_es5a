@@ -43,12 +43,12 @@ export async function deletePoint(idPoint: string): Promise<boolean> {
   return response.status === 200;
 }
 
-export async function reviewPoint(idPoint: string, opinion: IOpinion) {
+export async function likesPoint(idPoint: string, webId: string) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
   let response = await fetch(apiEndPoint + '/review/' + idPoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(opinion)
+    body: JSON.stringify(webId)
   });
   return response.status === 200;
 }

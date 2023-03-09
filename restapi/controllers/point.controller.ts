@@ -6,6 +6,7 @@ import {
   reviewPointByUser,
 } from "../services/point.service";
 import { PointModel } from "../models/point.model";
+import { checkStatus } from "../services/helper/hellpers";
 
 /**
  * Encuentra todos los puntos creados por un usuario
@@ -15,8 +16,10 @@ import { PointModel } from "../models/point.model";
  */
 const findAll: RequestHandler = async (req, res) => {
   const { webId } = req.params;
-  const result = await findAllPointsByUser(webId, res);
-  res.status(200).json(result);
+
+  const result = await findAllPointsByUser(webId);
+
+  checkStatus(result, res);
 };
 
 /**
@@ -40,8 +43,9 @@ const addPoint: RequestHandler = async (req, res) => {
     opiniones: pointData.opinion,
   });
 
-  const result = await addPointByUser(point, res);
-  res.status(200).json(result);
+  const result = await addPointByUser(point);
+
+  checkStatus(result, res);
 };
 
 /**
@@ -52,8 +56,10 @@ const addPoint: RequestHandler = async (req, res) => {
  */
 const deletePoint: RequestHandler = async (req, res) => {
   const { idPoint } = req.params;
-  const result = await deletePointByUser(idPoint, res);
-  res.status(200).json(result);
+
+  const result = await deletePointByUser(idPoint);
+
+  checkStatus(result, res);
 };
 
 /**
@@ -65,8 +71,10 @@ const deletePoint: RequestHandler = async (req, res) => {
 const reviewPoint: RequestHandler = async (req, res) => {
   const { idPoint } = req.params;
   const { opinion } = req.body;
-  const result = await reviewPointByUser(idPoint, opinion, res);
-  res.status(200).json(result);
+
+  const result = await reviewPointByUser(idPoint, opinion);
+  
+  checkStatus(result, res);
 };
 
 export { findAll, addPoint, deletePoint, reviewPoint };

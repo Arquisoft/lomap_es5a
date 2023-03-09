@@ -2,6 +2,7 @@ import { Schema, Document, Model, model } from 'mongoose';
 
 interface IOpinion extends Document {
     id: string;
+    webId: string; // usuario que comenta
     description: string;
     note: number;
 }
@@ -11,7 +12,11 @@ const opinionSchema = new Schema<IOpinion>({
         type: String,
         required: true
     },
-     description: {
+    webId: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     },

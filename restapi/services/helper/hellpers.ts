@@ -1,10 +1,17 @@
-import { Response } from "express";
+const checkStatus: any = async (result:any, res:any) => {
+	if (Number(res.status) === 500) {
+		res.status(500).json({
+		  msg: `Server error. Please, try again later.`,
+		}); 
+	}
+	
+	if (!result) { 
+		res.status(404).json({
+		  msg: "There are no tracks with this id.",
+		});
+	}
 
+	res.status(200).json(result);
+};
 
-export function sendError(error: Error, res: Response) {
-	console.log(error)
-	return res.status(500).json({
-		message: error.message,
-		error: error
-	})
-}
+export { checkStatus };

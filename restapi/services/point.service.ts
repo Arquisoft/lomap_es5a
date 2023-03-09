@@ -1,6 +1,6 @@
+import { isErrored } from "stream";
 import { IOpinion } from "../models/opinion.model";
 import { IPoint, PointModel } from "../models/point.model";
-import { sendError } from "./helper/hellpers";
 const mongoose = require('mongoose');
 
 /**
@@ -9,11 +9,13 @@ const mongoose = require('mongoose');
  * @param webId webId del usuario.
  * @returns Lista de puntos de interés, si los tiene.
  */
- const findAllPointsByUser = async (webId: string, res:any) => {
-    const result = await PointModel.find()
-                    .then(result => res.status(200).send(result))
-		            .catch(error => sendError(error, res));    
-    return result; 
+ const findAllPointsByUser = async (webId: string) => {
+    try {
+        const result = PointModel.find();
+        return result;
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 /**
@@ -22,11 +24,13 @@ const mongoose = require('mongoose');
  * @param point point del usario.
  * @returns result
  */
-const addPointByUser = (point : IPoint, res:any) => {
-    const result = point.save()
-                    .then(result => res.status(200).send(result))
-		            .catch(error => sendError(error, res));
-    return result;
+const addPointByUser = (point : IPoint) => {
+    try {
+        const result = point.save();
+        return result;
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 /**
@@ -35,11 +39,13 @@ const addPointByUser = (point : IPoint, res:any) => {
  * @param idPoint id del punto del usuario.
  * @returns result
  */
-const deletePointByUser = (idPoint : string, res:any) => {
-    const result = PointModel.deleteOne({idPoint: idPoint})
-                    .then(result => res.status(200).send('Succesfully deleted point'))
-		            .catch(error => sendError(error, res));
-    return result; 
+const deletePointByUser = (idPoint : string) => {
+    try {
+        const result = PointModel.findOneAndRemove({idPoint}); 
+        return result;
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 /**
@@ -49,12 +55,18 @@ const deletePointByUser = (idPoint : string, res:any) => {
  * @param opinion opinion del usuario.
  * @returns result
  */
-const reviewPointByUser = (idPoint: string, opinion: IOpinion, res:any) => {
-    const result = PointModel.findByIdAndUpdate({idPoint: idPoint}, {opinion:opinion})
-                    .then(result => res.status(200).send('Succesfully review added'))
-		            .catch(error => sendError(error, res));
-    return result; 
+const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
+    try {
+        const result = PointModel.findOneAndUpdate({ idPoint }, { $push: { "opinion" : { 
+            id : opinion.id,
+            webId : opinion.webId,
+            description : opinion.description,
+            note : opinion.note
+        } } });
+        return result;
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 export { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser };
-

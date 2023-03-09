@@ -3,7 +3,7 @@ import { IOpinion, opinionSchema } from "./opinion.model";
 import { ObjectId } from 'mongodb';
 
 interface IPoint extends Document {
-    webId: string;
+    webId: string; // propietario que lo sube
     idPoint: string;
     name: string;
     description: string;
@@ -11,6 +11,7 @@ interface IPoint extends Document {
     lng: number;
     direction: string;
     opinion?: IOpinion[];
+    likes?: string[]; // lista de likes (con webIds)
 }
 
 const pointSchema = new Schema<IPoint>({
