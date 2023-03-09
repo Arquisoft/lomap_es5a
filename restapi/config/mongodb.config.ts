@@ -1,24 +1,13 @@
-import { MongoClient } from "mongodb";
-import { NodeEnviorenment } from "../shared/sharedtypes";
-import { mongoDbConfig, NODE_ENV, mongoDbTestUri } from "./dotenv.config";
+import mongoose from 'mongoose';
+import {mongoDbConfig} from './dotenv.config';
 
-// Connection URI
-const uri: string =
-  NODE_ENV === NodeEnviorenment.Dev ? mongoDbTestUri : mongoDbConfig.uri || "";
+// Comprobar que la direccion de la base de datos exista
+const URI = mongoDbConfig.uri
+  ? mongoDbConfig.uri
+  : "";
 
-// Create a new MongoClient
-const client = new MongoClient(uri);
+  mongoose.connect(URI)
+  .then(() => console.log('Base de datos conectada'))
+  .catch((e: any) => console.log(e));
+  
 
-const run = async () => {
-  try {
-    await client.connect();
-
-    // Establish and verify connection
-    await client.db(mongoDbConfig.user).command({ ping: 1 });
-    console.log("Connected successfully to server");
-  } finally {
-    await client.close();
-  }
-};
-
-run().catch(console.dir);

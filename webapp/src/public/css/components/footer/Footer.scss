@@ -1,0 +1,16 @@
+@use "../../mixins" as mixins;
+@use "../../functions" as funcs;
+
+#footer{
+    @include mixins.flex(row, center, center, 10px);
+    width: 100%;
+    height: 80px;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.footer-github-container{
+    @include mixins.flex(row, center, center, 10px);
+    text-decoration: none;
+    background-color: funcs.color(tertiary, hightligh);
+}
