@@ -7,7 +7,7 @@ function SavedPointsPage() {
     <AuthenticatedLayout>
       <div className="saved-points-container">
         <div className="saved-points-accountaside">
-          {/* <AccountAside /> */}
+          <AccountAside />
         </div>
       </div>
     </AuthenticatedLayout>
