@@ -39,3 +39,12 @@ $pallete: (
 );
 
 $border-radius: 20px;
+
+$sizes: (
+    // Dimensiones para la foto de perfil (width = height).
+    "profileImage":
+        (
+            "sm": 48px,
+            "md": 96px,
+        )
+);
