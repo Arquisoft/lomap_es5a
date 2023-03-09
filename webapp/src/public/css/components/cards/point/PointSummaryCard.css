@@ -20,7 +20,9 @@
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
-  max-width: 311px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
 }
 .point-summary-card-container > img {
   width: 48px;
@@ -34,7 +36,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
+  flex-grow: 1;
 }
 .point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body {
   display: flex;
@@ -57,4 +60,8 @@
 .point-summary-card-container > .point-summary-card-container__details > span {
   font-size: 0.8rem;
   font-weight: 300;
+}
+.point-summary-card-container:hover {
+  background-color: rgb(243, 243, 243);
+  border-radius: 10px;
 }/*# sourceMappingURL=PointSummaryCard.css.map */
