@@ -49,24 +49,19 @@ const deletePointByUser = (idPoint : string) => {
 };
 
 /**
- * Añade una review de un punto realizada por el usuario
+ * Añade un like a un punto del mapa
  *
  * @param idPoint id del punto del usuario.
- * @param opinion opinion del usuario.
+ * @param webId id del usuario.
  * @returns result
  */
-const reviewPointByUser = (idPoint: string, opinion: IOpinion) => {
+const likePointByUser = (idPoint: string, webId: string) => {
     try {
-        const result = PointModel.findOneAndUpdate({ idPoint }, { $push: { "opinion" : { 
-            id : opinion.id,
-            webId : opinion.webId,
-            description : opinion.description,
-            note : opinion.note
-        } } });
+        const result = PointModel.findOneAndUpdate({ idPoint }, { webId });
         return result;
     } catch(error) {
         console.log(error);
     }
 };
 
-export { findAllPointsByUser, addPointByUser, deletePointByUser, reviewPointByUser };
+export { findAllPointsByUser, addPointByUser, deletePointByUser, likePointByUser };

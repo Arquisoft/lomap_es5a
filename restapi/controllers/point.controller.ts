@@ -3,7 +3,7 @@ import {
   findAllPointsByUser,
   addPointByUser,
   deletePointByUser,
-  reviewPointByUser,
+  likePointByUser,
 } from "../services/point.service";
 import { PointModel } from "../models/point.model";
 import { checkStatus } from "../services/helper/hellpers";
@@ -63,18 +63,18 @@ const deletePoint: RequestHandler = async (req, res) => {
 };
 
 /**
- * Realiza una review sobre un punto en concreto
+ * Registra un like sobre un punto en concreto
  * @param req
  * @param res
  * @param next
  */
-const reviewPoint: RequestHandler = async (req, res) => {
+const likesPoint: RequestHandler = async (req, res) => {
   const { idPoint } = req.params;
-  const { opinion } = req.body;
+  const { webId } = req.body;
 
-  const result = await reviewPointByUser(idPoint, opinion);
+  const result = await likePointByUser(idPoint, webId);
   
   checkStatus(result, res);
 };
 
-export { findAll, addPoint, deletePoint, reviewPoint };
+export { findAll, addPoint, deletePoint, likesPoint };
