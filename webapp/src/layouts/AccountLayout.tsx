@@ -1,8 +1,7 @@
-import React, { useId } from "react";
+import React from "react";
 import AccountAside from "src/components/asides/AccountAside";
+import UserAccountBanner from "src/components/banners/UserAccountBanner";
 import AuthenticatedLayout from "./AutenticatedLayout";
-
-import UserAccountBanner from "src/public/css/components/banners/UserAccountBanner";
 import "../public/css/layouts/accountLayout/AccountLayout.scss";
 
 /**
@@ -16,12 +15,15 @@ type Props = {
 
 function AccountLayout({ children, hasBanner = false }: Props) {
   return (
-    <AuthenticatedLayout hasNav={false} _className="account-layout-container">
-      <AccountAside _className="account-layout__aside"/>
-      {hasBanner && <UserAccountBanner _className="account-layout__banner"/>}
-      <main className="account-layout__body">
-        {children}
-      </main>
+    <AuthenticatedLayout hasNav={false}>
+      <div className="account-layout-container">
+        <AccountAside _className="account-layout__aside" />
+        {hasBanner && 
+        <UserAccountBanner _className="account-layout__banner"
+          imgBackground="https://images.unsplash.com/photo-1597773179486-8af5ca939ddb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"
+          />}
+        <main className="account-layout__body">{children}</main>
+      </div>
     </AuthenticatedLayout>
   );
 }

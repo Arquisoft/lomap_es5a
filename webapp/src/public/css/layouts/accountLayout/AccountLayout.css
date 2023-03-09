@@ -1,4 +1,28 @@
-.account-layout-wrapper {
+.account-layout-container {
+  height: calc(100vh - 80px);
   display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: repeat(4, 1fr);
   grid-template-areas: "aside banner" "aside content" "aside content";
+  gap: 10px;
+}
+.account-layout-container > .account-layout__aside {
+  grid-area: aside;
+  grid-row: 1/8;
+  background: blue;
+  height: 100%;
+}
+.account-layout-container > .account-layout__banner, .account-layout-container > .account-layout__body {
+  width: 100vw;
+  height: 100%;
+}
+.account-layout-container > .account-layout__banner {
+  grid-area: banner;
+  grid-row: 1/2;
+  background-color: green;
+}
+.account-layout-container > .account-layout__body {
+  grid-area: content;
+  grid-row: 2/8;
+  background-color: red;
 }/*# sourceMappingURL=AccountLayout.css.map */
