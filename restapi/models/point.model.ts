@@ -1,5 +1,6 @@
 import { Schema, Document, Model, model } from 'mongoose';
 import { IOpinion, opinionSchema } from "./opinion.model";
+import { ObjectId } from 'mongodb';
 
 interface IPoint extends Document {
     webId: string;
@@ -25,7 +26,7 @@ const pointSchema = new Schema<IPoint>({
         type: String,
         required: true
     },
-     description: {
+    description: {
         type: String,
         required: true
     },

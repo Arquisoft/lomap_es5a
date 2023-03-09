@@ -39,6 +39,7 @@ const addPoint: RequestHandler = async (req, res) => {
     direction: pointData.direction,
     opiniones: pointData.opinion,
   });
+
   const result = await addPointByUser(point, res);
   res.status(200).json(result);
 };
@@ -50,9 +51,8 @@ const addPoint: RequestHandler = async (req, res) => {
  * @param next
  */
 const deletePoint: RequestHandler = async (req, res) => {
-  console.log(req);
   const { idPoint } = req.params;
-  const result = deletePointByUser(idPoint, res);
+  const result = await deletePointByUser(idPoint, res);
   res.status(200).json(result);
 };
 
@@ -63,21 +63,10 @@ const deletePoint: RequestHandler = async (req, res) => {
  * @param next
  */
 const reviewPoint: RequestHandler = async (req, res) => {
-  console.log(req.params, req.body);
-  const { id, description, note } = req.body;
-
   const { idPoint } = req.params;
   const { opinion } = req.body;
-
-  // TODO: REVISAR
-  res.status(201).json({
-    id,
-    description,
-    note,
-  });
-
   const result = await reviewPointByUser(idPoint, opinion, res);
-  //res.status(200).json(result);
+  res.status(200).json(result);
 };
 
 export { findAll, addPoint, deletePoint, reviewPoint };

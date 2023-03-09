@@ -36,24 +36,23 @@ const addPointByUser = (point : IPoint, res:any) => {
  * @returns result
  */
 const deletePointByUser = (idPoint : string, res:any) => {
-    const pointAsObject = mongoose.Types.ObjectId(idPoint);
-    const result = PointModel.findByIdAndDelete(pointAsObject)
+    const result = PointModel.deleteOne({idPoint: idPoint})
                     .then(result => res.status(200).send('Succesfully deleted point'))
-		            .catch(error => sendError(error, res))
+		            .catch(error => sendError(error, res));
     return result; 
 };
 
 /**
- * Añade una review de un punto realizada por el usuario 
+ * Añade una review de un punto realizada por el usuario
  *
  * @param idPoint id del punto del usuario.
  * @param opinion opinion del usuario.
  * @returns result
  */
 const reviewPointByUser = (idPoint: string, opinion: IOpinion, res:any) => {
-    const result = PointModel.findByIdAndUpdate(idPoint, opinion)
+    const result = PointModel.findByIdAndUpdate({idPoint: idPoint}, {opinion:opinion})
                     .then(result => res.status(200).send('Succesfully review added'))
-		            .catch(error => sendError(error, res));    
+		            .catch(error => sendError(error, res));
     return result; 
 };
 
