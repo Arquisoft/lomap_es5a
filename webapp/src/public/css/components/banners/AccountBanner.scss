@@ -1,7 +1,12 @@
+@use "../../mixins" as mixins;
+
 .user-account-banner-container{
-    overflow: hidden;
+    @include mixins.flex(flex-end, flex-start, flex-end, 5px);
     border-bottom-left-radius: 20px;
     position: relative;
+    max-height: 260px;
+    padding: 20px;
+    overflow: hidden;
 
     // Imagen de fondo
     & > .user-account-banner__background{
@@ -10,8 +15,11 @@
         position: absolute;
         top: 0;
         left: 0;
+        overflow: hidden; // Ajustar imagen
 
         & > img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     }
@@ -29,4 +37,7 @@
     }
 
     //TODO: Perfil con z-index 2
+    & > .user-account-profile-item__wrapper{
+        z-index: 2;
+    }
 }
