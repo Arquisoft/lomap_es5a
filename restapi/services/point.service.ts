@@ -57,7 +57,8 @@ const deletePointByUser = (idPoint : string) => {
  */
 const likePointByUser = (idPoint: string, webId: string) => {
     try {
-        const result = PointModel.findOneAndUpdate({ idPoint }, { webId });
+        const result = PointModel.findOneAndUpdate({ idPoint : idPoint }, 
+        { $push: { likes : webId } });
         return result;
     } catch(error) {
         console.log(error);

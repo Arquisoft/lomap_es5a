@@ -46,6 +46,10 @@ const pointSchema = new Schema<IPoint>({
     opinion: {
         type: [opinionSchema],
         required: false
+    },
+    likes: {
+        type: [String],
+        required: false
     }
 });
 

@@ -40,7 +40,8 @@ const addPoint: RequestHandler = async (req, res) => {
     lat: pointData.lat,
     lng: pointData.lng,
     direction: pointData.direction,
-    opiniones: pointData.opinion,
+    opinion: pointData.opinion,
+    likes: pointData.opinion
   });
 
   const result = await addPointByUser(point);
