@@ -23,6 +23,12 @@
  * en modo hover o similar.
  */
 /**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
  * -----------------------
  * -- PALETA DE COLORES --
  * -----------------------
