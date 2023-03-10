@@ -18,6 +18,8 @@ function MiniMap({ position, styles }: Props) {
         scrollWheelZoom={false}
         minZoom={3}
         maxZoom={18}
+        dragging={false}
+        doubleClickZoom={false}
         style={styles}
       ><TileLayer
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?"
