@@ -22,6 +22,12 @@
  * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
  * en modo hover o similar.
  */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
 #footer {
   display: flex;
   flex-direction: row;
