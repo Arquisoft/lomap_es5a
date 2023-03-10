@@ -16,6 +16,12 @@
  * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
  * en modo hover o similar.
  */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
 .button-blue {
   background-color: #1c4fd8;
   width: 128px;
@@ -32,6 +38,34 @@
   background-color: #3361dc;
 }
 
+.button-blue-rounded {
+  background-color: #1c4fd8;
+  width: 128px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.button-blue-rounded:hover {
+  background-color: #3361dc;
+}
+
+.button-disabled {
+  background-color: #D9D9D9;
+  width: 128px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  color: gray;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 .button-red {
   background-color: red;
   width: 210px;
