@@ -28,35 +28,32 @@
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
  */
-.profile-image-with-follow-container {
+.base-profile-item-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
-.profile-image-with-follow-container > .profile-image-with-follow-container__avatar > img {
-  width: 48px;
-  height: 48px;
+.base-profile-item-container > img {
+  width: 96px;
+  height: 96px;
   border-radius: 100px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.profile-image-with-follow-container > .profile-image-with-follow-container__details {
+.base-profile-item-container > .base-profile-item__details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: 3px;
+  gap: 5px;
 }
-.profile-image-with-follow-container > .profile-image-with-follow-container__details > p {
-  margin: 0;
+.base-profile-item-container > .base-profile-item__details > .base-profile-item-details__name {
+  font-weight: 600;
+  font-size: 1.2rem;
 }
-.profile-image-with-follow-container > .profile-image-with-follow-container__details > button {
-  outline: none;
-  border: none;
-  background: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #1c4fd8;
-}/*# sourceMappingURL=ProfileInfoWithFollowButton.css.map */
+.base-profile-item-container > .base-profile-item__details > .base-profile-item-details__email {
+  font-size: 1rem;
+  font-weight: 300;
+}/*# sourceMappingURL=BaseProfileItem.css.map */
