@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.account-nav-menu-container {
+  width: 291px;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 4;
+  overflow: hidden;
+}
+.account-nav-menu-container > ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  list-style-type: none;
+}
+.account-nav-menu-container > ul > li:last-child {
+  position: relative;
+  color: red;
+}
+.account-nav-menu-container > ul > li:last-child:before {
+  content: "";
+  width: 90%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  border-top: 2px solid rgba(211, 211, 211, 0.363);
+}/*# sourceMappingURL=AccountNavMenu.css.map */
