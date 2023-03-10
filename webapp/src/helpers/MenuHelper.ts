@@ -4,7 +4,9 @@ import {
     HOME_PATH,
     LOGIN_PATH,
     SAVED_POINTS_PATH,
-    SIGNUP_PATH
+    SIGNUP_PATH,
+    SETTINGS_PATH,
+    FAQ_PATH
 } from "src/routes";
 
 /**
@@ -68,6 +70,7 @@ let menuItems: MenuItem[] = [
     alias: "show_profile",
     name: "Ver perfil",
     parent: "account",
+    url: ACCOUNT_PATH,
     muiName: "person_rounded",
     order: 0
   },
@@ -75,6 +78,7 @@ let menuItems: MenuItem[] = [
     alias: "settings",
     name: "Ajustes",
     parent: "account",
+    url: SETTINGS_PATH,
     muiName: "settings_rounded",
     order: 1
   },
@@ -82,6 +86,7 @@ let menuItems: MenuItem[] = [
     alias: "faq",
     name: "Preguntas frecuentes",
     parent: "account",
+    url: FAQ_PATH,
     muiName: "help_outline_rounded",
     order: 2
   },
