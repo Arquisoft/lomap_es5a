@@ -1,0 +1,24 @@
+@use "../../../mixins" as mixins;
+
+
+.single-point-summary{
+    @include mixins.flex(row, space-between, flex-start, 10px);
+    width: 100%;
+
+    & > .single-point-summary__details{
+        @include mixins.flex(column, center, flex-start, 3px);
+    }
+}
+
+.point-listing-skeleton {
+    @include mixins.flex(column, flex-start, flex-start, 20px);
+
+    & > .point-listing-skeleton__head {
+        @include mixins.flex(row, space-between, center, 5px);
+        width: 100%;
+    }
+
+    & > .point-listing-skeleton__body{
+        @include mixins.flex(column, flex-start, center, 20px);
+    }
+}
