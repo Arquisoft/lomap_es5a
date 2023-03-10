@@ -1,5 +1,6 @@
 .account-layout-container {
-    height: calc(100vh - 80px);
+    // height: calc(100vh - 80px);
+    width: 100vw;
     display: grid;
     grid-template-columns: 25% auto;
     grid-template-rows: repeat(6, 1fr);
@@ -19,7 +20,7 @@
 
     & > .account-layout__banner,
     & > .account-layout__body{
-        width: 100vw;
+        width: 100%;
         height: 100%;
     }
 
@@ -27,13 +28,12 @@
     & > .account-layout__banner {
         grid-area: banner;
         grid-row: 1 / 3; // 1/4 parte de las filas
-        background-color: green;
+        background-color: lightgrey; // Fondo por defecto si no se establece imagen.
     }
 
     // Contenido principal
     & > .account-layout__body {
         grid-area: content;
         grid-row: 3 / 8; // 3/4 partes de las filas
-        background-color: red;
     }
 }
