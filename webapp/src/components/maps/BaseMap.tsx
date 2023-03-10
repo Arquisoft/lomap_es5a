@@ -37,7 +37,7 @@ function BaseMap({ position, styles }: Props) {
             new Icon({
               iconUrl: customMarkerIcon,
               iconSize: [32, 41],
-              iconAnchor: [0, 0],
+              iconAnchor: [32, 41],
             })
           }
         >
