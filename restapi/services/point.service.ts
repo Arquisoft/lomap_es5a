@@ -1,7 +1,8 @@
+import { Types } from "mongoose";
 import { isErrored } from "stream";
 import { IOpinion } from "../models/opinion.model";
 import { IPoint, PointModel } from "../models/point.model";
-const mongoose = require('mongoose');
+
 
 /**
  * Buscar todos los puntos de interés creados por un usuario
@@ -10,13 +11,37 @@ const mongoose = require('mongoose');
  * @returns Lista de puntos de interés, si los tiene.
  */
  const findAllPointsByUser = async (webId: string) => {
-    try {
-        const result = PointModel.find();
-        return result;
-    } catch(error) {
-        console.log(error);
-    }
+    const result = await PointModel.find({webId});
+    return result;
 };
+
+/**
+ * Busca el punto de interés con el id suministrado.
+ *
+ * @param idPoint id del punto de interés (no el generado por la base de datos).
+ * @returns Punto de interés solicitado, en caso de existir.
+ */
+const findPointById = async (idPoint: string) => {
+    const result = await PointModel.findOne({idPoint});
+    return result;
+}
+
+/**
+ * Edita el punto de interés con id suministrado con los datos recibidos del formulario.
+ *
+ * @param idPoint id del punto de interés (no el generado por la base de datos).
+ * @param edit body de la peticion post con todods los datos que pasará a tener el punto de interés.
+ * @returns Punto de interés solicitado, en caso de existir.
+ */
+const editPointById = async (idPoint: string, edit:any) => {    
+    const filter = {idPoint};
+    const update = edit;
+    const result = await PointModel.findOneAndUpdate(filter,update, {
+        new : true
+    });
+    return result;
+
+}
 
 /**
  * Añade los puntos creados por el usuario
@@ -65,4 +90,4 @@ const likePointByUser = (idPoint: string, webId: string) => {
     }
 };
 
-export { findAllPointsByUser, addPointByUser, deletePointByUser, likePointByUser };
+export { findAllPointsByUser, findPointById, editPointById ,addPointByUser, deletePointByUser, likePointByUser };

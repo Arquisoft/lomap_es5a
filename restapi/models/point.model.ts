@@ -1,14 +1,16 @@
 import { Schema, Document, Model, model } from 'mongoose';
 import { IOpinion, opinionSchema } from "./opinion.model";
-import { ObjectId } from 'mongodb';
+
 
 interface IPoint extends Document {
     webId: string; // propietario que lo sube
     idPoint: string;
     name: string;
     description: string;
-    lat: number;
-    lng: number;
+    coords: {
+        lat: number;
+        lng: number;
+    }
     direction: string;
     opinion?: IOpinion[];
     likes?: string[]; // lista de likes (con webIds)
@@ -31,14 +33,17 @@ const pointSchema = new Schema<IPoint>({
         type: String,
         required: true
     },
-    lat: {
-        type: Number,
-        required: true
-    },
-    lng: {
-        type: Number,
-        required: true
-    },
+    coords: {
+        lat: {
+            type: Number,
+            required: true
+        },
+        lng: {
+            type: Number,
+            required: true
+        }
+    }
+    ,
     direction: {
         type: String,
         required: true

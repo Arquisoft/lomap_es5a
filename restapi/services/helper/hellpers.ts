@@ -1,4 +1,6 @@
-const checkStatus: any = async (result:any, res:any) => {
+import {Response} from 'express';
+
+const checkStatus: any = (result:any, res:Response) => {
 	if (Number(res.status) === 500) {
 		res.status(500).json({
 		  msg: `Server error. Please, try again later.`,
