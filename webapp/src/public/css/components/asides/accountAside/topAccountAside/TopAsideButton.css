@@ -5,10 +5,14 @@
     gap:15px ;
 }
 
+.aside-button-logo{
+    padding-top: 2px;
+}
+
 .aside-button-text{
     background-color: transparent;
     border: none;
-    font-family: 'Poppins';
+    font-family: "Manrope", sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;

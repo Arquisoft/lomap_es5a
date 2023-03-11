@@ -6,14 +6,15 @@ import RoomIcon from '@mui/icons-material/Room';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LockIcon from '@mui/icons-material/Lock';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { red } from "@mui/material/colors";
 
 
 function TopAccountAside(){
     return(
         <div className="top-acc-aside-main">
-            <div className="top-acc-aside-back">
+            <button className="top-acc-aside-back">
                <ArrowBackIosIcon />
-            </div>
+            </button>
             <div className="top-acc-aside-title">
                 Mi cuenta
             </div>
@@ -23,7 +24,7 @@ function TopAccountAside(){
                     text="Ver mapa"
                 />
                 <TopAsideButton
-                   icon={<FavoriteIcon  />}
+                   icon={<FavoriteIcon style={{ color: red[500] }} />}
                     text="Puntos guardados"
                 />
                 <TopAsideButton
@@ -35,7 +36,7 @@ function TopAccountAside(){
                     text="Ajustes"
                 />
                 <TopAsideButton
-                   icon={<LockIcon />}
+                   icon={<LockIcon  style={{ color: red[500] }}/>}
                     text="Cerrar sesion"
                 />               
             </div>
