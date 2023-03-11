@@ -21,4 +21,5 @@
 
 .create-form-buttons{
     display: flex;
+    gap: 14px;
 }
