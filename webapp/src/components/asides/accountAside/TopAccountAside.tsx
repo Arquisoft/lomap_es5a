@@ -5,13 +5,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import RoomIcon from '@mui/icons-material/Room';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LockIcon from '@mui/icons-material/Lock';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 function TopAccountAside(){
     return(
         <div className="top-acc-aside-main">
             <div className="top-acc-aside-back">
-                ATRAS
+               <ArrowBackIosIcon />
             </div>
             <div className="top-acc-aside-title">
                 Mi cuenta

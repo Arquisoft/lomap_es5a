@@ -1,4 +1,13 @@
 
+.top-acc-aside-back{
+    height: 48px;
+    width: 48px;
+    background-color:rgba( 217,217,217,0.42);
+    border-radius: 100px;
+    padding-left: 16px;
+    padding-top: 12px;
+
+}
 .top-acc-aside-title{
     padding-left: 10px;
     font-family: 'Poppins';
@@ -8,8 +17,6 @@
     line-height: 26px;
     color: black;
 }
-
-
 
 .top-acc-aside-buttons{
     display: flex;
