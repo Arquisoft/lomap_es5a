@@ -67,6 +67,31 @@
     cursor: pointer;
     transition: all .2s ease;
 }
+.button-red-form{
+    background-color: red;
+    width: 128px;
+    height: 34px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.button-grey-form{
+    background-color: #B9B9B9;
+    width: 128px;
+    height: 34px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
 
 .button-grey{
     background: transparent;

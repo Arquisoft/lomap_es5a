@@ -1,23 +1,28 @@
-import Footer from "src/components/footer/Footer"
+import AccountLayout from "src/layouts/AccountLayout"
 import "../../public/css/pages/points/CreatePointPage.css"
-import TopAccountAside from "src/components/asides/accountAside/TopAccountAside"
+import CreatePointForm from "src/components/forms/CreatePointForm"
+import MapWithDragableMarker from "src/components/maps/MapWithDragableMarker"
 
-function CreatePointPage(){
-   
-return (
-    <div className='main-create-points'>
-        <div className='left-aside-create-points'>
-           <TopAccountAside />  
-         </div>
-        <div className='formulario-create-points'>
-              Formulario
+
+function CreatePointPage(){ 
+  return(
+    <AccountLayout hasBanner={false}>
+      <div className="main-create-point">
+        <div className="create-point-form">
+          <CreatePointForm />
         </div>
-        <div className='marcador-create-points'>
-          mapa
+        <div className="create-point-map">
+        <MapWithDragableMarker
+            position={[42.883267366785304, -2.676109097850461]}
+            styles={{
+              width: "300px",
+              height: "400px",
+              borderRadius: "20px"
+            }}
+          />
         </div>
-        <Footer />
-    </div>
-    
+      </div>
+    </AccountLayout>
   )
 }
 
