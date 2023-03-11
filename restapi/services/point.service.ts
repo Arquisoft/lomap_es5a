@@ -47,30 +47,24 @@ const editPointById = async (idPoint: string, edit:any) => {
  * Añade los puntos creados por el usuario
  *
  * @param point point del usario.
- * @returns result
+ * @returns Punto añadido.
  */
-const addPointByUser = (point : IPoint) => {
-    try {
-        const result = point.save();
-        return result;
-    } catch(error) {
-        console.log(error);
-    }
+const addPointByUser = async (point : IPoint) => {
+    const result = await point.save();
+
+    return result;
 };
 
 /**
  * Elimina puntos que no desea el usuario
  *
  * @param idPoint id del punto del usuario.
- * @returns result
+ * @returns Punto eliminado en caso de existir.
  */
-const deletePointByUser = (idPoint : string) => {
-    try {
-        const result = PointModel.findOneAndRemove({idPoint}); 
-        return result;
-    } catch(error) {
-        console.log(error);
-    }
+const deletePointByUser = async (idPoint : string) => {
+    const result = await PointModel.findOneAndRemove({idPoint});
+
+    return result;
 };
 
 /**
@@ -78,16 +72,12 @@ const deletePointByUser = (idPoint : string) => {
  *
  * @param idPoint id del punto del usuario.
  * @param webId id del usuario.
- * @returns result
+ * @returns Punto modificado con el like en caso de existir.
  */
-const likePointByUser = (idPoint: string, webId: string) => {
-    try {
-        const result = PointModel.findOneAndUpdate({ idPoint : idPoint }, 
-        { $push: { likes : webId } });
-        return result;
-    } catch(error) {
-        console.log(error);
-    }
+const likePointByUser = async (idPoint: string, webId: string) => {
+    const result = await PointModel.findOneAndUpdate({ idPoint : idPoint }, 
+                                                    { $push: { likes : webId } });
+    return result;
 };
 
 export { findAllPointsByUser, findPointById, editPointById ,addPointByUser, deletePointByUser, likePointByUser };

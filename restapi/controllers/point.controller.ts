@@ -90,7 +90,6 @@ const deletePoint: RequestHandler = async (req, res) => {
  * Registra un like sobre un punto en concreto
  * @param req
  * @param res
- * @param next
  */
 const likesPoint: RequestHandler = async (req, res) => {
   const { idPoint } = req.params;
