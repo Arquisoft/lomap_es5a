@@ -19,26 +19,25 @@ function TopAccountAside(){
             </div>
             <div className="top-acc-aside-buttons">
                 <TopAsideButton
-                   icon={<MapIcon fontSize="large"/>}
+                   icon={<MapIcon/>}
                     text="Ver mapa"
                 />
                 <TopAsideButton
-                   icon={<FavoriteIcon fontSize="large"/>}
+                   icon={<FavoriteIcon  />}
                     text="Puntos guardados"
                 />
                 <TopAsideButton
-                   icon={<RoomIcon fontSize="large"/>}
+                   icon={<RoomIcon />}
                     text="Crear punto"
                 />
                 <TopAsideButton
-                   icon={<SettingsIcon fontSize="large"/>}
+                   icon={<SettingsIcon />}
                     text="Ajustes"
                 />
                 <TopAsideButton
-                   icon={<LockIcon fontSize="large"/>}
+                   icon={<LockIcon />}
                     text="Cerrar sesion"
-                />
-                
+                />               
             </div>
         </div>
     )
