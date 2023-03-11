@@ -37,7 +37,7 @@ function TopAccountAside(){
                 />
                 <TopAsideButton
                    icon={<LockIcon  style={{ color: red[500] }}/>}
-                    text="Cerrar sesion"
+                    text="Cerrar sesion" 
                 />               
             </div>
         </div>
