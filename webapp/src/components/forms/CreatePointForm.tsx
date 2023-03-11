@@ -1,5 +1,6 @@
 import "../../public/css/components/forms/CreatePointForm.css"
 import BaseButton from "../buttons/BaseButton"
+import FormPoint from "./createPoint/FormPoint"
 
 function CreatePointForm(){
     return (
@@ -11,7 +12,7 @@ function CreatePointForm(){
                 Los campos con (*) son obligatorios.
             </div>
             <div className="create-form-form">
-
+                <FormPoint />
             </div>
             <div className="create-form-buttons">
                 <div className="create-form-buttonrigth">
