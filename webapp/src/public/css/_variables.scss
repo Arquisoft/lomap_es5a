@@ -19,12 +19,12 @@ $pallete: (
         "dark": #272f5d,
     ),
     "tertiary": (
-        "base": #8d99ae,
+        "base": #D9D9D9,
         "highlight": #98a3b6,
         "dark": #7f8a9d,
     ),
     "light_gray": (
-        "base": #f0f0f0,
+        "base": #e1e0e0,
         "high_light": rgba(240, 240, 240, 0.7),
         "dark": #7f8a9d,
     ),
@@ -39,3 +39,15 @@ $pallete: (
 );
 
 $border-radius: 20px;
+$nav-height: 80px;
+
+$sizes: (
+    // Dimensiones para la foto de perfil (width = height).
+    "profileImage":
+        (
+            "sm": 48px,
+            "md": 96px,
+        )
+);
+
+$z-index-menus: 4;

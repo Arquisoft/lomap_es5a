@@ -3,15 +3,18 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 import "./public/css/global.scss";
+
+const DEFAULT_SKELETON_COLOR: string = "#f0f0f0";
 
 const app = (
   <React.StrictMode>
     <BrowserRouter>
-      {/* <SessionProvider value={}> */}
+      <SkeletonTheme baseColor={DEFAULT_SKELETON_COLOR}>
         <App />
-      {/* </SessionProvider> */}
+      </SkeletonTheme>
     </BrowserRouter>
   </React.StrictMode>
 );

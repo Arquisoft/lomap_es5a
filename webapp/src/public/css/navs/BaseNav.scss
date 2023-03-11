@@ -6,8 +6,9 @@
 .base-nav-container {
     @include mixins.flex(row, space-between, center, 10px);
     width: 100%;
-    height: 80px;
+    height: vars.$nav-height;
     padding: 0 20px;
+    position: relative;
 }
 
 #main-nav {
