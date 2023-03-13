@@ -22,6 +22,35 @@ export async function getUsers():Promise<User[]>{
     return response.json()
 }
 
+export async function findAllPointsByUser(webId: string) {
+  const apiEndPoint = process.env.REACT_APP_API_URI;
+
+  let response = await fetch(apiEndPoint + '/findall/'  + webId);
+  return response.json();
+}
+
+export async function findPointById(idPoint: string) {
+  const apiEndPoint = process.env.REACT_APP_API_URI;
+
+  let response = await fetch(apiEndPoint + '/find/' + idPoint, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }    
+  });
+  return response.json();
+}
+
+export async function editPointById(idPoint: string, body: any) {
+  const apiEndPoint = process.env.REACT_APP_API_URI;
+
+  let response = await fetch(apiEndPoint + '/find/' + idPoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body : body 
+  });
+  return response.json();
+}
+
+
 export async function addPoint(point: IPoint) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
 
