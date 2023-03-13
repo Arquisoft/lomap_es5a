@@ -18,7 +18,7 @@ async function signIn(webId: string) {
   await handleIncomingRedirect();
 
   // 2. Start the Login Process if not already logged in.
-  if (!getDefaultSession().info.isLoggedIn) {
+  if (!getDefaultSession().info){ //https://id.inrupt.com/uo257239.isLoggedIn) {
     await login({
       // Specify the URL of the user's Solid Identity Provider;
       clientSecret: webId,
