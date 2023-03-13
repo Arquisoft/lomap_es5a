@@ -1,20 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { findAllPointsByUser } from "src/api/api";
 import PointListingAside from "src/components/asides/PointListingAside";
 import BaseFilterBar from "src/components/filters/BaseFilterBar";
 import BaseMap from "src/components/maps/BaseMap";
-import { getPodData } from "src/helpers/AuthHelper";
 import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 
+
 function HomePage() {
-  const loadProfile = async () => {
-    //const data = await getUserDatasetByWebId("https://id.inrupt.com/uo257239");
-    const data = await getPodData("https://id.inrupt.com/uo257239");
-    console.log(data);
+  const [points, setPoints] = useState([]);
+
+  const loadAllPoints = async () => {
+    // const webId: string =
+    //   getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
+    const result = await findAllPointsByUser("2");
+    setPoints(result);
   };
 
   useEffect(() => {
-    loadProfile();
+    loadAllPoints();
   }, []);
 
   return (
@@ -29,6 +33,7 @@ function HomePage() {
           <div className="home-map-wrapper">
             <BaseMap
               position={[43.36297198377049, -5.851084856954243]}
+              points={points}
               styles={{
                 width: "100%",
                 height: "80vh",
