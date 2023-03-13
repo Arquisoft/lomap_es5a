@@ -18,7 +18,7 @@ async function signIn(webId: string) {
   await handleIncomingRedirect();
 
   // 2. Start the Login Process if not already logged in.
-  if (!getDefaultSession().info){ //https://id.inrupt.com/uo257239.isLoggedIn) {
+  if (!getDefaultSession().info.isLoggedIn){
     await login({
       // Specify the URL of the user's Solid Identity Provider;
       clientSecret: webId,
@@ -47,8 +47,6 @@ async function getPodData(webId: string) {
   //   If logged in, the `fetch` is authenticated.
   // For illustrative purposes, the `fetch` is passed in.
   const data = await getPodUrlAll(webId, { fetch: fetch });
-  
-  console.log(data);
 
   const myDataset = await getSolidDataset(webId, { fetch: fetch });
 
@@ -72,9 +70,6 @@ async function getPodData(webId: string) {
   // As an alternative, you can pass in the "http://www.w3.org/2006/vcard/ns#role" string instead of `VCARD.role`.
 
   const role = getStringNoLocale(profile, VCARD.role);
-
-
-  console.log(fn , role);
 
 }
 

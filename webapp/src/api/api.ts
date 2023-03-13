@@ -35,6 +35,16 @@ export async function findAllPointsByUser(webId: string) {
   return response.json();
 }
 
+const findAllPoints = async () => {
+  let response = await fetch("http://localhost:5001/point/findall/" + "2", {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+  return response.json();
+}
+
 export async function findPointById(idPoint: string) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
 
@@ -90,4 +100,8 @@ export async function likesPoint(idPoint: string, webId: string) {
     body: JSON.stringify(webId),
   });
   return response.status === 200;
+}
+
+export {
+  findAllPoints
 }

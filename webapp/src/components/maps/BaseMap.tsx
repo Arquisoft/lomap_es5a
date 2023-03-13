@@ -36,23 +36,28 @@ function BaseMap({ position, styles, points }: Props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?"
         />
         <>
-          {points && (
+          {points &&
             points.map((point: any) => {
-              return <Marker
-                key={point.idPoint}
-                position={[point.coords.lat, point.coords.lng]}
-                icon={icon({
-                  iconUrl: customMarkerIcon,
-                  iconSize: [32, 41],
-                  iconAnchor: [32, 41],
-                })}
-              >
-                <Popup className="map-current-point-popup">
-                  <BaseMapPopup />
-                </Popup>
-              </Marker>
-            })
-          )}
+              return (
+                <Marker
+                  key={point.idPoint}
+                  position={[point.coords.lat, point.coords.lng]}
+                  icon={icon({
+                    iconUrl: customMarkerIcon,
+                    iconSize: [32, 41],
+                    iconAnchor: [32, 41],
+                  })}
+                >
+                  <Popup className="map-current-point-popup">
+                    <BaseMapPopup
+                      name={point.name}
+                      address={point.direction}
+                      category={point.category}
+                    />
+                  </Popup>
+                </Marker>
+              );
+            })}
         </>
       </MapContainer>
       {/* </Suspense> */}
