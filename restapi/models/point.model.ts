@@ -1,7 +1,6 @@
 import { Schema, Document, Model, model } from 'mongoose';
 import { IOpinion, opinionSchema } from "./opinion.model";
 
-
 interface IPoint extends Document {
     webId: string; // propietario que lo sube
     idPoint: string;
@@ -11,7 +10,8 @@ interface IPoint extends Document {
         lat: number;
         lng: number;
     }
-    direction: string;
+    address: string;
+    category: string;
     opinion?: IOpinion[];
     likes?: string[]; // lista de likes (con webIds)
 }
@@ -42,9 +42,12 @@ const pointSchema = new Schema<IPoint>({
             type: Number,
             required: true
         }
-    }
-    ,
-    direction: {
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },

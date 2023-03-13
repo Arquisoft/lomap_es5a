@@ -63,7 +63,8 @@ const addPoint: RequestHandler = async (req, res) => {
       lat: pointData.lat,
       lng: pointData.lng
     },
-    direction: pointData.direction,
+    address: pointData.address,
+    category: pointData.category,
     opinion: pointData.opinion,
     likes: pointData.opinion
   });
