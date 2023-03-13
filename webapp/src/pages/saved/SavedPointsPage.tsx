@@ -8,16 +8,6 @@ function SavedPointsPage() {
       <section className="saved-points-container">
         <h2>Puntos guardados</h2>
         <div>
-          {/*  */}
-          <p>mi seccion</p>
-          <MapWithDragableMarker
-            position={[42.883267366785304, -2.676109097850461]}
-            styles={{
-              width: "300px",
-              height: "500px",
-              borderRadius: "20px"
-            }}
-          />
         </div>
       </section>
     </AccountLayout>
