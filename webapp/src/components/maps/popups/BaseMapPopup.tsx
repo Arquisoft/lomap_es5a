@@ -7,7 +7,13 @@ import ShareIcon from "@mui/icons-material/ShareOutlined";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
 import BaseButton from "src/components/buttons/BaseButton";
 
-function BaseMapPopup({ ...props }) {
+type Props = {
+  name: string;
+  address: string;
+  category?: string
+}
+
+function BaseMapPopup({ name, address, category}: Props) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
 
   const badgeStyles = {
@@ -28,8 +34,8 @@ function BaseMapPopup({ ...props }) {
         onMouseEnter={() => handleShowBadge(true)}
         onMouseLeave={() => handleShowBadge(false)}
       >
-        {showCategoryBadge && (
-          <BaseBadge text={"RESTAURANTE"} styles={badgeStyles} />
+        {category && showCategoryBadge && (
+          <BaseBadge text={category} styles={badgeStyles} />
         )}
         <img
           src="https://images.unsplash.com/photo-1640276380950-9fad7f2aba89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
@@ -53,8 +59,8 @@ function BaseMapPopup({ ...props }) {
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
-          <p>Sidrería Tierra Astur</p>
-          <p>Calle Gascona, 1</p>
+          <p>{name}</p>
+          <p>{address}</p>
         </div>
         <BaseButton type="button-blue" text="Ver punto" />
       </div>
