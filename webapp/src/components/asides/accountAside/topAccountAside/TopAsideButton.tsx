@@ -1,5 +1,5 @@
 import "../../../../public/css/components/asides/accountAside/topAccountAside/TopAsideButton.css"
-
+import IconButton from "src/components/buttons/IconButton";
 
 type Props = {
     icon: React.ReactNode;
@@ -13,9 +13,9 @@ function TopAsideButton({icon,text}:Props){
             <div className="aside-button-logo">
                 {icon}
             </div>
-            <div className="aside-button-text">
+            <button className="aside-button-text">
                 {text}
-            </div>
+            </button>
         </div>
     )
 }
