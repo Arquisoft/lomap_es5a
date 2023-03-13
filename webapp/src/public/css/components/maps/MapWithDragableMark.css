@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+.map-with-dragable-marker-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+.map-with-dragable-marker-container > .map-with-dragable-marker-container__info-msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.map-with-dragable-marker-container > .map-with-dragable-marker-container__info-msg > p {
+  font-size: 0.9rem;
+}/*# sourceMappingURL=MapWithDragableMark.css.map */
