@@ -1,16 +1,16 @@
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
-import AccountAside from "src/components/asides/AccountAside";
+import MapWithDragableMarker from "src/components/maps/MapWithDragableMarker";
+import AccountLayout from "src/layouts/AccountLayout";
 import "../../public/css/pages/saved/SavedPointsPage.scss";
 
 function SavedPointsPage() {
   return (
-    <AuthenticatedLayout>
-      <div className="saved-points-container">
-        <div className="saved-points-accountaside">
-          {/* <AccountAside /> */}
+    <AccountLayout hasBanner={false}>
+      <section className="saved-points-container">
+        <h2>Puntos guardados</h2>
+        <div>
         </div>
-      </div>
-    </AuthenticatedLayout>
+      </section>
+    </AccountLayout>
   );
 }
 
