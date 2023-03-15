@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "src/context/AuthContext";
 import { menuItems } from "../helpers/MenuHelper";
 import "../public/css/navs/BaseNav.scss";
 import AppLogo from "./AppLogo";
@@ -11,7 +10,8 @@ import AccountNavMenu from "./menus/AccountNavMenu";
 function BaseNav() {
   // Para mostrar u ocultar el menu asociado al avatar del menu de navegacion.
   const [showAccountMenu, setShowAccountMenu] = useState(false);
-  const isAuthenticated = useContext(AuthContext);
+  const isAuthenticated = true;
+
 
   /**
    * Muestra el menu asociado al avatar del menu de navegación.
