@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.single-point-detail-banner {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 35% auto;
+  gap: 10px;
+  width: 60%;
+  margin: 0 auto;
+  height: 350px;
+}
+.single-point-detail-banner > img {
+  width: 100%;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}/*# sourceMappingURL=SinglePointDetailBanner.css.map */
