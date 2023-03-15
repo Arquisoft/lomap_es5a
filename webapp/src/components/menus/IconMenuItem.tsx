@@ -1,6 +1,5 @@
-import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 import Icon from "@mui/material/Icon";
-import { Link } from "react-router-dom";
+import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 
 /**
  * @param name: Nombre del elemento de menu.
@@ -13,8 +12,12 @@ type Props = {
 };
 
 function IconMenuItem({ name, iconName, url }: Props) {
+  const handleRedirect = () => {
+    window.location.href = url || "";
+  };
+
   return (
-    <li className="icon-menu-item">
+    <li className="icon-menu-item"onClick={handleRedirect}>
       <Icon sx={{ fontSize: 24 }}>{iconName}</Icon>
       <span>{name}</span>
     </li>
