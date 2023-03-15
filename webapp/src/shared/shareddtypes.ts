@@ -17,6 +17,7 @@ type Point = {
     lat: number;
     lng: number;
   }
+  category: string;
 }
 
 export type { User, ComponentClassName };
