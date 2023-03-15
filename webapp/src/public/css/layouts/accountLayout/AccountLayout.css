@@ -9,7 +9,6 @@
 .account-layout-container > .account-layout__aside {
   grid-area: aside;
   grid-row: 1/8;
-  background: blue;
   height: 100%;
 }
 .account-layout-container > .account-layout__banner, .account-layout-container > .account-layout__body {

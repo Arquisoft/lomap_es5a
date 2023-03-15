@@ -1,19 +1,13 @@
+import "../public/css/layouts/noAuthenticatedLayout/NoAuthenticatedLayout.scss";
+
 type Props = {
   children: React.ReactNode;
 };
 
-// TODO: Mover estilo en línea a fichero CSS externo
 function NoAuthenticatedLayout({ children }: Props) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <div className="no-authenticated-layout-container"
     >
-      <p>Vista no autenticado</p>
       {children}
     </div>
   );
