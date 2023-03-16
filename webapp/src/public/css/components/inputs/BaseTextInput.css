@@ -28,48 +28,25 @@
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
  */
-/**
- * -----------------------
- * -- PALETA DE COLORES --
- * -----------------------
- * 
- * - base. Color del elemento en su estado normal.
- * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
- * - dark. Color de contraste, alternativo al color base.
- */
-.account-nav-menu-container {
-  width: 291px;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 80px;
-  right: 0;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.08);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  z-index: 999;
-  overflow: hidden;
-}
-.account-nav-menu-container > ul {
-  height: 100%;
+.base-text-input-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 0;
-  list-style-type: none;
+  gap: 3px;
+  width: 100%;
 }
-.account-nav-menu-container > ul > li:last-child {
-  position: relative;
-  color: red;
+.base-text-input-container > label {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: #B9B9B9;
 }
-.account-nav-menu-container > ul > li:last-child:before {
-  content: "";
-  width: 90%;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  border-top: 2px solid rgba(211, 211, 211, 0.363);
-}/*# sourceMappingURL=AccountNavMenu.css.map */
+.base-text-input-container > input {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #e1e0e0;
+  border-radius: 5px;
+  padding: 0 10px;
+  outline: none;
+}/*# sourceMappingURL=BaseTextInput.css.map */

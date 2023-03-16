@@ -37,39 +37,46 @@
  * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
  * - dark. Color de contraste, alternativo al color base.
  */
-.account-nav-menu-container {
-  width: 291px;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 80px;
-  right: 0;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.08);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  z-index: 999;
-  overflow: hidden;
+.login-page-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 65% auto;
+  gap: 20px;
+  width: 100%;
+  height: 100vh;
 }
-.account-nav-menu-container > ul {
+.login-page-container > .login-page__image {
+  position: relative;
+}
+.login-page-container > .login-page__image > .login-page__image__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-page-container > .login-page__image > .login-page__image__wrapper > h2, .login-page-container > .login-page__image > .login-page__image__wrapper span {
+  color: #FFFFFF;
+  font-weight: 400;
+}
+.login-page-container > .login-page__image > img {
+  width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.login-page-container > .login-page__wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 0;
-  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
-.account-nav-menu-container > ul > li:last-child {
-  position: relative;
-  color: red;
-}
-.account-nav-menu-container > ul > li:last-child:before {
-  content: "";
-  width: 90%;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  border-top: 2px solid rgba(211, 211, 211, 0.363);
-}/*# sourceMappingURL=AccountNavMenu.css.map */
+
+@media screen and (max-width: 768px) {
+  .login-page-container {
+    display: grid;
+    grid-template-rows: 33% auto;
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
+}/*# sourceMappingURL=LoginPage.css.map */

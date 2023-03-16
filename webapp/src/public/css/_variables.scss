@@ -28,6 +28,11 @@ $pallete: (
         "high_light": rgba(240, 240, 240, 0.7),
         "dark": #7f8a9d,
     ),
+    "dark_grey": (
+        "base": #B9B9B9,
+        "high_light": #98a3b6,
+        "dark": #7f8a9d,
+    ),
     "custom_blue": (
         "base": #1c4fd8,
         "high_light": #3361dc,
@@ -50,4 +55,4 @@ $sizes: (
         )
 );
 
-$z-index-menus: 4;
+$z-index-menus: 999;
