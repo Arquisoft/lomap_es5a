@@ -11,7 +11,7 @@ left to right direction
 (Seguridad) as (SE)
 (Privacidad) as (PR)
 (Capacidad de reconocimiento\nCapacidad de aprendizaje\nFácil de usar) as (CCF)
-(Confidencialidad\Integridad\nAutenticación) as (CIA)
+(Confidencialidad\nIntegridad\nAutenticación) as (CIA)
 (Integridad de datos\nProtección física\nIntegridad) as (IPI)
 
 PDC --> US
