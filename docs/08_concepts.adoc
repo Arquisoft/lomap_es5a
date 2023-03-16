@@ -18,9 +18,16 @@ object Grupo{
 }
 
 object Punto{
+    webId:String 
+    idPoint:String
     name:String
     description:String
-    adress:String
+    lat:number 
+    lng:number 
+    category:String
+    address:String
+    opinions:Opinion[]
+    likes:String[]
 }
 
 object Mapa{
@@ -30,8 +37,13 @@ object Mapa{
 
 object Opinion{
     id:String
+    webId:String 
     description:String
-    note : int
+    note : number 
+}
+
+object Imagen{
+    url:String
 }
 
 Opinion *--->Persona
@@ -39,7 +51,8 @@ Opinion *--->Punto
 Punto *--->Mapa
 Mapa *--->Persona
 Grupo *---> Persona
-
+Persona *--->Imagen
+Mapa *--->Imagen
 ----
 === Security
 

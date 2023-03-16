@@ -1,0 +1,30 @@
+@use "../../mixins" as mixins;
+@use "../../functions" as funcs;
+
+.base-profile-item-container{
+    @include mixins.flex(row, flex-start, center, 15px);
+
+    & > img{
+        width: funcs.getSize("profileImage", "md");
+        height: funcs.getSize("profileImage", "md");
+        border-radius: 100px;
+        object-fit: cover;
+    }
+
+    // Nombre y email del usuario
+    & > .base-profile-item__details{
+        @include mixins.flex(column, flex-start, flex-start, 5px);
+        
+        // Nombre del usuario
+        & > .base-profile-item-details__name{
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        // Email del usuario
+        & > .base-profile-item-details__email{
+            font-size: 1rem;
+            font-weight: 300;
+        }
+    }
+}

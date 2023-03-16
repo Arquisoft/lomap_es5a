@@ -3,7 +3,7 @@
 
 == Building Block View
 
-=== Level 1: Whitebox of the Overall System 
+=== Level 0: Whitebox of the Overall System 
 
 [plantuml, "whitebox-overall-system", png]
 ----
@@ -30,7 +30,7 @@ Contained Building Blocks::
 | Inrupt/Proveedor POD | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
 |===
 
-=== Level 2
+=== Level 1
 
 [plantuml, "level-2", png]
 ----
@@ -38,8 +38,8 @@ actor Usuario
 Component LoMap {
   Component web as "WebApp"
   Component api as "RestAPI"
-  Database db as "MongoDB"
 }
+Database db as "MongoDB"
 Component pod as "Inrupt"
 
 Usuario -right-> web: interactua

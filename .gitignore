@@ -14,7 +14,9 @@ webapp/build
 
 # misc
 .DS_Store
+.env
 .env.local
+.env.development
 .env.development.local
 .env.test.local
 .env.production.local

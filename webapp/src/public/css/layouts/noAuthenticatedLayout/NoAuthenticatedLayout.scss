@@ -1,0 +1,7 @@
+@use "../../mixins" as mixins;
+
+.no-authenticated-layout-container{
+    width: 100%;
+    height: 100vh;
+    @include mixins.flex(column, center, center);
+}

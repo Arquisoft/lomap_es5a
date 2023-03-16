@@ -1,0 +1,22 @@
+.aside-button-main{
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    gap:15px ;
+}
+
+.aside-button-logo{
+    padding-top: 2px;
+}
+
+.aside-button-text{
+    background-color: transparent;
+    border: none;
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: black;
+    cursor: pointer;
+}

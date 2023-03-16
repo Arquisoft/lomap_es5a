@@ -1,0 +1,24 @@
+
+.create-form-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+    padding-bottom: 20px;
+}
+
+.create-form-info{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    padding-bottom: 36px;
+}
+
+.create-form-buttons{
+    padding-top: 25px;
+    display: flex;
+    gap: 14px;
+}

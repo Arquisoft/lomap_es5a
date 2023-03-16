@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+.user-account-banner-container {
+  display: flex;
+  flex-direction: flex-end;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 5px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  max-height: 260px;
+  padding: 20px;
+  overflow: hidden;
+}
+.user-account-banner-container > .user-account-banner__background {
+  z-index: 0;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.user-account-banner-container > .user-account-banner__background > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.user-account-banner-container > .user-account-banner__overlay {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0.3;
+}
+.user-account-banner-container > .user-account-profile-item__wrapper {
+  z-index: 2;
+}/*# sourceMappingURL=AccountBanner.css.map */

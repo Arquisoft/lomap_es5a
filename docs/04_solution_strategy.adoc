@@ -48,10 +48,10 @@
 |===
 
 
-=== Decisions on how to avhieve quality goals
+=== Decisions on how to achieve quality goals
 - Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.
-- Seguridad y Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
-- Mantenibilidad: un objetivo a perseguir por todos los miembros del equipo será el desarrollar un código limpio y fácil de leer. Además, un código fácilmente mantenible. Para ello, emplearemos alguno de los patrones estudiados en la asignatura Diseño del Software, siempre que sea necesario y todas las convenciones de programación aprendidas hasta ahora. 
+- Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
+- Seguridad: nos preocuparemos de implementar todas las medidas que consideremos oportunas para securizar nuestra aplicación. Además, el mantener la información personal de los usuarios descentralizada constituye un gran paso en el proceso.
 
 === Relevant organizational decisions
 En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:

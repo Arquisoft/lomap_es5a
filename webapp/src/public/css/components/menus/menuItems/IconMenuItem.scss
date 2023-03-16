@@ -1,0 +1,22 @@
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
+
+.icon-menu-item{
+    @include mixins.flex(row, flex-start, center, 15px);
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: funcs.color("light_gray", "high_light");
+        & > span{
+            font-weight: 500;
+        }
+    }
+
+    & > span{
+        
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}

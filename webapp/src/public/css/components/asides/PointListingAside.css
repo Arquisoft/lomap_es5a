@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+.point-listing-aside-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+.point-listing-aside-container > .point-listing-aside__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+.point-listing-aside-container > .point-listing-aside__head > .point-listing_link {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: gray;
+  opacity: 0.5;
+  text-decoration: none;
+  cursor: pointer;
+}
+.point-listing-aside-container > .point-listing-aside__head > .point-listing_link:hover {
+  opacity: 0.9;
+  text-decoration: underline;
+}
+.point-listing-aside-container > .point-listing-aside__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+}/*# sourceMappingURL=PointListingAside.css.map */

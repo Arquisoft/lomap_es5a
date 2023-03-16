@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.point-summary-with-map-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: rgba(217, 217, 217, 0.25);
+  padding: 15px;
+  border-radius: 20px;
+}
+.point-summary-with-map-container > .point-summary-with-map__map {
+  width: 100%;
+  height: 163px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.point-summary-with-map-container > .point-summary-with-map__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.point-summary-with-map-container > .point-summary-with-map__body > .point-summary-with-map-body__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+.point-summary-with-map-container > .point-summary-with-map__body > .point-summary-with-map-body__details > p {
+  font-size: 14px;
+  font-weight: 600;
+}
+.point-summary-with-map-container > .point-summary-with-map__body > .point-summary-with-map-body__details > span {
+  font-size: 12px;
+  font-weight: 400;
+  color: grey;
+}
+.point-summary-with-map-container > .point-summary-with-map__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}/*# sourceMappingURL=PointSummaryWithMap.css.map */

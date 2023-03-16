@@ -1,0 +1,26 @@
+.account-layout-container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: "aside banner" "aside content" "aside content";
+  gap: 10px;
+}
+.account-layout-container > .account-layout__aside {
+  grid-area: aside;
+  grid-row: 1/8;
+  height: 100%;
+}
+.account-layout-container > .account-layout__banner, .account-layout-container > .account-layout__body {
+  width: 100%;
+  height: 100%;
+}
+.account-layout-container > .account-layout__banner {
+  grid-area: banner;
+  grid-row: 1/3;
+  background-color: lightgrey;
+}
+.account-layout-container > .account-layout__body {
+  grid-area: content;
+  grid-row: 3/8;
+}/*# sourceMappingURL=AccountLayout.css.map */
