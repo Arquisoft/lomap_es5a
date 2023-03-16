@@ -567,9 +567,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Marcos Valín Fernández</p>
 </li>
-<li>
-<p>Oscar Abad López</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -677,7 +674,7 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Oscar Abad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
 </tr>
 <tr>
@@ -766,7 +763,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Oscar Abad López</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
@@ -939,9 +936,16 @@ y negocios actuales de la ciudad.</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="578" height="87">
+<pre>Failed to generate image: Permission denied @ rb_sysopen - C:/Users/migue/Desktop/ASW/LABORATORIO/repo/lomap_es5a/docs/build/images/whitebox-overall-system.png
+actor Usuario
+Component LoMap
+Component pod as "Inrupt/Proveedor POD"
+
+Usuario -right-&gt; LoMap: interactúa
+
+LoMap &lt;-right-&gt; pod: obtiene datos Usuario</pre>
 </div>
 </div>
 <div class="dlist">
@@ -983,9 +987,22 @@ La información personal del usuario se almacena de forma descentralizada en POD
 </div>
 <div class="sect2">
 <h3 id="_level_1">5.2. Level 1</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/level-2.png" alt="level 2" width="615" height="258">
+<pre>Failed to generate image: Permission denied @ rb_sysopen - C:/Users/migue/Desktop/ASW/LABORATORIO/repo/lomap_es5a/docs/build/images/level-2.png
+actor Usuario
+Component LoMap {
+  Component web as "WebApp"
+  Component api as "RestAPI"
+}
+Database db as "MongoDB"
+Component pod as "Inrupt"
+
+Usuario -right-&gt; web: interactua
+web &lt;-right-&gt; api: envia peticiones
+api &lt;-down-&gt; db: almacena/recupera datos
+
+LoMap &lt;-down-&gt; pod: obtiene datos</pre>
 </div>
 </div>
 <div class="dlist">
@@ -1062,7 +1079,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="448" height="362">
+<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="451" height="362">
 </div>
 </div>
 </div>
@@ -1098,7 +1115,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="809" height="510">
+<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="813" height="510">
 </div>
 </div>
 </div>
@@ -1125,7 +1142,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h4 id="_añadir_un_punto_de_interés_en_el_mapa_2">6.3.3. Añadir un punto de interés en el mapa</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="1019" height="535">
+<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="2163" height="1178">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1187,7 +1204,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/DIAGRAMA_DESPLIEGUE_LOMAP_extendido_v2.svg" alt="DIAGRAMA DESPLIEGUE LOMAP extendido v2">
+<img src="./images/diagrama_despliegue_v1.svg" alt="diagrama despliegue v1">
 </div>
 </div>
 <div class="dlist">
@@ -1238,6 +1255,10 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MondoDB Atlas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor remoto que almacena y gestiona una base de datos NoSQL.</p></td>
 </tr>
@@ -1264,9 +1285,56 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="343" height="997">
+<pre>Failed to generate image: Permission denied @ rb_sysopen - C:/Users/migue/Desktop/ASW/LABORATORIO/repo/lomap_es5a/docs/build/images/ModeloDeDominio.png
+
+object Persona{
+    id:String
+    role:String
+    verified:boolean
+}
+object Grupo{
+    id:String
+    persons:Person[]
+}
+
+object Punto{
+    webId:String
+    idPoint:String
+    name:String
+    description:String
+    lat:number
+    lng:number
+    category:String
+    address:String
+    opinions:Opinion[]
+    likes:String[]
+}
+
+object Mapa{
+    code:String
+    point: Punto[]
+}
+
+object Opinion{
+    id:String
+    webId:String
+    description:String
+    note : number
+}
+
+object Imagen{
+    url:String
+}
+
+Opinion *---&gt;Persona
+Opinion *---&gt;Punto
+Punto *---&gt;Mapa
+Mapa *---&gt;Persona
+Grupo *---&gt; Persona
+Persona *---&gt;Imagen
+Mapa *---&gt;Imagen</pre>
 </div>
 </div>
 </div>
@@ -1388,8 +1456,25 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_quality_tree">10.1. Quality Tree</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/arbol_de_calidad.png" alt="Árbol de calidad"></span></p>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Permission denied @ rb_sysopen - C:/Users/migue/Desktop/ASW/LABORATORIO/repo/lomap_es5a/docs/build/images/Quality tree.png
+left to right direction
+(Productos de calidad del software) as (PDC)
+(Usabilidad) as (US)
+(Seguridad) as (SE)
+(Privacidad) as (PR)
+(Capacidad de reconocimiento\nCapacidad de aprendizaje\nFácil de usar) as (CCF)
+(Integridad de datos\nProtección física\nIntegridad personal) as (IPI)
+(\n\n) as (AAC)
+
+PDC --&gt; US
+PDC --&gt; SE
+PDC --&gt; PR
+US --&gt; CCF
+SE --&gt; CIA
+PR --&gt; IPI</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1609,7 +1694,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-18 13:39:05 +0100
+Last updated 2023-02-22 12:18:20 +0100
 </div>
 </div>
 </body>
