@@ -2,6 +2,6 @@
 
 .no-authenticated-layout-container{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     @include mixins.flex(column, center, center);
 }
