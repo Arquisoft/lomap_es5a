@@ -1,12 +1,14 @@
-import { Box, FormControl, TextField } from "@mui/material";
-import Button from "@mui/material/Button";
 import { ChangeEvent, useState } from "react";
 import { signIn } from "src/helpers/AuthHelper";
+import BaseButton from "../buttons/BaseButton";
+import BaseTextInput from "../inputs/BaseTextInput";
+
+import "../../public/css/components/forms/loginForm/LoginForm.scss";
 
 function LoginForm() {
   const [webId, setWebId] = useState("");
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     signIn(webId);
   };
@@ -16,30 +18,19 @@ function LoginForm() {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleLogin}
-      sx={{
-        width: "30%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        gap: "20px",
-      }}
-    >
-      <FormControl>
-        <TextField
-          aria-describedby="my-helper-text"
+    <div className="login-form-container">
+        <BaseTextInput
           label="WebId"
-          variant="outlined"
-          value={webId}
           onChange={handleWebId}
+          type="text"
+          placeholder="https://id.inrupt.com/..."
         />
-        <Button type="submit" variant="contained">
-          Iniciar sesión
-        </Button>
-      </FormControl>
-    </Box>
+        <BaseButton
+          type="button-blue"
+          text="Iniciar sesión"
+          onClick={(e) => handleLogin(e)}
+        />
+    </div>
   );
 }
 
