@@ -16,10 +16,10 @@ function CreatePointForm(){
             </div>
             <div className="create-form-buttons">
                 <div className="create-form-buttonrigth">
-                    <BaseButton type="button-red-form" text="Publicar" />
+                    <BaseButton type="button-red-form" text="Publicar"  onClick={() => ""}/>
                 </div>
                 <div className="create-form-buttonleft"> 
-                    <BaseButton type="button-grey-form" text ="Cancelar" />
+                    <BaseButton type="button-grey-form" text ="Cancelar" onClick={() => ""} />
                 </div>
 
             </div>
