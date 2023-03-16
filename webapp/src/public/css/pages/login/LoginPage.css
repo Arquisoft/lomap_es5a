@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+.login-page-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 65% auto;
+  gap: 20px;
+  width: 100%;
+  height: 100vh;
+}
+.login-page-container > .login-page__image {
+  position: relative;
+}
+.login-page-container > .login-page__image > .login-page__image__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-page-container > .login-page__image > .login-page__image__wrapper > h2, .login-page-container > .login-page__image > .login-page__image__wrapper span {
+  color: #FFFFFF;
+  font-weight: 400;
+}
+.login-page-container > .login-page__image > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.login-page-container > .login-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .login-page-container {
+    display: grid;
+    grid-template-rows: 33% auto;
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
+}/*# sourceMappingURL=LoginPage.css.map */

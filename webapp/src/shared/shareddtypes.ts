@@ -1,8 +1,7 @@
-
 /* Clase CSS para componentes JSX */
 type ComponentClassName = {
-  _className: string
-}
+  _className: string;
+};
 
 type User = {
   name: string;
@@ -16,7 +15,22 @@ type Point = {
   coords: {
     lat: number;
     lng: number;
-  }
-}
+  };
+};
 
-export type { User, ComponentClassName };
+type AuthUser = {
+  webId: string;
+  email: string;
+  name?: string;
+  password: string;
+};
+
+type AuthContextValue = {
+  user: AuthUser;
+  login: (user: AuthUser) => void;
+  register: (user: AuthUser) => void;
+  logout: () => void;
+};
+
+export type { User, ComponentClassName, AuthContextValue, AuthUser, Point };
+

@@ -2,13 +2,15 @@ import "../../public/css/components/buttons/BaseButton.scss";
 
 type Props = {
   type: string;
-  mode: string;
+  mode?: string;
+  text: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function BaseButton({ ...props }) {
+function BaseButton({ type = "button-blue", mode, text, onClick }: Props) {
   return (
-    <button className={`${props.type} ${props.mode}`} onClick={props.onClick}>
-      {props.text}
+    <button className={`${type} ${mode}`} onClick={onClick}>
+      {text}
     </button>
   );
 }

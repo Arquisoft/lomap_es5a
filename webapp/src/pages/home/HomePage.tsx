@@ -6,7 +6,6 @@ import BaseMap from "src/components/maps/BaseMap";
 import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 
-
 function HomePage() {
   const [points, setPoints] = useState([]);
 

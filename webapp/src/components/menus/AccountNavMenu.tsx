@@ -13,6 +13,7 @@ function AccountNavMenu() {
               key={menuItem.alias}
               name={menuItem.name}
               iconName={menuItem.muiName}
+              url={menuItem.url}
             />
           ))}
       </ul>

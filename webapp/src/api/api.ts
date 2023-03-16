@@ -1,7 +1,12 @@
-import { User } from "../shared/shareddtypes";
 import { IPoint } from "../../../restapi/models/point.model";
-import { IOpinion } from "../../../restapi/models/opinion.model";
+import { User } from "../shared/shareddtypes";
 
+/**
+ * Añadir un usuario al sistema.
+ *
+ * @param user Usuario a añadir.
+ * @returns
+ */
 export async function addUser(user: User): Promise<boolean> {
   const apiEndPoint =
     process.env.REACT_APP_API_URI || "http://localhost:5001/api";
@@ -10,10 +15,16 @@ export async function addUser(user: User): Promise<boolean> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name: user.name, email: user.email }),
   });
+
   if (response.status === 200) return true;
   else return false;
 }
 
+/**
+ * Obtener todos los usuarios del sistema.
+ *
+ * @returns
+ */
 export async function getUsers(): Promise<User[]> {
   const apiEndPoint =
     process.env.REACT_APP_API_URI || "http://localhost:5001/api";
@@ -22,8 +33,13 @@ export async function getUsers(): Promise<User[]> {
   return response.json();
 }
 
+/**
+ * Obtener todos los puntos de interes de un usuario.
+ *
+ * @param webId
+ * @returns
+ */
 export async function findAllPointsByUser(webId: string) {
-  //const apiEndPoint = process.env.REACT_APP_API_URI;
   const apiEndPoint = "http://localhost:5001/point";
 
   let response = await fetch(apiEndPoint + "/findall/" + webId, {
@@ -32,9 +48,15 @@ export async function findAllPointsByUser(webId: string) {
       "Content-Type": "application/json",
     },
   });
+
   return response.json();
 }
 
+/**
+ * Obtener todos los puntos de interés.
+ *
+ * @returns
+ */
 const findAllPoints = async () => {
   let response = await fetch("http://localhost:5001/point/findall/" + "2", {
     headers: {
@@ -42,19 +64,35 @@ const findAllPoints = async () => {
       "Content-Type": "application/json",
     },
   });
-  return response.json();
-}
 
+  return response.json();
+};
+
+/**
+ * Obtener toda la información de un punto de interes.
+ *
+ * @param idPoint Identificador del punto de interes.
+ * @returns
+ */
 export async function findPointById(idPoint: string) {
-  const apiEndPoint = process.env.REACT_APP_API_URI;
-
-  let response = await fetch(apiEndPoint + "/find/" + idPoint, {
+  let response = await fetch("http://localhost:5001/point/find/" + idPoint, {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
   });
+
   return response.json();
 }
 
+/**
+ * Editar la información de un punto de interes.
+ *
+ * @param idPoint Identificador del punto de interes.
+ * @param body Información del punto de interes a editar.
+ * @returns
+ */
 export async function editPointById(idPoint: string, body: any) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
 
@@ -66,6 +104,12 @@ export async function editPointById(idPoint: string, body: any) {
   return response.json();
 }
 
+/**
+ * Añadir un punto de interes.
+ *
+ * @param point
+ * @returns
+ */
 export async function addPoint(point: IPoint) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
 
@@ -80,6 +124,12 @@ export async function addPoint(point: IPoint) {
   return response.status === 201;
 }
 
+/**
+ * Eliminar un punto de interés por su id.
+ *
+ * @param idPoint Identificador del punto de interes.
+ * @returns
+ */
 export async function deletePoint(idPoint: string): Promise<boolean> {
   const apiEndPoint = process.env.REACT_APP_API_URI;
   let response = await fetch(apiEndPoint + "/delete/" + idPoint, {
@@ -92,6 +142,13 @@ export async function deletePoint(idPoint: string): Promise<boolean> {
   return response.status === 200;
 }
 
+/**
+ * Guardar un punto de interes.
+ *
+ * @param idPoint Identificador del punto de interes.
+ * @param webId Identificador del usuario.
+ * @returns
+ */
 export async function likesPoint(idPoint: string, webId: string) {
   const apiEndPoint = process.env.REACT_APP_API_URI;
   let response = await fetch(apiEndPoint + "/review/" + idPoint, {
@@ -102,6 +159,4 @@ export async function likesPoint(idPoint: string, webId: string) {
   return response.status === 200;
 }
 
-export {
-  findAllPoints
-}
+export { findAllPoints };

@@ -1,0 +1,6 @@
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
+
+.login-form-container {
+    @include mixins.flex(column, center, center, 20px);
+}
