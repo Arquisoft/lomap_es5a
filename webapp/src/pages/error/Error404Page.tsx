@@ -15,7 +15,7 @@ function Error404Page() {
       <BaseButton
         type="button-blue"
         text="Volver a inicio"
-        onClick={redirectToHome}
+        onClick={() => redirectToHome}
       />
     </div>
   );

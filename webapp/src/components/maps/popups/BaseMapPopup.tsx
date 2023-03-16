@@ -62,7 +62,7 @@ function BaseMapPopup({ name, address, category}: Props) {
           <p>{name}</p>
           <p>{address}</p>
         </div>
-        <BaseButton type="button-blue" text="Ver punto" />
+        <BaseButton type="button-blue" text="Ver punto"  onClick={() => ""}/>
       </div>
     </div>
   );

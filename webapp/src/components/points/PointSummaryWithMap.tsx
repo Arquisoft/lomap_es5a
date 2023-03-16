@@ -46,7 +46,7 @@ function PointSummaryWithMap({
         <ShareIcon />
       </div>
       <div className="point-summary-with-map__buttons">
-        <BaseButton type="button-blue-rounded" text="Ver punto" />
+        <BaseButton type="button-blue-rounded" text="Ver punto"  onClick={() => ""}/>
         <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
       </div>
     </div>
