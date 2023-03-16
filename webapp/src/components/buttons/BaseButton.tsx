@@ -7,7 +7,7 @@ type Props = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function BaseButton({ type, mode, text, onClick }: Props) {
+function BaseButton({ type = "button-blue", mode, text, onClick }: Props) {
   return (
     <button className={`${type} ${mode}`} onClick={onClick}>
       {text}
