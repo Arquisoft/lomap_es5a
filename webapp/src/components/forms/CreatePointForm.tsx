@@ -24,11 +24,6 @@ function CreatePointForm(){
         })
     }
 
-    const handleSubmit = () =>{
-        
-    }
-    
-
     return (
         <div className="create-form-main">
             <div className="create-form-title">
@@ -37,29 +32,40 @@ function CreatePointForm(){
             <div className="create-form-info">
                 Los campos con (*) son obligatorios.
             </div>
-            <form onSubmit={handleSubmit} >
+            <form >
                 <div className="create-form-form">
-                    Nombre
-                    <input onChange={handleChange} value={point.name} type="text" name="name" placeholder="Sidreria Tierra Astur"/>
+                    <div className="create-form-form-name">
+                        Nombre
+                        <input onChange={handleChange} value={point.name} type="text" name="name" placeholder="Sidreria Tierra Astur"/>
+                    </div>
 
-                    Coordenadas
-                    <input onChange={handleChange} value={point.lat} type="text" name="lat" placeholder="Latitud"/><input onChange={handleChange} value={point.lng} type="text" name="lng" placeholder="Longitud"/>
+                    <div className="create-form-form-coords">
+                        Coordenadas
+                        <div className="create-form-form-coords-inputs">
+                            <input onChange={handleChange} value={point.lat} type="text" name="lat" placeholder="Latitud"/><input onChange={handleChange} value={point.lng} type="text" name="lng" placeholder="Longitud"/>
+                        </div>
+                    </div>
 
-                    Direcciós postal
-                    <input onChange={handleChange} value={point.address} type="text" name="address" placeholder="Calle Gascona,1"/>
+                    <div className="create-form-form-address">
+                        Direcciós postal
+                        <input onChange={handleChange} value={point.address} type="text" name="address" placeholder="Calle Gascona,1"/>
+                    </div>
 
-                    Categoria
-                    <input onChange={handleChange} value={point.category} type="text" name="category" placeholder="Categoria" />
-
-                    Descripción
-                    <input onChange={handleChange} value={point.description} type="text" name="description" placeholder="¿Tienes algo que añadir? Este es tu momento" />
+                    <div className="create-form-form-category">
+                        Categoria
+                        <input onChange={handleChange} value={point.category} type="text" name="category" placeholder="Categoria" />
+                    </div>
+                    <div className="create-form-form-description">
+                        Descripción
+                        <input onChange={handleChange} value={point.description} type="text" name="description" placeholder="¿Tienes algo que añadir? Este es tu momento" />
+                    </div>
                 </div>
                 <div className="create-form-buttons">
                     <div className="create-form-buttonrigth">
-                        <BaseButton type="button-red-form" text="Publicar" />
+                        <BaseButton type="button-red-form" text="Publicar" onClick={() => ""} />
                     </div>
                     <div className="create-form-buttonleft"> 
-                        <BaseButton type="button-grey-form" text ="Cancelar" />
+                        <BaseButton type="button-grey-form" text ="Cancelar" onClick={() => ""} />
                     </div>
 
                 </div>
