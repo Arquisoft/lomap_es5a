@@ -8,7 +8,7 @@ const router: Router = express.Router();
 router.get("/findall/:webId", findAll); // encuentra todos los puntos creados por el usuario
 router.get("/find/:idPoint", findOne); // encuentra el punto de interés solicitado
 router.post("/edit/:idPoint" , editPoint); // edita un punto de interés del mapa
-router.post("/add", addPoint); // añade un punto en el mapa
+router.post("/add/:webId", addPoint); // añade un punto en el mapa
 router.delete("/delete/:idPoint", deletePoint); // elimina un punto del mapa
 router.put("/likes/:idPoint", likesPoint); // añade un like a un punto cualquiera del mapa
 

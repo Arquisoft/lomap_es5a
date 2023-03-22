@@ -58,7 +58,7 @@ export async function findAllPointsByUser(webId: string) {
  * @returns
  */
 const findAllPoints = async () => {
-  let response = await fetch("http://localhost:5001/point/findall/" + "2", {
+  let response = await fetch("http://localhost:5001/point/findall/2", {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",

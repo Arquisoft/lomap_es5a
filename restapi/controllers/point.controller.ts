@@ -52,6 +52,7 @@ const editPoint: RequestHandler = async (req, res) => {
  * @param res
  */
 const addPoint: RequestHandler = async (req, res) => {
+  const webId = req.params.webId;
   const pointData = req.body;
   // creamos el punto nuevo
   const point = new PointModel({
@@ -66,10 +67,10 @@ const addPoint: RequestHandler = async (req, res) => {
     address: pointData.address,
     category: pointData.category,
     opinion: pointData.opinion,
-    likes: pointData.opinion
+    likes: pointData.likes
   });
 
-  const result = await addPointByUser(point);
+  const result = await addPointByUser(point, webId);
 
   checkStatus(result, res);
 };
