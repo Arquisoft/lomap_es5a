@@ -9,7 +9,7 @@ import {
 
 import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 
-async function signIn(webId: string) {
+async function signIn(webId: string, providerUrl: string) {
   // 1. Call `handleIncomingRedirect()` to complete the authentication process.
   //    If called after the user has logged in with the Solid Identity Provider,
   //      the user's credentials are stored in-memory, and
@@ -23,7 +23,7 @@ async function signIn(webId: string) {
       // Specify the URL of the user's Solid Identity Provider;
       clientSecret: webId,
       // e.g., "https://login.inrupt.com".
-      oidcIssuer: "https://login.inrupt.com",
+      oidcIssuer: providerUrl,
       // Specify the URL the Solid Identity Provider should redirect the user once logged in,
       // e.g., the current page for a single-page app.
       redirectUrl: "http://localhost:3000/",
