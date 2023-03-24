@@ -21,7 +21,7 @@ Organizational Constraints
 [options="header"]
 |================================================================================================================================================================================================================
 | Restricción            | Descripción                                                                                                                                                                           
-| Equipo                  | El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández                   
+| Equipo                  | El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez                  
 | Reuniones             | El equipo deberá reunirse periodicamente de forma obligatoria.
 | Fechas límites de las entregas    | Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.
 |================================================================================================================================================================================================================
