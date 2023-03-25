@@ -1,3 +1,6 @@
+@use "variables" as vars;
+@use "functions" as funcs;
+
 /**
  * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
  */
@@ -28,4 +31,54 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+@mixin customButton($color, $textColor: #FFFFFF, $type: "solid", $width: 128px, $height: 38px, $borderRadius: 100px) {
+    width: $width;
+    height: $height;
+    border-radius: $borderRadius;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all .150s ease;
+
+    @if $type == "solid" {
+        background-color: $color;
+        color: $textColor;
+        border: none;
+
+        &:hover {
+            background-color: darken($color, 2%);
+        }
+
+    } @else if $type == "outline" {
+        background-color: transparent;
+        color: $color;
+        border: 2px solid $color;
+
+        &:hover {
+            background-color: $color;
+            color: $textColor;
+        }
+    }
+}
+
+/**
+ * Estilos comunies para inputs (input, select).
+ */
+@mixin commonInputStyles() {
+    width: 100%;
+    height: vars.$input-height;
+    border-radius: vars.$input-border-radius;
+    padding: 0 vars.$input-padding-x;
+    background-color: funcs.color(dark_grey, high_light);
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 0 2px #e1e0e06f;
+    }
 }

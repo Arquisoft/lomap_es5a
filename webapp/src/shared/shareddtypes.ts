@@ -32,5 +32,31 @@ type AuthContextValue = {
   logout: () => void;
 };
 
-export type { User, ComponentClassName, AuthContextValue, AuthUser, Point };
 
+type BaseSelectOption = {
+  value: string; 
+  content?: string;
+}
+
+/**
+ * Opciones para los selectores de la aplicación.
+ * @param name Nombre del selector (input).
+ * @param id Identificador del selector.
+ * @param handleChange Función para manejar el cambio de valor.
+ */
+interface BaseSelect {
+  name: string;
+  id: string;
+  options: BaseSelectOption[];
+  handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export type {
+  User,
+  ComponentClassName,
+  AuthContextValue,
+  AuthUser,
+  Point,
+  BaseSelect,
+  BaseSelectOption
+};

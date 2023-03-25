@@ -1,9 +1,11 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { LoginButton, useSession } from "@inrupt/solid-ui-react";
+import { useSession } from "@inrupt/solid-ui-react";
 import "../../public/css/components/forms/loginForm/LoginForm.scss";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseButton from "../buttons/BaseButton";
 import { signIn } from "../../helpers/AuthHelper";
+import BaseSelect from "../inputs/BaseSelect";
+import { SOLID_PROVIDERS } from "../../data/providers";
 
 function LoginForm() {
   const [webId, setWebId] = useState("");
@@ -36,16 +38,26 @@ function LoginForm() {
           type="text"
           placeholder="https://id.inrupt.com/..."
         />
-        <select onChange={handleSelectProvider}>
-          <option value="https://solidweb.org/login">Solid Web</option>
-          <option value="https://inrupt.net">Inrupt.net</option>
-          <option value="https://login.inrupt.com">pod.Inrupt.com</option>
-        </select>
+        <BaseSelect 
+          id="provider"
+          name="provider"
+          options={SOLID_PROVIDERS}
+          handleChange={handleSelectProvider}
+        />
+        <div className="login-form__button-container">
         <BaseButton
           type="button-blue"
           text="Iniciar sesión"
           onClick={(e) => handleLogin(e)}
         />
+        <BaseButton
+          type="button-blue-outlined"
+          //mode="outlined"
+          text="Únete ya"
+          onClick={(e) => handleLogin(e)}
+        />
+        </div>
+        
         {/* <LoginButton 
           authOptions={{ clientName: "Lomap", clientId: webId, refreshToken: "refreshToken"}}
           oidcIssuer="https://inrupt.net/"
