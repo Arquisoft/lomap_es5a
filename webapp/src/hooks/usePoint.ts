@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { findAllPointsByUser as findAllByUser, findPointById as findById } from "src/api/api";
+import { findAllPointsByUser as findAllByUser, findPointById as findById } from "../api/api";
 
 function usePoint() {
   //const [points, setPoints] = useState<Point[] | null>(null);

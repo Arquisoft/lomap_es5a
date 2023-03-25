@@ -1,5 +1,5 @@
-import BaseButton from "src/components/buttons/BaseButton";
-import NoAuthenticatedLayout from "src/layouts/NoAuthenticatedLayout";
+import BaseButton from "../../components/buttons/BaseButton";
+import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 
 import "../../public/css/pages/error404/error404Page.scss";
 function Error404Page() {

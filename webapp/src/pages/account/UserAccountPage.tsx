@@ -1,5 +1,5 @@
-import PointSummaryWithMap from "src/components/points/PointSummaryWithMap";
-import AccountLayout from "src/layouts/AccountLayout";
+import PointSummaryWithMap from "../../components/points/PointSummaryWithMap";
+import AccountLayout from "../../layouts/AccountLayout";
 
 import "../../public/css/pages/account/UserAccountPage.scss";
 

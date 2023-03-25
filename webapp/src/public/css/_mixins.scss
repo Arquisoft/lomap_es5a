@@ -18,3 +18,14 @@
     grid-template-columns: $columns;
     gap: $gap;
 }
+
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+@mixin setBackgroundImage($image) {
+    background-image: url($image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

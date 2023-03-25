@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import BaseBadge from "src/components/badges/BaseBadge";
-import ProfileInfoWithFollowButton from "src/components/profiles/ProfileInfoWithFollowButton";
+import BaseBadge from "../../badges/BaseBadge";
+import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShareIcon from "@mui/icons-material/ShareOutlined";
 
 import "../../../public/css/components/maps/popups/BasePopup.scss";
-import BaseButton from "src/components/buttons/BaseButton";
+import BaseButton from "../../buttons/BaseButton";
 
 type Props = {
   name: string;
