@@ -8,10 +8,7 @@
     width: 100%;
 
     & > label {
-        width: 100%;
-        font-size: 14px;
-        font-weight: 600;
-        color: funcs.color("dark_grey", "base");
+       @include mixins.commonInputLabelStyles();
     }
 
     & > input {

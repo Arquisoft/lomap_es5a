@@ -38,13 +38,13 @@
  * @param {string} $color - Color del botón.
  * @param {string} $type - Tipo de botón. Por defecto, solid.
  */
-@mixin customButton($color, $textColor: #FFFFFF, $type: "solid", $width: 128px, $height: 38px, $borderRadius: 100px) {
+@mixin customButton($color, $textColor: #ffffff, $type: "solid", $width: 128px, $height: 38px, $borderRadius: 100px) {
     width: $width;
     height: $height;
     border-radius: $borderRadius;
     font-weight: 400;
     cursor: pointer;
-    transition: all .150s ease;
+    transition: all 0.15s ease;
 
     @if $type == "solid" {
         background-color: $color;
@@ -54,7 +54,6 @@
         &:hover {
             background-color: darken($color, 2%);
         }
-
     } @else if $type == "outline" {
         background-color: transparent;
         color: $color;
@@ -81,4 +80,11 @@
     &:focus {
         box-shadow: 0 0 0 2px #e1e0e06f;
     }
+}
+
+@mixin commonInputLabelStyles() {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    color: funcs.color("dark_grey", "base");
 }

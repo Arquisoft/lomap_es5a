@@ -39,6 +39,7 @@ function LoginForm() {
           placeholder="https://id.inrupt.com/..."
         />
         <BaseSelect 
+          label="Proveedor de POD"
           id="provider"
           name="provider"
           options={SOLID_PROVIDERS}

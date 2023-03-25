@@ -40,11 +40,13 @@ type BaseSelectOption = {
 
 /**
  * Opciones para los selectores de la aplicación.
+ * @param label Etiqueta del selector.
  * @param name Nombre del selector (input).
  * @param id Identificador del selector.
  * @param handleChange Función para manejar el cambio de valor.
  */
 interface BaseSelect {
+  label: string;
   name: string;
   id: string;
   options: BaseSelectOption[];
