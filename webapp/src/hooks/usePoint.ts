@@ -22,7 +22,6 @@ function usePoint() {
   };
 
   return {
-    
     findPointById,
     points,
     userPoints,

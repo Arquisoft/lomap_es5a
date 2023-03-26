@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory } from "src/api/api";
+import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint } from "src/api/api";
 import PointListingAside from "src/components/asides/PointListingAside";
 import BaseFilterBar from "src/components/filters/BaseFilterBar";
 import BaseMap from "src/components/maps/BaseMap";
@@ -15,7 +15,8 @@ function HomePage() {
     // const result = await findAllPoints();
     // const result = await findAllPublicPoints();
     // const result = await findPointById("1");
-    const result = await findPointsByCategory("futbol");
+    // const result = await findPointsByCategory("futbol");
+    const result = await deletePoint("1");
     console.log(result)
    // setPoints(result);
   };

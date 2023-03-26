@@ -130,42 +130,65 @@ const findPointsByCategory = async (category:string) => {
 }
 
 /**
+ * Añadir un punto de interes.
+ *
+ * @param point
+ * @returns
+ */
+const addPoint = async (point:IPoint) => {
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+    try {
+        const file = await getFile(
+            profileDocumentURI,
+            { fetch: fetch }
+        );
+        let totalPoints = JSON.parse(await file.text()).puntos;
+        // pasar de JSON a array
+        // añadir el punto
+        // pasar de array a JSON
+        // actualizar el contenido del pod con el json
+    } catch (err) {
+        console.error(err)
+    } 
+}
+
+/**
  * Editar la información de un punto de interes.
  *
  * @param idPoint Identificador del punto de interes.
  * @param body Información del punto de interes a editar.
  * @returns
  */
-export async function editPointById(idPoint: string, body: any) {
-  const apiEndPoint = process.env.REACT_APP_API_URI;
+const editPointById = async (idPoint: string, body: any) => {
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+    try {
+        const file = await getFile(
+            profileDocumentURI,
+            { fetch: fetch }
+        );
+        let totalPoints = JSON.parse(await file.text()).puntos;
 
-  let response = await fetch(apiEndPoint + "/find/" + idPoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: body,
-  });
-  return response.json();
+        let filtro = totalPoints.filter((item: { _id: string; }) => item._id===idPoint)
+
+        if (filtro.length === 0) {
+          console.log("ERROR: No existe el punto con id = " + idPoint)
+        } else {
+          for(let i=0; i<totalPoints.length; i++){
+            if(totalPoints[i]._id === idPoint) {
+              totalPoints[i].name=body.name;
+              totalPoints[i].descripcion=body.descripcion;
+              totalPoints[i].categoria=body.categoria;
+              totalPoints[i].fecha=new Date();
+              break;
+            }
+          }
+          // pasar de array a json y actualizar pod
+        }
+    } catch (err) {
+        console.error(err)
+    } 
 }
 
-/**
- * Añadir un punto de interes.
- *
- * @param point
- * @returns
- */
-export async function addPoint(point: IPoint) {
-  const apiEndPoint = process.env.REACT_APP_API_URI;
-
-  let response = await fetch(apiEndPoint + "/add", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "auth-token": sessionStorage.getItem("token") as string,
-    },
-    body: JSON.stringify(point),
-  });
-  return response.status === 201;
-}
 
 /**
  * Eliminar un punto de interés por su id.
@@ -173,33 +196,24 @@ export async function addPoint(point: IPoint) {
  * @param idPoint Identificador del punto de interes.
  * @returns
  */
-export async function deletePoint(idPoint: string): Promise<boolean> {
-  const apiEndPoint = process.env.REACT_APP_API_URI;
-  let response = await fetch(apiEndPoint + "/delete/" + idPoint, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      "auth-token": sessionStorage.getItem("token") as string,
-    },
-  });
-  return response.status === 200;
+const deletePoint = async (idPoint:string) => {
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+    try {
+        const file = await getFile(
+            profileDocumentURI,
+            { fetch: fetch }
+        );
+        let totalPoints = JSON.parse(await file.text()).puntos;
+        let filtro = totalPoints.filter((item: { _id: string; }) => item._id!==idPoint)
+
+        if (filtro.length === 0) {
+          console.log("ERROR: No existe ningún punto con id = " + idPoint)
+        } else {
+          // pasar de array a json y actualizar pod
+        }
+    } catch (err) {
+        console.error(err)
+    }  
 }
 
-/**
- * Guardar un punto de interes.
- *
- * @param idPoint Identificador del punto de interes.
- * @param webId Identificador del usuario.
- * @returns
- */
-export async function likesPoint(idPoint: string, webId: string) {
-  const apiEndPoint = process.env.REACT_APP_API_URI;
-  let response = await fetch(apiEndPoint + "/review/" + idPoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(webId),
-  });
-  return response.status === 200;
-}
-
-export { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory };
+export { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint };
