@@ -1,9 +1,9 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-===Technical constraints
+=== Technical constraints
 
-[options="header"]
+[options="header", cols="1,2"]
 |================================================================================================================================================================================================================
 | Restricción            | Descripción                                                                                                                                                                           
 | SOLID                  | Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro. Para nuestro caso se ha decidido utilizar el proovedor INRUPT.                                 
@@ -19,9 +19,9 @@
 |================================================================================================================================================================================================================
 
 
-===Organizational Constraints 
+=== Organizational Constraints 
 
-[options="header"]
+[options="header" , cols="1,2"]
 |================================================================================================================================================================================================================
 | Restricción                       | Descripción                                                                                                                                                                           
 | Equipo                            | El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández                   
@@ -33,9 +33,9 @@
 | Distribucion de tareas            | Tras las reuniones los integrantes del proyecto se repartirán las tareas a realizar. Principalmente se destaca el equipo de backend y el equipo de frontend.
 |================================================================================================================================================================================================================
 
-===Conventions
+=== Conventions
 
-[options="header"]
+[options="header" , cols="1,2"]
 |================================================================================================================================================================================================================
 | Restricción            | Descripción                                                                                                                                                                           
 | Arc42                  | Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.        
