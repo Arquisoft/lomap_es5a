@@ -567,9 +567,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Marcos Valín Fernández</p>
 </li>
-<li>
-<p>Sergio Buenaga Gutiérrez</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -677,7 +674,7 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Sergio Buenaga</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
 </tr>
 <tr>
@@ -699,6 +696,9 @@ y negocios actuales de la ciudad.</p>
 <div class="sect1">
 <h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>===Technical constraints</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -713,7 +713,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro. Para nuestro caso se ha decidido utilizar el proovedor INRUPT.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
@@ -721,7 +721,11 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React JS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación. ReactJS ofrece gestión de estados, hooks (con posibilidad de personalización), pero obtamos por el uso de la librería Zustand.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Librerías externas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para facilitar el trabajo y poder llegar a los plazos de entrega, se tiene el riesgo de utilizar librerías que realicen ciertas funcionalidades con el riesgo que conlleva. En principio el uso de estas librerias facilitarán el desarrollo del proyecto pero si algun modulo de dependencias falla podria ocasionar daños en nuestra aplicación.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node JS</p></td>
@@ -750,7 +754,7 @@ y negocios actuales de la ciudad.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Organizational Constraints</p>
+<p>===Organizational Constraints</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -766,7 +770,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
@@ -776,10 +780,26 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fechas límites de las entregas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organización del proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar un orden establecido, se ha optado por realizar una estructura guiada por paquetes separados por su distinta funcionalidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Experiencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La Experiencia de los miembros del equipo es variada y por ello el ritmo de desarrollo sera flexible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo de trabajo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Las horas de trabajo que se dediquen al desarrollo, documentación o investigación seran cruciales para menantener el proyecto al orden del día.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distribucion de tareas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tras las reuniones los integrantes del proyecto se repartirán las tareas a realizar. Principalmente se destaca el equipo de backend y el equipo de frontend.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Conventions</p>
+<p>===Conventions</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -795,11 +815,15 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La documentación estará redactada en español.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W3C standars</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se utilizara las convenciones de W3C para la usabilidad de la aplicación.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1394,7 +1418,7 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <h3 id="_quality_tree">10.1. Quality Tree</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Quality%20tree.png" alt="Quality tree" width="784" height="323">
+<img src="./images/Quality%20tree.png" alt="Quality tree" width="784" height="321">
 </div>
 </div>
 </div>
@@ -1615,7 +1639,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-22 12:18:20 +0100
+Last updated 2023-03-24 15:08:41 +0100
 </div>
 </div>
 </body>
