@@ -1,5 +1,8 @@
+import { getFile } from "@inrupt/solid-client";
+import { fetch } from "@inrupt/solid-client-authn-browser";
 import { IPoint } from "../../../restapi/models/point.model";
 import { User } from "../shared/shareddtypes";
+const jsonld = require("jsonld");
 
 /**
  * Añadir un usuario al sistema.
@@ -57,15 +60,21 @@ export async function findAllPointsByUser(webId: string) {
  *
  * @returns
  */
-const findAllPoints = async () => {
-  let response = await fetch("http://localhost:5001/point/findall/" + "2", {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  });
+const findAllPoints = async (webID: string) => {
+  let markers: IPoint[] = [];
+  let myFile: any = [];
 
-  return response.json();
+  try {
+    const data = await getFile(encodeURI(`https://pruebasolid1.inrupt.net/public/points/points1.jsonld`), {
+      fetch: fetch,
+    });
+
+    const result = JSON.parse(await data.text());
+    return jsonld.expand(result);
+
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /**

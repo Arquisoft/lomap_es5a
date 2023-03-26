@@ -1,9 +1,12 @@
 @charset "UTF-8";
 /**
- * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
- */
-/**
- * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
  */
 /**
  * -----------------------
@@ -27,6 +30,24 @@
  * 
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+/**
+ * Estilos comunies para inputs (input, select).
  */
 .icon-menu-item {
   display: flex;

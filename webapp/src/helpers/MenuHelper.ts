@@ -7,7 +7,7 @@ import {
     SIGNUP_PATH,
     SETTINGS_PATH,
     FAQ_PATH
-} from "src/routes";
+} from "../routes";
 
 /**
  * @param alias: Identificador único, por motivos de acceso al menu.

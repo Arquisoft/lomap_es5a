@@ -1,6 +1,7 @@
-import { Icon, LatLngExpression } from "leaflet";
-import { useMemo, useRef, useState } from "react";
+import { Icon, LatLng, LatLngExpression } from "leaflet";
+import { useEffect, useMemo, useRef } from "react";
 import { Marker } from "react-leaflet";
+import useMarker from "../../hooks/useMarker";
 import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 
 const center = {
@@ -9,11 +10,11 @@ const center = {
 };
 
 type Props = {
-  position: LatLngExpression
-}
+  position: LatLngExpression;
+};
 
-function DraggableMarker({position}: Props) {
-  const [currentPosition, setCurrentPosition] = useState(position);
+function DraggableMarker({ position }: Props) {
+  const { handleCurrentPosition, currentPosition } = useMarker();
   const markerRef = useRef<any>(null);
 
   const eventHandlers = useMemo(
@@ -22,18 +23,22 @@ function DraggableMarker({position}: Props) {
         const marker = markerRef.current;
 
         if (marker != null) {
-          setCurrentPosition(marker.getLatLng());
+          handleCurrentPosition(marker.getLatLng() as LatLng);
         }
       },
     }),
-    []
+    [position]
   );
+
+  useEffect(() => {
+    handleCurrentPosition(position as LatLng);
+  }, []);
 
   return (
     <Marker
       draggable={true}
       eventHandlers={eventHandlers}
-      position={currentPosition}
+      position={currentPosition || position}
       ref={markerRef}
       icon={
         new Icon({

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import SinglePointDetailBanner from "src/components/banners/pointDetail/SinglePointDetailBanner";
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
+import SinglePointDetailBanner from "../../components/banners/pointDetail/SinglePointDetailBanner";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import usePoint from "../../hooks/usePoint";
 import "../../public/css/pages/points/SinglePointPage.scss";
 

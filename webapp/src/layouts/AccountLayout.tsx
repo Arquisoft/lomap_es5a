@@ -1,6 +1,6 @@
 import React from "react";
-import AccountAside from "src/components/asides/AccountAside";
-import UserAccountBanner from "src/components/banners/UserAccountBanner";
+import AccountAside from "../components/asides/AccountAside";
+import UserAccountBanner from "../components/banners/UserAccountBanner";
 import AuthenticatedLayout from "./AutenticatedLayout";
 import "../public/css/layouts/accountLayout/AccountLayout.scss";
 

@@ -9,7 +9,7 @@ type Props = {
 
 function BaseButton({ type = "button-blue", mode, text, onClick }: Props) {
   return (
-    <button className={`${type} ${mode}`} onClick={onClick}>
+    <button className={`${type}`} onClick={onClick}>
       {text}
     </button>
   );

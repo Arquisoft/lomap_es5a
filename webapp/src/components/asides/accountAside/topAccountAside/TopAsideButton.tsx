@@ -1,5 +1,5 @@
 import "../../../../public/css/components/asides/accountAside/topAccountAside/TopAsideButton.css"
-import IconButton from "src/components/buttons/IconButton";
+import IconButton from "../../../buttons/IconButton";
 
 type Props = {
     icon: React.ReactNode;

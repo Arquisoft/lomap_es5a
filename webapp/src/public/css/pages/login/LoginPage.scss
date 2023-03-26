@@ -8,6 +8,7 @@
     height: 100%;
 
     & > .login-page__image {
+        @include mixins.setBackgroundImage("../../../images/bg-1.jpg");
         position: relative;
 
         & > .login-page__image__wrapper {
@@ -15,18 +16,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            
 
             & > h2, span{
                 color: #FFFFFF;
                 font-weight: 400;
             }
-        }
-
-        & > img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            //border-radius: vars.$border-radius;
         }
     }
 
@@ -37,6 +32,6 @@
 
 @media screen and (max-width: 768px) {
     .login-page-container {
-        @include mixins.grid($columns: 100%, $rows: 33% auto);
+        @include mixins.grid($columns: 100%, $rows: 45% auto);
     }
 }

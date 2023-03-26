@@ -1,4 +1,4 @@
-import AuthenticatedLayout from 'src/layouts/AutenticatedLayout';
+import AuthenticatedLayout from '../../layouts/AutenticatedLayout';
 
 import "../../public/css/pages/points/AllPointsPage.scss";
 

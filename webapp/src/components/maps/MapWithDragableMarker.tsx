@@ -3,9 +3,7 @@ import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 import DraggableMarker from "./DragableMarker";
 
-
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
 import "../../public/css/components/maps/MapWithDragableMark.scss";
 
 type Props = {
@@ -16,7 +14,6 @@ type Props = {
 };
 
 function MapWithDragableMarker({ position, styles }: Props) {
-  const [draggable, setDraggable] = useState(false)
   return (
     <div className="map-with-dragable-marker-container">
       <div className="map-with-dragable-marker-container__info-msg">
