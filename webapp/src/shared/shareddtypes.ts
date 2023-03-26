@@ -13,6 +13,13 @@ enum Category {
   NONE = "none",
 }
 
+type SingleCategory = {
+  id: string;
+  name: string;
+  description?: string;
+  icon?: any;
+};
+
 /* Clase CSS para componentes JSX */
 type ComponentClassName = {
   _className: string;
@@ -171,6 +178,11 @@ type BaseSelectOption = {
   content?: string;
 };
 
+type CategoryOption = {
+  value: Category;
+  content?: string;
+}
+
 /**
  * Opciones para los selectores de la aplicación.
  * @param label Etiqueta del selector.
@@ -182,14 +194,40 @@ interface BaseSelect {
   label: string;
   name: string;
   id: string;
-  options: BaseSelectOption[];
+  options: BaseSelectOption[] | CategoryOption[];
+  category?: string;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
+// For text inputs
+interface BaseInputProps {
+  label: string;
+  value?: string | number | undefined;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  required?: boolean;
+};
+
+interface BaseTextAreaProps {
+  label: string;
+  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  required?: boolean;
+};
+
 export type {
+  SingleCategory,
   ComponentClassName,
   AuthContextValue,
   AuthUser,
+  BaseTextAreaProps,
+  BaseInputProps,
   BaseSelect,
   BaseSelectOption,
   User,
@@ -198,6 +236,7 @@ export type {
   Point,
   PointSummary,
   BaseLocation,
+  
 };
 
 export { Category };

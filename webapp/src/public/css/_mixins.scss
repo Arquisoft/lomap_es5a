@@ -52,8 +52,9 @@
         border: none;
 
         &:hover {
-            background-color: darken($color, 2%);
+            background-color: darken($color, 3%);
         }
+
     } @else if $type == "outline" {
         background-color: transparent;
         color: $color;

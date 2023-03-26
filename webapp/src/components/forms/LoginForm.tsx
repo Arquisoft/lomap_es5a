@@ -42,6 +42,7 @@ function LoginForm() {
           label="Proveedor de POD"
           id="provider"
           name="provider"
+          category=""
           options={SOLID_PROVIDERS}
           handleChange={handleSelectProvider}
         />
