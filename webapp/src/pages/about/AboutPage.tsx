@@ -1,6 +1,6 @@
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
-import ComercialInfo from "src/components/about/ComercialInfo";
-import  PageInfo  from "src/components/about/PageInfo";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import ComercialInfo from "../../components/about/ComercialInfo";
+import  PageInfo  from "../../components/about/PageInfo";
 
 import "../../public/css/pages/about/AboutPage.css"; // TODO: Cambiar a scss
 

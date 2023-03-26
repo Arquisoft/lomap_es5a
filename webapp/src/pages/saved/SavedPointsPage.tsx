@@ -1,5 +1,5 @@
-import MapWithDragableMarker from "src/components/maps/MapWithDragableMarker";
-import AccountLayout from "src/layouts/AccountLayout";
+import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
+import AccountLayout from "../../layouts/AccountLayout";
 import "../../public/css/pages/saved/SavedPointsPage.scss";
 
 function SavedPointsPage() {

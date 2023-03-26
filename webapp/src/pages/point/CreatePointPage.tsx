@@ -1,7 +1,7 @@
-import AccountLayout from "src/layouts/AccountLayout"
+import AccountLayout from "../../layouts/AccountLayout"
 import "../../public/css/pages/points/CreatePointPage.css"
-import CreatePointForm from "src/components/forms/CreatePointForm"
-import MapWithDragableMarker from "src/components/maps/MapWithDragableMarker"
+import CreatePointForm from "../../components/forms/CreatePointForm"
+import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker"
 
 
 function CreatePointPage(){ 

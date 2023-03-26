@@ -22,7 +22,7 @@ const SINGLE_POINT_PATH: string = ":pointId";
 const SAVED_POINTS_PATH: string = "/saved";
 
 //Crear un punto nuevo
-const CREATE_POINT_PATH: string ="/createPoint";
+const CREATE_POINT_PATH: string ="/account/create-point";
 
 // Editar perfil y ajustes generales de la cuenta
 const SETTINGS_PATH: string = "/account/settings";

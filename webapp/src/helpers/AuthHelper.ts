@@ -1,4 +1,4 @@
-import { getPodUrlAll, getStringNoLocale, getThing, getWebIdDataset, getSolidDataset } from "@inrupt/solid-client";
+import { getPodUrlAll, getStringNoLocale, getThing, getWebIdDataset, getSolidDataset, getFile } from "@inrupt/solid-client";
 
 import {
   fetch,
@@ -9,28 +9,37 @@ import {
 
 import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 
-async function signIn(webId: string) {
-  // 1. Call `handleIncomingRedirect()` to complete the authentication process.
-  //    If called after the user has logged in with the Solid Identity Provider,
-  //      the user's credentials are stored in-memory, and
-  //      the login process is complete.
-  //   Otherwise, no-op.
+async function signIn(webID: string, providerUrl: string) {
+  
   await handleIncomingRedirect();
 
-  // 2. Start the Login Process if not already logged in.
   if (!getDefaultSession().info.isLoggedIn){
     await login({
-      // Specify the URL of the user's Solid Identity Provider;
-      clientSecret: webId,
-      // e.g., "https://login.inrupt.com".
-      oidcIssuer: "https://login.inrupt.com",
-      // Specify the URL the Solid Identity Provider should redirect the user once logged in,
-      // e.g., the current page for a single-page app.
-      redirectUrl: "http://localhost:3000/",
-      // Provide a name for the application when sending to the Solid Identity Provider
-      clientName: "Lomap",
+      oidcIssuer: providerUrl,
+      redirectUrl: window.location.href,
+      // clientName: "Lomap",
     });
   }
+
+  const findAllPoints = async (webID: string) => {
+ 
+    const sample = "pruebasolid1";
+
+    try {
+      const data = await getFile(encodeURI(`https://${sample}.inrupt.net/public/points/points1.jsonld`), {
+        fetch: fetch,   
+      });
+
+      console.log(data);
+  
+      //expand(data);
+      //return JSON.parse(await data.text());
+  
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
 }
 
 async function getUserDataFromPod(webId: string) {

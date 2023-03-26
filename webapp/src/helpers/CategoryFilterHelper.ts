@@ -4,12 +4,9 @@
  * @param description: Descripción alternativa, a modo informativo, del filtro aplicado.
  * @param iconUrl: Ruta del icono asociado al filtro.
  */
-type SingleCategory = {
-  id: string;
-  name: string;
-  description?: string;
-  icon?: any;
-};
+
+import { SingleCategory } from "../shared/shareddtypes";
+
 
 const availableCategories: SingleCategory[] = [
   {

@@ -1,23 +1,17 @@
 import React from "react";
 import "../../public/css/components/inputs/BaseTextInput.scss";
-
-type Props = {
-  label: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type: string;
-  placeholder?: string;
-  required?: boolean;
-};
+import { BaseInputProps } from "../../shared/shareddtypes";
 
 function BaseTextInput({
   label,
+  name,
   value,
   onChange,
   type,
+  id,
   placeholder,
   required,
-}: Props) {
+}: BaseInputProps) {
   return (
     <div className="base-text-input-container">
       <label>{label}</label>
@@ -25,6 +19,9 @@ function BaseTextInput({
         type={type}
         onChange={onChange}
         placeholder={placeholder}
+        name={name}
+        value={value}
+        id={id || crypto.randomUUID()}
         required={required}
       />
     </div>

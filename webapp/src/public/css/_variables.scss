@@ -30,7 +30,7 @@ $pallete: (
     ),
     "dark_grey": (
         "base": #B9B9B9,
-        "high_light": #98a3b6,
+        "high_light": #FAF9F9,
         "dark": #7f8a9d,
     ),
     "custom_blue": (
@@ -46,13 +46,18 @@ $pallete: (
 $border-radius: 20px;
 $nav-height: 80px;
 
+// Variables para los inputs.
+$input-height: 40px;
+$input-border-radius: 5px;
+$input-padding-x: 10px;
+
 $sizes: (
     // Dimensiones para la foto de perfil (width = height).
     "profileImage":
         (
             "sm": 48px,
             "md": 96px,
-        )
+    )
 );
 
 $z-index-menus: 999;

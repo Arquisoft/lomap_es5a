@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { findPointById as findById } from "src/api/api";
+import { findPointById as findById } from "../api/api";
 
 function usePoint() {
   //const [points, setPoints] = useState<Point[] | null>(null);
@@ -8,8 +8,6 @@ function usePoint() {
 
   // Para el detalle de un punto
   const [selectedPoint, setSelectedPoint] = useState<any>(null);
-
- 
 
   /**
    * Obtener toda la información de un punto de interes.

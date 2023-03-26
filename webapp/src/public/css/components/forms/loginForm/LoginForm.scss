@@ -2,5 +2,9 @@
 @use "../../../functions" as funcs;
 
 .login-form-container {
-    @include mixins.flex(column, center, center, 20px);
+    @include mixins.flex(column, center, flex-start, 20px);
+
+    & > .login-form__button-container{
+        @include mixins.flex(row, flex-start, center, 15px);
+    }
 }

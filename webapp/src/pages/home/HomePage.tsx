@@ -1,15 +1,16 @@
-import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint, 
-         addReviewPoint, editReviewByPoint, findAllReviewPoint, findAllReviewByUser } from "src/api/api";
-import PointListingAside from "src/components/asides/PointListingAside";
-import BaseFilterBar from "src/components/filters/BaseFilterBar";
-import BaseMap from "src/components/maps/BaseMap";
-import AuthenticatedLaeditReviewByPointyout from "src/layouts/AutenticatedLayout";
+import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect, useState } from "react";
+import {
+  findAllPoints
+} from "../../api/api";
+import PointListingAside from "../../components/asides/PointListingAside";
+import BaseFilterBar from "../../components/filters/BaseFilterBar";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
+  const { session } = useSession();
 
   const loadAllPoints = async () => {
     // const webId: string =
@@ -27,13 +28,13 @@ function HomePage() {
     // const result = await findAllReviewPoint("1");
     // const result = await findAllReviewByUser();
 
-
     console.log(result)
-   // setPoints(result);
+    // setPoints(result)
   };
 
   useEffect(() => {
-    loadAllPoints();
+    //loadAllPoints();
+    // parsePoints();
   }, []);
 
   return (
@@ -46,7 +47,7 @@ function HomePage() {
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">
-            <BaseMap
+            {/* <BaseMap
               position={[43.36297198377049, -5.851084856954243]}
               points={points}
               styles={{
@@ -54,7 +55,9 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            />
+            /> */}
+            <p>{session.info.webId}</p>
+            <p>{session.info.sessionId}</p>
             <PointListingAside />
           </div>
         </div>

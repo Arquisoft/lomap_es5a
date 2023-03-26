@@ -1,4 +1,4 @@
-import NoAuthenticatedLayout from "src/layouts/NoAuthenticatedLayout";
+import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 
 function FaqPage({...props}){
     return (

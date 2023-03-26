@@ -3,7 +3,7 @@ import { User } from "../shared/shareddtypes";
 import { saveFileInContainer, getFile, overwriteFile } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 
-/**
+/*
  * Añadir un usuario al sistema.
  *
  * @param user Usuario a añadir.
@@ -51,7 +51,7 @@ const findAllPoints = async () => {
     } catch (err) {
         console.error(err)
     }    
-};
+}
 
 /**
  * Obtener todos los puntos públicos de interés, es decir con isPublic a true
