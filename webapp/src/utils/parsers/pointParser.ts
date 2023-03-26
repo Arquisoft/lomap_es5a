@@ -39,6 +39,7 @@ const parseJsonToPoint = (inData: any): Point[] => {
  */
 const parseJsonToPointItem = (inData: any): Point => {
   const {
+    _id,
     name,
     description,
     category,
@@ -51,9 +52,11 @@ const parseJsonToPointItem = (inData: any): Point => {
   } = inData;
 
   let newPoint: Point = {
+    _id,
     name,
     description,
-    category: checkCategory(category) ? (category as Category) : Category.NONE,
+    category,
+    // category: checkCategory(category) ? (category as Category) : Category.NONE,
     isPublic,
     location: parseLocation(location),
     owner,
