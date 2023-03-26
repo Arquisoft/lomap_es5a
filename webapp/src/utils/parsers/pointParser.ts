@@ -1,5 +1,21 @@
-import type { BaseLocation, Point, Review } from "../../shared/shareddtypes";
+import type {
+  BaseLocation,
+  Point,
+  PointSummary,
+  Review,
+} from "../../shared/shareddtypes";
 import { Category } from "../../shared/shareddtypes";
+
+const parseJsonToPoint = (inData: any): Point[] => {
+  let newPoints: Point[] = [];
+  const { points } = inData;
+
+  points.forEach((item: any) => {
+    newPoints.push(parseJsonToPointItem(item));
+  });
+
+  return newPoints;
+};
 
 /**
  * Transforma un objeto de tipo Point en un objeto de tipo Point.
@@ -21,7 +37,7 @@ import { Category } from "../../shared/shareddtypes";
  * @param inData
  * @returns
  */
-const parseJsonToPoint = async (inData: any): Promise<Point> => {
+const parseJsonToPointItem = (inData: any): Point => {
   const {
     name,
     description,
@@ -49,6 +65,34 @@ const parseJsonToPoint = async (inData: any): Promise<Point> => {
   return newPoint;
 };
 
+const parseJsonToPointSummary = (inData: any): PointSummary => {
+  const {
+    _id,
+    name,
+    description,
+    location,
+    owner,
+    image,
+    category,
+    isPublic,
+    createdAt,
+  } = inData;
+
+  let pointSummary: PointSummary = {
+    _id,
+    name,
+    description,
+    location: parseLocation(location),
+    owner,
+    image,
+    isPublic,
+    category: checkCategory(category) ? (category as Category) : Category.NONE,
+    createdAt: new Date(createdAt),
+  };
+
+  return pointSummary;
+};
+
 const checkCategory = (category: string) => category in Category;
 
 /**
@@ -58,11 +102,10 @@ const checkCategory = (category: string) => category in Category;
  */
 const parseLocation = (location: any): BaseLocation => {
   const { coords, address, postalCode, city, country } = location;
-  const { lat, lng } = coords;
   return {
     coords: {
-      lat,
-      lng,
+      lat: coords[0],
+      lng: coords[1],
     },
     address,
     postalCode,
@@ -95,8 +138,8 @@ const parseReviews = (reviews: any) => {
 
 /**
  * Transforma un objeto de tipo Point en un objeto JSON.
- * @param point 
- * @returns 
+ * @param point
+ * @returns
  */
 const parsePointToJson = (point: Point) => {
   const { name, description, category, isPublic, location, owner } = point;
@@ -110,4 +153,4 @@ const parsePointToJson = (point: Point) => {
   };
 };
 
-export { parseJsonToPoint, parsePointToJson };
+export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary };

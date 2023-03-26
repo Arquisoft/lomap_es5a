@@ -1,14 +1,14 @@
 import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPointsByUser } from "../../api/api";
+import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect, useState } from "react";
+import { findAllPoints } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
-import BaseMap from "../../components/maps/BaseMap";
+import groupJson from "../../data/point.json";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
-import { useSession } from "@inrupt/solid-ui-react";
 import "../../public/css/pages/home/HomePage.scss";
+import { convertToJSON } from "../../utils/jsonUtils";
 import { parseJsonToPoint } from "../../utils/parsers/pointParser";
-import pointJson from './point.json';
 
 function HomePage() {
   const [points, setPoints] = useState([]);
@@ -23,10 +23,10 @@ function HomePage() {
   };
 
   const parsePoints = () => {
-    //console.log(pointJson);
-   const p = parseJsonToPoint(pointJson);
-   console.log(p);
-  }
+    const point = parseJsonToPoint(groupJson);
+    //const p = convertToJSON(point);
+    console.log(point);
+  };
 
   useEffect(() => {
     //loadAllPoints();

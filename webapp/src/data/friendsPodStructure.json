@@ -1,22 +1,22 @@
 {
-    "follows": [
-		{
-            "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
-            "webId": "miguel@email.com",
-            "username": "",
-            "image": "https://www.w3schools.com/w3images/avatar2.png"
-		},
-        {
-            "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
-            "webId": "miguel@email.com",
-            "username": "",
-            "image": "https://www.w3schools.com/w3images/avatar2.png"
-		},
-        {
-            "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
-            "webId": "miguel@email.com",
-            "username": "",
-            "image": "https://www.w3schools.com/w3images/avatar2.png"
-		}
-	]
+  "friends": [
+    {
+      "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+      "webId": "miguel@email.com",
+      "username": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    },
+    {
+      "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+      "webId": "miguel@email.com",
+      "username": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    },
+    {
+      "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+      "webId": "miguel@email.com",
+      "username": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    }
+  ]
 }

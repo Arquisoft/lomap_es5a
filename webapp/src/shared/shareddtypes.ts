@@ -120,6 +120,18 @@ type Point = {
   updatedAt: Date;
 };
 
+type PointSummary = {
+  _id: string;
+  name: string;
+  description?: string;
+  location: BaseLocation;
+  owner: PointOwner | User;
+  image?: Image;
+  isPublic: boolean;
+  category: Category | Category.NONE;
+  createdAt: Date;
+};
+
 /**
  * Grupo de usuarios, que comparten puntos de interés.
  *
@@ -135,6 +147,7 @@ type UserGroup = {
   name: string;
   description?: string;
   members: User[];
+  points: PointSummary[];
   creator: User;
   createdAt: Date;
 };
@@ -183,6 +196,7 @@ export type {
   UserGroup,
   Review,
   Point,
+  PointSummary,
   BaseLocation,
 };
 
