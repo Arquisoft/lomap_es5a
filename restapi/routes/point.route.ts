@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 
 import { findAll, findOne, editPoint, addPoint, deletePoint, likesPoint } from "../controllers/point.controller";
+import { findAllPointsByUser } from "../services/point.service";
 
 const router: Router = express.Router();
 

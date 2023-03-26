@@ -1,5 +1,5 @@
 import { IPoint, PointModel } from "../models/point.model";
-import { saveFileInContainer,getFile,overwriteFile } from "@inrupt/solid-client";
+import { saveFileInContainer, getFile, overwriteFile } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 
 /**
@@ -9,31 +9,18 @@ import { fetch } from "@inrupt/solid-client-authn-browser";
  * @returns Lista de puntos de interés, si los tiene.
  */
 const findAllPointsByUser = async (webId: string) => {
-    let markers: IPoint[] = []
-    let profileDocumentURI = "https://" + webId + ".inrupt.net/";
+    //let profileDocumentURI = encodeURI(`https://${webId}.inrupt.net/private/Puntos.json`)
+    let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
     try {
         const file = await getFile(
-            profileDocumentURI + 'private/Markers.json',
+            profileDocumentURI,
             { fetch: fetch },
-        ).then(async () => {
-            const file = await getFile(
-                profileDocumentURI + 'private/Markers.json',
-                { fetch: fetch },
-            )
-            markers = JSON.parse(await file.text());
-        }).catch(async (err: any) => {
-            const blob = new Blob([], {
-                type: "application/json;charset=utf-8"
-            })
-            const createFile = await saveFileInContainer(
-                profileDocumentURI + 'private/',
-                blob,
-                { slug: "Markers.json", contentType: blob.type, fetch: fetch }
-            );
-        });
+        );
+        return await file.text();
     } catch (err) {
-    }
-    return markers;
+        console.log("djdjdlfdjfjnffff")
+        console.error(err)
+    }    
 };
 
 /**

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPointsByUser } from "src/api/api";
+import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory } from "src/api/api";
 import PointListingAside from "src/components/asides/PointListingAside";
 import BaseFilterBar from "src/components/filters/BaseFilterBar";
 import BaseMap from "src/components/maps/BaseMap";
@@ -11,9 +11,13 @@ function HomePage() {
 
   const loadAllPoints = async () => {
     // const webId: string =
-    //   getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
-    const result = await findAllPoints();
-    setPoints(result);
+    // getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
+    // const result = await findAllPoints();
+    // const result = await findAllPublicPoints();
+    // const result = await findPointById("1");
+    const result = await findPointsByCategory("futbol");
+    console.log(result)
+   // setPoints(result);
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { findAllPointsByUser as findAllByUser, findPointById as findById } from "src/api/api";
+import { findPointById as findById } from "src/api/api";
 
 function usePoint() {
   //const [points, setPoints] = useState<Point[] | null>(null);
@@ -9,22 +9,7 @@ function usePoint() {
   // Para el detalle de un punto
   const [selectedPoint, setSelectedPoint] = useState<any>(null);
 
-  /**
-   * Obtener todos los puntos registrados.
-   */
-  const findAllPoints = async () => {
-    const result = await findAllByUser("2");
-    setPoints(result);
-  };
-
-  /**
-   * Obtener todos los puntos de interes de un usuario.
-   * @param webId
-   */
-  const findAllPointsByUser = async (webId: string) => {
-    const result = await findAllByUser(webId);
-    setUserPoints(result);
-  };
+ 
 
   /**
    * Obtener toda la información de un punto de interes.
@@ -37,8 +22,7 @@ function usePoint() {
   };
 
   return {
-    findAllPoints,
-    findAllPointsByUser,
+    
     findPointById,
     points,
     userPoints,

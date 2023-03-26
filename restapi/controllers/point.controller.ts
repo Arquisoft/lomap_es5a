@@ -10,17 +10,20 @@ import {
 import { PointModel } from "../models/point.model";
 import { checkStatus } from "../services/helper/hellpers";
 
+
+
 /**
  * Encuentra todos los puntos creados por un usuario
  * @param req
  * @param res 
  */
 const findAll: RequestHandler = async (req, res) => {
-  const webId:string  = req.params.webId;
+  const webId:string = req.params.webId;
 
   const result = await findAllPointsByUser(webId);
 
-  checkStatus(result, res);
+  return JSON.parse(result || "{}")
+  // checkStatus(result, res);
 };
 
 /**
