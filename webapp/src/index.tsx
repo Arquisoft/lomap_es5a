@@ -1,29 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 // import { SkeletonTheme } from "react-loading-skeleton";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import MyApp from "./MyApp";
 import reportWebVitals from "./reportWebVitals";
-import { SessionProvider } from "@inrupt/solid-ui-react";
+import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
+import LoginPage from "./pages/login/LoginPage";
+//import {ses} from '@inrupt/solid-client-authn-browser';
 import "./public/css/global.scss";
 
 const DEFAULT_SKELETON_COLOR: string = "#f0f0f0";
 
-const restoreCallback = (session: any) => {
-  console.log("Session restored", session);
-}
+// const restoreCallback = (session: any) => {
+//   console.log("Session restored", session);
+// }
 
-const app = (
+
+
+const app = (  
   <React.StrictMode>
-    <BrowserRouter>
-      <SessionProvider sessionId="lomap-solid-ssid" restorePreviousSession
-      onSessionRestore={restoreCallback}>
-        {/* <SkeletonTheme baseColor={DEFAULT_SKELETON_COLOR}> */}
-          {/* <AuthProvider value={null}> */}
-          <App />
-          {/* </AuthProvider> */}
-        {/* </SkeletonTheme> */}
-      </SessionProvider>
+    <BrowserRouter>      
+      <MyApp/>
     </BrowserRouter>
   </React.StrictMode>
 );

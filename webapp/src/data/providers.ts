@@ -7,7 +7,7 @@ const SOLID_PROVIDERS: BaseSelectOption[] = [
     },
     {
         value: 'Inrupt.net',
-        content: 'https://inrupt.net',
+        content: 'https://inrupt.net/login',
     },
     {
         value: 'Solid Community',
