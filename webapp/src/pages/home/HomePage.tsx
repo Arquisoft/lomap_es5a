@@ -7,6 +7,8 @@ import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import { useSession } from "@inrupt/solid-ui-react";
 import "../../public/css/pages/home/HomePage.scss";
+import { parseJsonToPoint } from "../../utils/parsers/pointParser";
+import pointJson from './point.json';
 
 function HomePage() {
   const [points, setPoints] = useState([]);
@@ -20,8 +22,15 @@ function HomePage() {
     //setPoints(result);
   };
 
+  const parsePoints = () => {
+    //console.log(pointJson);
+   const p = parseJsonToPoint(pointJson);
+   console.log(p);
+  }
+
   useEffect(() => {
-    loadAllPoints();
+    //loadAllPoints();
+    parsePoints();
   }, []);
 
   return (

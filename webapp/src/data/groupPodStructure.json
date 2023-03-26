@@ -1,0 +1,40 @@
+{
+  "_id": "5a9b1b9b9b9b9b9b9b9b9b9b",
+  "name": "Group 1",
+  "description": "Group 1 description",
+  "users": [
+    {
+      "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+      "webId": "miguel@email.com",
+      "username": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    },
+    {
+      "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+      "webId": "maria@email.com",
+      "username": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    }
+  ],
+  "points": [
+    {
+      "_id": "5a9b1b9b9b9b9b9b9b9b9b9b",
+      "name": "Point 1",
+      "description": "Point 1 description",
+      "category": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    },
+    {
+      "_id": "5a9b1b9b9b9b9b9b9b9b9b9b",
+      "name": "Point 1",
+      "description": "Point 1 description",
+      "category": "",
+      "image": "https://www.w3schools.com/w3images/avatar2.png"
+    }
+  ],
+  "author": {
+    "_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+    "webId": ""
+  },
+  "createdAt": "2018-02-28T12:00:00.000Z"
+}
