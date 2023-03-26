@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint } from "src/api/api";
+import { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint, 
+         addReviewPoint, editReviewByPoint, findAllReviewPoint, findAllReviewByUser } from "src/api/api";
 import PointListingAside from "src/components/asides/PointListingAside";
 import BaseFilterBar from "src/components/filters/BaseFilterBar";
 import BaseMap from "src/components/maps/BaseMap";
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
+import AuthenticatedLaeditReviewByPointyout from "src/layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
+import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
@@ -12,11 +14,20 @@ function HomePage() {
   const loadAllPoints = async () => {
     // const webId: string =
     // getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
-    // const result = await findAllPoints();
+    const result = await findAllPoints();
     // const result = await findAllPublicPoints();
     // const result = await findPointById("1");
     // const result = await findPointsByCategory("futbol");
-    const result = await deletePoint("1");
+    // const result = await addPoint();
+    // const result = await editPointById("1", body);
+    // const result = await deletePoint("1");
+
+    // const result = await addReviewPoint("1");
+    // const result = await editReviewByPoint("1", body);
+    // const result = await findAllReviewPoint("1");
+    // const result = await findAllReviewByUser();
+
+
     console.log(result)
    // setPoints(result);
   };
