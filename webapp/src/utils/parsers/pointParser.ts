@@ -93,4 +93,21 @@ const parseReviews = (reviews: any) => {
   });
 };
 
-export { parseJsonToPoint };
+/**
+ * Transforma un objeto de tipo Point en un objeto JSON.
+ * @param point 
+ * @returns 
+ */
+const parsePointToJson = (point: Point) => {
+  const { name, description, category, isPublic, location, owner } = point;
+  return {
+    name,
+    description,
+    category,
+    isPublic,
+    location,
+    owner,
+  };
+};
+
+export { parseJsonToPoint, parsePointToJson };
