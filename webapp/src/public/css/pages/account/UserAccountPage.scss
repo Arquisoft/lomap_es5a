@@ -1,0 +1,13 @@
+@use "../../mixins" as mixins;
+
+.user-account-container {
+    @include mixins.flex(column, flex-start, flex-start, 20px);
+
+    & > .user-account-container__body {
+        // Listado de puntos de interes del usuario
+        & > .user-account-container-body__gallery {
+            @include mixins.flex(row, flex-start, flex-start, 20px);
+            flex-wrap: wrap;
+        }
+    }
+}

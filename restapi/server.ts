@@ -17,7 +17,6 @@ const port: number = API_PORT;
 const metricsMiddleware: RequestHandler = promBundle({ includeMethod: true });
 app.use(metricsMiddleware);
 
-//app.use(express.json());
 app.use(bp.json());
 
 app.use(morgan("combined"));

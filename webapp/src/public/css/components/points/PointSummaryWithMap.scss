@@ -1,0 +1,45 @@
+@use 'sass:color';
+@use "../../mixins" as mixins;
+@use "../../functions" as funcs;
+@use "../../variables" as vars;
+
+.point-summary-with-map-container {
+    @include mixins.flex(column, flex-start, flex-start, 15px);
+    background-color: color.adjust(funcs.color(tertiary, base), $alpha: -0.75);
+    padding: 15px;
+    border-radius: vars.$border-radius;
+
+    // Sección de mapa
+    & > .point-summary-with-map__map{
+        width: 100%;
+        height: 163px;
+        border-radius: vars.$border-radius;
+        overflow: hidden;
+    }
+
+    // Sección de detalles
+    & > .point-summary-with-map__body {
+        @include mixins.flex(row, space-between, center, 10px);
+        width: 100%;
+
+        & > .point-summary-with-map-body__details {
+            @include mixins.flex(column, center, flex-start, 3px);
+
+            & > p {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            & > span {
+                font-size: 12px;
+                font-weight: 400;
+                color: grey;
+            }
+        }
+    }
+
+    // Seccion de botones
+    & > .point-summary-with-map__buttons {
+        @include mixins.flex(row, center, center, 10px);
+    }
+}

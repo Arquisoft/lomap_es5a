@@ -1,7 +1,7 @@
 import cors from "cors";
 
 // Dominios en la lista blanca
-const allowedOrigins: string[] = ["*"];
+const allowedOrigins: string[] = ["http://localhost:3000"];
 
 // Métodos HTTP permitidos
 const allowedHttpMethods = ["GET", "POST", "PUT", "PATCH", "DELETE"];

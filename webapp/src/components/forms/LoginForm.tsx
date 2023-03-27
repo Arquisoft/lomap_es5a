@@ -1,45 +1,71 @@
-import { Box, FormControl, TextField } from "@mui/material";
-import Button from "@mui/material/Button";
-import { ChangeEvent, useState } from "react";
-import { signIn } from "src/helpers/AuthHelper";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useSession } from "@inrupt/solid-ui-react";
+import "../../public/css/components/forms/loginForm/LoginForm.scss";
+import BaseTextInput from "../inputs/BaseTextInput";
+import BaseButton from "../buttons/BaseButton";
+import { signIn } from "../../helpers/AuthHelper";
+import BaseSelect from "../inputs/BaseSelect";
+import { SOLID_PROVIDERS } from "../../data/providers";
 
 function LoginForm() {
   const [webId, setWebId] = useState("");
+  const [providerUrl, setProviderUrl] = useState("https://inrupt.net");
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const { session } = useSession();
+
+  const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    signIn(webId);
+    signIn(webId, providerUrl);
   };
 
   const handleWebId = (e: ChangeEvent<HTMLInputElement>) => {
-    setWebId(e.currentTarget.value);
+    setWebId(e.target.value);
   };
 
+  const handleSelectProvider = (e: ChangeEvent<HTMLSelectElement>) =>{
+    setProviderUrl(e.target.value);
+  }
+
+  useEffect(() => {
+    sessionStorage.setItem("webId", session.info.webId || "");
+  }, [session.info.sessionId]);
+
   return (
-    <Box
-      component="form"
-      onSubmit={handleLogin}
-      sx={{
-        width: "30%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        gap: "20px",
-      }}
-    >
-      <FormControl>
-        <TextField
-          aria-describedby="my-helper-text"
+    <div className="login-form-container">
+        <BaseTextInput
           label="WebId"
-          variant="outlined"
-          value={webId}
           onChange={handleWebId}
+          type="text"
+          placeholder="https://id.inrupt.com/..."
         />
-        <Button type="submit" variant="contained">
-          Iniciar sesión
-        </Button>
-      </FormControl>
-    </Box>
+        <BaseSelect 
+          label="Proveedor de POD"
+          id="provider"
+          name="provider"
+          category=""
+          options={SOLID_PROVIDERS}
+          handleChange={handleSelectProvider}
+        />
+        <div className="login-form__button-container">
+        <BaseButton
+          type="button-blue"
+          text="Iniciar sesión"
+          onClick={(e) => handleLogin(e)}
+        />
+        <BaseButton
+          type="button-blue-outlined"
+          //mode="outlined"
+          text="Únete ya"
+          onClick={(e) => handleLogin(e)}
+        />
+        </div>
+        
+        {/* <LoginButton 
+          authOptions={{ clientName: "Lomap", clientId: webId, refreshToken: "refreshToken"}}
+          oidcIssuer="https://inrupt.net/"
+          redirectUrl="http://localhost:3000/"
+          onError={console.error} */}  
+    </div>
   );
 }
 

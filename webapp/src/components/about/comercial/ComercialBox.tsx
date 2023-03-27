@@ -1,4 +1,4 @@
-import BaseButton from "src/components/buttons/BaseButton"
+import BaseButton from "../../../components/buttons/BaseButton"
 import "../../../public/css/components/about/comercial/comercialBox.css"
 function ComercialBox(){
     return(
@@ -14,10 +14,10 @@ function ComercialBox(){
             </div>
             <div className="comercialbox-buttons">
                 <div className="comercialbox-buttonleft"> 
-                    <BaseButton type="button-grey" text ="Compartir" />
+                    <BaseButton type="button-grey" text ="Compartir" onClick={() => ""} />
                 </div>
                 <div className="comercialbox-buttonrigth">
-                <BaseButton type="button-red" text="Únete" />
+                <BaseButton type="button-red" text="Únete"  onClick={() => ""}/>
                 </div>
             </div>
         </div>

@@ -1,0 +1,39 @@
+{
+  "points": [
+    {
+      "_id": "5a6c5b0b0f5a9c0014d1b1b1",
+      "name": "Point 1",
+      "description": "Point 1 description",
+      "category": "",
+      "isPublic": true,
+      "location": {
+        "address": "",
+        "postalCode": 1111,
+        "city": "City 1",
+        "country": "Country 1",
+        "coords": {
+          "lat": 0,     
+          "lng": 0
+        }
+      },
+      "owner": {
+        "webId": "https://localhost:8443/profile/card#me",
+        "imageUrl": ""
+      },
+      "reviews": [
+        {
+          "_id": "5a6c5b0b0f5a9c0014d1b1b2",
+          "reviewer": {
+            "webId": "https://localhost:8443/profile/card#me",
+            "imageUrl": ""
+          },
+          "rating": 5,
+          "comment": "This is a comment",
+          "createdAt": "2018-01-24T15:00:00.000Z"
+        }
+      ],
+      "createdAt": "2018-01-24T15:00:00.000Z",
+      "updatedAt": "2018-01-24T15:00:00.000Z"
+    }    
+  ]
+}

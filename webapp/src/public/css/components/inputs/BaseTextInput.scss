@@ -1,0 +1,19 @@
+@use "../../mixins" as mixins;
+@use "../../functions" as funcs;
+@use "../../variables" as vars;
+
+
+.base-text-input-container{
+    @include mixins.flex(column, flex-start, flex-start, 3px);
+    width: 100%;
+
+    & > label {
+       @include mixins.commonInputLabelStyles();
+    }
+
+    & > input {
+        @include mixins.commonInputStyles();
+        border: 2px solid funcs.color("light_gray", "base");
+    }
+
+}

@@ -1,10 +1,16 @@
 import React from "react";
-import "../../public/css/avatars/BaseAvatar.scss"
+import "../../public/css/avatars/BaseAvatar.scss";
 
-function BaseAvatar({...props}) {
+type Props = {
+  img: string;
+  imgAlt?: string;
+  onClick: React.MouseEventHandler<HTMLElement>;
+};
+
+function BaseAvatar({ img, imgAlt, onClick }: Props) {
   return (
     <>
-        <img className="base-avatar" src={props.img} alt={props.imgAlt} />
+      <img className="base-avatar" src={img} alt={imgAlt} onClick={onClick} />
     </>
   );
 }

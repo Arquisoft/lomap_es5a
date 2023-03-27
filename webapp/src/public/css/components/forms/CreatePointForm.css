@@ -1,0 +1,125 @@
+
+.create-form-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+    padding-bottom: 20px;
+}
+
+.create-form-info{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    padding-bottom: 36px;
+}
+
+.create-form-buttons{
+    padding-top: 25px;
+    display: flex;
+    gap: 14px;
+}
+
+.create-form-form{
+
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+
+.create-form-form-name{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 409px;
+    height: 82px;
+
+}
+
+.create-form-form-name>input{
+    width: 409px;
+    height: 55px;
+    background: #FAF9F9;
+    border: 1px solid #B9B9B9;
+    border-radius: 10px;
+}
+
+.create-form-form-coords{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 409px;
+    height: 82px;
+}
+
+
+
+.create-form-form-address{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 408px;
+    height: 82px;
+}
+
+.create-form-form-address>input{
+    width: 409px;
+    height: 55px;
+    background: #FAF9F9;
+    border: 1px solid #B9B9B9;
+    border-radius: 10px;
+}
+
+.create-form-form-category{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 408px;
+    height: 82px;
+} 
+
+.create-form-form-category>input{
+    width: 409px;
+    height: 55px;
+    background: #FAF9F9;
+    border: 1px solid #B9B9B9;
+    border-radius: 10px;
+}
+
+.create-form-form-description{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 408px;
+    height: 145px;
+}
+
+.create-form-form-description>input{
+    width: 409px;
+    height: 145px;
+    background: #FAF9F9;
+    border: 1px solid #B9B9B9;
+    border-radius: 10px;
+}
+
+.create-form-form-coords-inputs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 9px;   
+    width: 408px;
+    height: 55px;
+
+}
+
+.create-form-form-coords-inputs>input{
+    width: 205px;
+    height: 55px;
+    background: #FAF9F9;
+    border: 1px solid #B9B9B9;
+    border-radius: 10px;
+}

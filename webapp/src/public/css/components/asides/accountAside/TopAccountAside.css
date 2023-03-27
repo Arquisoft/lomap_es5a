@@ -1,0 +1,27 @@
+.top-acc-aside-back{
+    height: 48px;
+    width: 48px;
+    background-color:rgba( 217,217,217,0.42);
+    border-radius: 100px;
+    padding-left: 10px;
+    padding-top: 8px;
+    cursor: pointer;
+    border: none;
+
+}
+.top-acc-aside-title{
+    padding-top: 27px;
+    padding-bottom: 27px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 26px;
+    color: black;
+}
+
+.top-acc-aside-buttons{
+    display: flex;
+    flex-direction: column;
+}
+

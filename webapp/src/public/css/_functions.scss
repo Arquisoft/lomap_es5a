@@ -24,3 +24,24 @@
     @warn "unknown base color `#{$base}` in palette";
     @return null;
 }
+
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+@function getSize($type: "profileImage", $size) {
+    @if map-has-key($sizes, $type) {
+        $baseType: map-get($sizes, $type);
+        
+        // Ejemplo: sm
+        @if map-has-key($baseType, $size) {
+            $result: map-get($baseType, $size);
+            @return $result;
+        }
+    }
+
+    @warn "No se reconoce el tamaño especificado: `#{$size}`";
+    @return null;
+}

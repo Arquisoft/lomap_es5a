@@ -21,6 +21,12 @@ const SINGLE_POINT_PATH: string = ":pointId";
 // Puntos de interes guardados por el ususario en sesion
 const SAVED_POINTS_PATH: string = "/saved";
 
+//Crear un punto nuevo
+const CREATE_POINT_PATH: string ="/account/create-point";
+
+// Editar perfil y ajustes generales de la cuenta
+const SETTINGS_PATH: string = "/account/settings";
+
 // Página de acerca de
 const ABOUT_PATH: string = "/about";
 
@@ -36,6 +42,8 @@ export {
   SAVED_POINTS_PATH,
   ABOUT_PATH,
   FAQ_PATH,
+  SETTINGS_PATH,
   GENERAL_POINT_PATH,
-  SINGLE_POINT_PATH
+  SINGLE_POINT_PATH,
+  CREATE_POINT_PATH
 };
