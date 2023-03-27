@@ -186,7 +186,8 @@ const editPointById = async (idPoint: string, point: Point) => {
     } else {
       for (let i = 0; i < totalPoints.length; i++) {
         if (totalPoints[i]._id === idPoint) {
-          totalPoints[i].name = body.name;
+          // 4 atribs
+          totalPoints[i].name = point.name;
           totalPoints[i].fecha = new Date();
           break;
         }

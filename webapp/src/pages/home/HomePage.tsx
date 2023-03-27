@@ -19,7 +19,6 @@ import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "leaflet";
 import { Category, Review, Reviewer } from "../../shared/shareddtypes";
 
-
 function HomePage() {
   const [points, setPoints] = useState([]);
   const { session } = useSession();
