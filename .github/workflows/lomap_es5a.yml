@@ -3,13 +3,7 @@ name: CI for LOMAP ES5A
 on:
   release:
     types: [published]
-  push:
-    branches:
-      [master, develop, jest-tests]
-
-  pull_request:
-    branches:
-      [ master, develop, jest-tests]
+  
 
 jobs:
   unit-tests:
