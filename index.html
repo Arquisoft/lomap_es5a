@@ -449,13 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
-<li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
-<ul class="sectlevel2">
-<li><a href="#_technical_constraints">2.1. Technical constraints</a></li>
-<li><a href="#_organizational_constraints">2.2. Organizational Constraints</a></li>
-<li><a href="#_conventions">2.3. Conventions</a></li>
-</ul>
-</li>
+<li><a href="#section-architecture-constraints">2. Architecture Constraints</a></li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
 <ul class="sectlevel2">
 <li><a href="#_business_context">3.1. Business Context</a></li>
@@ -573,9 +567,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Marcos Valín Fernández</p>
 </li>
-<li>
-<p>Sergio Buenaga Gutiérrez</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -683,7 +674,7 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Sergio Buenaga</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
 </tr>
 <tr>
@@ -705,12 +696,10 @@ y negocios actuales de la ciudad.</p>
 <div class="sect1">
 <h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_technical_constraints">2.1. Technical constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
@@ -721,7 +710,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro. Para nuestro caso se ha decidido utilizar el proovedor INRUPT.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
@@ -729,11 +718,7 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React JS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación. ReactJS ofrece gestión de estados, hooks (con posibilidad de personalización), pero obtamos por el uso de la librería Zustand.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Librerías externas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para facilitar el trabajo y poder llegar a los plazos de entrega, se tiene el riesgo de utilizar librerías que realicen ciertas funcionalidades con el riesgo que conlleva. En principio el uso de estas librerias facilitarán el desarrollo del proyecto pero si algun modulo de dependencias falla podria ocasionar daños en nuestra aplicación.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node JS</p></td>
@@ -761,13 +746,13 @@ y negocios actuales de la ciudad.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Organizational Constraints</p>
 </div>
-<div class="sect2">
-<h3 id="_organizational_constraints">2.2. Organizational Constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
@@ -778,7 +763,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
@@ -788,31 +773,15 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fechas límites de las entregas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Organización del proyecto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar un orden establecido, se ha optado por realizar una estructura guiada por paquetes separados por su distinta funcionalidad.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Experiencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La Experiencia de los miembros del equipo es variada y por ello el ritmo de desarrollo sera flexible.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo de trabajo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Las horas de trabajo que se dediquen al desarrollo, documentación o investigación seran cruciales para menantener el proyecto al orden del día.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Distribucion de tareas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tras las reuniones los integrantes del proyecto se repartirán las tareas a realizar. Principalmente se destaca el equipo de backend y el equipo de frontend.</p></td>
-</tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Conventions</p>
 </div>
-<div class="sect2">
-<h3 id="_conventions">2.3. Conventions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
@@ -823,20 +792,15 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La documentación estará redactada en español.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">W3C standars</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Se utilizara las convenciones de W3C para la usabilidad de la aplicación.</p></td>
-</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1078,24 +1042,24 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registro_de_un_usuario">6.1.2. Registro de un usuario</h4>
+<h4 id="_listado_de_puntos_de_interés_de_un_usuario">6.1.2. Listado de puntos de interés de un usuario</h4>
 <div class="paragraph">
-<p>El registro se realiza también a través del proveedor Inrupt, siguiendo unos pasos muy similares a los mencionados en el apartado anterior. En primer lugar, el usuario introduce sus datos (Especificados en el nivel 2 de esta sección), al pulsar el botón de registarse se le redirecciona al proveedor de PODS y por último, se redirecciona a la vista correspondiente (Vista Home por defecto).</p>
+<p>Los puntos de interés se almacenan en el pod personal de cada usuario. El sistema lomap se encarga de recuperar los datos del pod personal del usuario y mostrarlos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-1-2.svg" alt="runtime 6 1 2" width="365" height="306">
+<img src="./images/runtime-6-1-2.svg" alt="runtime 6 1 2" width="344" height="306">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_añadir_un_punto_de_interés_al_mapa">6.1.3. Añadir un punto de interés al mapa</h4>
 <div class="paragraph">
-<p>Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con la base de datos y actualizar la interfaz de usuario.</p>
+<p>Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con el pod personal del usuario y actualizar la interfaz de usuario.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="451" height="362">
+<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="448" height="392">
 </div>
 </div>
 </div>
@@ -1105,22 +1069,22 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <div class="sect3">
 <h4 id="_inicio_de_sesión_2">6.2.1. Inicio de sesión</h4>
 <div class="paragraph">
-<p>Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODS recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario y mostrando un mensaje informativo.</p>
+<p>Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODs recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-2-1.svg" alt="runtime 6 2 1" width="695" height="453">
+<img src="./images/runtime-6-2-1.svg" alt="runtime 6 2 1" width="685" height="453">
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registro_de_un_usuario_2">6.2.2. Registro de un usuario</h4>
+<h4 id="_listado_de_puntos_de_un_usuario">6.2.2. Listado de puntos de un usuario</h4>
 <div class="paragraph">
-<p>Un usuario de la aplicación, para registrarse ha de introducir los siguientes datos: Nombre, nombre de usuario, correo electrónico y contraseña. Los datos del usuario se almacenan en su POD personal del proveedor dispuesto en la aplicación. La transacción se realiza desde el lado del cliente a través de su api, enviando los datos del formulario al proveedor, donde este comprobará si existe un usuario registrado con el email indicado. En caso de existir un usuario en el proveedor, se redireccionará a la página del formulario con un mensaje de error.</p>
+<p>El listado de puntos de interés de un usuario se obtiene del pod del usuario. Sin embargo, el sistema lomap se encarga de gestionar la petición y mostrar los datos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés. El fichero JSON devuelto por el POD tiene que ser procesado para mostrar los datos en la vista.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-2-2.svg" alt="runtime 6 2 2" width="876" height="467">
+<img src="./images/runtime-6-2-2.svg" alt="runtime 6 2 2" width="652" height="397">
 </div>
 </div>
 </div>
@@ -1131,7 +1095,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="813" height="510">
+<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="839" height="570">
 </div>
 </div>
 </div>
@@ -1142,15 +1106,15 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h4 id="_inicio_de_sesión_3">6.3.1. Inicio de sesión</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-3-1.svg" alt="runtime 6 3 1" width="688" height="465">
+<img src="./images/runtime-6-3-1.svg" alt="runtime 6 3 1" width="588" height="435">
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registro_de_un_usuario_3">6.3.2. Registro de un usuario</h4>
+<h4 id="_listado_de_puntos_de_interés_de_un_usuario_2">6.3.2. Listado de puntos de interés de un usuario</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-3-2.svg" alt="runtime 6 3 2" width="885" height="479">
+<img src="./images/runtime-6-3-2.svg" alt="runtime 6 3 2" width="1082" height="549">
 </div>
 </div>
 </div>
@@ -1158,7 +1122,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h4 id="_añadir_un_punto_de_interés_en_el_mapa_2">6.3.3. Añadir un punto de interés en el mapa</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="2163" height="1178">
+<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="1649" height="973">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1173,7 +1137,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama_despliegue_L1_v1.svg" alt="diagrama despliegue L1 v1">
+<img src="./images/DIAGRAMA_DESPLIEGUE_v2_LOMAP.svg" alt="DIAGRAMA DESPLIEGUE v2 LOMAP">
 </div>
 </div>
 <div class="dlist">
@@ -1198,20 +1162,16 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Base de datos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Servidor remoto que almacena y gestiona una base de datos NoSQL en MongoDB.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">restapi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Proveedor SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que representa al proveedor de PODS de SOLID de la empresa Inrupt. Almacenará los PODS personales de los usuario, donde se guardará información privada.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
 </tr>
 </tbody>
 </table>
@@ -1220,7 +1180,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagrama_despliegue_v1.svg" alt="diagrama despliegue v1">
+<img src="./images/DIAGRAMA_DESPLIEGUE_extended_v2_LOMAP.svg" alt="DIAGRAMA DESPLIEGUE extended v2 LOMAP">
 </div>
 </div>
 <div class="dlist">
@@ -1237,6 +1197,9 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 <div class="paragraph">
 <p>El desarrollo de la webapp utilizando React hace que el tiempo de carga de las páginas sea más rápido (Sin tener en cuenta otros factores, como peticiones a APIs externas como Leaflet).</p>
+</div>
+<div class="paragraph">
+<p>El almacenamiento de las imágenes de la aplicación (Puntos, avatares, etc.) se realiza en Firebase, que es un servicio de almacenamiento de recursos multimedia, que ofrece un rendimiento y escalabilidad muy alto.</p>
 </div>
 <div class="paragraph">
 <p>Por último, la integración de la API de Leaflet facilita el desarrollo del producto, ya que es un proyecto mantenido con frecuencia y de código abierto.</p>
@@ -1275,16 +1238,8 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MondoDB Atlas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Servidor remoto que almacena y gestiona una base de datos NoSQL.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">restapi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Back-End de la aplicación, contiene una API Rest que gestiona las peticiones HTTP recibidas del lado del cliente.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Dispositivo electrónico</p></td>
@@ -1648,7 +1603,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-22 12:18:20 +0100
+Last updated 2023-02-18 13:39:05 +0100
 </div>
 </div>
 </body>
