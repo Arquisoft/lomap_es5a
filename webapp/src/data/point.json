@@ -12,7 +12,7 @@
         "city": "City 1",
         "country": "Country 1",
         "coords": {
-          "lat": 0,     
+          "lat": 0,
           "lng": 0
         }
       },

@@ -1,8 +1,8 @@
 import type { Point, User, UserGroup } from "../shared/shareddtypes";
 
 const convertToJSON = (obj: Point | User | UserGroup): string => {
-    return JSON.parse(JSON.stringify(obj));
-}
+  return JSON.parse(JSON.stringify(obj));
+};
 
 const convertArrToJSON = (
     arr: Point[] | User[] | UserGroup[],
