@@ -1,4 +1,4 @@
-import { getDefaultSession, Session } from "@inrupt/solid-client-authn-browser";
+import {handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 import { useState, useEffect, useCallback } from "react";
 import { findAllPoints, findAllPointsByUser } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
@@ -10,13 +10,12 @@ import { useSession } from "@inrupt/solid-ui-react";
 import "../../public/css/pages/home/HomePage.scss";
 
 function HomePage() {
+
+
+
   const [points, setPoints] = useState([]);
   const {session} = useSession();
   
-  const loadSession = () => {
-    let sessionJson = localStorage.getItem("solid-auth-client");
-    return sessionJson ? JSON.parse(sessionJson) : undefined;
-}
 
   // const loadAllPoints = async () => {
   //   // const webId: string =
@@ -26,9 +25,13 @@ function HomePage() {
   //   //setPoints(result);
   // };
 
-  // useEffect(() => {
-  //   loadAllPoints();
-  // }, []);
+  useEffect(() => {
+    handleIncomingRedirect({
+      restorePreviousSession:true
+    }).then((info) => {
+      console.log(info?.webId);
+    }) ;
+  }, []);
 
   return (
     <div>
@@ -49,7 +52,9 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            /> */}            
+            /> */}     
+            <p> {session.info.webId} </p>       
+            <p> {session.info.sessionId} </p>       
             <PointListingAside />
           </div>
         </div>
