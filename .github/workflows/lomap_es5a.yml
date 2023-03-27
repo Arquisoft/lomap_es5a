@@ -8,11 +8,13 @@ on:
     branches:
       - master
       - develop
+      - jest-tests
   
   push:
     branches:
       - master
       - develop
+      - jest-tests
   
 
 jobs:
