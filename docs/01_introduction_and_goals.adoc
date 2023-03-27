@@ -7,11 +7,7 @@ LoMap es el proyecto del curso actual de la asignatura Arquitectura del Software
 - Miguel González Navarro
 - Francisco Coya Abajo
 - Marcos Valín Fernández
-<<<<<<< HEAD
 - Sergio Buenaga Gutiérrez
-=======
-- Sergio Buenaga Gutierrez
->>>>>>> 674ae55d902606767cd5672c9261b6a16bfd5a37
 
 Y, con la ayuda del profesorado:
 
