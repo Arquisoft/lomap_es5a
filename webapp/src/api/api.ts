@@ -333,21 +333,15 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string) => {
 
     // eliminamos la review del punto
     let reviews : Review[] | undefined = punto?.reviews?.filter((review) => review._id !== idReview) // obtenemos las reviews que no queremos borrar
-    punto?.reviews?.splice(0, punto?.reviews?.length) // vacíamos el array
-    // añadimos al array aquellas que nos interesen
-    if (punto !== undefined && punto?.reviews !== undefined) {
-      for (let elem in reviews) {
-        if (elem !== undefined) {
-          // añadirlo a la lista
-        }
-      }
+    if (punto !== undefined && reviews !== undefined && punto?.reviews !== undefined) {
+      punto.reviews = reviews // añadimos las reviews
     }
     
     if (!punto) {
       console.log("ERROR: No existe ningún punto con id = " + idPoint);
     } else {
       let result : Point[] = [...pointsOriginal,punto] // obtenemos el array de puntos
-      
+      console.log(result)
       const blob = new Blob([convertArrToJSON(result, "points")], {
         type: "application/json",
       });
