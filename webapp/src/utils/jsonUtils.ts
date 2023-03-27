@@ -5,16 +5,16 @@ const convertToJSON = (obj: Point | User | UserGroup): string => {
 };
 
 const convertArrToJSON = (
-  arr: Point[] | User[] | UserGroup[],
-  rootName: string
-): string => {
-  return JSON.parse(
-    !rootName
-      ? JSON.stringify(arr)
-      : JSON.stringify({
-          rootName: arr,
-        })
-  );
-};
+    arr: Point[] | User[] | UserGroup[],
+    rootName: string): string => {
+    return JSON.parse(
+        !rootName
+        ? JSON.stringify(arr)
+        : JSON.stringify({
+        rootName: arr,
+    }));
+    };
 
-export { convertToJSON };
+export {
+    convertToJSON, convertArrToJSON
+}

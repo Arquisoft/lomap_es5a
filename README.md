@@ -18,8 +18,8 @@ This project is a basic example of website using **React** with **Typescript** a
 - Francisco Coya Abajo (UO257239)
 - Miguel González Navarro (UO282337)
 - Marcos Valín Fernández (UO277414)
-- Óscar Abad López (UO258238)
 - Ricardo Marqués Garay (UO270160)
+- Sergio Buenaga Gutiérrez (UO271572)
 
 ## Quick start guide
 <mark>In case you already have node.js and npm, make sure you update them before attempting to build the images</mark>
