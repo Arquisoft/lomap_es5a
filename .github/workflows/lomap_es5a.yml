@@ -3,6 +3,19 @@ name: CI for LOMAP ES5A
 on:
   release:
     types: [published]
+    
+  pull_request:
+    branches:
+      - master
+      - develop
+
+  
+  push:
+    branches:
+      - master
+      - develop
+
+  
 
 jobs:
   unit-tests:
