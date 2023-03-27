@@ -65,13 +65,15 @@ const findAllPoints = async (webID: string) => {
   let myFile: any = [];
 
   try {
-    const data = await getFile(encodeURI(`https://pruebasolid1.inrupt.net/public/points/points1.jsonld`), {
-      fetch: fetch,
-    });
+    const data = await getFile(
+      encodeURI(`https://pruebasolid1.inrupt.net/public/points/points1.jsonld`),
+      {
+        fetch: fetch,
+      }
+    );
 
     const result = JSON.parse(await data.text());
     return jsonld.expand(result);
-
   } catch (err) {
     console.error(err);
   }
