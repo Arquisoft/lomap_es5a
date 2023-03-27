@@ -114,7 +114,7 @@ type PointOwner = {
  * @param updatedAt Fecha de actualización del punto de interés.
  */
 type Point = {
-  _id: string;
+  _id: string, 
   name: string;
   description?: string;
   location: BaseLocation;
@@ -236,7 +236,7 @@ export type {
   Point,
   PointSummary,
   BaseLocation,
-  
+  Reviewer
 };
 
 export { Category };
