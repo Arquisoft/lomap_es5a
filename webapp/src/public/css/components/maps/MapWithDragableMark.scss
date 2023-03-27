@@ -1,0 +1,14 @@
+@use "../../mixins" as mixins;
+
+.map-with-dragable-marker-container{
+    @include mixins.flex(column, flex-start, flex-start, 10px);
+
+    // Mensaje informativo
+    & > .map-with-dragable-marker-container__info-msg{
+        @include mixins.flex(row, flex-start, center, 10px);
+        
+        & > p{
+            font-size: .9rem;
+        }
+    }
+}

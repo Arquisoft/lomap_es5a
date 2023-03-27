@@ -1,0 +1,5 @@
+@use "../../mixins" as mixins;
+
+.icon-button{
+    @include mixins.flex(row, center, center, 5px);
+}

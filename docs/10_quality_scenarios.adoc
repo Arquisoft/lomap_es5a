@@ -3,8 +3,25 @@
 
 === Quality Tree
 
-:imagesdir: images/
-image:arbol_de_calidad.png["Árbol de calidad"]
+[plantuml, "Quality tree", png]
+----
+left to right direction
+(Productos de calidad del software) as (PDC)
+(Usabilidad) as (US)
+(Seguridad) as (SE)
+(Privacidad) as (PR)
+(Capacidad de reconocimiento\nCapacidad de aprendizaje\nFácil de usar) as (CCF)
+(Confidencialidad\nIntegridad\nAutenticación) as (CIA)
+(Integridad de datos\nProtección física\nIntegridad) as (IPI)
+
+PDC --> US
+PDC --> SE
+PDC --> PR
+US --> CCF
+SE --> CIA
+PR --> IPI
+
+----
 
 === Quality Scenarios
 

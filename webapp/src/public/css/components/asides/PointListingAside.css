@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+/**
+ * Estilos comunies para inputs (input, select).
+ */
+.point-listing-aside-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+}
+.point-listing-aside-container > .point-listing-aside__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+.point-listing-aside-container > .point-listing-aside__head > .point-listing_link {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: gray;
+  opacity: 0.5;
+  text-decoration: none;
+  cursor: pointer;
+}
+.point-listing-aside-container > .point-listing-aside__head > .point-listing_link:hover {
+  opacity: 0.9;
+  text-decoration: underline;
+}
+.point-listing-aside-container > .point-listing-aside__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+}/*# sourceMappingURL=PointListingAside.css.map */

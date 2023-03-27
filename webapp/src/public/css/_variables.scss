@@ -1,0 +1,63 @@
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+$pallete: (
+    "primary": (
+        "base": #ef233c,
+        "highlight": #f13950,
+        "dark": #d72036,
+    ),
+    "secondary": (
+        "base": #2b3467,
+        "highlight": #404876,
+        "dark": #272f5d,
+    ),
+    "tertiary": (
+        "base": #D9D9D9,
+        "highlight": #98a3b6,
+        "dark": #7f8a9d,
+    ),
+    "light_gray": (
+        "base": #e1e0e0,
+        "high_light": rgba(240, 240, 240, 0.7),
+        "dark": #7f8a9d,
+    ),
+    "dark_grey": (
+        "base": #B9B9B9,
+        "high_light": #FAF9F9,
+        "dark": #7f8a9d,
+    ),
+    "custom_blue": (
+        "base": #1c4fd8,
+        "high_light": #3361dc,
+        "dark": #143797,
+    ),
+    "custom_white": (
+        "base": #ffffff,
+    ),
+);
+
+$border-radius: 20px;
+$nav-height: 80px;
+
+// Variables para los inputs.
+$input-height: 40px;
+$input-border-radius: 5px;
+$input-padding-x: 10px;
+
+$sizes: (
+    // Dimensiones para la foto de perfil (width = height).
+    "profileImage":
+        (
+            "sm": 48px,
+            "md": 96px,
+    )
+);
+
+$z-index-menus: 999;

@@ -1,0 +1,82 @@
+@use "../../functions" as funcs;
+@use "../../mixins" as mixins;
+
+.button-primary{
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
+    color: #FFFFFF;
+}
+
+.button-blue{
+    @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
+}
+
+.button-blue-outlined {
+    @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "outline");
+}
+
+// TODO: Refactorizar
+.button-blue-rounded{
+    background-color: funcs.color(custom_blue, base);
+    width: 128px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    color: #FFFFFF;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    &:hover{
+        background-color: funcs.color("custom_blue", "high_light");
+    }
+}
+
+.button-disabled{
+    @include mixins.customButton(funcs.color("tertiary", "base"), "outline");
+}
+
+.button-red{
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
+}
+
+.button-red-form{
+    background-color: red;
+    width: 150px;
+    height: 38px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.button-grey-form{
+    background-color: #B9B9B9;
+    width: 150px;
+    height: 38px;
+    border: none;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.button-grey{
+    background: transparent;
+    width: 210px;
+    height: 57px;   
+    border-radius: 100px;
+    color: black;
+    border-color: black;
+    font-size: 24px;
+
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s ease;
+}

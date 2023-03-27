@@ -1,0 +1,18 @@
+@use "../../mixins" as mixins;
+
+.error404-container{
+    @include mixins.flex(column, center, center, 20px);
+    width: 100vw;
+    height: 100vh;
+
+    & > h1{
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    & > h2{
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+}

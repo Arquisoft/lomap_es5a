@@ -15,7 +15,9 @@ webapp/build
 # misc
 .DS_Store
 restapi/.env.development
+.env
 .env.local
+.env.development
 .env.development.local
 .env.test.local
 .env.production.local
@@ -24,9 +26,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#vscode files
+# vscode files
 .vscode
 
-#documentation build does not go into master
+# documentation build does not go into master
 docs/build
+
+# documentation files
+*.pdf
+*.docx
+*.xlsx
+*.txt
 

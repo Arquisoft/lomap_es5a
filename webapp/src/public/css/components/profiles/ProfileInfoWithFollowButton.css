@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+/**
+ * Estilos comunies para inputs (input, select).
+ */
+.profile-image-with-follow-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.profile-image-with-follow-container > .profile-image-with-follow-container__avatar > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile-image-with-follow-container > .profile-image-with-follow-container__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+.profile-image-with-follow-container > .profile-image-with-follow-container__details > p {
+  margin: 0;
+}
+.profile-image-with-follow-container > .profile-image-with-follow-container__details > button {
+  outline: none;
+  border: none;
+  background: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #1c4fd8;
+}/*# sourceMappingURL=ProfileInfoWithFollowButton.css.map */

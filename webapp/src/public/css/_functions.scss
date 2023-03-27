@@ -1,0 +1,47 @@
+@import "./variables";
+
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+@function color($base: "primary", $tint: "base") {
+    @if map-has-key($pallete, $base) {
+        $base: map-get($pallete, $base);
+
+        @if map-has-key($base, $tint) {
+            $tint: map-get($base, $tint);
+            @return $tint;
+        }
+
+        @warn "unknown tint `#{$tint}` in tint";
+        @return null;
+    }
+
+    @warn "unknown base color `#{$base}` in palette";
+    @return null;
+}
+
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+@function getSize($type: "profileImage", $size) {
+    @if map-has-key($sizes, $type) {
+        $baseType: map-get($sizes, $type);
+        
+        // Ejemplo: sm
+        @if map-has-key($baseType, $size) {
+            $result: map-get($baseType, $size);
+            @return $result;
+        }
+    }
+
+    @warn "No se reconoce el tamaño especificado: `#{$size}`";
+    @return null;
+}

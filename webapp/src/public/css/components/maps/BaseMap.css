@@ -1,0 +1,8 @@
+.leaflet-popup-content-wrapper {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.leaflet-popup-tip, .leaflet-popup-close-button {
+  display: none;
+}/*# sourceMappingURL=BaseMap.css.map */
