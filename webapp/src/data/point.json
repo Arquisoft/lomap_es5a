@@ -11,10 +11,14 @@
         "postalCode": 1111,
         "city": "City 1",
         "country": "Country 1",
-        "coords": [0, 0]
+        "coords": {
+          "lat": 0,
+          "lng": 0
+        }
       },
       "owner": {
-        "webId": "https://localhost:8443/profile/card#me"
+        "webId": "https://localhost:8443/profile/card#me",
+        "imageUrl": ""
       },
       "reviews": [
         {

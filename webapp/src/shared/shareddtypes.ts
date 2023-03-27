@@ -65,7 +65,6 @@ type Reviewer = {
 type Review = {
   _id: string;
   reviewer: Reviewer;
-  point: Point;
   rating: number;
   comment: string;
   createdAt: Date;
@@ -115,6 +114,7 @@ type PointOwner = {
  * @param updatedAt Fecha de actualización del punto de interés.
  */
 type Point = {
+  _id: string;
   name: string;
   description?: string;
   location: BaseLocation;
