@@ -1,16 +1,19 @@
-import AccountLayout from "../../layouts/AccountLayout";
 import "../../public/css/pages/points/CreatePointPage.css";
 import CreatePointForm from "../../components/forms/CreatePointForm";
 import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
-import useMarker from "../../hooks/useMarker";
 import { useMarkerStore } from "../../store/map.store";
+import TopAccountAside from "../../components/asides/accountAside/TopAccountAside";
+import Footer from "../../components/footer/Footer";
 
 function CreatePointPage() {
   const currentPosition = useMarkerStore.getState().position;
 
   return (
-    <AccountLayout hasBanner={false}>
+    <div className="create-point-principal">
       <div className="main-create-point">
+        <div className="create-point-aside">
+          <TopAccountAside />
+        </div>
         <div className="create-point-form">
           <CreatePointForm />
         </div>
@@ -18,14 +21,17 @@ function CreatePointPage() {
           <MapWithDragableMarker
             position={currentPosition}
             styles={{
-              width: "300px",
-              height: "400px",
+              width: "400px",
+              height: "555px",
               borderRadius: "20px",
             }}
           />
         </div>
       </div>
-    </AccountLayout>
+      <div className="create-point-footer">
+        <Footer />
+      </div>
+    </div>
   );
 }
 

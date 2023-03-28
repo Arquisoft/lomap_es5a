@@ -69,6 +69,9 @@ function CreatePointForm() {
             value={point.name}
             onChange={handleChange}
             placeholder="Sidreria Tierra Astur"
+            styles={{
+              height: "62px"
+            }}
           />
 
           <div className="create-form-form-coords-inputs">
@@ -79,6 +82,10 @@ function CreatePointForm() {
               value={point.lat}
               onChange={handleChange}
               placeholder="43.12345"
+              styles={{
+                width : "296px",
+                height: "62px"
+              }}
             />
 
             <BaseTextInput
@@ -88,6 +95,10 @@ function CreatePointForm() {
               value={point.lng}
               onChange={handleChange}
               placeholder="-6.98765"
+              styles={{
+                width : "296px",
+                height: "62px"
+              }}
             />
           </div>
 
@@ -98,6 +109,10 @@ function CreatePointForm() {
             value={point.address}
             onChange={handleChange}
             placeholder="Calle Gascona, 1, 33001 Oviedo"
+            styles={{
+              width : "600px",
+              height: "62px"
+            }}
           />
 
           <BaseSelect
@@ -107,6 +122,9 @@ function CreatePointForm() {
             options={availableCategories.map((cat) => {
               return { value: cat.name, content: cat.name };
             })}
+            styles={{
+              height: "62px"
+            }}
             handleChange={handleChangeCategory}
           />
           <BaseTextArea
