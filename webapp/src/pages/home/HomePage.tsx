@@ -25,13 +25,13 @@ function HomePage() {
   //   //setPoints(result);
   // };
 
-  useEffect(() => {
-    handleIncomingRedirect({
-      restorePreviousSession:true
-    }).then((info) => {
-      console.log(info?.webId);
-    }) ;
-  }, []);
+  // useEffect(() => {
+  //   handleIncomingRedirect({
+  //     restorePreviousSession:true
+  //   }).then((info) => {
+  //     console.log(info?.webId);
+  //   }) ;
+  // }, []);
 
   return (
     <div>
