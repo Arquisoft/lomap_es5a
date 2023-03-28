@@ -6,15 +6,19 @@ import BaseButton from "../buttons/BaseButton";
 import { signIn } from "../../helpers/AuthHelper";
 import BaseSelect from "../inputs/BaseSelect";
 import { SOLID_PROVIDERS } from "../../data/providers";
+import { login } from "@inrupt/solid-client-authn-browser";
+import useAuth from "../../hooks/useAuth";
 
 function LoginForm() {
   const [webId, setWebId] = useState("");
   const [providerUrl, setProviderUrl] = useState("https://inrupt.net");
 
   const { session } = useSession();
+  const {login} = useAuth();
 
   const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    login();
     signIn(webId, providerUrl);
   };
 

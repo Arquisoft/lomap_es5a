@@ -47,11 +47,11 @@ function BaseMapPopup({
           webId={owner.webId}
         />
         <div className="popup-modal-social-icons">
-          <ShareIcon
+          {/* <ShareIcon
             sx={{
               color: "#2B3467",
             }}
-          />
+          /> */}
           <FavoriteBorderIcon
             sx={{
               color: "#ef233c",

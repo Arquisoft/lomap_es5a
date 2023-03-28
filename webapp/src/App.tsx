@@ -10,8 +10,15 @@ import SavedPointsPage from "./pages/saved/SavedPointsPage";
 import CreatePointPage from "./pages/point/CreatePointPage";
 import { ABOUT_PATH, ACCOUNT_PATH, GENERAL_POINT_PATH, HOME_PATH, LOGIN_PATH, SAVED_POINTS_PATH, SINGLE_POINT_PATH,CREATE_POINT_PATH, FAQ_PATH } from "./routes";
 import FaqPage from "./pages/faq/FaqPage";
+import useAuth from "./hooks/useAuth";
 
 function App() {
+  const {isLogged} = useAuth();
+
+  if(!isLogged){
+    return (<LoginPage />);
+  }
+
   return (
     <>
       <Routes>

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { findAllPoints } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
-import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 
@@ -16,9 +15,8 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (points.length == 0) {
-      loadAllPoints();
-    }
+    //getAllFriends();
+    loadAllPoints();
   }, []);
 
   return (
@@ -31,7 +29,7 @@ function HomePage() {
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">
-            <BaseMap
+            {/* <BaseMap
               position={[43.36297198377049, -5.851084856954243]}
               points={points}
               styles={{
@@ -39,7 +37,7 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            />
+            /> */}
             <PointListingAside />
           </div>
         </div>

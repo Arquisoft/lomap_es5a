@@ -21,8 +21,8 @@ function BaseSelect({
       >
         {options.map((opt) => {
           return (
-            <option key={opt.value + crypto.randomUUID} value={opt.value}>
-              {showContent ? opt.content : opt.value}
+            <option key={opt.value + crypto.randomUUID} value={showContent ? opt.content : opt.value}>
+              {opt.value || opt?.content}
             </option>
           );
         })}
