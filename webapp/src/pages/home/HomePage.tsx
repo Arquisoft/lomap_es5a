@@ -1,5 +1,4 @@
-import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
+
 import {
   findAllPoints,
   findAllPublicPoints,
@@ -10,16 +9,23 @@ import {
   deletePoint,
   addReviewPoint,
   deleteReviewByPoint,
-  findAllReviewByPoint
+  findAllReviewByPoint  
 } from "../../api/api";
+import {handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
+import { useState, useEffect, useCallback } from "react";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import { useSession } from "@inrupt/solid-ui-react";
+
 import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "leaflet";
 import { Category, Review, Reviewer } from "../../shared/shareddtypes";
 
 function HomePage() {
+
+
+
   const [points, setPoints] = useState([]);
   const { session } = useSession();
   const loadAllPoints = async () => {
@@ -103,6 +109,7 @@ function HomePage() {
         }}
       >
         <div className="home-container">
+          
           <BaseFilterBar />
           <div className="home-map-wrapper">
             {/* <BaseMap
@@ -113,9 +120,9 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            /> */}
-            <p>{session.info.webId}</p>
-            <p>{session.info.sessionId}</p>
+            /> */}     
+            <p> {session.info.webId} </p>       
+            <p> {session.info.sessionId} </p>       
             <PointListingAside />
           </div>
         </div>
