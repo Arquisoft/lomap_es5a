@@ -32,7 +32,7 @@
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
  */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;700&display=swap");
-:root {
+:root, textarea {
   font-family: "Manrope", sans-serif;
 }
 
@@ -54,10 +54,8 @@ nav a {
 
 /* Estilos de selección */
 ::-moz-selection {
-  background-color: #ef233c;
-  color: #FFFFFF;
+  background-color: #e1e0e0;
 }
 ::selection {
-  background-color: #ef233c;
-  color: #FFFFFF;
+  background-color: #e1e0e0;
 }/*# sourceMappingURL=global.css.map */

@@ -1,6 +1,11 @@
 @use "../../functions" as funcs;
 @use "../../mixins" as mixins;
 
+.button-primary{
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
+    color: #FFFFFF;
+}
+
 .button-blue{
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
 }
@@ -32,18 +37,9 @@
 }
 
 .button-red{
-    background-color: red;
-    width: 210px;
-    height: 57px;
-    border: none;
-    border-radius: 100px;
-    color: #FFFFFF;
-    font-size: 24px;
-    outline: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s ease;
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
 }
+
 .button-red-form{
     background-color: red;
     width: 150px;

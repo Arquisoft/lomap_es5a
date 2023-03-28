@@ -49,6 +49,22 @@
 /**
  * Estilos comunies para inputs (input, select).
  */
+.button-primary {
+  width: 128px;
+  height: 38px;
+  border-radius: 100px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: #ef233c;
+  color: "solid";
+  border: none;
+  color: #FFFFFF;
+}
+.button-primary:hover {
+  background-color: #ee152f;
+}
+
 .button-blue {
   width: 128px;
   height: 38px;
@@ -61,7 +77,7 @@
   border: none;
 }
 .button-blue:hover {
-  background-color: #1b4ccf;
+  background-color: #1a4aca;
 }
 
 .button-blue-outlined {
@@ -108,21 +124,22 @@
   border: none;
 }
 .button-disabled:hover {
-  background-color: #d4d4d4;
+  background-color: #d1d1d1;
 }
 
 .button-red {
-  background-color: red;
-  width: 210px;
-  height: 57px;
-  border: none;
+  width: 128px;
+  height: 38px;
   border-radius: 100px;
-  color: #FFFFFF;
-  font-size: 24px;
-  outline: none;
-  text-transform: uppercase;
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
+  background-color: #ef233c;
+  color: "solid";
+  border: none;
+}
+.button-red:hover {
+  background-color: #ee152f;
 }
 
 .button-red-form {

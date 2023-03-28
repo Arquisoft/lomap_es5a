@@ -15,7 +15,7 @@ function BaseSelect({ id, label, name, options, handleChange }: BaseSelectType) 
         {options.map((opt) => {
           return (
             <option key={opt.value + crypto.randomUUID} value={opt.value}>
-              {opt.value ?? opt.content}
+              {opt.value || opt.content}
             </option>
           );
         })}

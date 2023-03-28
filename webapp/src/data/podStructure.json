@@ -1,0 +1,75 @@
+{
+	"_id": "eb9d7fbd-9e4d-4d25-a9ee-113117527967",
+	"webId": "miguel@email.com",
+    "username": "",
+    "fullname": "",
+    "email": "",
+	"image": {
+        "url": "https://www.w3schools.com/w3images/avatar2.png",
+        "alt": ""
+    },
+	"points": [
+		{
+			"@type": "Place",
+			"geo": {
+				"@type": "GeoCoordinates",
+				"identifier": "0b593a44-abd0-485f-88b9-410b11511536",
+				"name": "",
+				"description": "",
+				"keywords": "tag1,tag2,tag3...",
+				"address": "",
+				"url": "",
+				"latitude": 0,
+				"longitude": 0,
+				"postalCode": 0,
+				"image": "",
+				"publicAccess": false
+			}
+		}
+	],
+	"aggregateRating": {
+		"@type": "AggregateRating",
+		"ratingValue": "3.5",
+		"reviewCount": "2"
+	},
+	"review": [
+		{
+			"@type": "Review",
+			"identifier": "4925327f-7c18-4988-9622-2b4f57cf6dc9",
+			"author": {
+				{
+					"@type": "Person",
+					"identifier": "de7b7685-ddd1-498b-a935-19ead3912884",
+					"givenName": "",
+					"email": "",
+					"image": "",
+				}
+			},
+			"reviewRating": {
+			  "@type": "Rating",
+			  "ratingValue": "5",
+			  "ratingExplanation": ""
+			},
+			"datePublished": "2023-03-23",
+		},
+		{
+			"@type": "Review",
+			"identifier": "0176aa1a-f1b6-4943-bb9f-0bc0e99f0897",
+			"author": {
+				{
+					"@type": "Person",
+					"identifier": "5aaf993b-5e6e-4a2f-aa37-7e9ae7ff693e",
+					"givenName": "",
+					"email": "",
+					"image": "",
+				}
+			},
+			"reviewRating": {
+			  "@type": "Rating",
+			  "ratingValue": "5",
+			  "ratingExplanation": ""
+			},
+			"datePublished": "2023-03-23"
+		}
+	]
+}
