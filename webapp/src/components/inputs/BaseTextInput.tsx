@@ -10,6 +10,7 @@ function BaseTextInput({
   type,
   id,
   placeholder,
+  styles,
   required,
 }: BaseInputProps) {
   return (
@@ -23,6 +24,7 @@ function BaseTextInput({
         value={value}
         id={id || crypto.randomUUID()}
         required={required}
+        style={styles as React.CSSProperties}
       />
     </div>
   );

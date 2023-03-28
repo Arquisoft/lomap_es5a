@@ -227,6 +227,7 @@ interface BaseInputProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+  styles?: React.CSSProperties | string;
 }
 
 interface BaseTextAreaProps {
@@ -251,6 +252,13 @@ type ProfileInfoWithFollowButtonProps = {
   webId: string;
 };
 
+/**
+ * Propiedades para el componente de listado de puntos de interés (Home).
+ */
+type PointListingAsideProps = {
+  points: PointSummary[];
+}
+
 export type {
   SingleCategory,
   ComponentClassName,
@@ -270,7 +278,8 @@ export type {
   BaseLocation,
   Reviewer,
   PointOwner,
-  ProfileInfoWithFollowButtonProps
+  ProfileInfoWithFollowButtonProps,
+  PointListingAsideProps
 };
 
 export { Category };

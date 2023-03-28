@@ -14,6 +14,7 @@ function BaseSelect({
     <div className="base-select-container">
       <label htmlFor={id}>{label}</label>
       <select
+        //onChange={handleChange}
         onChange={handleChange}
         name={name}
         id={id}
@@ -21,8 +22,8 @@ function BaseSelect({
       >
         {options.map((opt) => {
           return (
-            <option key={opt.value + crypto.randomUUID} value={showContent ? opt.content : opt.value}>
-              {opt.value || opt?.content}
+            <option key={opt.value + crypto.randomUUID} value={opt.value}>
+              {showContent ? opt.content : opt.value}
             </option>
           );
         })}

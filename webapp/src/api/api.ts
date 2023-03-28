@@ -50,18 +50,18 @@ const findAllPoints = async () => {
   let profileDocumentURI = encodeURI(
     `https://pruebasolid1.inrupt.net/public/points/points.json`
   );
-  try {
-    const dataset = await getPodUrlAll(
-      `https://pruebasolid1.inrupt.net/profile/card#me`,
-      { fetch: fetch }
-    );
 
-    console.log(dataset);
-    // const file = await getFile(
-    //   profileDocumentURI,
+  try {
+    // const dataset = await getPodUrlAll(
+    //   `https://pruebasolid1.inrupt.net/profile/card#me`,
     //   { fetch: fetch }
     // );
-    // return parseJsonToPoint(JSON.parse(await file.text()))
+
+    const file = await getFile(
+      profileDocumentURI,
+      { fetch: fetch }
+    );
+    return parseJsonToPoint(JSON.parse(await file.text()))
   } catch (err) {
     console.error(err);
   }
