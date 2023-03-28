@@ -449,7 +449,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
-<li><a href="#section-architecture-constraints">2. Architecture Constraints</a></li>
+<li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
+<ul class="sectlevel2">
+<li><a href="#_technical_constraints">2.1. Technical constraints</a></li>
+<li><a href="#_organizational_constraints">2.2. Organizational Constraints</a></li>
+<li><a href="#_conventions">2.3. Conventions</a></li>
+</ul>
+</li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
 <ul class="sectlevel2">
 <li><a href="#_business_context">3.1. Business Context</a></li>
@@ -567,6 +573,9 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Marcos Valín Fernández</p>
 </li>
+<li>
+<p>Sergio Buenaga Gutiérrez</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -674,7 +683,7 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo de desarrollo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Sergio Buenaga</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso</p></td>
 </tr>
 <tr>
@@ -696,10 +705,12 @@ y negocios actuales de la ciudad.</p>
 <div class="sect1">
 <h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_technical_constraints">2.1. Technical constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -710,7 +721,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro. Para nuestro caso se ha decidido utilizar el proovedor INRUPT.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
@@ -718,7 +729,11 @@ y negocios actuales de la ciudad.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React JS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación. ReactJS ofrece gestión de estados, hooks (con posibilidad de personalización), pero obtamos por el uso de la librería Zustand.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Librerías externas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para facilitar el trabajo y poder llegar a los plazos de entrega, se tiene el riesgo de utilizar librerías que realicen ciertas funcionalidades con el riesgo que conlleva. En principio el uso de estas librerias facilitarán el desarrollo del proyecto pero si algun modulo de dependencias falla podria ocasionar daños en nuestra aplicación.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node JS</p></td>
@@ -746,13 +761,13 @@ y negocios actuales de la ciudad.</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Organizational Constraints</p>
 </div>
+<div class="sect2">
+<h3 id="_organizational_constraints">2.2. Organizational Constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -763,7 +778,7 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo y Marcos Valín Fernández</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
@@ -773,15 +788,31 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fechas límites de las entregas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organización del proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar un orden establecido, se ha optado por realizar una estructura guiada por paquetes separados por su distinta funcionalidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Experiencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La Experiencia de los miembros del equipo es variada y por ello el ritmo de desarrollo sera flexible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo de trabajo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Las horas de trabajo que se dediquen al desarrollo, documentación o investigación seran cruciales para menantener el proyecto al orden del día.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distribucion de tareas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tras las reuniones los integrantes del proyecto se repartirán las tareas a realizar. Principalmente se destaca el equipo de backend y el equipo de frontend.</p></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Conventions</p>
 </div>
+<div class="sect2">
+<h3 id="_conventions">2.3. Conventions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -792,15 +823,20 @@ y negocios actuales de la ciudad.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La documentación estará redactada en español.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W3C standars</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se utilizara las convenciones de W3C para la usabilidad de la aplicación.</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
