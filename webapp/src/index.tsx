@@ -11,21 +11,18 @@ const DEFAULT_SKELETON_COLOR: string = "#f0f0f0";
 
 const restoreCallback = (session: any) => {
   console.log("Session restored", session);
-}
+};
 
 const app = (
-  <React.StrictMode>
-    <BrowserRouter>
-      <SessionProvider sessionId="lomap-solid-ssid" restorePreviousSession
-      onSessionRestore={restoreCallback}>
-        {/* <SkeletonTheme baseColor={DEFAULT_SKELETON_COLOR}> */}
-          {/* <AuthProvider value={null}> */}
-          <App />
-          {/* </AuthProvider> */}
-        {/* </SkeletonTheme> */}
-      </SessionProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <SessionProvider sessionId="lomap-solid-ssid">
+      {/* <SkeletonTheme baseColor={DEFAULT_SKELETON_COLOR}> */}
+      <App />
+      {/* </SkeletonTheme> */}
+    </SessionProvider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );
 
 const container = document.getElementById("root");

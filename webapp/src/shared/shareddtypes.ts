@@ -97,6 +97,7 @@ type Image = {
 
 type PointOwner = {
   webId: string;
+  name?: string;
   imageUrl: string;
 };
 
@@ -114,7 +115,7 @@ type PointOwner = {
  * @param updatedAt Fecha de actualización del punto de interés.
  */
 type Point = {
-  _id: string, 
+  _id: string;
   name: string;
   description?: string;
   location: BaseLocation;
@@ -181,7 +182,23 @@ type BaseSelectOption = {
 type CategoryOption = {
   value: Category;
   content?: string;
-}
+};
+
+/**
+ * Propiedades para el componente de popup de un punto de interés.
+ * @param name Nombre del punto de interés.
+ * @param category Categoría del punto de interés. Ver {@link Category}.
+ * @param image Imagen del punto de interés.
+ * @param location Localización del punto de interés. Ver {@link BaseLocation}.
+ * @param owner Usuario que ha creado el punto de interés. Ver {@link PointOwner}.
+ */
+type BaseMapPopupProps = {
+  name: string;
+  category: Category;
+  image?: string;
+  location: BaseLocation;
+  owner: PointOwner;
+};
 
 /**
  * Opciones para los selectores de la aplicación.
@@ -196,6 +213,7 @@ interface BaseSelect {
   id: string;
   options: BaseSelectOption[] | CategoryOption[];
   category?: string;
+  showContent?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -209,7 +227,7 @@ interface BaseInputProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
-};
+}
 
 interface BaseTextAreaProps {
   label: string;
@@ -219,6 +237,18 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+}
+
+/**
+ * Propiedades para el componente de información de perfil con botón de seguir.
+ * @param name Nombre del usuario.
+ * @param imageUrl Imagen de perfil del usuario.
+ * @param webId WebId del usuario.
+ */
+type ProfileInfoWithFollowButtonProps = {
+  name: string;
+  imageUrl?: string;
+  webId: string;
 };
 
 export type {
@@ -230,13 +260,17 @@ export type {
   BaseInputProps,
   BaseSelect,
   BaseSelectOption,
+  BaseMapPopupProps,
   User,
   UserGroup,
   Review,
   Point,
+  Image,
   PointSummary,
   BaseLocation,
-  Reviewer
+  Reviewer,
+  PointOwner,
+  ProfileInfoWithFollowButtonProps
 };
 
 export { Category };

@@ -7,7 +7,7 @@
     "@emotion/styled": "^11.10.6",
     "@inrupt/lit-generated-vocab-common": "^0.3.11",
     "@inrupt/solid-client": "^1.25.2",
-    "@inrupt/solid-client-authn-browser": "^1.13.2",
+    "@inrupt/solid-client-authn-browser": "^1.14.0",
     "@inrupt/solid-ui-react": "^2.8.2",
     "@inrupt/vocab-common-rdf": "^1.0.5",
     "@mui/icons-material": "^5.2.5",

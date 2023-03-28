@@ -26,9 +26,9 @@ function LoginForm() {
     setProviderUrl(e.target.value);
   }
 
-  useEffect(() => {
-    sessionStorage.setItem("webId", session.info.webId || "");
-  }, [session.info.sessionId]);
+  // useEffect(() => {
+  //   sessionStorage.setItem("webId", session.info.webId || "");
+  // }, [session.info.sessionId]);
 
   return (
     <div className="login-form-container">
@@ -43,6 +43,7 @@ function LoginForm() {
           id="provider"
           name="provider"
           category=""
+          showContent={true}
           options={SOLID_PROVIDERS}
           handleChange={handleSelectProvider}
         />

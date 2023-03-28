@@ -11,12 +11,12 @@ import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 
 async function signIn(webID: string, providerUrl: string) {
   
-  await handleIncomingRedirect();
+  //await handleIncomingRedirect();
 
   if (!getDefaultSession().info.isLoggedIn){
     await login({
       oidcIssuer: providerUrl,
-      redirectUrl: window.location.href,
+      redirectUrl: "http://localhost:3000/",
       // clientName: "Lomap",
     });
   }

@@ -43,6 +43,7 @@ const parseJsonToPointItem = (inData: any): Point => {
     name,
     description,
     category,
+    image,
     isPublic,
     reviews,
     owner,
@@ -56,6 +57,10 @@ const parseJsonToPointItem = (inData: any): Point => {
     name,
     description,
     category,
+    image: {
+      url: image,
+      alt: name
+    },
     // category: checkCategory(category) ? (category as Category) : Category.NONE,
     isPublic,
     location: parseLocation(location),
@@ -87,7 +92,10 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
     description,
     location: parseLocation(location),
     owner,
-    image,
+    image: {
+      url: image,
+      alt: name
+    },
     isPublic,
     category: checkCategory(category) ? (category as Category) : Category.NONE,
     createdAt: new Date(createdAt),
@@ -107,8 +115,8 @@ const parseLocation = (location: any): BaseLocation => {
   const { coords, address, postalCode, city, country } = location;
   return {
     coords: {
-      lat: coords[0],
-      lng: coords[1],
+      lat: coords.lat,
+      lng: coords.lng,
     },
     address,
     postalCode,

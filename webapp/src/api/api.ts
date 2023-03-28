@@ -42,7 +42,7 @@ export async function getUsers(): Promise<User[]> {
  * @returns points
  */
 const findAllPoints = async () => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://pruebasolid1.inrupt.net/public/points/points.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
