@@ -11,11 +11,11 @@ const SOLID_PROVIDERS: BaseSelectOption[] = [
     },
     {
         content: 'Solid Community',
-        value: 'https://solid.community',
+        value: 'https://solidcommunity.net/login',
     },
     {
         content: 'Solid Web',
-        value: 'https://solidweb.org',
+        value: 'https://solidweb.org/login',
     },
 ];
 

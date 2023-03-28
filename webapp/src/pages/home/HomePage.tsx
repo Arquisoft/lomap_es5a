@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { findAllPoints } from "../../api/api";
 
@@ -7,8 +6,10 @@ import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 
 import { useSession } from "@inrupt/solid-ui-react";
-import "../../public/css/pages/home/HomePage.scss";
+
+
 import BaseMap from "../../components/maps/BaseMap";
+import "../../public/css/pages/home/HomePage.scss";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
@@ -33,7 +34,6 @@ function HomePage() {
         }}
       >
         <div className="home-container">
-          
           <BaseFilterBar />
           <div className="home-map-wrapper">
             <BaseMap
@@ -44,9 +44,8 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-
-            />     
-            <PointListingAside points={points}/>
+            />
+            <PointListingAside points={points} />
           </div>
           <p>{session.info.webId}</p>
         </div>

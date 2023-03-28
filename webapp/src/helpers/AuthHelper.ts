@@ -19,4 +19,5 @@ async function signIn(providerUrl: string) {
     useAuth().login();
   });
 }
+
 export { signIn };
