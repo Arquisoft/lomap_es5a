@@ -1,4 +1,3 @@
-import { useSession } from "@inrupt/solid-ui-react";
 
 import {
   findAllPoints,
@@ -10,11 +9,10 @@ import {
   deletePoint,
   addReviewPoint,
   deleteReviewByPoint,
-  findAllReviewByPoint
+  findAllReviewByPoint  
 } from "../../api/api";
 import {handleIncomingRedirect } from "@inrupt/solid-client-authn-browser";
 import { useState, useEffect, useCallback } from "react";
-import { findAllPoints, findAllPointsByUser } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
