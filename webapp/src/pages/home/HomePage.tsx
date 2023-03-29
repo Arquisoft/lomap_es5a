@@ -71,7 +71,7 @@ function HomePage() {
     //     createdAt: new Date(),
     //     updatedAt: new Date()
     //  });
-    // const result = await deletePoint("1");
+    const result = await deletePoint("1", session);
     //const result = await addReviewPoint("1",
     //{
     //  _id: "nueva",
@@ -84,7 +84,7 @@ function HomePage() {
     //  createdAt: "2018-01-24T15:00:00.000Z"
     //} as unknown as Review
     //);
-    const result = await deleteReviewByPoint("1","5a6c5b0b0f5a9c0014d1b1b2");
+    // const result = await deleteReviewByPoint("1","5a6c5b0b0f5a9c0014d1b1b2");
     // const result = await findAllReviewByPoint("1");
     console.log(result)
     // setPoints(result)

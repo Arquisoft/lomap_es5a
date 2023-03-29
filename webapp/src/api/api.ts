@@ -1,6 +1,6 @@
 import { Point, Review, User } from "../shared/shareddtypes";
 import { saveFileInContainer, getFile, overwriteFile } from "@inrupt/solid-client";
-import { fetch } from "@inrupt/solid-client-authn-browser";
+import { Session, fetch } from "@inrupt/solid-client-authn-browser";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { convertArrToJSON } from "../utils/jsonUtils";
 
@@ -42,7 +42,10 @@ export async function getUsers(): Promise<User[]> {
  * @returns points
  */
 const findAllPoints = async () => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(
+    `https://uo282337.inrupt.net/private/Puntos.json`
+  );
+
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -60,7 +63,7 @@ const findAllPoints = async () => {
  * @returns points
  */
 const findAllPublicPoints = async () => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -86,7 +89,7 @@ const findAllPublicPoints = async () => {
  * @returns point
  */
 const findPointById = async (idPoint: string) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -112,7 +115,8 @@ const findPointById = async (idPoint: string) => {
  * @returns points
  */
 const findPointsByCategory = async (category: string) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
+
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -138,7 +142,7 @@ const findPointsByCategory = async (category: string) => {
  * @returns
  */
 const addPoint = async (point: Point) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -151,11 +155,11 @@ const addPoint = async (point: Point) => {
       type: "application/json",
     });
 
-    let fichero = new File([blob], "Punto1.json", { type: blob.type });
+    let fichero = new File([blob], "Puntos.json", { type: blob.type });
 
     // actualizamos el POD
     await overwriteFile(
-      "https://uo282337.inrupt.net/public/Punto1.json",
+      `https://uo282337.inrupt.net/private/Puntos.json`,
       fichero,
       { contentType: fichero.type, fetch: fetch }
     );
@@ -169,13 +173,13 @@ const addPoint = async (point: Point) => {
       type: "application/json",
     });
 
-    let file = new File([blob], "Punto1.json", {type: blob.type})
+    let file = new File([blob], "Puntos.json", {type: blob.type})
 
     // actualizamos el POD
     await saveFileInContainer(
-      "https://uo282337.inrupt.net/public",
+      `https://uo282337.inrupt.net/private/`,
       file,
-      { slug: "Punto1.json", contentType: "text/json", fetch: fetch }
+      { slug: "Puntos.json", contentType: "text/json", fetch: fetch }
     );
     addPoint(point)
   }
@@ -189,7 +193,7 @@ const addPoint = async (point: Point) => {
  * @returns
  */
 const editPointById = async (idPoint: string, point: Point) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -214,11 +218,11 @@ const editPointById = async (idPoint: string, point: Point) => {
         type: "application/json",
       });
   
-      let fichero = new File([blob], "Punto1.json", { type: blob.type });
+      let fichero = new File([blob], "Puntos.json", { type: blob.type });
   
       // actualizamos el POD
       await overwriteFile(
-        "https://uo282337.inrupt.net/public/Punto1.json",
+        `https://uo282337.inrupt.net/private/Puntos.json`,
         fichero,
         { contentType: fichero.type, fetch: fetch }
       );
@@ -234,8 +238,11 @@ const editPointById = async (idPoint: string, point: Point) => {
  * @param idPoint Identificador del punto de interes
  * @returns
  */
-const deletePoint = async (idPoint: string) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+const deletePoint = async (idPoint: string, session:Session) => {
+  console.log(session.info.webId)
+  let profileDocumentURI = encodeURI(
+    `https://uo282337.inrupt.net/private/Puntos.json`
+  );
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -250,12 +257,12 @@ const deletePoint = async (idPoint: string) => {
       const blob = new Blob([convertArrToJSON(filtro, "points")], {
         type: "application/json",
       });
-  
-      let fichero = new File([blob], "Punto1.json", { type: blob.type });
-  
+
+      let fichero = new File([blob], "Puntos.json", { type: blob.type });
+
       // actualizamos el POD
       await overwriteFile(
-        "https://uo282337.inrupt.net/public/Punto1.json",
+        `https://uo282337.inrupt.net/private/Puntos.json`,
         fichero,
         { contentType: fichero.type, fetch: fetch }
       );
@@ -274,7 +281,7 @@ const deletePoint = async (idPoint: string) => {
  */
 const addReviewPoint = async (idPoint: string, review: Review) => {
   let profileDocumentURI = encodeURI(
-    `https://uo282337.inrupt.net/public/Punto1.json`
+    `https://uo282337.inrupt.net/private/Puntos.json`
   );
   try {
     const file = await getFile(
@@ -296,11 +303,11 @@ const addReviewPoint = async (idPoint: string, review: Review) => {
         type: "application/json",
       });
   
-      let fichero = new File([blob], "Punto1.json", { type: blob.type });
+      let fichero = new File([blob], "Puntos.json", { type: blob.type });
   
       // actualizamos el POD
       await overwriteFile(
-        "https://uo282337.inrupt.net/public/Punto1.json",
+        `https://uo282337.inrupt.net/private/Puntos.json`,
         fichero,
         { contentType: fichero.type, fetch: fetch }
       );
@@ -319,7 +326,7 @@ const addReviewPoint = async (idPoint: string, review: Review) => {
  */
 const deleteReviewByPoint = async (idPoint: string, idReview:string) => {
   let profileDocumentURI = encodeURI(
-    `https://uo282337.inrupt.net/public/Punto1.json`
+    `https://uo282337.inrupt.net/private/Puntos.json`
   );
   try {
     const file = await getFile(
@@ -346,11 +353,11 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string) => {
         type: "application/json",
       });
   
-      let fichero = new File([blob], "Punto1.json", { type: blob.type });
+      let fichero = new File([blob], "Puntos.json", { type: blob.type });
   
       // actualizamos el POD
       await overwriteFile(
-        "https://uo282337.inrupt.net/public/Punto1.json",
+        `https://uo282337.inrupt.net/private/Puntos.json`,
         fichero,
         { contentType: fichero.type, fetch: fetch }
       );
@@ -367,7 +374,9 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string) => {
  * @returns reviews del punto
  */
 const findAllReviewByPoint = async (idPoint:string) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/public/Punto1.json`)
+  let profileDocumentURI = encodeURI(
+    `https://uo282337.inrupt.net/private/Puntos.json`
+  );
     try {
       const file = await getFile(
         profileDocumentURI,
