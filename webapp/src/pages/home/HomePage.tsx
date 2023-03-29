@@ -1,17 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect, useState } from "react";
-import {
-  findAllPoints,
-  findAllPublicPoints,
-  findPointById,
-  findPointsByCategory,
-  addPoint,
-  editPointById,
-  deletePoint,
-  addReviewPoint,
-  deleteReviewByPoint,
-  findAllReviewByPoint
-} from "../../api/api";
+import { deletePoint, findAllPoints } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";

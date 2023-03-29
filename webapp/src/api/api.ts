@@ -238,39 +238,29 @@ const editPointById = async (idPoint: string, point: Point) => {
  * @param idPoint Identificador del punto de interes
  * @returns
  */
-const deletePoint = async (idPoint: string, session:Session) => {
-  console.log(session.info.webId)
+const deletePoint = async (idPoint: string) => {
   let profileDocumentURI = encodeURI(
-    `https://uo282337.inrupt.net/private/Puntos.json`
+    `https://uo282337.solidcommunity.net/public/Puntos.json`
   );
   try {
-    const file = await getFile(
-      profileDocumentURI,
-      { fetch: fetch }
-    );
-    let totalPoints: Point[] = parseJsonToPoint(JSON.parse(await file.text())) // tenemos un array
-    let filtro = totalPoints.filter(item => item._id !== idPoint)
+    const file = await getFile(profileDocumentURI, { fetch: fetch });
+    let totalPoints: Point[] = parseJsonToPoint(JSON.parse(await file.text())); // tenemos un array
+    let filtro = totalPoints.filter((item) => item._id !== idPoint);
 
     if (filtro.length === 0) {
-      console.log("ERROR: No existe ningún punto con id = " + idPoint)
+      console.log("ERROR: No existe ningún punto con id = " + idPoint);
     } else {
-      const blob = new Blob([convertArrToJSON(filtro, "points")], {
-        type: "application/json",
-      });
-
-      let fichero = new File([blob], "Puntos.json", { type: blob.type });
-
       // actualizamos el POD
-      await overwriteFile(
-        `https://uo282337.inrupt.net/private/Puntos.json`,
-        fichero,
-        { contentType: fichero.type, fetch: fetch }
+      const savedFile = await overwriteFile(
+        `https://uo282337.solidcommunity.net/public/Puntos.json`,
+        new Blob([convertArrToJSON(filtro, "points")], { type: "application/json" }),
+        { contentType: "application/json", fetch: fetch }
       );
     }
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
-}
+};
 
 /**
  * Añadir una review sobre un punto de interés.
