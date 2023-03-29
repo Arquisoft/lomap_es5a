@@ -1,15 +1,35 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {cleanup, render} from '@testing-library/react';
 import ComercialInfo from "./ComercialInfo";
-import { shallow } from 'enzyme';
 import ComercialBox from './comercial/ComercialBox';
 import BaseButton from '../buttons/BaseButton';
+import { shallow } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+import Enzyme from 'enzyme';
 
-test('Comprobamos el componente de comercial box',async () => {
-    const message:string = "¡Explora todos los rincones de tu ciudad y compartelos con amigos y todo el mundo!";
-    const { getByText } = render(<ComercialInfo/>);
-    expect(getByText(message)).toBeInTheDocument();
+Enzyme.configure({adapter: new Adapter()});
 
-    const wrapper = shallow(<ComercialInfo />);
-    expect(wrapper.find(ComercialBox).find(BaseButton));
+
+describe('Comprobamos el componente de comercial box', () => {
+    //tras ejecutar los test limpia
+    afterAll(cleanup);
+
+    it('Comprobamos  Comercial box',()=>{
+        const message:string = "¡Explora todos los rincones de tu ciudad y compartelos con amigos y todo el mundo!";
+        const { getByText } = render(<ComercialInfo/>);
+        expect(getByText(message)).toBeInTheDocument();
+    });
+
+    it('Comprobamos  Comercial info',()=>{
+        //Comprobamos que exista un ComercialBox
+        const wrapper = shallow(<ComercialInfo />);
+        const childWrapper = wrapper.find(ComercialBox);
+        expect(childWrapper.length).toEqual(1);
+    });
+
+    it('Comprobamos  Base button',()=>{
+        const wrapper = shallow(<ComercialBox />);
+        const childWrapper = wrapper.find(BaseButton);
+        expect(childWrapper.length).toEqual(2);
+    });   
 });
