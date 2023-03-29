@@ -79,6 +79,7 @@
     "react-scripts": "5.0.0",
     "react-test-renderer": "^18.2.0",
     "start-server-and-test": "^1.14.0",
+    "text-encoding": "^0.7.0",
     "ts-jest": "^29.0.4",
     "ts-node-dev": "^2.0.0"
   }
