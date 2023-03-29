@@ -9,7 +9,7 @@ async function signIn(providerUrl: string) {
 
   if (!getDefaultSession().info.isLoggedIn) {
     await login({
-      oidcIssuer: providerUrl,
+      oidcIssuer: encodeURI(providerUrl) ,
       redirectUrl: "http://localhost:3000/",
       clientName: "Lomap",
     });
