@@ -35,6 +35,7 @@ function LoginForm() {
         <BaseTextInput
           label="WebId"
           onChange={handleWebId}
+          name="WebId"
           type="text"
           placeholder="https://id.inrupt.com/..."
         />

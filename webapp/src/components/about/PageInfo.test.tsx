@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import PageInfo from "../../components/about/PageInfo";
+import PageInfo from "./PageInfo";
 
 test('Comprobamos pageinfo',async () => {
     const message1:string = "Tu decides que puntos compartir. La información se almacena de forma distribuida.";

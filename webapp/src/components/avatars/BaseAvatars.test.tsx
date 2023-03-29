@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, fireEvent, act, findByLabelText, findByText} from '@testing-library/react';
-import BaseAvatar from '../../components/avatars/BaseAvatar';
+import BaseAvatar from './BaseAvatar';
 
 
 test('Comprobamos BaseAvatar',async () => {
