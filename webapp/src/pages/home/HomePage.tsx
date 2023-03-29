@@ -60,7 +60,7 @@ function HomePage() {
     //     createdAt: new Date(),
     //     updatedAt: new Date()
     //  });
-    const result = await deletePoint("1", session);
+    const result = await deletePoint("1");
     //const result = await addReviewPoint("1",
     //{
     //  _id: "nueva",
