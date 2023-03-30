@@ -221,7 +221,6 @@ const deletePoint = async (idPoint: string) => {
     if (punto.length === 0) {
       console.log("ERROR: No existe ningún punto con id = " + idPoint)
     } else {
-      console.log(convertArrToJSON(filtro, "points"))
       const blob = new Blob([convertArrToJSON(filtro, "points")], {
         type: "application/json",
       });
