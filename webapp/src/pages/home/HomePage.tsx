@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { findAllPoints } from "../../api/api";
-
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
@@ -10,6 +8,7 @@ import { useSession } from "@inrupt/solid-ui-react";
 
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
+import { addPoint, findAllPoints } from "../../api/point.api";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
