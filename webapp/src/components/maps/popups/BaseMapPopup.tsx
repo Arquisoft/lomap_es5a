@@ -6,14 +6,15 @@ import ShareIcon from "@mui/icons-material/ShareOutlined";
 
 import "../../../public/css/components/maps/popups/BasePopup.scss";
 import BaseButton from "../../buttons/BaseButton";
+import { BaseMapPopupProps } from "../../../shared/shareddtypes";
 
-type Props = {
-  name: string;
-  address: string;
-  category?: string
-}
-
-function BaseMapPopup({ name, address, category}: Props) {
+function BaseMapPopup({
+  name,
+  location,
+  image,
+  owner,
+  category,
+}: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
 
   const badgeStyles = {
@@ -37,19 +38,20 @@ function BaseMapPopup({ name, address, category}: Props) {
         {category && showCategoryBadge && (
           <BaseBadge text={category} styles={badgeStyles} />
         )}
-        <img
-          src="https://images.unsplash.com/photo-1640276380950-9fad7f2aba89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
-          alt=""
-        />
+        <img src={image} alt={""} />
       </div>
       <div className="base-popup-modal__body">
-        <ProfileInfoWithFollowButton />
+        <ProfileInfoWithFollowButton
+          name={owner?.name || "Anónimo"}
+          imageUrl={owner.imageUrl}
+          webId={owner.webId}
+        />
         <div className="popup-modal-social-icons">
-          <ShareIcon
+          {/* <ShareIcon
             sx={{
               color: "#2B3467",
             }}
-          />
+          /> */}
           <FavoriteBorderIcon
             sx={{
               color: "#ef233c",
@@ -60,9 +62,9 @@ function BaseMapPopup({ name, address, category}: Props) {
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
           <p>{name}</p>
-          <p>{address}</p>
+          <p>{location.address}</p>
         </div>
-        <BaseButton type="button-blue" text="Ver punto"  onClick={() => ""}/>
+        <BaseButton type="button-blue" text="Ver punto" onClick={() => ""} />
       </div>
     </div>
   );

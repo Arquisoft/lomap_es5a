@@ -32,7 +32,7 @@ function MapWithDragableMarker({ position, styles }: Props) {
         style={styles}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?" />
-        <DraggableMarker position={position} />
+        <DraggableMarker />
       </MapContainer>
     </div>
   );

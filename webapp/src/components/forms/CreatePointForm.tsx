@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../public/css/components/forms/CreatePointForm.css";
 import BaseButton from "../buttons/BaseButton";
 //import { addPoint } from "src/api/api"
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
+import { useMarkerStore } from "../../store/map.store";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
-import useMarker from "../../hooks/useMarker";
 
 function CreatePointForm() {
-  const {currentPosition} = useMarker();
+  const currentPosition = useMarkerStore.getState().position;
+
   const [point, setPoint] = useState({
     name: "",
     address: "",
-    lat: "",
-    lng: "",
+    lat: currentPosition.lat,
+    lng: currentPosition.lng,
     category: "",
     description: "",
   });
@@ -42,6 +43,17 @@ function CreatePointForm() {
     });
   };
 
+  useEffect(() => {
+    useMarkerStore.subscribe((position: any) => {
+      const { lat, lng } = position.position;
+      setPoint({
+        ...point,
+        lat,
+        lng,
+      });
+    });
+  }, []);
+
   return (
     <div className="create-form-main">
       <div className="create-form-title">Crear un punto</div>
@@ -64,7 +76,7 @@ function CreatePointForm() {
               label="Latitud"
               name="lat"
               type="text"
-              value={currentPosition?.lat ?? point.lat}
+              value={point.lat}
               onChange={handleChange}
               placeholder="43.12345"
             />
@@ -73,7 +85,7 @@ function CreatePointForm() {
               label="Longitud"
               name="lng"
               type="text"
-              value={currentPosition?.lng ?? point.lng}
+              value={point.lng}
               onChange={handleChange}
               placeholder="-6.98765"
             />

@@ -1,35 +1,104 @@
 {
   "points": [
     {
-      "_id": "5a6c5b0b0f5a9c0014d1b1b1",
-      "name": "Point 1",
-      "description": "Point 1 description",
-      "category": "",
+      "_id": "6b9389b3-d544-4c74-9108-24faecbb6497",
+      "name": "Restaurante La Casona",
+      "description": "Restaurante de cocina tradicional asturiana",
+      "category": "restaurant",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       "isPublic": true,
       "location": {
-        "address": "",
-        "postalCode": 1111,
-        "city": "City 1",
-        "country": "Country 1",
+        "address": "Calle Dr Casal",
+        "postalCode": 33001,
+        "city": "Oviedo",
+        "country": "España",
         "coords": {
-          "lat": 0,     
-          "lng": 0
+          "lat": 43.36475042766072, 
+          "lng": -5.850033555019544
         }
       },
       "owner": {
-        "webId": "https://localhost:8443/profile/card#me",
-        "imageUrl": ""
+        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
+        "name": "Juan Pérez",
+        "imageUrl": "https://randomuser.me/api/portraits/men/40.jpg"
       },
       "reviews": [
         {
-          "_id": "5a6c5b0b0f5a9c0014d1b1b2",
+          "_id": "a66968c7-d10d-42e0-9a72-4966ddf3b9b3",
           "reviewer": {
             "webId": "https://localhost:8443/profile/card#me",
-            "imageUrl": ""
+            "imageUrl": "https://randomuser.me/api/portraits/men/68.jpg"
+          },
+          "rating": 3.5,
+          "comment": "El servicio necesita mejorar.",
+          "createdAt": "2023-03-28T13:00:00.000Z"
+        },
+        {
+          "_id": "6cbc9ef3-016f-44b9-8721-937261281bf3",
+          "reviewer": {
+            "webId": "https://localhost:8443/profile/card#me",
+            "imageUrl": "https://randomuser.me/api/portraits/men/68.jpg"
           },
           "rating": 5,
-          "comment": "This is a comment",
-          "createdAt": "2018-01-24T15:00:00.000Z"
+          "comment": "La cocina es muy buena y el servicio es muy atento. El precio es muy bueno para la calidad de la comida.",
+          "createdAt": "2023-03-28T12:30:00.000Z"
+        }
+      ],
+      "createdAt": "2018-01-24T15:00:00.000Z",
+      "updatedAt": "2018-01-24T15:00:00.000Z"
+    },
+    {
+      "_id": "c192990c-c77c-4176-a308-0f6c4c439c99",
+      "name": "Confitería Rialto",
+      "description": "Confitería de calidad",
+      "category": "shop",
+      "image": "https://images.unsplash.com/photo-1665475749364-abbd3eca55dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+      "isPublic": true,
+      "location": {
+        "address": "Calle San Francisco, 12",
+        "postalCode": 33003,
+        "city": "Oviedo",
+        "country": "España",
+        "coords": {
+          "lat": 43.362100207119994,
+          "lng": -5.847111805570392
+        }
+      },
+      "owner": {
+        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
+        "name": "Cristina Fernández",
+        "imageUrl": "https://randomuser.me/api/portraits/women/90.jpg"
+      },
+      "reviews": [
+        {
+          "_id": "4617a60a-8bbf-4915-85e4-bd471204e638",
+          "reviewer": {
+            "webId": "https://localhost:8443/profile/card#me",
+            "imageUrl": "https://randomuser.me/api/portraits/men/46.jpg"
+          },
+          "rating": 5,
+          "comment": "Los mejores pasteles de Oviedo, sin duda.",
+          "createdAt": "2023-03-28T10:00:00.000Z"
+        },
+        {
+          "_id": "b7d6aef6-b661-4c91-8cc4-6778fedbaa28",
+          "reviewer": {
+            "webId": "https://localhost:8443/profile/card#me",
+            "imageUrl": "https://randomuser.me/api/portraits/men/27.jpg"
+          },
+          "rating": 5,
+          "comment": "Pastelería de calidad y con un trato excelente.",
+          "createdAt": "2023-03-27T12:30:00.000Z"
+        },
+        {
+          "_id": "254f7fa0-8407-4e71-96bf-00019b1de29e",
+          "reviewer": {
+            "webId": "https://localhost:8443/profile/card#me",
+            "imageUrl": "https://randomuser.me/api/portraits/men/27.jpg"
+          },
+          "rating": 5,
+          "comment": "Pastelería de calidad y con un trato excelente.",
+          "createdAt": "2023-03-27T12:30:00.000Z"
         }
       ],
       "createdAt": "2018-01-24T15:00:00.000Z",

@@ -1,15 +1,16 @@
-import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect, useState } from "react";
-import { addPoint, deletePoint, findAllPoints } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import { useSession } from "@inrupt/solid-ui-react";
+import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
-import { Point } from "leaflet";
-import { Category, Review, Reviewer } from "../../shared/shareddtypes";
+import { addPoint, deletePoint, findAllPoints } from "../../api/point.api";
+import { Category } from "../../shared/shareddtypes";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
+
   const { session } = useSession();
   const loadAllPoints = async () => {
     // const webId: string =
@@ -80,8 +81,8 @@ function HomePage() {
   };
 
   useEffect(() => {
+    //getAllFriends();
     loadAllPoints();
-    // parsePoints();
   }, []);
 
   return (
@@ -94,7 +95,7 @@ function HomePage() {
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">
-            {/* <BaseMap
+            <BaseMap
               position={[43.36297198377049, -5.851084856954243]}
               points={points}
               styles={{
@@ -102,11 +103,10 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            /> */}
-            <p>{session.info.webId}</p>
-            <p>{session.info.sessionId}</p>
-            <PointListingAside />
+            />
+            <PointListingAside points={points} />
           </div>
+          <p>{session.info.webId}</p>
         </div>
       </AuthenticatedLayout>
     </div>

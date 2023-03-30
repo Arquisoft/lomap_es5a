@@ -1,15 +1,21 @@
 
 import "../../public/css/components/profiles/ProfileInfoWithFollowButton.scss";
+import { ProfileInfoWithFollowButtonProps } from "../../shared/shareddtypes";
 
- function ProfileInfoWithFollowButton() {
+ function ProfileInfoWithFollowButton({name, imageUrl, webId}: ProfileInfoWithFollowButtonProps) {
+  
+  const handleFollow = () => {
+    console.log('Followed', webId);
+  }
+  
   return (
     <div className='profile-image-with-follow-container'>
         <div className='profile-image-with-follow-container__avatar'>
-            <img src="https://minimaltoolkit.com/images/randomdata/female/29.jpg" alt="" />
+            <img src={imageUrl} alt={name} />
         </div>
         <div className='profile-image-with-follow-container__details'>
-            <p>Lucía Fernández</p>
-            <button>Seguir</button>
+            <p>{name}</p>
+            <button onClick={handleFollow}>Seguir</button>
         </div>
     </div>
   )

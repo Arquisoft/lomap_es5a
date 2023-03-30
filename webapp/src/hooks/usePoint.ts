@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { findPointById as findById } from "../api/api";
 
 function usePoint() {
   //const [points, setPoints] = useState<Point[] | null>(null);
@@ -15,7 +14,7 @@ function usePoint() {
    * @param idPoint Identificador del punto de interes.
    */
   const findPointById = async (idPoint: string) => {
-    const result = await findById(idPoint);
+    const result = await findPointById(idPoint);
     setSelectedPoint(result);
   };
 

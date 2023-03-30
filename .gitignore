@@ -14,6 +14,7 @@ webapp/build
 
 # misc
 .DS_Store
+restapi/.env.development
 .env
 .env.local
 .env.development

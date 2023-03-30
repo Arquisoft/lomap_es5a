@@ -20,33 +20,36 @@ Pod --> lomap: Redirección a vista
 lomap --> Usuario: Interacción visual
 ----
 
-==== Registro de un usuario
-El registro se realiza también a través del proveedor Inrupt, siguiendo unos pasos muy similares a los mencionados en el apartado anterior. En primer lugar, el usuario introduce sus datos (Especificados en el nivel 2 de esta sección), al pulsar el botón de registarse se le redirecciona al proveedor de PODS y por último, se redirecciona a la vista correspondiente (Vista Home por defecto).
+==== Listado de puntos de interés de un usuario
+Los puntos de interés se almacenan en el pod personal de cada usuario. El sistema lomap se encarga de recuperar los datos del pod personal del usuario y mostrarlos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés.
 
 [plantuml, "runtime-6-1-2", svg]
 ----
 actor Usuario
 participant lomap as "Sistema Lomap"
 database Pod as "Pod personal"
-Usuario -> lomap: Introducir credenciales
-lomap -> Pod: Recuperar datos
-Pod --> lomap: Redirección a vista 
+activate lomap
+Usuario -> lomap: Acceder a vista
+lomap -> Pod: getPoints()
+Pod --> lomap: Redirección a vista
 lomap --> Usuario: Interacción visual
+deactivate lomap
 ----
 
 ==== Añadir un punto de interés al mapa
-Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con la base de datos y actualizar la interfaz de usuario.
+Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con el pod personal del usuario y actualizar la interfaz de usuario.
 
 [plantuml, "runtime-6-1-3", svg]
 ----
 actor Usuario
 participant lomap as "Sistema Lomap"
-database Bd as "Base de datos"
+database pod as "Pod personal"
 
 Usuario -> lomap: redirectToPointViewPage()
 activate lomap
 lomap -> lomap: validarDatos()
-lomap -> Bd: storeNewPoint()
+lomap -> pod: storeNewPoint()
+pod --> lomap: success
 lomap -> lomap: Actualizar componente mapa
 lomap --> Usuario: Mostrar vista actualizada
 
@@ -57,45 +60,51 @@ deactivate lomap
 === Runtime Level 2
 
 ==== Inicio de sesión
-Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODS recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario y mostrando un mensaje informativo.
+Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODs recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario.
 
 [plantuml,"runtime-6-2-1",svg]
 ----
 actor Usuario
+participant personal as "Vista Home"
 participant form as "Formulario login"
-participant personal as "Vista privada Usuario"
 participant Api as "API cliente"
 database Pod as "Pod personal"
 Usuario -> form: Rellenar formulario
+
+activate Api
 form -> Api: iniciar sesión
 Api -> Api: Validar webId
 Api -> Pod: iniciar sesión
 Pod -> Pod: Comprobar webId
 Pod --> Api: Enviar datos Pod
 Api --> form: Enviar datos pod
-Api --> personal: mostrar página privada
+deactivate Api
+
+form --> personal: Redireccionar a página de inicio
 ----
 
-==== Registro de un usuario
-Un usuario de la aplicación, para registrarse ha de introducir los siguientes datos: Nombre, nombre de usuario, correo electrónico y contraseña. Los datos del usuario se almacenan en su POD personal del proveedor dispuesto en la aplicación. La transacción se realiza desde el lado del cliente a través de su api, enviando los datos del formulario al proveedor, donde este comprobará si existe un usuario registrado con el email indicado. En caso de existir un usuario en el proveedor, se redireccionará a la página del formulario con un mensaje de error.
+==== Listado de puntos de un usuario
+El listado de puntos de interés de un usuario se obtiene del pod del usuario. Sin embargo, el sistema lomap se encarga de gestionar la petición y mostrar los datos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés. El fichero JSON devuelto por el POD tiene que ser procesado para mostrar los datos en la vista.
 
 [plantuml,"runtime-6-2-2", svg]
 ----
 actor Usuario
-participant form as "Formulario registro"
-participant personal as "Vista privada Usuario"
-participant Api
-participant Inrupt as "Proveedor POD"
+participant inicio as "Vista Home"
+participant Api as "Api cliente"
+participant parser as "Parser"
 database Pod as "Pod personal"
-Usuario -> form:
-form  -> Api: crear cuenta
-Api -> Api: Validar datos formulario
-Api --> form: Mostrar error validación
-Api -> Inrupt: crear cuenta
-Inrupt -> Inrupt: Comprobar si existe usuario
-Inrupt -> Pod: Crear POD personal
-Inrupt --> Api: Recibir datos del usuario
-Api --> personal: Redireccionar a página privada 
+
+Usuario -> inicio: Acceder a vista
+
+activate Api
+inicio -> Api: findAllPointsFromCurrentUser()
+Api -> Pod: Recuperar datos
+Pod --> Api: Enviar datos en .json
+Api -> parser: Parsear datos
+parser --> Api: Enviar datos (Tipo Point)
+Api --> inicio: Mostrar datos
+deactivate Api
+
 ----
 
 ==== Añadir un punto de interés en el mapa
@@ -106,19 +115,34 @@ Para añadir un punto de interés en el mapa se contemplan varias opciones. El s
 actor Usuario
 participant personal as "Vista privada"
 participant home as "Vista inicio"
-participant Api as "Api"
-participant backend as "<color:#red>API Rest" 
-database Db as "Base de datos"
+participant Api as "Api Cliente"
+participant parser as "Parser"
+box "Servicio de Inrupt" #wheat
+database pod as "Pod personal"
+end box
+database firebase as "Firebase Storage"
+
 Usuario -> personal: 
+activate Api
 personal -> Api: crear punto interés 
 Api -> Api: Validar datos
-Api -> backend: Petición POST "/api/maps/add"
-backend -> backend: Validar datos recibidos
-backend -> Db: Almacenar datos del mapa
-backend --> Api: Respuesta HTTP
-Api --> home: mostrar mensaje
+
+activate parser
+Api -> parser: Parsear datos
+parser --> Api: Enviar datos (Tipo Point)
+deactivate parser
+
+Api -> firebase: <<async>>Almacenar imagen del punto
+firebase --> Api: Respuesta
+Api -> pod: Almacenar datos
+pod --> Api: Enviar datos
+Api --> home: Enviar datos
+deactivate Api
+
+activate home
 home -> home: actualizar datos del mapa
 home --> Usuario: Mostrar mensaje
+deactivate home
 ----
 
 === Runtime Level 3
@@ -127,8 +151,8 @@ home --> Usuario: Mostrar mensaje
 [plantuml,"runtime-6-3-1", svg]
 ----
 actor Usuario
+participant personal as "Vista Home"
 participant form as "Formulario login"
-participant personal as "Vista privada Usuario"
 participant Api as "API Cliente"
 
 box "Servicio de Inrupt" #wheat
@@ -137,59 +161,90 @@ end box
 
 Usuario -> form: Introducir webId
 form -> Api: iniciar sesión
+
 activate Api
 Api -> Api: Validar webId
 Api -> Pod: iniciar sesión
 deactivate Api
+
+activate Pod
 Pod -> Pod: Comprobar webId
 Pod --> Api: Enviar datos Pod
-Api --> form: Enviar datos pod
-Api --> personal: mostrar página privada
+deactivate Pod
+
+activate Api
+Api --> personal: Enviar datos pod
+deactivate Api
+
 ----
 
-==== Registro de un usuario
+==== Listado de puntos de interés de un usuario
 [plantuml,"runtime-6-3-2", svg]
 ----
 actor Usuario
-participant form as "Formulario registro"
-participant personal as "Vista privada Usuario"
-participant Api as "API Cliente"
+participant personal as "Vista Personal"
+participant api as "API Cliente"
+participant servicio as "Servicio"
+participant parser as "JSON Parser"
 
 box "Servicio de Inrupt" #wheat
-participant Inrupt as "Proveedor POD"
-database Pod as "Pod personal"
+database pod as "Pod personal"
 end box
 
-Usuario -> form:
-form  -> Api: crear cuenta
-Api -> Api: Validar datos formulario
-Api --> form: Mostrar error validación
-Api -> Inrupt: crear cuenta
-Inrupt -> Inrupt: Comprobar si existe usuario
-Inrupt -> Pod: Crear POD personal
-Inrupt --> Api: Recibir datos del usuario
-Api --> personal: Redireccionar a página privada 
+Usuario -> personal: Acceder a vista
+activate api
+personal -> api: findAllPointsFromCurrentUser()
+api -> api: Comprobar usuario en sesión
+api -> servicio: Recuperar datos
+
+activate servicio
+activate pod
+servicio -> pod: obtener JSON de puntos
+pod --> servicio: Enviar datos en .json
+deactivate pod
+
+activate parser
+servicio -> parser: Parsear datos
+parser --> servicio: Enviar datos (Tipo Point)
+note right
+Los datos se parsean de JSON a un objeto Point
+end note
+deactivate parser 
+
+servicio --> api: Enviar array de puntos (Tipo Point)
+
+deactivate servicio
+
+api --> personal: Mostrar puntos en la vista
+deactivate api
+
+personal --> Usuario: actualizar vista
+
 ----
 
 ==== Añadir un punto de interés en el mapa
 [plantuml,"runtime-6-3-3", svg]
 ----
 actor Usuario
-participant Personal as ":Vista Privada"
+participant Personal as ":Vista Home"
 participant PointView as ":Vista añadir punto de interés"
 participant Home as ":Vista Inicio"
-participant Api as ":Api Cliente"
-participant Axios as ":Axios"
 
-box "API Rest" #LightBlue
-participant Router as ":MapRouter"
-participant AuthMiddleware as ":AuthMiddleware"
-participant Controller as ":MapController"
-participant Service as ":MapService"
+box "api" #Moccasin
+participant Api as ":Api Cliente"
+participant Service as ":PointService"
 end box
 
-database Firebase as ":Firebase Cloud"
-database Db as ":Base de datos"
+participant parser as ":JSON Parser"
+participant util as ":JSON Utils"
+
+box "Database" #LightBlue
+database firebase as ":Firebase Storage"
+end box
+
+box "Proveedor POD" #PapayaWhip
+database pod as ":POD personal"
+end box
 
 Usuario -> Personal: 
 Personal -> PointView: redirectToPointView()
@@ -203,63 +258,50 @@ activate Personal
 Api -> Api: Validar datos
 activate Api
 Api --> Personal
-deactivate Personal
 
-activate Axios
-Api -> Axios: encapulateData()
-note left
-Enviar la información a través del 
-cliente HTTP Axios
-end note
-
-Axios -> Router: Petición POST "/api/maps/add"
-Router --> Axios: Código error 500
-
-activate Router
-
-Router -> AuthMiddleware: Comprobar usuario autenticado
-activate AuthMiddleware #DarkSalmon
-AuthMiddleware --> Router: error autenticación
-Router --> Api: Enviar error de autenticación
-Api --> Personal: Mostrar error
-AuthMiddleware -> Controller: Procesar request
-deactivate AuthMiddleware
-
-activate Controller
-Controller -> Service: addNewPoint()
+Api -> Service: addNewPoint()
 activate Service
 Service -> Service: checkParams()
 Service --> Api: sendParamErrors()
-note left: Comprobación en el lado servidor
-activate Firebase
-Service -> Firebase: <<async>> storePointImage()
-Firebase --> Service: sendError()
-Service --> Api: respuesta del error
-deactivate Firebase
+note left: Comprobación parámetros punto
 
-Firebase --> Service: successMsg()
-Service -> Service: getStoredImageUrl()
-Service -> Service: addNewPoint()
-Service -> Db: storeNewPoint()
+activate firebase
+
+Service -> firebase: <<async>> storePointImage()
+firebase --> Service: sendError()
+Service --> Api: respuesta del error
+
+deactivate firebase
 note right
 El punto puede o no contener una imagen.
 En en supuesto de que dicho punto no tenga imagen,
 no se almacenará la URL.
 end note
-Service --> Controller: Mensaje éxito
-Controller --> Router: Mensaje éxito
-Router --> Axios: 201: Mensaje de éxito
 
+firebase --> Service: successMsg()
+Service -> Service: getStoredImageUrl()
+Service -> Service: addNewPoint()
+Service -> pod: storeNewPoint()
+Service --> Api: mensaje éxito
 deactivate Service
-deactivate Controller
-deactivate Router
 
-Axios --> Api: Mensaje de éxito
-deactivate Axios
-deactivate PointView
+Api -> util: convertir a JSON
+util --> Api: fichero JSON
+Api -> pod: Enviar datos en Blob
 
-Api --> Home: refreshMapComponent()
+activate pod
+pod -> pod: Añadir fichero .json
+note right
+Se envía el punto en un fichero de tipo
+.json que contiene toda su información.
+end note
+pod --> Api: success
+deactivate pod
+
+Api --> Personal: Datos actualizados
 deactivate Api
 
-return successMessage()
+deactivate PointView
+deactivate Personal
+
 ----
