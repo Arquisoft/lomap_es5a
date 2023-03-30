@@ -1,6 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect, useState } from "react";
-import { deletePoint, findAllPoints } from "../../api/api";
+import { addPoint, deletePoint, findAllPoints } from "../../api/api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
@@ -18,49 +18,49 @@ function HomePage() {
     // const result = await findAllPublicPoints();
     // const result = await findPointById("1");
     // const result = await findPointsByCategory("bar");
-    // const result = await addPoint({
-    //     _id: crypto.randomUUID(),
-    //     name: "Point 1",
-    //     description: "Point 1 description",
-    //     category: Category.BAR,
-    //     isPublic: true,
-    //     location: {
-    //       address: "",
-    //       postalCode: 1111,
-    //       city: "City 1",
-    //       country: "Country 1",
-    //       coords : {lat:0,lng:0}
-    //     },
-    //     owner: {
-    //       webId : "https://localhost:8443/profile/card#me",
+     const result = await addPoint({
+         _id: crypto.randomUUID(),
+         name: "Point 1",
+         description: "Point 1 description",
+         category: Category.BAR,
+         isPublic: true,
+         location: {
+           address: "",
+           postalCode: 1111,
+           city: "City 1",
+           country: "Country 1",
+           coords : {lat:0,lng:0}
+         },
+         owner: {
+           webId : "https://localhost:8443/profile/card#me",
+           imageUrl : ""
+         },
+         reviews: [],
+         createdAt: new Date(),
+         updatedAt: new Date()
+       });
+    // const result = await editPointById("1", {
+    //        _id: crypto.randomUUID(),
+    //        name: "Point nuevo",
+    //        description: "Point 1 nuevo description",
+    //        category: Category.CINEMA,
+    //        isPublic: true,
+    //        location: {
+    //        address: "",
+    //        postalCode: 1111,
+    //        city: "City 1",
+    //        country: "Country 1",
+    //        coords : {lat:0,lng:0}
+    //      },
+    //      owner: {
+    //        webId : "https://localhost:8443/profile/card#me",
     //       imageUrl : ""
-    //     },
-    //     reviews: [],
-    //     createdAt: new Date(),
-    //     updatedAt: new Date()
+    //      },
+    //      reviews: [],
+    //      createdAt: new Date(),
+    //      updatedAt: new Date()
     //   });
-    //const result = await editPointById("1", {
-    //       _id: crypto.randomUUID(),
-    //       name: "Point nuevo",
-    //       description: "Point 1 nuevo description",
-    //       category: Category.CINEMA,
-    //       isPublic: true,
-    //       location: {
-    //       address: "",
-    //       postalCode: 1111,
-    //       city: "City 1",
-    //       country: "Country 1",
-    //       coords : {lat:0,lng:0}
-    //     },
-    //     owner: {
-    //       webId : "https://localhost:8443/profile/card#me",
-    //      imageUrl : ""
-    //     },
-    //     reviews: [],
-    //     createdAt: new Date(),
-    //     updatedAt: new Date()
-    //  });
-    const result = await deletePoint("1");
+    // const result = await deletePoint("1");
     //const result = await addReviewPoint("1",
     //{
     //  _id: "nueva",
