@@ -8,14 +8,14 @@ import { useSession } from "@inrupt/solid-ui-react";
 
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
-import { addPoint, findAllPoints } from "../../api/point.api";
+import { addPoint, deletePoint, findAllPoints } from "../../api/point.api";
 
 function HomePage() {
   const [points, setPoints] = useState([]);
 
   const { session } = useSession();
   const loadAllPoints = async () => {
-    const result: any = await findAllPoints();
+    const result: any = await deletePoint("1");
     console.log(result);
     setPoints(result);
   };

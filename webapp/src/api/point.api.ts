@@ -133,11 +133,10 @@ const addPoint = async (point: Point) => {
     );
   } catch (err) {
     // si no existe el fichero, lo creamos
-    let r = {
-      points: []
-    };
-  
-    const blob = new Blob([JSON.stringify(r, null, 2)], {
+    let points: Point[] = [] // creamos un array
+    points.push(point) // añadimos el punto
+
+    const blob = new Blob([convertArrToJSON(points, "points")], {
       type: "application/json",
     });
 
@@ -222,6 +221,7 @@ const deletePoint = async (idPoint: string) => {
     if (punto.length === 0) {
       console.log("ERROR: No existe ningún punto con id = " + idPoint)
     } else {
+      console.log(convertArrToJSON(filtro, "points"))
       const blob = new Blob([convertArrToJSON(filtro, "points")], {
         type: "application/json",
       });
