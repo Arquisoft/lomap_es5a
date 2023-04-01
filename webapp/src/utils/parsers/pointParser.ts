@@ -57,10 +57,7 @@ const parseJsonToPointItem = (inData: any): Point => {
     _id,
     name,
     description,
-    image: {
-      url: image,
-      alt: name
-    },
+    image,
     category: parseCategory(category),
     location: parseLocation(location),
     reviews: parseReviews(reviews),
@@ -92,10 +89,7 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
     description,
     location: parseLocation(location),
     owner,
-    image: {
-      url: image,
-      alt: name
-    },
+    image,
     isPublic,
     category: checkCategory(category) ? (category as Category) : Category.NONE,
     createdAt: new Date(createdAt),

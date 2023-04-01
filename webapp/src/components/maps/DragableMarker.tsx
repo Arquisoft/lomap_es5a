@@ -1,13 +1,11 @@
 import { Icon } from "leaflet";
 import { useMemo, useRef } from "react";
 import { Marker } from "react-leaflet";
-import useMarker from "../../hooks/useMarker";
 import customMarkerIcon from "../../public/images/icons/marker_base.svg";
-import { useMarkerStore } from "../../store/map.store";
+import { usePointDetailsStore } from "../../store/point.store";
 
 function DraggableMarker() {
-  const { handleCurrentPosition } = useMarker();
-  const currentPosition = useMarkerStore.getState().position;
+  const { setPosition, info} = usePointDetailsStore();
 
   const markerRef = useRef<any>(null);
 
@@ -16,7 +14,7 @@ function DraggableMarker() {
       dragend() {
         const marker = markerRef.current;
         if (marker != null) {
-          handleCurrentPosition(marker.getLatLng());
+          setPosition(marker.getLatLng());
         }
       },
     }),
@@ -27,7 +25,7 @@ function DraggableMarker() {
     <Marker
       draggable={true}
       eventHandlers={eventHandlers}
-      position={currentPosition}
+      position={info.location.coords}
       ref={markerRef}
       icon={
         new Icon({

@@ -223,6 +223,7 @@ interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;

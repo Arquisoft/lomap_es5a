@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { useSession } from "@inrupt/solid-ui-react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { menuItems } from "../helpers/MenuHelper";
 import "../public/css/navs/BaseNav.scss";
+import { LOGIN_PATH } from "../routes";
 import AppLogo from "./AppLogo";
 import BaseAvatar from "./avatars/BaseAvatar";
-import AccountNavMenu from "./menus/AccountNavMenu";
-import { useSession } from "@inrupt/solid-ui-react";
 import BaseButton from "./buttons/BaseButton";
-import { LOGIN_PATH } from "../routes";
+import AccountNavMenu from "./menus/AccountNavMenu";
 
 function BaseNav() {
   // Para mostrar u ocultar el menu asociado al avatar del menu de navegacion.
