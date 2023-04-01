@@ -45,9 +45,10 @@ function App() {
       }
     };
     reload();
-  }, [isPageRefresh]);
+  }, []);
 
-  if (!session.info.isLoggedIn || isPageRefresh) {
+  if (!session.info.isLoggedIn) {
+    sessionStorage.clear();
     console.log("🤨 %cNo estás en sesión", "color: red");
     return <LoginPage />;
   }

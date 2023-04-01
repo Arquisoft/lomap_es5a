@@ -1,64 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 
 import { useSession } from "@inrupt/solid-ui-react";
 
-import { addPoint, findAllPoints } from "../../api/point.api";
+import { findAllPoints } from "../../api/point.api";
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
-import { Category } from "../../shared/shareddtypes";
+import { useAllPointsStore } from "../../store/point.store";
+import { Point } from "../../shared/shareddtypes";
 
 function HomePage() {
-  const [points, setPoints] = useState([]);
+  //const [points, setPoints] = useState([]);
+  const { setAllPoints, points } = useAllPointsStore();
 
   const { session } = useSession();
   
   const loadAllPoints = async () => {
-    const result: any = await findAllPoints();
-    console.log(result);
-    setPoints(result);
-  };
-
-  const addNewPoint = async () => {
-    let newPoint = {
-      _id: "",
-      name: "",
-      description: "ffff",
-      location: {
-        address: "",
-        postalCode: 0,
-        city: "",
-        country: "",
-        coords: {
-          lat: 43.362503991605806,
-          lng: -5.8507845362433235,
-        },
-      },
-      owner: {
-        webId: "",
-        name: "",
-        imageUrl: "",
-      },
-      reviews: [],
-      image: {
-        url: "",
-        alt: "",
-      },
-      isPublic: false,
-      category: Category.BAR,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    await addPoint(newPoint);
+    const data: Point[] = await findAllPoints(session.info.webId as string);
+    setAllPoints(data);
+    console.log(data);
   };
 
   useEffect(() => {
     //getAllFriends();
     loadAllPoints();
-    //addNewPoint();
   }, []);
 
   return (

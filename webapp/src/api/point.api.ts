@@ -1,5 +1,5 @@
 import { getFile, overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
-import { fetch, getDefaultSession } from "@inrupt/solid-client-authn-browser";
+import { fetch } from "@inrupt/solid-client-authn-browser";
 import { Point, Review } from "../shared/shareddtypes";
 import { convertArrToJSON } from "../utils/jsonUtils";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
@@ -11,9 +11,8 @@ import { getUserPrivatePointsUrl } from "../helpers/PodHelper";
  *
  * @returns points
  */
-const findAllPoints = async () => {
-  console.log(getUserPrivatePointsUrl());
-  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl());
+const findAllPoints = async (webId: string): Promise<Point[]> => {
+  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
 
   try {
     const data = await fetch(profileDocumentURI, {
@@ -24,9 +23,12 @@ const findAllPoints = async () => {
     });
 
     return parseJsonToPoint(await data.json())
+
   } catch (err) {
-    console.error(err)
+    console.error("Error findAllPoints: ", err)
   }
+
+  return [];
 }
 
 /**
@@ -113,46 +115,43 @@ const findPointsByCategory = async (category: string) => {
  * @param point
  * @returns
  */
-const addPoint = async (point: Point) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
+const addPoint = async (point: Point, webId: string) => {
+  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId))
   try {
     const file = await getFile(
       profileDocumentURI,
       { fetch: fetch }
     );
-    let totalPoints: Point[] = parseJsonToPoint(JSON.parse(await file.text())) // tenemos un array
+
+    const originalPoints = await fetch(profileDocumentURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    //let totalPoints: Point[] = parseJsonToPoint(JSON.parse(await file.text())) // tenemos un array
+    let totalPoints = parseJsonToPoint(await originalPoints.json())
     totalPoints.push(point) // añadimos el punto
 
-    const blob = new Blob([convertArrToJSON(totalPoints, "points")], {
+    console.log(totalPoints);
+
+    const blob = new Blob([JSON.stringify({"points" : totalPoints})], {
       type: "application/json",
     });
 
-    let fichero = new File([blob], "Puntos.json", { type: blob.type });
+    let fichero = new File([blob], "points.json", { type: blob.type });
 
     // actualizamos el POD
     await overwriteFile(
-      `https://uo282337.inrupt.net/private/Puntos.json`,
+      getUserPrivatePointsUrl(webId),
       fichero,
       { contentType: fichero.type, fetch: fetch }
     );
   } catch (err) {
     // si no existe el fichero, lo creamos
-    let points: Point[] = [] // creamos un array
-    points.push(point) // añadimos el punto
-
-    const blob = new Blob([convertArrToJSON(points, "points")], {
-      type: "application/json",
-    });
-
-    let file = new File([blob], "Puntos.json", {type: blob.type})
-
-    // actualizamos el POD
-    await saveFileInContainer(
-      `https://uo282337.inrupt.net/private/`,
-      file,
-      { slug: file.name, contentType: file.type, fetch: fetch }
-    );
-    addPoint(point)
+    // 
+    console.log("Error addPoint: ", err)
   }
 }
 
