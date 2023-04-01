@@ -17,7 +17,7 @@ function CreatePointForm() {
     lat: currentPosition.lat,
     lng: currentPosition.lng,
     category: "",
-    description: "",
+    description: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

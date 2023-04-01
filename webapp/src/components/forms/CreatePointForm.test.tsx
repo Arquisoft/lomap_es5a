@@ -1,11 +1,32 @@
 import {cleanup, fireEvent, render} from '@testing-library/react';
 import React from "react";
 import CreatePointForm from './CreatePointForm';
+import {mount} from 'enzyme';
+import Enzyme from 'enzyme';
+import BaseTextInput from '../inputs/BaseTextInput';
+import BaseSelect from '../inputs/BaseSelect';
+import BaseButton from '../buttons/BaseButton';
 
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+//Enzyme.configure({ adapter: new Adapter() });
 
 describe('Creacion de un punto para comprobarlo con el formulario',()=>{
     
+   afterEach(cleanup);
     afterAll(cleanup);
+    
+
+    it("Comprobacion de componentes del test",()=>{
+        const wrapper = mount(<CreatePointForm/>);
+        const basetextinput = wrapper.find(BaseTextInput);
+        expect(basetextinput.length).toEqual(1);
+        const baseselect = wrapper.find(BaseSelect);
+        expect(baseselect.length).toEqual(1);
+        const basebutton = wrapper.find(BaseButton);
+        expect(basebutton.length).toEqual(2);
+    });
+
 
     it("Caso de prueba",()=>{
         //crear un punto propio
@@ -37,4 +58,7 @@ describe('Creacion de un punto para comprobarlo con el formulario',()=>{
         expect(point).toHaveProperty("category","Restaurantes");
         expect(point).toHaveProperty("description","descripcion");
     });
+
+    
+
 });
