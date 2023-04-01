@@ -1,8 +1,10 @@
+import { getFile, overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { fetch, getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { Point, Review } from "../shared/shareddtypes";
-import { saveFileInContainer, getFile, overwriteFile } from "@inrupt/solid-client";
-import { Session, fetch } from "@inrupt/solid-client-authn-browser";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { convertArrToJSON } from "../utils/jsonUtils";
+import { parseJsonToPoint } from "../utils/parsers/pointParser";
+
+import { getUserPrivatePointsUrl } from "../helpers/PodHelper";
 
 /**
  * Obtener todos los puntos de interés.
@@ -10,16 +12,18 @@ import { convertArrToJSON } from "../utils/jsonUtils";
  * @returns points
  */
 const findAllPoints = async () => {
-  let profileDocumentURI = encodeURI(
-    `https://uo282337.inrupt.net/private/Puntos.json`
-  );
+  console.log(getUserPrivatePointsUrl());
+  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl());
 
   try {
-    const file = await getFile(
-      profileDocumentURI,
-      { fetch: fetch }
-    );
-    return parseJsonToPoint(JSON.parse(await file.text()))
+    const data = await fetch(profileDocumentURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return parseJsonToPoint(await data.json())
   } catch (err) {
     console.error(err)
   }
@@ -363,3 +367,4 @@ const findAllReviewByPoint = async (idPoint:string) => {
 }
 
 export { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint, addReviewPoint, deleteReviewByPoint, findAllReviewByPoint };
+

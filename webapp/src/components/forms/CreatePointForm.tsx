@@ -7,9 +7,11 @@ import { useMarkerStore } from "../../store/map.store";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
+import { usePointDetailsStore } from "../../store/point.store";
 
 function CreatePointForm() {
   const currentPosition = useMarkerStore.getState().position;
+  const { setCurrentPoint } = usePointDetailsStore();
 
   const [point, setPoint] = useState({
     name: "",
@@ -20,10 +22,10 @@ function CreatePointForm() {
     description: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPoint({
-      ...point,
-      [e.target.name]: e.target.value,
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, pointField: any) => {
+    
+    setCurrentPoint({
+      pointField: e.target.value
     });
   };
 

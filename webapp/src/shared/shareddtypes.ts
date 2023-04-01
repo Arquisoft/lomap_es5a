@@ -123,7 +123,7 @@ type Point = {
   reviews?: Review[];
   image?: Image;
   isPublic: boolean;
-  category: Category | Category.NONE;
+  category: Category;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -198,6 +198,7 @@ type BaseMapPopupProps = {
   image?: string;
   location: BaseLocation;
   owner: PointOwner;
+  point?: Point;
 };
 
 /**
