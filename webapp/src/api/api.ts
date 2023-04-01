@@ -1,13 +1,12 @@
 import {
   getFile,
-  getPodUrlAll,
   overwriteFile,
-  saveFileInContainer,
+  saveFileInContainer
 } from "@inrupt/solid-client";
-import { Point, Review, User } from "../shared/shareddtypes";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
-import { convertArrToJSON } from "../utils/jsonUtils";
 import { fetch } from "@inrupt/solid-client-authn-browser";
+import { Point, Review, User } from "../shared/shareddtypes";
+import { convertArrToJSON } from "../utils/jsonUtils";
+import { parseJsonToPoint } from "../utils/parsers/pointParser";
 
 /*
  * Añadir un usuario al sistema.
@@ -47,22 +46,28 @@ export async function getUsers(): Promise<User[]> {
  * @returns points
  */
 const findAllPoints = async () => {
-  // let profileDocumentURI = encodeURI(
-  //   `https://pruebasolid1.inrupt.net/private/points/points.json`
-  // );
   let profileDocumentURI = encodeURI(
-    `https://pruebasolid1.inrupt.net/public/points/points.json`
+    `https://pruebasolid1.inrupt.net/private/points/points.json`
   );
 
   try {
-    const file = await getFile(
-      profileDocumentURI,
-      { fetch: fetch }
-    );
 
-    //console.log(await file.text());
+    const data = await fetch(profileDocumentURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    return parseJsonToPoint(JSON.parse(await file.text()))
+    console.log(data.json());
+
+    // const file = await getFile(
+    //   profileDocumentURI,
+    //   { fetch: fetch }
+    // );
+
+    //return parseJsonToPoint(JSON.parse(await file.text()));
+
   } catch (err) {
     console.error(err)
   }
@@ -153,7 +158,7 @@ const findPointsByCategory = async (category: string) => {
  * @returns
  */
 const addPoint = async (point: Point) => {
-  let profileDocumentURI = encodeURI(`https://uo282337.inrupt.net/private/Puntos.json`)
+  let profileDocumentURI = encodeURI(`https://pruebasolid1.inrupt.net/private/points/points.json`)
   try {
     const file = await getFile(
       profileDocumentURI,
@@ -406,3 +411,4 @@ const findAllReviewByPoint = async (idPoint:string) => {
 }
 
 export { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint, addReviewPoint, deleteReviewByPoint, findAllReviewByPoint };
+

@@ -47,7 +47,7 @@ function App() {
     reload();
   }, [isPageRefresh]);
 
-  if (!session.info.isLoggedIn && !isPageRefresh) {
+  if (!session.info.isLoggedIn || isPageRefresh) {
     console.log("🤨 %cNo estás en sesión", "color: red");
     return <LoginPage />;
   }

@@ -1,12 +1,12 @@
-import AccountLayout from "../../layouts/AccountLayout";
-import "../../public/css/pages/points/CreatePointPage.css";
 import CreatePointForm from "../../components/forms/CreatePointForm";
 import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
-import useMarker from "../../hooks/useMarker";
+import AccountLayout from "../../layouts/AccountLayout";
+import "../../public/css/pages/points/CreatePointPage.css";
 import { useMarkerStore } from "../../store/map.store";
 
 function CreatePointPage() {
   const currentPosition = useMarkerStore.getState().position;
+
 
   return (
     <AccountLayout hasBanner={false}>

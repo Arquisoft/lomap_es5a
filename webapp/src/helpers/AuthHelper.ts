@@ -6,7 +6,6 @@ import {
 import useAuth from "../hooks/useAuth";
 
 async function signIn(providerUrl: string) {
-
   if (!getDefaultSession().info.isLoggedIn) {
     await login({
       oidcIssuer: encodeURI(providerUrl) ,

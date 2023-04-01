@@ -55,12 +55,6 @@ function LoginForm() {
             onClick={(e) => {handleLogin(e)}}
             /> 
         </div>
-        
-        {/* <LoginButton 
-          authOptions={{ clientName: "Lomap", clientId: webId, refreshToken: "refreshToken"}}
-          oidcIssuer="https://inrupt.net/"
-          redirectUrl="http://localhost:3000/"
-          onError={console.error} */}  
     </div>
   );
 }
