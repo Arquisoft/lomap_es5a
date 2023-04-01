@@ -22,23 +22,25 @@ import {
   SAVED_POINTS_PATH,
   SINGLE_POINT_PATH
 } from "./routes";
+import { useNavigationStore } from "./store/navigation.store";
 
 function App() {
   const { session } = useSession();
+  const {saveCurrentPath, currentPath} = useNavigationStore();
 
-  const isPageRefresh =
+  let isPageRefresh =
     (window.performance.getEntriesByType("navigation")[0] as any).type ===
     "reload";
 
   useEffect(() => {
+    sessionStorage.setItem("currentPath", window.location.href);
     const reload = async () => {
+      
       if (isPageRefresh) {
-        console.log("url: ", window.location.href);
         await session
           .handleIncomingRedirect({
-            restorePreviousSession: true,
-            useEssSession: true,
-            url: window.location.href,
+            //restorePreviousSession: true,
+            url: sessionStorage.getItem("currentPath") as string,
           });
       }
     };

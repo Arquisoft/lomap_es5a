@@ -15,6 +15,7 @@ function HomePage() {
   const [points, setPoints] = useState([]);
 
   const { session } = useSession();
+  
   const loadAllPoints = async () => {
     const result: any = await findAllPoints();
     console.log(result);
@@ -57,8 +58,8 @@ function HomePage() {
 
   useEffect(() => {
     //getAllFriends();
-    //loadAllPoints();
-    addNewPoint();
+    loadAllPoints();
+    //addNewPoint();
   }, []);
 
   return (

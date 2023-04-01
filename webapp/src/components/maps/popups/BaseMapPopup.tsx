@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BaseBadge from "../../badges/BaseBadge";
 import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ShareIcon from "@mui/icons-material/ShareOutlined";
 
 import "../../../public/css/components/maps/popups/BasePopup.scss";
-import BaseButton from "../../buttons/BaseButton";
 import { BaseMapPopupProps } from "../../../shared/shareddtypes";
+import BaseButton from "../../buttons/BaseButton";
+import { useNavigate } from 'react-router-dom';
 
 function BaseMapPopup({
   name,
@@ -14,8 +14,11 @@ function BaseMapPopup({
   image,
   owner,
   category,
+  point
 }: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
+
+  const navigate = useNavigate();
 
   const badgeStyles = {
     backgroundColor: "white",
@@ -27,6 +30,11 @@ function BaseMapPopup({
   const handleShowBadge = (show: boolean) => {
     setShowCategoryBadge(show);
   };
+
+  const handleButtonClick = () => {
+    console.log(point?.name);
+    navigate(encodeURI(`/points/${point?.name}`));
+  }
 
   return (
     <div className="base-popup-modal">
@@ -47,11 +55,6 @@ function BaseMapPopup({
           webId={owner.webId}
         />
         <div className="popup-modal-social-icons">
-          {/* <ShareIcon
-            sx={{
-              color: "#2B3467",
-            }}
-          /> */}
           <FavoriteBorderIcon
             sx={{
               color: "#ef233c",
@@ -64,7 +67,7 @@ function BaseMapPopup({
           <p>{name}</p>
           <p>{location.address}</p>
         </div>
-        <BaseButton type="button-blue" text="Ver punto" onClick={() => ""} />
+        <BaseButton type="button-blue" text="Ver punto" onClick={handleButtonClick} />
       </div>
     </div>
   );

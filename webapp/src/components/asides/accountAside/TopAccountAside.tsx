@@ -1,6 +1,6 @@
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
-
+import { useSession } from "@inrupt/solid-ui-react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LockIcon from "@mui/icons-material/Lock";
@@ -10,6 +10,16 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { red } from "@mui/material/colors";
 
 function TopAccountAside() {
+  const { session } = useSession();
+
+  const handleLogout = async (e: any) => {
+    e.preventDefault();
+    sessionStorage.clear();
+    await session.logout().then(() => {
+      window.location.href = "http://localhost:3000/login";
+    })
+  };
+
   return (
     <div className="top-acc-aside-main">
       <button className="top-acc-aside-back">
@@ -27,6 +37,7 @@ function TopAccountAside() {
         <TopAsideButton
           icon={<LockIcon style={{ color: red[500] }} />}
           text="Cerrar sesion"
+          onClick={handleLogout}
         />
       </div>
     </div>

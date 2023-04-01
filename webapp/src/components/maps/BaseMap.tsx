@@ -56,6 +56,7 @@ function BaseMap({ position, styles, points }: Props) {
                       location={point.location}
                       category={point.category}
                       owner={point.owner as PointOwner}
+                      point={point}
                     />
                   </Popup>
                 </Marker>
