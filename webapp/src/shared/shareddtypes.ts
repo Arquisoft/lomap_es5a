@@ -261,6 +261,15 @@ type PointListingAsideProps = {
   points: PointSummary[];
 }
 
+type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  msgSenderId: string;
+  appId: string;
+};
+
 export type {
   SingleCategory,
   ComponentClassName,
@@ -281,7 +290,8 @@ export type {
   Reviewer,
   PointOwner,
   ProfileInfoWithFollowButtonProps,
-  PointListingAsideProps
+  PointListingAsideProps,
+  FirebaseConfig
 };
 
 export { Category };
