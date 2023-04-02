@@ -216,6 +216,7 @@ interface BaseSelect {
   category?: string;
   showContent?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  styles?: React.CSSProperties | string;
 }
 
 // For text inputs
@@ -230,7 +231,9 @@ interface BaseInputProps {
   placeholder?: string;
   required?: boolean;
   styles?: React.CSSProperties | string;
-}
+};
+
+
 
 interface BaseTextAreaProps {
   label: string;

@@ -50,6 +50,9 @@ function CreatePointForm() {
             value={info.name}
             onChange={(e) => setCurrentPointProperty("name", e.target.value)}
             placeholder="Sidreria Tierra Astur"
+            styles={{
+              height: "62px"
+            }}
           />
 
           <div className="create-form-form-coords-inputs">
@@ -65,6 +68,10 @@ function CreatePointForm() {
                 })
               }
               placeholder="43.12345"
+              styles={{
+                width : "296px",
+                height: "62px"
+              }}
             />
 
             <BaseTextInput
@@ -79,6 +86,10 @@ function CreatePointForm() {
                 })
               }
               placeholder="-6.98765"
+              styles={{
+                width : "296px",
+                height: "62px"
+              }}
             />
           </div>
 
@@ -91,6 +102,10 @@ function CreatePointForm() {
               setPointAddress(e.target.value)
             }
             placeholder="Calle Gascona, 1, 33001 Oviedo"
+            styles={{
+              width : "600px",
+              height: "62px"
+            }}
           />
 
           <BaseSelect
@@ -100,9 +115,13 @@ function CreatePointForm() {
             options={availableCategories.map((cat) => {
               return { value: cat.name, content: cat.name };
             })}
+            styles={{
+              height: "62px"
+            }}
             handleChange={(e) =>
               setCurrentPointProperty("category", e.target.value)
             }
+
           />
           <BaseTextArea
             label="Descripción"
