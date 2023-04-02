@@ -6,7 +6,8 @@ import {
     SAVED_POINTS_PATH,
     SIGNUP_PATH,
     SETTINGS_PATH,
-    FAQ_PATH
+    FAQ_PATH,
+    CREATE_POINT_PATH
 } from "../routes";
 
 /**
@@ -45,6 +46,12 @@ let menuItems: MenuItem[] = [
     alias: "friends",
     name: "Amigos",
     url: FRIENDS_PATH,
+    show: true,
+  },
+  {
+    alias: "add-point",
+    name: "Añadir punto",
+    url: CREATE_POINT_PATH,
     show: true,
   },
   {

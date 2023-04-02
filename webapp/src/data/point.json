@@ -12,10 +12,7 @@
         "postalCode": 33001,
         "city": "Oviedo",
         "country": "España",
-        "coords": {
-          "lat": 43.36475042766072, 
-          "lng": -5.850033555019544
-        }
+        "coords": { "lat": 43.36475042766072, "lng": -5.850033555019544 }
       },
       "owner": {
         "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
@@ -59,10 +56,7 @@
         "postalCode": 33003,
         "city": "Oviedo",
         "country": "España",
-        "coords": {
-          "lat": 43.362100207119994,
-          "lng": -5.847111805570392
-        }
+        "coords": { "lat": 43.362100207119994, "lng": -5.847111805570392 }
       },
       "owner": {
         "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
@@ -103,6 +97,6 @@
       ],
       "createdAt": "2018-01-24T15:00:00.000Z",
       "updatedAt": "2018-01-24T15:00:00.000Z"
-    }    
+    }
   ]
 }

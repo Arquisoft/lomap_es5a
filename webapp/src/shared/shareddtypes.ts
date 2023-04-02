@@ -123,7 +123,7 @@ type Point = {
   reviews?: Review[];
   image?: Image;
   isPublic: boolean;
-  category: Category | Category.NONE;
+  category: Category;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -198,6 +198,7 @@ type BaseMapPopupProps = {
   image?: string;
   location: BaseLocation;
   owner: PointOwner;
+  point?: Point;
 };
 
 /**
@@ -215,6 +216,7 @@ interface BaseSelect {
   category?: string;
   showContent?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  styles?: React.CSSProperties | string;
 }
 
 // For text inputs
@@ -222,13 +224,16 @@ interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
   styles?: React.CSSProperties | string;
-}
+};
+
+
 
 interface BaseTextAreaProps {
   label: string;

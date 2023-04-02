@@ -1,83 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import { useSession } from "@inrupt/solid-ui-react";
+import { findAllPoints } from "../../api/point.api";
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
-import { addPoint, deletePoint, findAllPoints } from "../../api/point.api";
-import { Category } from "../../shared/shareddtypes";
+import { useAllPointsStore } from "../../store/point.store";
+import { Point } from "../../shared/shareddtypes";
 
 function HomePage() {
-  const [points, setPoints] = useState([]);
+  //const [points, setPoints] = useState([]);
+  const { setAllPoints, points } = useAllPointsStore();
 
   const { session } = useSession();
+  
   const loadAllPoints = async () => {
-    // const webId: string =
-    // getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
-    // const result = await findAllPoints();
-    // const result = await findAllPublicPoints();
-    // const result = await findPointById("1");
-    // const result = await findPointsByCategory("bar");
-     const result = await addPoint({
-         _id: crypto.randomUUID(),
-         name: "Point 1",
-         description: "Point 1 description",
-         category: Category.BAR,
-         isPublic: true,
-         location: {
-           address: "",
-           postalCode: 1111,
-           city: "City 1",
-           country: "Country 1",
-           coords : {lat:0,lng:0}
-         },
-         owner: {
-           webId : "https://localhost:8443/profile/card#me",
-           imageUrl : ""
-         },
-         reviews: [],
-         createdAt: new Date(),
-         updatedAt: new Date()
-       });
-    // const result = await editPointById("1", {
-    //        _id: crypto.randomUUID(),
-    //        name: "Point nuevo",
-    //        description: "Point 1 nuevo description",
-    //        category: Category.CINEMA,
-    //        isPublic: true,
-    //        location: {
-    //        address: "",
-    //        postalCode: 1111,
-    //        city: "City 1",
-    //        country: "Country 1",
-    //        coords : {lat:0,lng:0}
-    //      },
-    //      owner: {
-    //        webId : "https://localhost:8443/profile/card#me",
-    //       imageUrl : ""
-    //      },
-    //      reviews: [],
-    //      createdAt: new Date(),
-    //      updatedAt: new Date()
-    //   });
-    // const result = await deletePoint("1");
-    //const result = await addReviewPoint("1",
-    //{
-    //  _id: "nueva",
-    //  reviewer: {
-    //    webId: "https://localhost:8443/profile/card#me",
-    //    imageUrl: ""
-    //  } as Reviewer,
-    //  rating: 5,
-    //  comment: "This is a comment",
-    //  createdAt: "2018-01-24T15:00:00.000Z"
-    //} as unknown as Review
-    //);
-    // const result = await deleteReviewByPoint("1","5a6c5b0b0f5a9c0014d1b1b2");
-    // const result = await findAllReviewByPoint("1");
-    console.log(result)
-    // setPoints(result)
+    const data: Point[] = await findAllPoints(session.info.webId as string);
+    setAllPoints(data);
+    console.log(data);
   };
 
   useEffect(() => {

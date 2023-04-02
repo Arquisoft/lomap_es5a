@@ -1,6 +1,29 @@
+.create-point-principal{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-point-footer{
+    padding-top: 150px;
+}
+
 .main-create-point{
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap:200px
+}
+
+.create-point-aside{
+    padding-top: 40px;
+    padding-left: 50px;
+}
+
+.create-point-form{
+    padding-top: 60px;
+}
+
+.create-point-map{
+    padding-top:  163px;
+    padding-right: 100px;
 }
 

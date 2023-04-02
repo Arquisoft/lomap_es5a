@@ -1,3 +1,4 @@
+import { JSONObject } from "puppeteer";
 import type {
   BaseLocation,
   Point,
@@ -56,16 +57,12 @@ const parseJsonToPointItem = (inData: any): Point => {
     _id,
     name,
     description,
-    category,
-    image: {
-      url: image,
-      alt: name
-    },
-    // category: checkCategory(category) ? (category as Category) : Category.NONE,
-    isPublic,
+    image,
+    category: parseCategory(category),
     location: parseLocation(location),
-    owner,
     reviews: parseReviews(reviews),
+    owner,
+    isPublic,
     createdAt: new Date(createdAt),
     updatedAt: new Date(updatedAt),
   };
@@ -92,10 +89,7 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
     description,
     location: parseLocation(location),
     owner,
-    image: {
-      url: image,
-      alt: name
-    },
+    image,
     isPublic,
     category: checkCategory(category) ? (category as Category) : Category.NONE,
     createdAt: new Date(createdAt),
@@ -104,7 +98,11 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
   return pointSummary;
 };
 
-const checkCategory = (category: string) => category in Category;
+const checkCategory = (newCategory: string) => newCategory in Category;
+
+const parseCategory = (newCategory: string): Category => {
+  return checkCategory(newCategory) ? newCategory as Category : Category.NONE;
+}
 
 /**
  * Transforma la localización de un punto de interés en un objeto de tipo BaseLocation.
@@ -113,10 +111,16 @@ const checkCategory = (category: string) => category in Category;
  */
 const parseLocation = (location: any): BaseLocation => {
   const { coords, address, postalCode, city, country } = location;
+  let { lat, lng } = coords;
+
+  if(!coords){
+    throw new Error("Location must have coords");
+  }
+  
   return {
     coords: {
-      lat: coords.lat,
-      lng: coords.lng,
+      lat: Number(lat),
+      lng: Number(lng),
     },
     address,
     postalCode,
@@ -132,6 +136,11 @@ const parseLocation = (location: any): BaseLocation => {
 const parseReviews = (reviews: any) => {
   return reviews.map((review: Review) => {
     const { _id, reviewer, rating, comment, createdAt } = review;
+
+    if(!reviewer){
+      throw new Error("Review must have a reviewer");
+    }
+
     const { webId, imageUrl } = reviewer;
 
     return {

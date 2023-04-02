@@ -2,6 +2,7 @@ import React from "react";
 import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
 import "../../public/css/components/inputs/baseSelect/BaseSelect.scss";
 
+
 function BaseSelect({
   id,
   label,
@@ -9,7 +10,9 @@ function BaseSelect({
   options,
   showContent,
   handleChange,
+  styles
 }: BaseSelectType) {
+
   return (
     <div className="base-select-container">
       <label htmlFor={id}>{label}</label>
@@ -19,6 +22,7 @@ function BaseSelect({
         name={name}
         id={id}
         className="base-select-item"
+        style={styles as React.CSSProperties}
       >
         {options.map((opt) => {
           return (
