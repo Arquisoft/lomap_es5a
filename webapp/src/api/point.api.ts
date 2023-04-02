@@ -1,10 +1,8 @@
-import { getFile, overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { Category, Point, Review } from "../shared/shareddtypes";
-import { convertArrToJSON } from "../utils/jsonUtils";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { getUserPrivatePointsUrl } from "../helpers/PodHelper";
-import { exit } from "process";
 
 /**
  * Obtener todos los puntos de interés.
@@ -50,7 +48,7 @@ const findAllPublicPoints = async (webId: string): Promise<Point[]> => {
     let filtro = totalPoints.filter(item => item.isPublic === true)
 
     if (filtro.length === 0) {
-      console.log("ERROR: No tiene ningún punto público almacenado")
+      console.log("No tiene ningún punto público almacenado")
     } else {
       return filtro
     }
@@ -80,7 +78,7 @@ const findPointById = async (idPoint:string, webId: string): Promise<Point> => {
     let filtro = totalPoints.filter(item => item._id === idPoint)
 
     if (filtro.length === 0) {
-      console.log("ERROR: No existe el punto con id = " + idPoint)
+      console.log("No existe el punto con id = " + idPoint)
     } else {
       return filtro[0] // devolvemos el punto con ese id
     }
@@ -109,7 +107,7 @@ const findPointsByCategory = async (category:Category, webId: string): Promise<P
     let totalPoints = parseJsonToPoint(await data.json())
     let filtro = totalPoints.filter(item => item.category === category)
     if (filtro.length === 0) {
-      console.log("ERROR: No existe ningún punto con esa categoría (" + category + ")")
+      console.log("No existe ningún punto con esa categoría (" + category + ")")
     } else {
       return filtro // devolvemos los puntos con esa categoría
     }
@@ -195,7 +193,7 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
     let filtro = totalPoints.filter(item => item._id === idPoint)
 
     if (filtro.length === 0) {
-      console.log("ERROR: No existe el punto con id = " + idPoint)
+      console.log("No existe el punto con id = " + idPoint)
     } else {
       for (const element of totalPoints) {
         if (element._id === idPoint) { // actualizamos
@@ -246,7 +244,7 @@ const deletePoint = async (idPoint: string, webId: string) => {
     let punto = totalPoints.filter(item => item._id === idPoint)
 
     if (punto.length === 0) {
-      console.log("ERROR: No existe ningún punto con id = " + idPoint)
+      console.log("No existe ningún punto con id = " + idPoint)
     } else {
       const blob = new Blob([JSON.stringify({"points" : filtro})], {
         type: "application/json",
@@ -291,7 +289,7 @@ const addReviewPoint = async (idPoint: string, review: Review, webId:string) => 
     punto?.reviews?.push(review) // añadimos la review
 
     if (!punto) {
-      console.log("ERROR: No existe ningún punto con id = " + idPoint);
+      console.log("No existe ningún punto con id = " + idPoint);
     } else {
       let result : Point[] = [...pointsOriginal,punto] // obtenemos el array de puntos
       console.log(result)
@@ -343,7 +341,7 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string, webId:strin
     }
     
     if (!punto) {
-      console.log("ERROR: No existe ningún punto con id = " + idPoint);
+      console.log("No existe ningún punto con id = " + idPoint);
     } else {
       let result : Point[] = [...pointsOriginal,punto] // obtenemos el array de puntos
       console.log(result)
@@ -387,7 +385,7 @@ const findAllReviewByPoint = async (idPoint:string, webId:string): Promise<Revie
     let filtro = totalPoints.filter(item => item._id === idPoint)
 
     if (filtro.length === 0) {
-      console.log("ERROR: No existe el punto con id = " + idPoint)
+      console.log("No existe el punto con id = " + idPoint)
     } else {
       return filtro[0].reviews // devolvemos las reviews
     }

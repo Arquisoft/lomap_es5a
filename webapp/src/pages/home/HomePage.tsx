@@ -2,9 +2,7 @@ import { useEffect, useMemo } from "react";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
-
 import { useSession } from "@inrupt/solid-ui-react";
-
 import { findAllPoints } from "../../api/point.api";
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
