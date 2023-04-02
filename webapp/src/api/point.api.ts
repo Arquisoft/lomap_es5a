@@ -106,6 +106,7 @@ const findPointsByCategory = async (category:Category, webId: string): Promise<P
     });
     let totalPoints = parseJsonToPoint(await data.json())
     let filtro = totalPoints.filter(item => item.category === category)
+
     if (filtro.length === 0) {
       console.log("No existe ningún punto con esa categoría (" + category + ")")
     } else {
@@ -137,6 +138,8 @@ const addPoint = async (point: Point, webId: string) => {
     let totalPoints = parseJsonToPoint(await originalPoints.json())
     totalPoints.push(point) // añadimos el punto
 
+    console.log(totalPoints)
+
     const blob = new Blob([JSON.stringify({"points" : totalPoints})], {
       type: "application/json",
     });
@@ -149,25 +152,18 @@ const addPoint = async (point: Point, webId: string) => {
       fichero,
       { contentType: fichero.type, fetch: fetch }
     );
+    console.log("Punto añadido satisfactoriamente con id = " + point._id)
   } catch (err) {
     // si no existe el fichero, lo creamos
     let points: Point[] = [] // creamos un array
     points.push(point) // añadimos el punto
 
-    const blob = new Blob([JSON.stringify({"points" : points})], {
-      type: "application/json",
-    });
-
-    let file = new File([blob], "points.json", {type: blob.type})
-
-    // actualizamos el POD
     await saveFileInContainer(
       getUserPrivatePointsUrl(webId).replace("/private/points/points.json", "/private/points/"),
-      file,
-      { slug: file.name, contentType: file.type, fetch: fetch }
+      new Blob([JSON.stringify({"points" : points})], {type: "application/json"}),
+      { slug: "points.json", contentType: "application/json", fetch: fetch }
     );
-    
-    addPoint(point, webId)
+    console.log("Punto añadido satisfactoriamente con id = " + point._id)
   }
 }
 
@@ -216,9 +212,10 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
         fichero,
         { contentType: fichero.type, fetch: fetch }
       );
+      console.log("Punto editado satisfactoriamente con id = " + idPoint)
     }
   } catch (err) {
-    console.log("Error editPointById: ", err)
+    console.error("Error editPointById: ", err)
   }
 }
 
@@ -261,7 +258,7 @@ const deletePoint = async (idPoint: string, webId: string) => {
       console.log("Punto eliminado satisfactoriamente con id = " + idPoint)
     }
   } catch (err) {
-    console.log("Error deletePoint: ", err)
+    console.error("Error deletePoint: ", err)
   }
 }
 
@@ -308,7 +305,7 @@ const addReviewPoint = async (idPoint: string, review: Review, webId:string) => 
       console.log("Review añadida satisfactoriamente con id = " + review._id)
     }
   } catch (err) {
-    console.log("Error addReviewPoint: ", err)
+    console.error("Error addReviewPoint: ", err)
   }
 };
 
@@ -360,7 +357,7 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string, webId:strin
       console.log("Review eliminada satisfactoriamente con id = " + idReview)
     }
   } catch (err) {
-    console.log("Error deleteReviewByPoint: ", err)
+    console.error("Error deleteReviewByPoint: ", err)
   }
 }
 
@@ -390,7 +387,7 @@ const findAllReviewByPoint = async (idPoint:string, webId:string): Promise<Revie
       return filtro[0].reviews // devolvemos las reviews
     }
   } catch (err) {
-    console.log("Error findAllReviewByPoint: ", err)
+    console.error("Error findAllReviewByPoint: ", err)
   }
   return [];
 }

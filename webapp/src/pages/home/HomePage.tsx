@@ -3,11 +3,11 @@ import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import { useSession } from "@inrupt/solid-ui-react";
-import { findAllPoints } from "../../api/point.api";
+import { addPoint, editPointById, findAllPoints, findPointsByCategory } from "../../api/point.api";
 import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
 import { useAllPointsStore } from "../../store/point.store";
-import { Point } from "../../shared/shareddtypes";
+import { Category, Point } from "../../shared/shareddtypes";
 
 function HomePage() {
   //const [points, setPoints] = useState([]);
@@ -15,10 +15,29 @@ function HomePage() {
 
   const { session } = useSession();
   
-  const loadAllPoints = async () => {
-    const data: Point[] = await findAllPoints(session.info.webId as string);
-    setAllPoints(data);
-    console.log(data);
+  const loadAllPoints = () => {
+     addPoint({
+         _id: crypto.randomUUID(),
+         name: "Point 1",
+         description: "Point 1 description",
+         category: Category.BAR,
+         isPublic: true,
+         location: {
+           address: "",
+           postalCode: 1111,
+           city: "City 1",
+           country: "Country 1",
+           coords : {lat:0,lng:0}
+         },
+         owner: {
+           webId : "https://localhost:8443/profile/card#me",
+           imageUrl : ""
+         },
+         reviews: [],
+         createdAt: new Date(),
+         updatedAt: new Date()
+       }, session.info.webId as string);
+   
   };
 
   useEffect(() => {
