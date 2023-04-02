@@ -98,11 +98,15 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
   return pointSummary;
 };
 
-const checkCategory = (newCategory: string) => newCategory in Category;
+const checkCategory = (newCategory: string) =>
+  Object.values(Category)
+    .map((cat) => cat.toLocaleLowerCase())
+    .includes(newCategory as Category);
 
 const parseCategory = (newCategory: string): Category => {
-  return checkCategory(newCategory) ? newCategory as Category : Category.NONE;
-}
+  console.log("newCategory: ", newCategory, checkCategory(newCategory));
+  return checkCategory(newCategory) ? (newCategory as Category) : Category.NONE;
+};
 
 /**
  * Transforma la localización de un punto de interés en un objeto de tipo BaseLocation.
@@ -113,10 +117,10 @@ const parseLocation = (location: any): BaseLocation => {
   const { coords, address, postalCode, city, country } = location;
   let { lat, lng } = coords;
 
-  if(!coords){
+  if (!coords) {
     throw new Error("Location must have coords");
   }
-  
+
   return {
     coords: {
       lat: Number(lat),
@@ -137,7 +141,7 @@ const parseReviews = (reviews: any) => {
   return reviews.map((review: Review) => {
     const { _id, reviewer, rating, comment, createdAt } = review;
 
-    if(!reviewer){
+    if (!reviewer) {
       throw new Error("Review must have a reviewer");
     }
 

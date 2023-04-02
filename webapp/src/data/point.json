@@ -4,20 +4,17 @@
       "_id": "6b9389b3-d544-4c74-9108-24faecbb6497",
       "name": "Restaurante La Casona",
       "description": "Restaurante de cocina tradicional asturiana",
+      "image": {
+        "url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+        "alt": "Restaurante La Casona"
+      },
       "category": "restaurant",
-      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-      "isPublic": true,
       "location": {
+        "coords": { "lat": 43.36475042766072, "lng": -5.850033555019544 },
         "address": "Calle Dr Casal",
         "postalCode": 33001,
         "city": "Oviedo",
-        "country": "España",
-        "coords": { "lat": 43.36475042766072, "lng": -5.850033555019544 }
-      },
-      "owner": {
-        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
-        "name": "Juan Pérez",
-        "imageUrl": "https://randomuser.me/api/portraits/men/40.jpg"
+        "country": "España"
       },
       "reviews": [
         {
@@ -41,6 +38,12 @@
           "createdAt": "2023-03-28T12:30:00.000Z"
         }
       ],
+      "owner": {
+        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
+        "name": "Juan Pérez",
+        "imageUrl": "https://randomuser.me/api/portraits/men/40.jpg"
+      },
+      "isPublic": true,
       "createdAt": "2018-01-24T15:00:00.000Z",
       "updatedAt": "2018-01-24T15:00:00.000Z"
     },
@@ -48,20 +51,17 @@
       "_id": "c192990c-c77c-4176-a308-0f6c4c439c99",
       "name": "Confitería Rialto",
       "description": "Confitería de calidad",
+      "image": {
+        "url": "https://images.unsplash.com/photo-1665475749364-abbd3eca55dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "alt": "Confitería Rialto"
+      },
       "category": "shop",
-      "image": "https://images.unsplash.com/photo-1665475749364-abbd3eca55dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
-      "isPublic": true,
       "location": {
+        "coords": { "lat": 43.362100207119994, "lng": -5.847111805570392 },
         "address": "Calle San Francisco, 12",
         "postalCode": 33003,
         "city": "Oviedo",
-        "country": "España",
-        "coords": { "lat": 43.362100207119994, "lng": -5.847111805570392 }
-      },
-      "owner": {
-        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
-        "name": "Cristina Fernández",
-        "imageUrl": "https://randomuser.me/api/portraits/women/90.jpg"
+        "country": "España"
       },
       "reviews": [
         {
@@ -95,8 +95,74 @@
           "createdAt": "2023-03-27T12:30:00.000Z"
         }
       ],
+      "owner": {
+        "webId": "https://pruebasolid1.inrupt.net/profile/card#me",
+        "name": "Cristina Fernández",
+        "imageUrl": "https://randomuser.me/api/portraits/women/90.jpg"
+      },
+      "isPublic": true,
       "createdAt": "2018-01-24T15:00:00.000Z",
       "updatedAt": "2018-01-24T15:00:00.000Z"
+    },
+    {
+      "_id": "ddd114dc-921c-4aee-94b7-2a2703a39e7a",
+      "name": "adsfsadf",
+      "description": "adsfsadfasdf",
+      "image": { "url": "", "alt": "" },
+      "category": "shop",
+      "location": {
+        "coords": { "lat": 43.04480541304369, "lng": -7.371826171875001 },
+        "address": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "postalCode": 0,
+        "city": "",
+        "country": ""
+      },
+      "reviews": [],
+      "owner": { "webId": "", "name": "", "imageUrl": "" },
+      "isPublic": false,
+      "createdAt": "2023-04-01T17:06:07.604Z",
+      "updatedAt": "2023-04-01T17:06:07.604Z"
+    },
+    {
+      "_id": "6362a8af-4413-4ba9-8a46-72af4cc6d34f",
+      "name": "Parque San Francisco de Oviedo",
+      "description": "Parque frondoso en el centro de la ciudad, con pavos reales, un estanque, un templete ornamentado y numerosas estatuas.",
+      "image": { "url": "", "alt": "" },
+      "category": "park",
+      "location": {
+        "coords": { "lat": 43.36150652010058, "lng": -5.847473144531251 },
+        "address": "El Palomar, 33007 Oviedo, Asturias",
+        "postalCode": 0,
+        "city": "",
+        "country": ""
+      },
+      "reviews": [],
+      "owner": { "webId": "", "name": "", "imageUrl": "" },
+      "isPublic": false,
+      "createdAt": "2023-04-01T17:24:02.727Z",
+      "updatedAt": "2023-04-01T17:24:02.727Z"
+    },
+    {
+      "_id": "e2d8fd84-a79d-4abc-8cd7-e5b685cd3e3c",
+      "name": "Talleres Batuak",
+      "description": "Is your car in need of some TLC? Look no further than our trusted garage services in the heart of the city. Our experienced technicians offer a wide range of services to keep your vehicle running smoothly, from oil changes and tune-ups to major repairs. We understand how important your car is to you, which is why we always go the extra mile to provide top-quality service and exceptional customer care. Whether you're in need of routine maintenance or a major repair, you can count on us to get you back on the road safely and quickly. Don't let car trouble slow you down - contact us today to schedule an appointment and experience the best garage services in the city",
+      "location": {
+        "coords": { "lat": 43.300063478846376, "lng": -3.0245019990412607 },
+        "address": "Carr. San Vicente, 48510 Valle de Trápaga-Trapagaran, Biscay",
+        "postalCode": 0,
+        "city": "",
+        "country": ""
+      },
+      "owner": { "webId": "", "name": "", "imageUrl": "" },
+      "reviews": [],
+      "image": {
+        "url": "https://firebasestorage.googleapis.com/v0/b/lomapes05a.appspot.com/o/points%2F2c773dfd-d43f-4b8e-b332-c3e627eb0401.jpg?alt=media&token=a3c37327-2f4e-493b-9791-47e47ff23a69",
+        "alt": "Talleres Batuak"
+      },
+      "isPublic": false,
+      "category": "shop",
+      "createdAt": "2023-04-02T14:03:44.597Z",
+      "updatedAt": "2023-04-02T14:03:44.597Z"
     }
   ]
 }
