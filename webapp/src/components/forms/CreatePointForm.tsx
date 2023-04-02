@@ -12,7 +12,7 @@ import { addPoint } from "../../api/point.api";
 import { useSession } from "@inrupt/solid-ui-react";
 
 function CreatePointForm() {
-  const { setCurrentPointProperty, setPosition, setPointAddress, info } = usePointDetailsStore();
+  const { setCurrentPointProperty, setPosition, setPointAddress, info, image } = usePointDetailsStore();
   const { session} = useSession();
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
@@ -22,7 +22,7 @@ function CreatePointForm() {
     info.location.city = "";
     info.location.country = "";
 
-    await addPoint(info, session.info.webId as string).then(() => {
+    await addPoint(info, session.info.webId as string, image).then(() => {
       console.log("Punto creado");
     });
     //addPoint(info);
@@ -112,8 +112,9 @@ function CreatePointForm() {
             id="create-point-category-selector"
             label="Categoría"
             name="category"
+            showContent={true}
             options={availableCategories.map((cat) => {
-              return { value: cat.name, content: cat.name };
+              return { value: cat.code, content: cat.name };
             })}
             styles={{
               height: "62px"
@@ -133,8 +134,6 @@ function CreatePointForm() {
             placeholder="Explica brevemente la ubicación del punto, su horario, etc."
           />
         </div>
-
-        {/* Input file para subir imagen */}
 
         <div className="create-form-buttons">
           <BaseButton

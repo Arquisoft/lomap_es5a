@@ -4,6 +4,7 @@ enum Category {
   CAFE = "cafe",
   HOTEL = "hotel",
   GROCERY = "grocery",
+  SUPERMARKET= "supermarket",
   CINEMA = "cinema",
   SHOP = "shop",
   MUSEUM = "museum",
@@ -15,6 +16,7 @@ enum Category {
 
 type SingleCategory = {
   id: string;
+  code: string;
   name: string;
   description?: string;
   icon?: any;
@@ -264,6 +266,15 @@ type PointListingAsideProps = {
   points: PointSummary[];
 }
 
+type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  msgSenderId: string;
+  appId: string;
+};
+
 export type {
   SingleCategory,
   ComponentClassName,
@@ -284,7 +295,8 @@ export type {
   Reviewer,
   PointOwner,
   ProfileInfoWithFollowButtonProps,
-  PointListingAsideProps
+  PointListingAsideProps,
+  FirebaseConfig
 };
 
 export { Category };

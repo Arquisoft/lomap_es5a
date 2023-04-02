@@ -10,34 +10,13 @@ import { useAllPointsStore } from "../../store/point.store";
 import { Category, Point } from "../../shared/shareddtypes";
 
 function HomePage() {
-  //const [points, setPoints] = useState([]);
   const { setAllPoints, points } = useAllPointsStore();
 
   const { session } = useSession();
   
-  const loadAllPoints = () => {
-     addPoint({
-         _id: crypto.randomUUID(),
-         name: "Point 1",
-         description: "Point 1 description",
-         category: Category.BAR,
-         isPublic: true,
-         location: {
-           address: "",
-           postalCode: 1111,
-           city: "City 1",
-           country: "Country 1",
-           coords : {lat:0,lng:0}
-         },
-         owner: {
-           webId : "https://localhost:8443/profile/card#me",
-           imageUrl : ""
-         },
-         reviews: [],
-         createdAt: new Date(),
-         updatedAt: new Date()
-       }, session.info.webId as string);
-   
+  const loadAllPoints = async () => {
+    const data: Point[] = await findAllPoints(session.info.webId as string);
+    setAllPoints(data);
   };
 
   useEffect(() => {

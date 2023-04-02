@@ -1,8 +1,13 @@
-import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import {
+  getFile,
+  overwriteFile,
+  saveFileInContainer,
+} from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { getUserPrivatePointsUrl } from "../helpers/PodHelper";
+import { uploadImage } from "../services/imageService";
 
 /**
  * Obtener todos los puntos de interés.
@@ -22,12 +27,13 @@ const findAllPoints = async (webId: string): Promise<Point[]> => {
     });
 
     return parseJsonToPoint(await data.json())
+
   } catch (err) {
-    console.error("Error findAllPoints: ", err)
+    console.error("Error findAllPoints: ", err);
   }
 
   return [];
-}
+};
 
 /**
  * Obtener todos los puntos públicos de interés, es decir con isPublic a true.
@@ -50,7 +56,7 @@ const findAllPublicPoints = async (webId: string): Promise<Point[]> => {
     if (filtro.length === 0) {
       console.log("No tiene ningún punto público almacenado")
     } else {
-      return filtro
+      return filtro;
     }
   } catch (err) {
     console.error("Error findAllPublicPoints: ", err)
@@ -80,7 +86,7 @@ const findPointById = async (idPoint:string, webId: string): Promise<Point> => {
     if (filtro.length === 0) {
       console.log("No existe el punto con id = " + idPoint)
     } else {
-      return filtro[0] // devolvemos el punto con ese id
+      return filtro[0]; // devolvemos el punto con ese id
     }
   } catch (err) {
     console.error("Error findPointById: ", err)
@@ -110,7 +116,7 @@ const findPointsByCategory = async (category:Category, webId: string): Promise<P
     if (filtro.length === 0) {
       console.log("No existe ningún punto con esa categoría (" + category + ")")
     } else {
-      return filtro // devolvemos los puntos con esa categoría
+      return filtro; // devolvemos los puntos con esa categoría
     }
   } catch (err) {
     console.error("Error findPointsByCategory: ", err)
@@ -125,8 +131,8 @@ const findPointsByCategory = async (category:Category, webId: string): Promise<P
  * @param webId webId del usuario en sesión
  * @returns
  */
-const addPoint = async (point: Point, webId: string) => {
-  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId))
+const addPoint = async (point: Point, webId: string, image?: File) => {
+  let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   try {
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",
@@ -135,22 +141,31 @@ const addPoint = async (point: Point, webId: string) => {
       },
     });
 
-    let totalPoints = parseJsonToPoint(await originalPoints.json())
-    totalPoints.push(point) // añadimos el punto
+    let totalPoints = parseJsonToPoint(await originalPoints.json());
 
-    console.log(totalPoints)
+    // Subir la imagen del punto y obtener la url
+    await uploadImage(
+      image as File,
+      async (downloadUrl) => {
+        point.image = {
+          url: downloadUrl ?? "",
+          alt: point?.name ?? "",
+        };
 
-    const blob = new Blob([JSON.stringify({"points" : totalPoints})], {
-      type: "application/json",
-    });
+        totalPoints.push(point); // añadimos el punto
 
-    let fichero = new File([blob], "points.json", { type: blob.type });
+        const blob = new Blob([JSON.stringify({ points: totalPoints })], {
+          type: "application/json",
+        });
 
-    // actualizamos el POD
-    await overwriteFile(
-      getUserPrivatePointsUrl(webId),
-      fichero,
-      { contentType: fichero.type, fetch: fetch }
+        let fichero = new File([blob], "points.json", { type: blob.type });
+
+        // actualizamos el POD
+        await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
+          contentType: fichero.type,
+          fetch: fetch,
+        });
+      }
     );
     console.log("Punto añadido satisfactoriamente con id = " + point._id)
   } catch (err) {
@@ -165,7 +180,7 @@ const addPoint = async (point: Point, webId: string) => {
     );
     console.log("Punto añadido satisfactoriamente con id = " + point._id)
   }
-}
+};
 
 /**
  * Editar la información de un punto de interes.
@@ -175,6 +190,7 @@ const addPoint = async (point: Point, webId: string) => {
  * @param webId webId del usuario en sesión
  * @returns
  */
+
 const editPointById = async (idPoint: string, point: Point, webId: string) => {
   let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId))
   try {
@@ -192,10 +208,11 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
       console.log("No existe el punto con id = " + idPoint)
     } else {
       for (const element of totalPoints) {
-        if (element._id === idPoint) { // actualizamos
+        if (element._id === idPoint) {
+          // actualizamos
           element.name = point.name;
-          element.description = point.description
-          element.category = point.category
+          element.description = point.description;
+          element.category = point.category;
           element.updatedAt = new Date();
           break;
         }
@@ -215,9 +232,9 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
       console.log("Punto editado satisfactoriamente con id = " + idPoint)
     }
   } catch (err) {
-    console.error("Error editPointById: ", err)
+    console.error("Error editPointById: ", err);
   }
-}
+};
 
 /**
  * Eliminar un punto de interés por su id.
@@ -258,9 +275,9 @@ const deletePoint = async (idPoint: string, webId: string) => {
       console.log("Punto eliminado satisfactoriamente con id = " + idPoint)
     }
   } catch (err) {
-    console.error("Error deletePoint: ", err)
+    console.error("Error deletePoint: ", err);
   }
-}
+};
 
 /**
  * Añadir una review sobre un punto de interés.
@@ -282,8 +299,8 @@ const addReviewPoint = async (idPoint: string, review: Review, webId:string) => 
 
     let totalPoints = parseJsonToPoint(await originalPoints.json())
     let pointsOriginal = totalPoints.filter((point) => point._id !== idPoint);
-    let punto = totalPoints.find((point) => point._id === idPoint)
-    punto?.reviews?.push(review) // añadimos la review
+    let punto = totalPoints.find((point) => point._id === idPoint);
+    punto?.reviews?.push(review); // añadimos la review
 
     if (!punto) {
       console.log("No existe ningún punto con id = " + idPoint);
@@ -295,7 +312,7 @@ const addReviewPoint = async (idPoint: string, review: Review, webId:string) => 
       });
   
       let fichero = new File([blob], "points.json", { type: blob.type });
-  
+
       // actualizamos el POD
       await overwriteFile(
         getUserPrivatePointsUrl(webId),
@@ -329,14 +346,20 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string, webId:strin
 
     let totalPoints = parseJsonToPoint(await originalPoints.json())
     let pointsOriginal = totalPoints.filter((point) => point._id !== idPoint);
-    let punto = totalPoints.find((point) => point._id === idPoint)
+    let punto = totalPoints.find((point) => point._id === idPoint);
 
     // eliminamos la review del punto
-    let reviews : Review[] | undefined = punto?.reviews?.filter((review) => review._id !== idReview) // obtenemos las reviews que no queremos borrar
-    if (punto !== undefined && reviews !== undefined && punto?.reviews !== undefined) {
-      punto.reviews = reviews // añadimos las reviews
+    let reviews: Review[] | undefined = punto?.reviews?.filter(
+      (review) => review._id !== idReview
+    ); // obtenemos las reviews que no queremos borrar
+    if (
+      punto !== undefined &&
+      reviews !== undefined &&
+      punto?.reviews !== undefined
+    ) {
+      punto.reviews = reviews; // añadimos las reviews
     }
-    
+
     if (!punto) {
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
@@ -359,7 +382,7 @@ const deleteReviewByPoint = async (idPoint: string, idReview:string, webId:strin
   } catch (err) {
     console.error("Error deleteReviewByPoint: ", err)
   }
-}
+};
 
 /**
  * Obtener todos los review del punto.
@@ -393,4 +416,3 @@ const findAllReviewByPoint = async (idPoint:string, webId:string): Promise<Revie
 }
 
 export { findAllPoints, findAllPublicPoints, findPointById, findPointsByCategory, addPoint, editPointById, deletePoint, addReviewPoint, deleteReviewByPoint, findAllReviewByPoint };
-

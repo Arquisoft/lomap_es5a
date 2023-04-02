@@ -3,10 +3,12 @@ import { Category, Point } from "../shared/shareddtypes";
 
 interface PointDetailsStore {
   info: Point;
+  image?: File;
   setCurrentPoint: (point: Point) => void;
   setCurrentPointProperty: (property: string, value: any) => void;
   setPointAddress: (address: string) => void;
   setPosition: (position: {lat: number, lng: number}) => void;
+  setPointImageFile: (image: File) => void;
 }
 
 interface AllPointsStore {
@@ -52,6 +54,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
     createdAt: new Date(),
     updatedAt: new Date(),
   } as Point,
+  image: undefined,
   // Update some property of the current point
   setCurrentPointProperty: (property: string, value: any) =>
     set((state: any) => ({ info: { ...state.info, [property]: value } })),
@@ -63,7 +66,10 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   
   // Change the coords of the current point
   setPosition: (position: any) => 
-  set((state: any) => ({ info: { ...state.info, location: {coords: position} } }))
+  set((state: any) => ({ info: { ...state.info, location: {coords: position} } })),
+
+  // Imagen del punto de interés 
+  setPointImageFile: (image: File) => set({ image }),
 }));
 
 export { usePointDetailsStore, useAllPointsStore };
