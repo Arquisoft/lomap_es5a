@@ -2,7 +2,6 @@
 import "../../public/css/pages/points/CreatePointPage.css";
 import CreatePointForm from "../../components/forms/CreatePointForm";
 import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
-import { useMarkerStore } from "../../store/map.store";
 import TopAccountAside from "../../components/asides/accountAside/TopAccountAside";
 import Footer from "../../components/footer/Footer";
 import { usePointDetailsStore } from "../../store/point.store";
