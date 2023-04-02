@@ -7,6 +7,7 @@ function BaseTextInput({
   name,
   value,
   onChange,
+  onPaste,
   type,
   id,
   placeholder,
@@ -19,6 +20,7 @@ function BaseTextInput({
       <input
         type={type}
         onChange={onChange}
+        onPaste={onPaste}
         placeholder={placeholder}
         name={name}
         value={value}

@@ -1,12 +1,15 @@
+
 import "../../public/css/pages/points/CreatePointPage.css";
 import CreatePointForm from "../../components/forms/CreatePointForm";
 import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
 import { useMarkerStore } from "../../store/map.store";
 import TopAccountAside from "../../components/asides/accountAside/TopAccountAside";
 import Footer from "../../components/footer/Footer";
+import { usePointDetailsStore } from "../../store/point.store";
+
 
 function CreatePointPage() {
-  const currentPosition = useMarkerStore.getState().position;
+  const {info} = usePointDetailsStore();
 
   return (
     <div className="create-point-principal">
@@ -19,7 +22,10 @@ function CreatePointPage() {
         </div>
         <div className="create-point-map">
           <MapWithDragableMarker
-            position={currentPosition}
+            position={info.location.coords || {
+              lat: 43.362503991605806,
+              lng: -5.8507845362433235,
+            }}
             styles={{
               width: "400px",
               height: "455px",

@@ -4,16 +4,17 @@ import IconButton from "../../../buttons/IconButton";
 type Props = {
     icon: React.ReactNode;
     text: string;
+    onClick?: (e: any) => void;
   };
 
 
-function TopAsideButton({icon,text}:Props){
+function TopAsideButton({icon,text, onClick}:Props){
     return(
         <div className="aside-button-main">
             <div className="aside-button-logo">
                 {icon}
             </div>
-            <button className="aside-button-text">
+            <button className="aside-button-text" onClick={onClick}>
                 {text}
             </button>
         </div>
