@@ -22,7 +22,7 @@ function CreatePointPage() {
             position={currentPosition}
             styles={{
               width: "400px",
-              height: "555px",
+              height: "455px",
               borderRadius: "20px",
             }}
           />

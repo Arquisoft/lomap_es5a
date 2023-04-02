@@ -10,22 +10,20 @@
 .main-create-point{
     display: flex;
     flex-direction: row;
+    gap:200px
 }
 
 .create-point-aside{
     padding-top: 40px;
     padding-left: 50px;
-    background-color: coral;
 }
 
 .create-point-form{
     padding-top: 60px;
-    background-color: aqua;
 }
 
 .create-point-map{
     padding-top:  163px;
     padding-right: 100px;
-    background-color: yellow;
 }
 
