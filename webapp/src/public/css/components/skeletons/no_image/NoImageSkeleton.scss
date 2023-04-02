@@ -1,0 +1,10 @@
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
+
+.no-image-skeleton-container{
+    @include mixins.flex(row, center, center, 15px);
+    width: 48px;
+    height: 48px;
+    border-radius: 9px;
+    background-color: funcs.color("light_gray", "base");
+}

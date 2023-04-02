@@ -61,8 +61,30 @@
   border: none;
   color: #FFFFFF;
 }
+.button-primary:disabled {
+  cursor: not-allowed;
+}
 .button-primary:hover {
   background-color: #ee152f;
+}
+
+.button-primary-outlined {
+  width: 128px;
+  height: 38px;
+  border-radius: 100px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: transparent;
+  color: #ef233c;
+  border: 2px solid #ef233c;
+}
+.button-primary-outlined:disabled {
+  cursor: not-allowed;
+}
+.button-primary-outlined:hover {
+  background-color: #ef233c;
+  color: #ffffff;
 }
 
 .button-blue {
@@ -75,6 +97,9 @@
   background-color: #1c4fd8;
   color: #ffffff;
   border: none;
+}
+.button-blue:disabled {
+  cursor: not-allowed;
 }
 .button-blue:hover {
   background-color: #1a4aca;
@@ -90,6 +115,9 @@
   background-color: transparent;
   color: #1c4fd8;
   border: 2px solid #1c4fd8;
+}
+.button-blue-outlined:disabled {
+  cursor: not-allowed;
 }
 .button-blue-outlined:hover {
   background-color: #1c4fd8;
@@ -123,6 +151,9 @@
   color: "outline";
   border: none;
 }
+.button-disabled:disabled {
+  cursor: not-allowed;
+}
 .button-disabled:hover {
   background-color: #d1d1d1;
 }
@@ -137,6 +168,9 @@
   background-color: #ef233c;
   color: "solid";
   border: none;
+}
+.button-red:disabled {
+  cursor: not-allowed;
 }
 .button-red:hover {
   background-color: #ee152f;

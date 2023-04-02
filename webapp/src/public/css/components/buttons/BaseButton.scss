@@ -6,6 +6,10 @@
     color: #FFFFFF;
 }
 
+.button-primary-outlined {
+    @include mixins.customButton($color: funcs.color("primary", "base"), $type: "outline");
+}
+
 .button-blue{
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
 }

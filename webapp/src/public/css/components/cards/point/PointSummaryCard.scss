@@ -1,18 +1,19 @@
 @use "../../../mixins" as mixins;
 @use "../../../variables" as vars;
+@use "../../../functions" as funcs;
 
 .point-summary-card-container{
     @include mixins.flex(row, flex-start, center, 15px);
     width: 100%;
     padding: 10px;
     cursor: pointer;
-
+    
     // Thumbnail del punto de interés
     & > img{
         width: 48px;
         height: 48px;
-        object-fit: cover;
         border-radius: 9px;
+        object-fit: cover;
     }
 
     // Detalles del punto de interes

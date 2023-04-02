@@ -4,11 +4,15 @@ import { Category, Point } from "../shared/shareddtypes";
 interface PointDetailsStore {
   info: Point;
   image?: File;
+  isUploading: boolean; // Flag to indicate if the process of uploading the point is in progress
+  isFinished: boolean; // Flag to indicate if the process of uploading the point is finished
   setCurrentPoint: (point: Point) => void;
   setCurrentPointProperty: (property: string, value: any) => void;
   setPointAddress: (address: string) => void;
   setPosition: (position: {lat: number, lng: number}) => void;
   setPointImageFile: (image: File) => void;
+  setIsUploading: (isUploading: boolean) => void;
+  setIsFinished: (isFinished: boolean) => void;
 }
 
 interface AllPointsStore {
@@ -55,6 +59,8 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
     updatedAt: new Date(),
   } as Point,
   image: undefined,
+  isUploading: false,
+  isFinished: false, 
   // Update some property of the current point
   setCurrentPointProperty: (property: string, value: any) =>
     set((state: any) => ({ info: { ...state.info, [property]: value } })),
@@ -70,6 +76,9 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
 
   // Imagen del punto de interés 
   setPointImageFile: (image: File) => set({ image }),
+
+  setIsUploading: (isUploading: boolean) => set({ isUploading }),
+  setIsFinished: (isFinished: boolean) => set({ isFinished }),
 }));
 
 export { usePointDetailsStore, useAllPointsStore };
