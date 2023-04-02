@@ -1,10 +1,8 @@
-import { getFile, overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { Category, Point, Review } from "../shared/shareddtypes";
-import { convertArrToJSON } from "../utils/jsonUtils";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { getUserPrivatePointsUrl } from "../helpers/PodHelper";
-import { exit } from "process";
 
 /**
  * Obtener todos los puntos de interés.
