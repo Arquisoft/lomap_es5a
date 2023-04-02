@@ -131,7 +131,8 @@ const findPointsByCategory = async (category:Category, webId: string): Promise<P
  * @param webId webId del usuario en sesión
  * @returns
  */
-const addPoint = async (point: Point, webId: string, image?: File) => {
+const addPoint = async (point: Point, webId: string, image?: File, callback?: (isSuccess: any) => void) => {
+  let isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   let profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   try {
     const originalPoints = await fetch(profileDocumentURI, {
@@ -164,6 +165,8 @@ const addPoint = async (point: Point, webId: string, image?: File) => {
         await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
           contentType: fichero.type,
           fetch: fetch,
+        }).then(()=> {
+          callback && callback(isSuccess);
         });
       }
     );

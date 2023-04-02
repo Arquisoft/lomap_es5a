@@ -104,7 +104,6 @@ const checkCategory = (newCategory: string) =>
     .includes(newCategory as Category);
 
 const parseCategory = (newCategory: string): Category => {
-  console.log("newCategory: ", newCategory, checkCategory(newCategory));
   return checkCategory(newCategory) ? (newCategory as Category) : Category.NONE;
 };
 

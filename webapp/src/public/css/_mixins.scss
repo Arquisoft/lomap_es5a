@@ -46,6 +46,10 @@
     cursor: pointer;
     transition: all 0.15s ease;
 
+    &:disabled {
+        cursor: not-allowed;
+    }
+
     @if $type == "solid" {
         background-color: $color;
         color: $textColor;

@@ -64,8 +64,8 @@ function BaseMapPopup({
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
-          <p>{name}</p>
-          <p>{location.address}</p>
+          <p>{name?.length > 25 ? name.substring(0, 25).concat("...") : name}</p>
+          <p>{location?.address?.length > 30 ? location?.address.substring(0, 30).concat("...") : location?.address}</p>
         </div>
         <BaseButton type="button-blue" text="Ver punto" onClick={handleButtonClick} />
       </div>

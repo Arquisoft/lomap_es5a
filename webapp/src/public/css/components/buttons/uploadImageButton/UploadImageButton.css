@@ -9,15 +9,6 @@
  * - dark. Color de contraste, alternativo al color base.
  */
 /**
- * -----------------------
- * -- PALETA DE COLORES --
- * -----------------------
- * 
- * - base. Color del elemento en su estado normal.
- * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
- * - dark. Color de contraste, alternativo al color base.
- */
-/**
  * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
  * La paleta de colores se define como un mapa.
  * 
@@ -30,6 +21,15 @@
  * 
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
  */
 /**
  * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
@@ -49,54 +49,26 @@
 /**
  * Estilos comunies para inputs (input, select).
  */
-.point-summary-card-container {
+.base-input-file-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 15px;
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
+  gap: 30px;
 }
-.point-summary-card-container > img {
-  width: 48px;
-  height: 48px;
-  border-radius: 9px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.base-input-file-container > input[type=file] {
+  display: none;
 }
-.point-summary-card-container > .point-summary-card-container__details {
+.base-input-file-container > .upload-image-button {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 5px;
-  flex-grow: 1;
-}
-.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 5px;
-}
-.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p {
-  margin: 0;
-}
-.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p:first-of-type {
+  width: 150px;
   font-size: 14px;
-  font-weight: 400;
-}
-.point-summary-card-container > .point-summary-card-container__details > .point-summary-details__body > p:last-of-type {
-  font-size: 12px;
   font-weight: 300;
 }
-.point-summary-card-container > .point-summary-card-container__details > span {
-  font-size: 0.8rem;
-  font-weight: 300;
-}
-.point-summary-card-container:hover {
-  background-color: rgb(243, 243, 243);
-  border-radius: 10px;
-}/*# sourceMappingURL=PointSummaryCard.css.map */
+.base-input-file-container > span {
+  color: #B9B9B9;
+}/*# sourceMappingURL=UploadImageButton.css.map */
