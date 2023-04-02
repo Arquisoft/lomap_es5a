@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, uploadBytes, ref  } from "firebase/storage";
+import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 import { firebaseConfig } from "./dotenv.config";
 
-const AVATAR_BUCKET: string = `${firebaseConfig.storageBucket}/avatars}`;
-const POINT_INTEREST_BUCKET: string =  `${firebaseConfig.storageBucket}/points}`;
+const AVATAR_BUCKET: string = `gs://${firebaseConfig.storageBucket}/avatars`;
+const POINT_INTEREST_BUCKET: string = `gs://${firebaseConfig.storageBucket}/points`;
 
 const app = initializeApp(firebaseConfig);
 
@@ -12,9 +12,18 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 // Almacenamiento de avatares de los usuarios
-const avatarStorage = getStorage(app, AVATAR_BUCKET);
+const avatarStorage = ref(storage, AVATAR_BUCKET);
 
 // Almacenamientos de las imagenes dentro de los puntos de interes
-const pointOfInterestStorage = getStorage(app, POINT_INTEREST_BUCKET);
+const pointOfInterestRef = ref(storage, POINT_INTEREST_BUCKET);
 
-export { app, storage, avatarStorage, pointOfInterestStorage, uploadBytes, ref  };
+export {
+  app,
+  storage,
+  avatarStorage,
+  pointOfInterestRef,
+  getDownloadURL,
+  uploadBytes,
+  ref,
+  POINT_INTEREST_BUCKET,
+};

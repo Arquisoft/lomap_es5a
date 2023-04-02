@@ -20,7 +20,6 @@ function HomePage() {
   const loadAllPoints = async () => {
     const data: Point[] = await findAllPoints(session.info.webId as string);
     setAllPoints(data);
-    console.log(data);
   };
 
   useEffect(() => {

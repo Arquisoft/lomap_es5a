@@ -1,3 +1,4 @@
+import UploadImageButton from "../../components/buttons/UploadImageButton";
 import CreatePointForm from "../../components/forms/CreatePointForm";
 import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
 import AccountLayout from "../../layouts/AccountLayout";
@@ -25,6 +26,10 @@ function CreatePointPage() {
               borderRadius: "20px",
             }}
           />
+          <div className="create-form-buttons">
+
+          <UploadImageButton />
+        </div>
         </div>
       </div>
     </AccountLayout>
