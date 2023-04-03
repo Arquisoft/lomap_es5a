@@ -274,8 +274,16 @@ type ProfileInfoWithFollowButtonProps = {
  * Propiedades para el componente de listado de puntos de interés (Home).
  */
 type PointListingAsideProps = {
-  points: PointSummary[];
+  points: Point[];
 }
+
+type SingleFilterProps = {
+  code: string; // Código de la categoria
+  iconFilename: any;
+  iconAlt?: string;
+  text: string;
+  isActive?: boolean;
+};
 
 type FirebaseConfig = {
   apiKey: string;
@@ -308,7 +316,8 @@ export type {
   ProfileInfoWithFollowButtonProps,
   PointListingAsideProps,
   FirebaseConfig,
-  UserInSessionProfile
+  UserInSessionProfile,
+  SingleFilterProps
 };
 
 export { Category };
