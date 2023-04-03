@@ -6,7 +6,8 @@
     @include mixins.flex(column, flex-start, center, 10px);
     width: 384px;
     max-width: 384px;
-    height: 357px;
+    max-height: 357px;
+    height: fit-content;
     border-radius: vars.$border-radius;
     background-color: rgba(237, 242, 244, 0.65);
     backdrop-filter: blur(7.5px);
