@@ -11,6 +11,7 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { useUserStore } from "../../store/user.store";
 
 function CreatePointForm() {
   const {
@@ -25,6 +26,7 @@ function CreatePointForm() {
     image,
   } = usePointDetailsStore();
   const { session } = useSession();
+  const { name, imageUrl } = useUserStore();
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -34,6 +36,8 @@ function CreatePointForm() {
     info.location.postalCode = 0;
     info.location.city = "";
     info.location.country = "";
+    info.owner.name = name;
+    info.owner.imageUrl = imageUrl;
 
     await addPoint(
       info,
@@ -169,7 +173,7 @@ function CreatePointForm() {
           />
         </div>
       </form>
-      {isFinished && (
+      {!isUploading && isFinished && (
         <BaseMessage type="success" text="Punto publicado correctamente" />
       )}
     </div>
