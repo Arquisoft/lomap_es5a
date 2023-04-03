@@ -1,0 +1,22 @@
+@use "../../../functions" as funcs;
+@use "../../../mixins" as mixins;
+
+.base-input-file-container{
+    @include mixins.flex(row, flex-start, center, 30px);
+
+    & > input[type="file"]{
+        display: none;
+    }
+
+    & > .upload-image-button{
+        @include mixins.flex(row, center, center, 5px);
+        width: 150px;
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    // Nombre de la imagen    
+    & > span{
+        color: funcs.color("dark_grey", "base");
+    }
+}

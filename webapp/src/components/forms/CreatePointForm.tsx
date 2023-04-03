@@ -1,56 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../../public/css/components/forms/CreatePointForm.css";
 import BaseButton from "../buttons/BaseButton";
 //import { addPoint } from "src/api/api"
+import { useSession } from "@inrupt/solid-ui-react";
+import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import { useMarkerStore } from "../../store/map.store";
+import { usePointDetailsStore } from "../../store/point.store";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
+import BaseMessage from "../messages/BaseMessage";
 
 function CreatePointForm() {
-  const currentPosition = useMarkerStore.getState().position;
+  const {
+    setCurrentPointProperty,
+    setPosition,
+    setPointAddress,
+    info,
+    isUploading,
+    isFinished,
+    setIsUploading,
+    setIsFinished,
+    image,
+  } = usePointDetailsStore();
+  const { session } = useSession();
 
-  const [point, setPoint] = useState({
-    name: "",
-    address: "",
-    lat: currentPosition.lat,
-    lng: currentPosition.lng,
-    category: "",
-    description: ""
-  });
+  const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setIsUploading(true);
+    setIsFinished(false);
+    info._id = crypto.randomUUID();
+    info.location.postalCode = 0;
+    info.location.city = "";
+    info.location.country = "";
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPoint({
-      ...point,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPoint({
-      ...point,
-      category: e.target.value,
-    });
-  };
-
-  const handleDescriptionChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setPoint({
-      ...point,
-      description: e.target.value,
-    });
+    await addPoint(
+      info,
+      session.info.webId as string,
+      image,
+      (isSuccess: boolean) => {
+        setIsUploading(false);
+        setIsFinished(isSuccess);
+        console.log('%c 📍 Punto creado correctamente! ', 'background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;');
+      }
+    );
   };
 
   useEffect(() => {
     useMarkerStore.subscribe((position: any) => {
       const { lat, lng } = position.position;
-      setPoint({
-        ...point,
-        lat,
-        lng,
-      });
+      setCurrentPointProperty("location.coords", { lat, lng });
     });
   }, []);
 
@@ -67,9 +67,12 @@ function CreatePointForm() {
             label="Nombre"
             type="text"
             name="name"
-            value={point.name}
-            onChange={handleChange}
+            value={info.name}
+            onChange={(e) => setCurrentPointProperty("name", e.target.value)}
             placeholder="Sidreria Tierra Astur"
+            styles={{
+              height: "62px",
+            }}
           />
 
           <div className="create-form-form-coords-inputs">
@@ -78,9 +81,22 @@ function CreatePointForm() {
               label="Latitud"
               name="lat"
               type="text"
-              value={point.lat}
-              onChange={handleChange}
+              value={info.location.coords.lat || ""}
+              onChange={(e) =>
+                setPosition({
+                  lat: isNaN(e.target.value as any)
+                    ? 0
+                    : Number(e.target.value),
+                  lng: isNaN(info.location.coords.lng)
+                    ? 0
+                    : info.location.coords.lng,
+                })
+              }
               placeholder="43.12345"
+              styles={{
+                width: "296px",
+                height: "62px",
+              }}
             />
 
             <BaseTextInput
@@ -88,9 +104,22 @@ function CreatePointForm() {
               label="Longitud"
               name="lng"
               type="text"
-              value={point.lng}
-              onChange={handleChange}
+              value={info.location.coords.lng || ""}
+              onChange={(e) =>
+                setPosition({
+                  lat: isNaN(info.location.coords.lat)
+                    ? 0
+                    : info.location.coords.lat,
+                  lng: isNaN(e.target.value as any)
+                    ? 0
+                    : Number(e.target.value),
+                })
+              }
               placeholder="-6.98765"
+              styles={{
+                width: "296px",
+                height: "62px",
+              }}
             />
           </div>
 
@@ -99,39 +128,54 @@ function CreatePointForm() {
             label="Dirección postal"
             name="address"
             type="text"
-            value={point.address}
-            onChange={handleChange}
+            value={info.location.address}
+            onChange={(e) => setPointAddress(e.target.value)}
             placeholder="Calle Gascona, 1, 33001 Oviedo"
+            styles={{
+              width: "600px",
+              height: "62px",
+            }}
           />
 
           <BaseSelect
             id="create-point-category-selector"
             label="Categoría"
             name="category"
+            showContent={true}
             options={availableCategories.map((cat) => {
-              return { value: cat.name, content: cat.name };
+              return { value: cat.code, content: cat.name };
             })}
-            handleChange={handleChangeCategory}
+            styles={{
+              height: "62px",
+            }}
+            handleChange={(e) =>
+              setCurrentPointProperty("category", e.target.value)
+            }
           />
           <BaseTextArea
             label="Descripción"
             name="description"
-            value={point.description}
-            onChange={handleDescriptionChange}
+            value={info.description}
+            onChange={(e) =>
+              setCurrentPointProperty("description", e.target.value)
+            }
             placeholder="Explica brevemente la ubicación del punto, su horario, etc."
           />
         </div>
-
-        {/* Input file para subir imagen */}
 
         <div className="create-form-buttons">
           <BaseButton
             type="button-primary"
             text="Publicar"
-            onClick={() => ""}
+            isLoading={isUploading}
+            loadingText="Publicando..."
+            onClick={handleAddPoint}
           />
         </div>
       </form>
+      {isFinished && (
+        <BaseMessage type="success" text="Punto publicado correctamente" />
+      )}
     </div>
   );
 }

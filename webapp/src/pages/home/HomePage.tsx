@@ -1,36 +1,27 @@
-import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
-import { findAllPoints } from "../../api/api";
+import { useEffect, useMemo } from "react";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
-import groupJson from "../../data/point.json";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import { useSession } from "@inrupt/solid-ui-react";
+import { addPoint, editPointById, findAllPoints, findPointsByCategory } from "../../api/point.api";
+import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
-import { convertToJSON } from "../../utils/jsonUtils";
-import { parseJsonToPoint } from "../../utils/parsers/pointParser";
+import { useAllPointsStore } from "../../store/point.store";
+import { Category, Point } from "../../shared/shareddtypes";
 
 function HomePage() {
-  const [points, setPoints] = useState([]);
+  const { setAllPoints, points } = useAllPointsStore();
+
   const { session } = useSession();
-
+  
   const loadAllPoints = async () => {
-    // const webId: string =
-    //   getDefaultSession().info.webId || "https://id.inrupt.com/uo257239";
-    const result = await findAllPoints(getDefaultSession().info.webId || "");
-    console.log(result);
-    //setPoints(result);
-  };
-
-  const parsePoints = () => {
-    const point = parseJsonToPoint(groupJson);
-    //const p = convertToJSON(point);
-    console.log(point);
+    const data: Point[] = await findAllPoints(session.info.webId as string);
+    setAllPoints(data);
   };
 
   useEffect(() => {
-    //loadAllPoints();
-    parsePoints();
+    //getAllFriends();
+    loadAllPoints();
   }, []);
 
   return (
@@ -43,7 +34,7 @@ function HomePage() {
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">
-            {/* <BaseMap
+            <BaseMap
               position={[43.36297198377049, -5.851084856954243]}
               points={points}
               styles={{
@@ -51,11 +42,10 @@ function HomePage() {
                 height: "80vh",
                 borderRadius: "10px",
               }}
-            /> */}
-            <p>{session.info.webId}</p>
-            <p>{session.info.sessionId}</p>
-            <PointListingAside />
+            />
+            <PointListingAside points={points} />
           </div>
+          <p>{session.info.webId}</p>
         </div>
       </AuthenticatedLayout>
     </div>

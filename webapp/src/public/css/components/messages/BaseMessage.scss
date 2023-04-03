@@ -1,0 +1,14 @@
+@use "../../functions" as funcs;
+
+.base-message-container{
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.base-message__success{
+    background-color: funcs.color("success", "high_light");
+}

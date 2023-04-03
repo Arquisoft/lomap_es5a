@@ -6,6 +6,7 @@ import BaseMapPopup from "./popups/BaseMapPopup";
 
 import "leaflet/dist/leaflet.css";
 import "../../public/css/components/maps/BaseMap.scss";
+import { Image, Point, PointOwner } from "../../shared/shareddtypes";
 
 type Props = {
   position?: LatLngExpression;
@@ -37,11 +38,11 @@ function BaseMap({ position, styles, points }: Props) {
         />
         <>
           {points &&
-            points.map((point: any) => {
+            points.map((point: Point) => {
               return (
                 <Marker
-                  key={point.idPoint}
-                  position={[point.coords.lat, point.coords.lng]}
+                  key={point._id}
+                  position={[Number(point.location.coords.lat), Number(point.location.coords.lng)]}
                   icon={icon({
                     iconUrl: customMarkerIcon,
                     iconSize: [32, 41],
@@ -51,8 +52,11 @@ function BaseMap({ position, styles, points }: Props) {
                   <Popup className="map-current-point-popup">
                     <BaseMapPopup
                       name={point.name}
-                      address={point.direction}
+                      image ={point?.image?.url as string}
+                      location={point.location}
                       category={point.category}
+                      owner={point.owner as PointOwner}
+                      point={point}
                     />
                   </Popup>
                 </Marker>

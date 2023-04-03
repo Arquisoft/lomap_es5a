@@ -1,4 +1,5 @@
 import "../../public/css/components/cards/point/PointSummaryCard.scss";
+import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 
 type Props = {
   imgUrl?: string;
@@ -15,7 +16,13 @@ function PointSummaryCard({
 }: Props) {
   return (
     <div className="point-summary-card-container">
-      <img src={imgUrl} alt="" />
+      {
+        imgUrl
+        ? <img src={imgUrl} alt="" />
+        : <div className="point-summary-card-container__no-image">
+          <NoImageSkeleton />
+        </div>
+      }
       <div className="point-summary-card-container__details">
         <div className="point-summary-details__body">
           <p>{pointName}</p>

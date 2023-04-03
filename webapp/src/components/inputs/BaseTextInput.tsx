@@ -7,9 +7,11 @@ function BaseTextInput({
   name,
   value,
   onChange,
+  onPaste,
   type,
   id,
   placeholder,
+  styles,
   required,
 }: BaseInputProps) {
   return (
@@ -18,11 +20,13 @@ function BaseTextInput({
       <input
         type={type}
         onChange={onChange}
+        onPaste={onPaste}
         placeholder={placeholder}
         name={name}
         value={value}
         id={id || crypto.randomUUID()}
         required={required}
+        style={styles as React.CSSProperties}
       />
     </div>
   );

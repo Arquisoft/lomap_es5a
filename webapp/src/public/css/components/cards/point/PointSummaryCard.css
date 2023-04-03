@@ -62,9 +62,9 @@
 .point-summary-card-container > img {
   width: 48px;
   height: 48px;
+  border-radius: 9px;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 9px;
 }
 .point-summary-card-container > .point-summary-card-container__details {
   display: flex;

@@ -1,5 +1,7 @@
 import Icon from "@mui/material/Icon";
 import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
+import { useSession } from "@inrupt/solid-ui-react";
+import { LOGIN_PATH } from "../../routes";
 
 /**
  * @param name: Nombre del elemento de menu.
@@ -12,12 +14,21 @@ type Props = {
 };
 
 function IconMenuItem({ name, iconName, url }: Props) {
-  const handleRedirect = () => {
+  const { session } = useSession();
+
+  const handleRedirect = async (e: any) => {
+    if (name === "Cerrar sesión") {
+      e.preventDefault();
+      sessionStorage.clear();
+      await session.logout().then(() => {
+        window.location.href = LOGIN_PATH;
+      });
+    }
     window.location.href = url || "";
   };
 
   return (
-    <li className="icon-menu-item"onClick={handleRedirect}>
+    <li className="icon-menu-item" onClick={handleRedirect}>
       <Icon sx={{ fontSize: 24 }}>{iconName}</Icon>
       <span>{name}</span>
     </li>

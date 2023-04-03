@@ -4,6 +4,7 @@ enum Category {
   CAFE = "cafe",
   HOTEL = "hotel",
   GROCERY = "grocery",
+  SUPERMARKET= "supermarket",
   CINEMA = "cinema",
   SHOP = "shop",
   MUSEUM = "museum",
@@ -15,6 +16,7 @@ enum Category {
 
 type SingleCategory = {
   id: string;
+  code: string;
   name: string;
   description?: string;
   icon?: any;
@@ -97,6 +99,7 @@ type Image = {
 
 type PointOwner = {
   webId: string;
+  name?: string;
   imageUrl: string;
 };
 
@@ -122,7 +125,7 @@ type Point = {
   reviews?: Review[];
   image?: Image;
   isPublic: boolean;
-  category: Category | Category.NONE;
+  category: Category;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -181,7 +184,24 @@ type BaseSelectOption = {
 type CategoryOption = {
   value: Category;
   content?: string;
-}
+};
+
+/**
+ * Propiedades para el componente de popup de un punto de interés.
+ * @param name Nombre del punto de interés.
+ * @param category Categoría del punto de interés. Ver {@link Category}.
+ * @param image Imagen del punto de interés.
+ * @param location Localización del punto de interés. Ver {@link BaseLocation}.
+ * @param owner Usuario que ha creado el punto de interés. Ver {@link PointOwner}.
+ */
+type BaseMapPopupProps = {
+  name: string;
+  category: Category;
+  image?: string;
+  location: BaseLocation;
+  owner: PointOwner;
+  point?: Point;
+};
 
 /**
  * Opciones para los selectores de la aplicación.
@@ -196,7 +216,9 @@ interface BaseSelect {
   id: string;
   options: BaseSelectOption[] | CategoryOption[];
   category?: string;
+  showContent?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  styles?: React.CSSProperties | string;
 }
 
 // For text inputs
@@ -204,12 +226,16 @@ interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
+  styles?: React.CSSProperties | string;
 };
+
+
 
 interface BaseTextAreaProps {
   label: string;
@@ -219,6 +245,34 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+}
+
+/**
+ * Propiedades para el componente de información de perfil con botón de seguir.
+ * @param name Nombre del usuario.
+ * @param imageUrl Imagen de perfil del usuario.
+ * @param webId WebId del usuario.
+ */
+type ProfileInfoWithFollowButtonProps = {
+  name: string;
+  imageUrl?: string;
+  webId: string;
+};
+
+/**
+ * Propiedades para el componente de listado de puntos de interés (Home).
+ */
+type PointListingAsideProps = {
+  points: PointSummary[];
+}
+
+type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  msgSenderId: string;
+  appId: string;
 };
 
 export type {
@@ -230,13 +284,19 @@ export type {
   BaseInputProps,
   BaseSelect,
   BaseSelectOption,
+  BaseMapPopupProps,
   User,
   UserGroup,
   Review,
   Point,
+  Image,
   PointSummary,
   BaseLocation,
-  
+  Reviewer,
+  PointOwner,
+  ProfileInfoWithFollowButtonProps,
+  PointListingAsideProps,
+  FirebaseConfig
 };
 
 export { Category };
