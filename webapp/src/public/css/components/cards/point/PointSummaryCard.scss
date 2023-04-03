@@ -2,14 +2,16 @@
 @use "../../../variables" as vars;
 @use "../../../functions" as funcs;
 
-.point-summary-card-container{
-    @include mixins.flex(row, flex-start, center, 15px);
+.point-summary-card-container {
     width: 100%;
     padding: 10px;
     cursor: pointer;
-    
+    @include mixins.flex(row, flex-start, center, 15px);
+    text-decoration: none;
+    color: black;
+
     // Thumbnail del punto de interés
-    & > img{
+    & > img {
         width: 48px;
         height: 48px;
         border-radius: 9px;
@@ -17,25 +19,25 @@
     }
 
     // Detalles del punto de interes
-    & > .point-summary-card-container__details{
+    & > .point-summary-card-container__details {
         //@include mixins.grid($columns: 80% auto, $gap: 15px);
         @include mixins.flex(row, space-between, center, 5px);
         flex-grow: 1;
 
-        & > .point-summary-details__body{
+        & > .point-summary-details__body {
             @include mixins.flex(column, center, flex-start, 5px);
 
-            & > p{
+            & > p {
                 margin: 0;
-                
+
                 // Nombre del punto
-                &:first-of-type{
+                &:first-of-type {
                     font-size: 14px;
                     font-weight: 400;
                 }
 
                 // Nombre del usuario
-                &:last-of-type{
+                &:last-of-type {
                     font-size: 12px;
                     font-weight: 300;
                 }
@@ -43,13 +45,13 @@
         }
 
         // Hora de subida del punto de interes
-        & > span{
+        & > span {
             font-size: 0.8rem;
             font-weight: 300;
         }
     }
 
-    &:hover{
+    &:hover {
         background-color: rgb(243, 243, 243);
         border-radius: 10px;
     }

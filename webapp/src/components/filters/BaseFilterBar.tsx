@@ -7,6 +7,7 @@ function BaseFilterBar() {
     <div className="base-filter-bar">
       {availableCategories.map((filter) => (
         <SingleFilter
+          code={filter.code}
           key={filter.id}
           iconFilename={filter.icon}
           text={filter.name}

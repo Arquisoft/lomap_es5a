@@ -45,6 +45,17 @@ type User = {
 };
 
 /**
+ * Almacenen de datos de usuario en sesion.
+ */
+type UserInSessionProfile = {
+  webId?: string;
+  name: string;
+  imageUrl?: string;
+  email?: string;
+  friends?: string[];
+};
+
+/**
  * Usuario que ha realizado una valoración. Contiene los datos del usuario y la imagen de su perfil.
  * @param webId Identificador único del usuario.
  * @param imageUrl Imagen de perfil usuario.
@@ -100,7 +111,7 @@ type Image = {
 type PointOwner = {
   webId: string;
   name?: string;
-  imageUrl: string;
+  imageUrl?: string;
 };
 
 /**
@@ -121,7 +132,7 @@ type Point = {
   name: string;
   description?: string;
   location: BaseLocation;
-  owner: PointOwner | User;
+  owner: PointOwner;
   reviews?: Review[];
   image?: Image;
   isPublic: boolean;
@@ -263,8 +274,16 @@ type ProfileInfoWithFollowButtonProps = {
  * Propiedades para el componente de listado de puntos de interés (Home).
  */
 type PointListingAsideProps = {
-  points: PointSummary[];
+  points: Point[];
 }
+
+type SingleFilterProps = {
+  code: string; // Código de la categoria
+  iconFilename: any;
+  iconAlt?: string;
+  text: string;
+  isActive?: boolean;
+};
 
 type FirebaseConfig = {
   apiKey: string;
@@ -296,7 +315,9 @@ export type {
   PointOwner,
   ProfileInfoWithFollowButtonProps,
   PointListingAsideProps,
-  FirebaseConfig
+  FirebaseConfig,
+  UserInSessionProfile,
+  SingleFilterProps
 };
 
 export { Category };

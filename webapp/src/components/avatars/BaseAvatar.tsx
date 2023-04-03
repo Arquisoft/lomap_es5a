@@ -10,7 +10,7 @@ type Props = {
 function BaseAvatar({ img, imgAlt, onClick }: Props) {
   return (
     <>
-      <img className="base-avatar" src={img} alt={imgAlt} onClick={onClick} />
+      <img className="base-avatar" src={img} alt={imgAlt} title={imgAlt} onClick={onClick} />
     </>
   );
 }

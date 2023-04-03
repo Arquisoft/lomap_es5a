@@ -45,7 +45,7 @@ function App() {
       }
     };
     reload();
-  }, []);
+  }, [isPageRefresh]);
 
   if (!session.info.isLoggedIn) {
     sessionStorage.clear();

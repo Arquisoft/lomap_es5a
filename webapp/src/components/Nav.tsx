@@ -8,11 +8,13 @@ import AppLogo from "./AppLogo";
 import BaseAvatar from "./avatars/BaseAvatar";
 import BaseButton from "./buttons/BaseButton";
 import AccountNavMenu from "./menus/AccountNavMenu";
+import { useUserStore } from "../store/user.store";
 
 function BaseNav() {
   // Para mostrar u ocultar el menu asociado al avatar del menu de navegacion.
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const { session } = useSession();
+  const {imageUrl, name} = useUserStore();
 
   /**
    * Muestra el menu asociado al avatar del menu de navegación.
@@ -39,8 +41,8 @@ function BaseNav() {
           <li>
             {session.info.isLoggedIn ? (
               <BaseAvatar
-                img="https://randomuser.me/api/portraits/women/68.jpg"
-                imgAlt="María Fernández"
+                img={imageUrl}
+                imgAlt={name}
                 onClick={(e) => handleShowAccountNavMenu(e)}
               />
             ) : (

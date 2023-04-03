@@ -17,12 +17,20 @@ interface PointDetailsStore {
 
 interface AllPointsStore {
   points: Point[];
+  filteredPoints: Point[];
+  isFiltering: boolean;
   setAllPoints: (points: Point[]) => void;
+  setFilteredPoints: (pointsToFilter: Point[]) => void;
+  setIsFiltering: (isFiltering: boolean) => void;
 }
 
 const useAllPointsStore = create<AllPointsStore>((set) => ({
   points: [],
+  filteredPoints: [],
+  isFiltering: false,
   setAllPoints: (points: Point[]) => set({ points }),
+  setFilteredPoints: (pointsToFilter: Point[]) => set({ filteredPoints: pointsToFilter }),
+  setIsFiltering: (isFiltering: boolean) => set({ isFiltering }),
 }));
 
 /**

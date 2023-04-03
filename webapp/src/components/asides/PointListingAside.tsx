@@ -16,7 +16,7 @@ function PointListingAside({ points }: PointListingAsideProps) {
       </div>
 
       <div className="point-listing-aside__body">
-        {points &&
+        {points && points.length > 0 ? (
           points.map((point) => {
             return (
               <PointSummaryCard
@@ -24,13 +24,18 @@ function PointListingAside({ points }: PointListingAsideProps) {
                 imgUrl={point.image?.url || ""}
                 pointName={point.name}
                 pointUser={point.owner?.name || ""}
-                pointCreatedAt={point.createdAt && formatDateWithGenericFormat(
-                  point.createdAt,
-                  "HH:mm"
-                )}
+                pointInfo={point}
+                pointCreatedAt={
+                  point.createdAt &&
+                  formatDateWithGenericFormat(point.createdAt, "HH:mm")
+                }
+                
               />
             );
-          })}
+          })
+        ) : (
+          <p>No hay puntos de interés</p>
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
-import { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import BaseBadge from "../../badges/BaseBadge";
-import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
 import { BaseMapPopupProps } from "../../../shared/shareddtypes";
+import BaseBadge from "../../badges/BaseBadge";
 import BaseButton from "../../buttons/BaseButton";
-import { useNavigate } from 'react-router-dom';
+import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
 
 function BaseMapPopup({
   name,
@@ -14,7 +13,7 @@ function BaseMapPopup({
   image,
   owner,
   category,
-  point
+  point,
 }: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
 
@@ -34,7 +33,7 @@ function BaseMapPopup({
   const handleButtonClick = () => {
     console.log(point?.name);
     navigate(encodeURI(`/points/${point?.name}`));
-  }
+  };
 
   return (
     <div className="base-popup-modal">
@@ -49,11 +48,12 @@ function BaseMapPopup({
         <img src={image} alt={""} />
       </div>
       <div className="base-popup-modal__body">
-        <ProfileInfoWithFollowButton
-          name={owner?.name || "Anónimo"}
-          imageUrl={owner.imageUrl}
-          webId={owner.webId}
-        />
+          <ProfileInfoWithFollowButton
+            name={owner?.name || ""}
+            imageUrl={owner.imageUrl}
+            webId={owner.webId}
+          />
+        
         <div className="popup-modal-social-icons">
           <FavoriteBorderIcon
             sx={{
@@ -64,10 +64,20 @@ function BaseMapPopup({
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
-          <p>{name?.length > 25 ? name.substring(0, 25).concat("...") : name}</p>
-          <p>{location?.address?.length > 30 ? location?.address.substring(0, 30).concat("...") : location?.address}</p>
+          <p>
+            {name?.length > 25 ? name.substring(0, 25).concat("...") : name}
+          </p>
+          <p>
+            {location?.address?.length > 30
+              ? location?.address.substring(0, 30).concat("...")
+              : location?.address}
+          </p>
         </div>
-        <BaseButton type="button-blue" text="Ver punto" onClick={handleButtonClick} />
+        <BaseButton
+          type="button-blue"
+          text="Ver punto"
+          onClick={handleButtonClick}
+        />
       </div>
     </div>
   );
