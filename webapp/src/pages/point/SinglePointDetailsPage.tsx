@@ -3,13 +3,10 @@ import SinglePointDetailBanner from "../../components/banners/pointDetail/Single
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import usePoint from "../../hooks/usePoint";
 import "../../public/css/pages/points/SinglePointPage.scss";
+import { usePointDetailsStore } from "../../store/point.store";
 
 function SinglePointDetailsPage() {
-  const { selectedPoint, findPointById } = usePoint();
-
-  useEffect(() => {
-    findPointById("2");
-  }, []);
+  const {info} = usePointDetailsStore();
 
   return (
     <AuthenticatedLayout>
@@ -19,11 +16,11 @@ function SinglePointDetailsPage() {
           <h2>Detalles</h2>
           <p>
             {
-              selectedPoint && <div>
-                <p>Nombre: {selectedPoint.name}</p>
-                <p>Descripción: {selectedPoint.description}</p>
-                <p>Latitud: {selectedPoint.coords.lat}</p>
-                <p>Longitud: {selectedPoint.coords.lng}</p>
+              info && <div>
+                <p>Nombre: {info.name}</p>
+                <p>Descripción: {info.description}</p>
+                <p>Latitud: {info.location.coords.lat}</p>
+                <p>Longitud: {info.location.coords.lng}</p>
 
               </div>
             }
