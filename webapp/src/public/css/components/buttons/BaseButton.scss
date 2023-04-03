@@ -14,8 +14,25 @@
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
 }
 
+.button-black{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "solid");
+}
+
 .button-blue-outlined {
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "outline");
+}
+
+.button-absolute {
+    position: absolute;
+    top: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 1000;
+    transition: all .2s ease;
+
+    &:hover{
+        background-color: funcs.color("black", "dark");
+    }
 }
 
 // TODO: Refactorizar

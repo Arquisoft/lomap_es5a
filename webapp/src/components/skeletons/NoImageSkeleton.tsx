@@ -11,7 +11,7 @@ type Props = {
 function NoImageSkeleton({ styles, isRound }: Props) {
   return (
     <div className="no-image-skeleton-container" style={{
-      borderRadius: isRound ? "50%" : "0"
+      borderRadius: isRound ? "50%" : "8px"
     }}>
       <ImageRoundedIcon
         style={{

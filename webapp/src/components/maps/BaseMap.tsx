@@ -6,7 +6,9 @@ import BaseMapPopup from "./popups/BaseMapPopup";
 
 import "leaflet/dist/leaflet.css";
 import "../../public/css/components/maps/BaseMap.scss";
-import { Image, Point, PointOwner } from "../../shared/shareddtypes";
+import { Point, PointOwner } from "../../shared/shareddtypes";
+import BaseButton from "../buttons/BaseButton";
+import { useAllPointsStore } from "../../store/point.store";
 
 type Props = {
   position?: LatLngExpression;
@@ -17,13 +19,28 @@ type Props = {
 };
 
 function BaseMap({ position, styles, points }: Props) {
+  const { setIsFiltering, isFiltering } = useAllPointsStore();
   // Ubicación por defecto: Bruselas
   const defaultMapCenter: LatLngExpression = [
     50.85119149087381, 4.3544687591272835,
   ];
 
+  const resetFilters = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsFiltering(false);
+  };
+
   return (
     <div className="base-map-container">
+      {isFiltering && (
+        <BaseButton
+          text="Mostrar todo"
+          type="button-black button-absolute"
+          title="Mostrar todos los puntos"
+          onClick={(e) => resetFilters(e)}
+        />
+      )}
+
       {/* <Suspense fallback={<BaseMapSkeleton />}> */}
       <MapContainer
         id="map"
@@ -42,7 +59,10 @@ function BaseMap({ position, styles, points }: Props) {
               return (
                 <Marker
                   key={point._id}
-                  position={[Number(point.location.coords.lat), Number(point.location.coords.lng)]}
+                  position={[
+                    Number(point.location.coords.lat),
+                    Number(point.location.coords.lng),
+                  ]}
                   icon={icon({
                     iconUrl: customMarkerIcon,
                     iconSize: [32, 41],
@@ -52,7 +72,7 @@ function BaseMap({ position, styles, points }: Props) {
                   <Popup className="map-current-point-popup">
                     <BaseMapPopup
                       name={point.name}
-                      image ={point?.image?.url as string}
+                      image={point?.image?.url as string}
                       location={point.location}
                       category={point.category}
                       owner={point.owner as PointOwner}
