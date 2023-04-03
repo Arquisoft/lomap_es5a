@@ -8,10 +8,10 @@ type Props = {
 
 function InfoBox({ icon, title, description }: Props) {
   return (
-    <div className="infobox-main">
-      <div className="infobox-image">{icon}</div>
-      <div className="infobox-title">{title}</div>
-      <div className="infobox-description">{description}</div>
+    <div className="infobox-main" role="infobox-main">
+      <div className="infobox-image" role="infobox-image">{icon}</div>
+      <div className="infobox-title" role="infobox-title">{title}</div>
+      <div className="infobox-description" role="infobox-description">{description}</div>
     </div>
   );
 }

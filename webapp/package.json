@@ -33,6 +33,7 @@
     "react-svg": "^16.1.5",
     "sass": "^1.58.3",
     "sass-loader": "^13.2.0",
+    "text-encoder": "^0.0.4",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.2",
     "zustand": "^4.3.6"
