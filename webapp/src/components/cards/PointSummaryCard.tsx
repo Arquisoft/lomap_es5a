@@ -20,13 +20,13 @@ function PointSummaryCard({
   pointCreatedAt,
   pointInfo
 }: Props) {
-  const {setCurrentPoint} = usePointDetailsStore();
+  const {setPointToShow} = usePointDetailsStore();
   const navigate = useNavigate();
 
   const handleRedirectToPointDetailsPage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if(pointInfo && pointName.length > 0){
-      setCurrentPoint(pointInfo);
+      setPointToShow(pointInfo);
       navigate(`/points/${pointName.replace(/\s/g, "-").toLowerCase()}`);
     }
   }
