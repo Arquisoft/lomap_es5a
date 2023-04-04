@@ -13,8 +13,11 @@ import BaseMap from "../../components/maps/BaseMap";
 import "../../public/css/pages/home/HomePage.scss";
 import { useAllPointsStore } from "../../store/point.store";
 import { Category, Point } from "../../shared/shareddtypes";
-import { getUserProfileInfo } from "../../api/user.api";
+import { getUserProfile, getUserProfileInfo } from "../../api/user.api";
+import { getAllFriends, getFriendInfo } from "../../api/friends.api";
 import { useUserStore } from "../../store/user.store";
+import { getStringNoLocale, Thing } from "@inrupt/solid-client";
+import { FOAF } from "@inrupt/vocab-common-rdf";
 
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints } = useAllPointsStore();
@@ -26,16 +29,29 @@ function HomePage() {
     setAllPoints(data);
   };
 
+  const loadUserFriends = async () => {
+    if (session.info.isLoggedIn){
+      const friends = await getAllFriends(session.info.webId as string);      
+      const profile = await getUserProfile(friends[0]); 
+      //console.log(profile); 
+      
+      
+    }else{
+      console.log("No estoy logeado");
+    }
+  }
+
   const loadUserInfo = async () => {
     const userInfo = await getUserProfileInfo(session.info.webId as string);
-    setName(userInfo.name);
-    setImageUrl(userInfo.imageUrl);
-    setFriends(userInfo.friends);
+    // setName(userInfo.name);
+    // setImageUrl(userInfo.imageUrl);
+    // setFriends(userInfo.friends);
   };
 
   useEffect(() => {
-    loadUserInfo();
-    loadAllPoints();
+    loadUserFriends();
+    //loadUserInfo();
+    //loadAllPoints();
   }, []);
 
   return (

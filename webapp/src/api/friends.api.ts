@@ -1,29 +1,48 @@
-import { Point, Review, User } from "../shared/shareddtypes";
+import { Friend } from "../shared/shareddtypes";
 import {
-  saveFileInContainer,
-  getFile,
-  overwriteFile,
-  fromRdfJsDataset,
+  getNamedNodeAll,
+  getSolidDataset,
+  getStringNoLocale,
+  getThing,
+  getUrlAll,
+  Thing
 } from "@inrupt/solid-client";
 
-import { FOAF} from "@inrupt/vocab-common-rdf";
+import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
+import { getUserProfileUrl } from "../helpers/PodHelper";
+import { getUserProfile} from "../api/user.api"
 
-import { fetch } from "@inrupt/solid-client-authn-browser";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
-import { convertArrToJSON } from "../utils/jsonUtils";
-import * as jsonld from 'jsonld';
 
-const getAllFriends = async () => {
-  let profileDocumentURI = encodeURI(
-    `https://pruebasolid1.inrupt.net/profile/card#me`
-  );
+const getFriendInfo = async (webId : string) => {
+  const friendProfile = await getUserProfile(webId);
+  // const userName = getStringNoLocale(friendProfile, FOAF.firstName);
+  // console.log("Friend name: ", userName);
+  // const frienImgUrl = getNamedNodeAll(friendProfile, VCARD.photo);
+  // console.log("Friend photo url: ", frienImgUrl);
 
-  try {
-    const file = await getFile(profileDocumentURI, { fetch: fetch });
-    console.log(await file.text());
-  } catch (err) {
-    console.error(err);
-  }
+}
+
+const getAllFriends = async (webId:string) => {
+  const profileUrl : string = getUserProfileUrl(webId);
+
+  const profileDataset = await getSolidDataset(profileUrl);
+  
+  const profile = getThing(profileDataset, webId) as Thing;
+
+  const friends = getUrlAll(profile,FOAF.knows);  
+  
+  return friends;
+  //const myFriendsList : Friend[] = [];
+
+  // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
+  // friendsInfo.map((friend) => {
+  //   myFriendsList.push({
+  //     webId : webId,
+  //     name : friend.
+  //   })
+  // })
+
+ 
 };
 
-export { getAllFriends };
+export { getAllFriends, getFriendInfo };
