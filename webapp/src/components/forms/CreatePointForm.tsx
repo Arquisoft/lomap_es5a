@@ -1,17 +1,16 @@
-import { useEffect } from "react";
-import "../../public/css/components/forms/CreatePointForm.css";
-import BaseButton from "../buttons/BaseButton";
-//import { addPoint } from "src/api/api"
 import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect } from "react";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
+import "../../public/css/components/forms/CreatePointForm.css";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
+import { useUserStore } from "../../store/user.store";
+import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import { useUserStore } from "../../store/user.store";
 
 function CreatePointForm() {
   const {
@@ -70,6 +69,7 @@ function CreatePointForm() {
             label="Nombre"
             type="text"
             name="name"
+            required={true}
             value={info.name}
             onChange={(e) => setCurrentPointProperty("name", e.target.value)}
             placeholder="Sidreria Tierra Astur"
@@ -83,6 +83,7 @@ function CreatePointForm() {
               label="Latitud"
               name="lat"
               type="text"
+              required={true}
               value={info.location.coords.lat || ""}
               onChange={(e) =>
                 setPosition({
@@ -105,6 +106,7 @@ function CreatePointForm() {
               label="Longitud"
               name="lng"
               type="text"
+              required={true}
               value={info.location.coords.lng || ""}
               onChange={(e) =>
                 setPosition({
@@ -165,7 +167,7 @@ function CreatePointForm() {
 
         <div className="create-form-buttons">
           <BaseButton
-            type="button-primary"
+            type="button-black"
             text="Publicar"
             isLoading={isUploading}
             loadingText="Publicando..."

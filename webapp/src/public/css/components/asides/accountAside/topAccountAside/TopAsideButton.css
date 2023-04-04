@@ -1,8 +1,10 @@
 .aside-button-main{
-    padding-bottom: 25px;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    gap:15px ;
+    justify-content: flex-start;
+    align-items: center;
+    gap:10px ;
 }
 
 .aside-button-logo{
@@ -15,8 +17,7 @@
     font-family: "Manrope", sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 26px;
-    line-height: 30px;
+    font-size: 1rem;
     color: black;
     cursor: pointer;
 }

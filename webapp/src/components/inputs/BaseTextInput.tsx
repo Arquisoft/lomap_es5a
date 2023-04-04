@@ -14,9 +14,12 @@ function BaseTextInput({
   styles,
   required,
 }: BaseInputProps) {
+
+  const inputId = id || crypto.randomUUID();
+
   return (
     <div className="base-text-input-container">
-      <label>{label}</label>
+      <label htmlFor={inputId}>{label}</label>
       <input
         type={type}
         onChange={onChange}
@@ -24,7 +27,7 @@ function BaseTextInput({
         placeholder={placeholder}
         name={name}
         value={value}
-        id={id || crypto.randomUUID()}
+        id={inputId}
         required={required}
         style={styles as React.CSSProperties}
       />

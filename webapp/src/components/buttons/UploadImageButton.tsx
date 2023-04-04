@@ -30,7 +30,7 @@ function UploadImageButton() {
       />
       <label
         htmlFor="file-input"
-        className="upload-image-button button-primary-outlined"
+        className="upload-image-button button-black-outlined"
       >
         <FileUploadRoundedIcon fill="#ffffff" />
         Subir imagen

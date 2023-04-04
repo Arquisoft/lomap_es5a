@@ -28,19 +28,26 @@ function TopAccountAside() {
   return (
     <div className="top-acc-aside-main">
       <button className="top-acc-aside-back">
-        <ArrowBackIosIcon />
+        <ArrowBackIosIcon aria-hidden="true" />
       </button>
       <div className="top-acc-aside-title">Mi cuenta</div>
       <div className="top-acc-aside-buttons">
-        <TopAsideButton icon={<MapIcon />} text="Ver mapa" />
+        <TopAsideButton icon={<MapIcon aria-hidden="true"/>} text="Ver mapa" />
         <TopAsideButton
-          icon={<FavoriteIcon style={{ color: red[500] }} />}
+          icon={<FavoriteIcon style={{ color: red[500] }} aria-hidden="true"/>}
           text="Puntos guardados"
         />
-        <TopAsideButton icon={<RoomIcon />} text="Crear punto" />
-        <TopAsideButton icon={<SettingsIcon />} text="Ajustes" />
         <TopAsideButton
-          icon={<LockIcon style={{ color: red[500] }} />}
+          icon={<RoomIcon />}
+          aria-hidden="true"
+          text="Crear punto"
+        />
+        <TopAsideButton
+          icon={<SettingsIcon aria-hidden="true" />}
+          text="Ajustes"
+        />
+        <TopAsideButton
+          icon={<LockIcon style={{ color: red[500] }} aria-hidden="true"/>}
           text="Cerrar sesion"
           onClick={handleLogout}
         />
