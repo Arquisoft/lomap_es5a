@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
@@ -11,6 +11,7 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { checkIsNotEmpty } from "../../utils/validator";
 
 function CreatePointForm() {
   const {
@@ -24,8 +25,18 @@ function CreatePointForm() {
     setIsFinished,
     image,
   } = usePointDetailsStore();
+  const [errors, setErrors] = useState([] as any);
   const { session } = useSession();
   const { name, imageUrl } = useUserStore();
+
+  const validateForm = () => {
+    try {
+      checkIsNotEmpty(info.name);
+    }catch(err){
+      setErrors([...errors, (err as Error).message]);
+    }
+
+  };
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
