@@ -1,12 +1,13 @@
 import React from "react";
-import BaseButton from "./BaseButton";
-import { uploadImage } from "../../services/imageService";
 import { usePointDetailsStore } from "../../store/point.store";
-import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
-import "../../public/css/components/buttons/uploadImageButton/UploadImageButton.scss";
+import {
+  CheckCircleRoundedIcon,
+  FileUploadRoundedIcon,
+} from "../../helpers/IconContants";
+
 import "../../public/css/components/buttons/BaseButton.scss";
+import "../../public/css/components/buttons/uploadImageButton/UploadImageButton.scss";
 
 function UploadImageButton() {
   const { setPointImageFile, image } = usePointDetailsStore();
@@ -36,7 +37,9 @@ function UploadImageButton() {
       </label>
       {image && (
         <span>
-          {image.name.length > 10 ? image.name.substring(0, 10).concat("... ") : image.name}
+          {image.name.length > 10
+            ? image.name.substring(0, 10).concat("... ")
+            : image.name}
         </span>
       )}
       {image && (

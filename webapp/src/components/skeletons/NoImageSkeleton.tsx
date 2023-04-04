@@ -1,5 +1,5 @@
 import React from "react";
-import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import { ImageRoundedIcon } from "../../helpers/IconContants";
 
 import "../../public/css/components/skeletons/no_image/NoImageSkeleton.scss";
 
@@ -10,9 +10,12 @@ type Props = {
 
 function NoImageSkeleton({ styles, isRound }: Props) {
   return (
-    <div className="no-image-skeleton-container" style={{
-      borderRadius: isRound ? "50%" : "8px"
-    }}>
+    <div
+      className="no-image-skeleton-container"
+      style={{
+        borderRadius: isRound ? "50%" : "8px",
+      }}
+    >
       <ImageRoundedIcon
         style={{
           fontSize: "2rem",

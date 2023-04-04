@@ -1,13 +1,18 @@
+import { useSession } from "@inrupt/solid-ui-react";
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
-import { useSession } from "@inrupt/solid-ui-react";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LockIcon from "@mui/icons-material/Lock";
-import MapIcon from "@mui/icons-material/Map";
-import RoomIcon from "@mui/icons-material/Room";
-import SettingsIcon from "@mui/icons-material/Settings";
+
+import {
+  ArrowBackIosIcon,
+  FavoriteIcon,
+  LockIcon,
+  MapIcon,
+  RoomIcon,
+  SettingsIcon,
+} from "../../../helpers/IconContants";
+
 import { red } from "@mui/material/colors";
+import { BASE_PATH, LOGIN_PATH } from "../../../routes";
 
 function TopAccountAside() {
   const { session } = useSession();
@@ -16,8 +21,8 @@ function TopAccountAside() {
     e.preventDefault();
     sessionStorage.clear();
     await session.logout().then(() => {
-      window.location.href = "http://localhost:3000/login";
-    })
+      window.location.href = `${BASE_PATH}${LOGIN_PATH}`;
+    });
   };
 
   return (

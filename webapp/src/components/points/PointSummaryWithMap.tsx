@@ -1,4 +1,4 @@
-import ShareIcon from "@mui/icons-material/Share";
+import { ShareIcon } from "../../helpers/IconContants";
 import "../../public/css/components/points/PointSummaryWithMap.scss";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
@@ -46,7 +46,11 @@ function PointSummaryWithMap({
         <ShareIcon />
       </div>
       <div className="point-summary-with-map__buttons">
-        <BaseButton type="button-blue-rounded" text="Ver punto"  onClick={() => ""}/>
+        <BaseButton
+          type="button-blue-rounded"
+          text="Ver punto"
+          onClick={() => ""}
+        />
         <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
       </div>
     </div>
