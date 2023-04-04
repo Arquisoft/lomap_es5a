@@ -14,6 +14,11 @@ enum Category {
   NONE = "none",
 }
 
+enum Coordinate {
+  LAT = "lat",
+  LNG = "lng",
+}
+
 type SingleCategory = {
   id: string;
   code: string;
@@ -320,4 +325,4 @@ export type {
   SingleFilterProps
 };
 
-export { Category };
+export { Category, Coordinate };

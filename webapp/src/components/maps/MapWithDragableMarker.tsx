@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
-import InfoOutlined from "@mui/icons-material/InfoOutlined";
 import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
+import { InfoOutlined } from "../../helpers/IconContants";
 import DraggableMarker from "./DragableMarker";
 
 import "leaflet/dist/leaflet.css";
@@ -16,15 +15,7 @@ type Props = {
 };
 
 function MapWithDragableMarker({ position, styles }: Props) {
-  const [center, setCenter] = useState<LatLngExpression>(position);
-
   const { info } = usePointDetailsStore();
-
-  useEffect(()=> {
-    if(info.location.coords) {
-      setCenter(info.location.coords);
-    }
-  }, [info.location.coords]);
 
   return (
     <div className="map-with-dragable-marker-container">

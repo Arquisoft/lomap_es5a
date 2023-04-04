@@ -18,6 +18,10 @@
     @include mixins.customButton($color: funcs.color("black", "blur"), $type: "solid");
 }
 
+.button-black-outlined{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "outline");
+}
+
 .button-blue-outlined {
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "outline");
 }

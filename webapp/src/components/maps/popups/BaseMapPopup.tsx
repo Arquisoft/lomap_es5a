@@ -1,6 +1,6 @@
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
 import { BaseMapPopupProps } from "../../../shared/shareddtypes";
 import BaseBadge from "../../badges/BaseBadge";
@@ -48,12 +48,12 @@ function BaseMapPopup({
         <img src={image} alt={""} />
       </div>
       <div className="base-popup-modal__body">
-          <ProfileInfoWithFollowButton
-            name={owner?.name || ""}
-            imageUrl={owner.imageUrl}
-            webId={owner.webId}
-          />
-        
+        <ProfileInfoWithFollowButton
+          name={owner?.name || ""}
+          imageUrl={owner.imageUrl}
+          webId={owner.webId}
+        />
+
         <div className="popup-modal-social-icons">
           <FavoriteBorderIcon
             sx={{
