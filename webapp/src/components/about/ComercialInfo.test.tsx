@@ -31,5 +31,11 @@ describe('Comprobamos el componente de comercial box', () => {
         const wrapper = shallow(<ComercialBox />);
         const childWrapper = wrapper.find(BaseButton);
         expect(childWrapper.length).toEqual(2);
-    });   
+    });
+
+    it('Comprobamos textos',()=>{
+        const {getByText} = render(<ComercialBox />);
+        expect(getByText("Compartir")).toBeInTheDocument();
+        expect(getByText("Únete")).toBeInTheDocument();
+    });    
 });
