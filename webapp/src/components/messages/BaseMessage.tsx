@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "../../public/css/components/messages/BaseMessage.scss";
 
 type Props = {
@@ -8,10 +7,8 @@ type Props = {
 
 function BaseMessage({ text, type }: Props) {
   const types = {
-    error: "error",
+    error: "base-message__error",
     success: "base-message__success",
-    warning: "warning",
-    info: "info",
   };
 
   return (

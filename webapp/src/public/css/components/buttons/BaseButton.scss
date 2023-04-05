@@ -16,6 +16,11 @@
 
 .button-black{
     @include mixins.customButton($color: funcs.color("black", "blur"), $type: "solid");
+
+    &:disabled{
+        background-color: funcs.color("dark_grey", "base");
+        color: grey;
+    }
 }
 
 .button-black-outlined{

@@ -14,6 +14,19 @@
     & > input {
         @include mixins.commonInputStyles();
         border: 2px solid funcs.color("light_gray", "base");
+
+        &:valid, &:-moz-ui-valid{
+            background-color: funcs.color(dark_grey, high_light);
+        }
+
+        &:invalid, &:-moz-ui-invalid {
+            border: 2px solid funcs.color("error", "base");
+            background-color: funcs.color("error", "hight_light_alfa");
+        }
+
+        &:focus {
+            border: 2px solid funcs.color("black", "base");
+        }
     }
 
 }

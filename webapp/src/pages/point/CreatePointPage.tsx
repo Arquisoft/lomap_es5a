@@ -27,6 +27,7 @@ function CreatePointPage() {
               }
             }
             styles={{
+              position: "relative",
               width: "400px",
               height: "455px",
               borderRadius: "20px",

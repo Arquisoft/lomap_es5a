@@ -23,5 +23,14 @@
             font-weight: 400;
             font-size: 0.9rem;
         }
+
+        &:invalid{
+            border: 2px solid funcs.color("error", "base");
+            background-color: funcs.color("error", "hight_light_alfa");
+        }
+
+        &:focus{
+            border: 2px solid funcs.color("black", "base");
+        }
     }
 }

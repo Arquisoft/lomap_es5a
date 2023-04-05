@@ -2,6 +2,7 @@
 
 .map-with-dragable-marker-container{
     @include mixins.flex(column, flex-start, flex-start, 10px);
+    position: relative;
 
     // Mensaje informativo
     & > .map-with-dragable-marker-container__info-msg{

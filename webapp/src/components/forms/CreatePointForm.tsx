@@ -1,17 +1,18 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect, useState } from "react";
-import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
+import { Category, Coordinate } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
+import { checkAnyOptionIsSelected, checkIsNotEmpty, checkIsValidGeoCoordinate } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import { checkIsNotEmpty } from "../../utils/validator";
+import { addPoint } from "../../api/point.api";
 
 function CreatePointForm() {
   const {
@@ -29,42 +30,70 @@ function CreatePointForm() {
   const { session } = useSession();
   const { name, imageUrl } = useUserStore();
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
+    let hasErrors: boolean = false;
+    setErrors([]);
     try {
-      checkIsNotEmpty(info.name);
+      if(info.description){
+        checkIsNotEmpty(info.description, "descripción del punto");
+      }
+      checkAnyOptionIsSelected(info.category, "categoría del punto");
+      checkIsValidGeoCoordinate(info.location.coords.lat.toString(), Coordinate.LAT);
+      checkIsValidGeoCoordinate(info.location.coords.lng.toString(), Coordinate.LNG);
+
     }catch(err){
-      setErrors([...errors, (err as Error).message]);
+      setErrors([...errors, (err as Error).message]); 
+      hasErrors = true;
     }
+
+    return hasErrors;
 
   };
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    setIsUploading(true);
-    setIsFinished(false);
-    info._id = crypto.randomUUID();
-    info.location.postalCode = 0;
-    info.location.city = "";
-    info.location.country = "";
-    info.owner.name = name;
-    info.owner.imageUrl = imageUrl;
 
-    await addPoint(
-      info,
-      session.info.webId as string,
-      image,
-      (isSuccess: boolean) => {
-        setIsUploading(false);
-        setIsFinished(isSuccess);
-        console.log('%c 📍 Punto creado correctamente! ', 'background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;');
-      }
-    );
+    const hasErrors: boolean = validateForm();
+    console.log("hasErrors", errors);
+
+    //if(hasErrors){
+      setPosition({lat: 0, lng: 0});
+      setCurrentPointProperty("name", "");
+      setCurrentPointProperty("description", "");
+      setCurrentPointProperty("category", Category.NONE);
+
+      //return;
+    //}
+
+    console.log("info", info);
+
+    console.log("Punto creado correctamente!");
+
+    // setIsUploading(true);
+    // setIsFinished(false);
+    // info._id = crypto.randomUUID();
+    // info.location.postalCode = 0;
+    // info.location.city = "";
+    // info.location.country = "";
+    // info.owner.name = name;
+    // info.owner.imageUrl = imageUrl;
+
+    // await addPoint(
+    //   info,
+    //   session.info.webId as string,
+    //   image,
+    //   (isSuccess: boolean) => {
+    //     setIsUploading(false);
+    //     setIsFinished(isSuccess);
+    //     console.log('%c 📍 Punto creado correctamente! ', 'background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;');
+    //   }
+    // );
   };
 
   useEffect(() => {
     useMarkerStore.subscribe((position: any) => {
       const { lat, lng } = position.position;
-      setCurrentPointProperty("location.coords", { lat, lng });
+      setPosition({ lat, lng });
     });
   }, []);
 
@@ -142,7 +171,10 @@ function CreatePointForm() {
             name="address"
             type="text"
             value={info.location.address}
-            onChange={(e) => setPointAddress(e.target.value)}
+            onChange={(e) => {
+              setPointAddress(e.target.value);
+              setErrors([]);
+            }}
             placeholder="Calle Gascona, 1, 33001 Oviedo"
             styles={{
               width: "600px",
@@ -180,6 +212,7 @@ function CreatePointForm() {
           <BaseButton
             type="button-black"
             text="Publicar"
+            disabled={errors.length > 0}
             isLoading={isUploading}
             loadingText="Publicando..."
             onClick={handleAddPoint}
@@ -189,6 +222,11 @@ function CreatePointForm() {
       {!isUploading && isFinished && (
         <BaseMessage type="success" text="Punto publicado correctamente" />
       )}
+      {
+        errors.length > 0 && errors.map((err: any) => {
+          return <BaseMessage key={crypto.randomUUID()} type="error" text={err} />
+        })
+      }
     </div>
   );
 }
