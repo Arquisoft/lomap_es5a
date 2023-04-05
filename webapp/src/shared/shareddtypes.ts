@@ -58,7 +58,7 @@ type User = {
 type Friend = {
   webId : string;
   name : string;
-  imageUrl? : string;
+  imgUrl? : string;
 };
 
 /**

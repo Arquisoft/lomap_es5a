@@ -3,14 +3,17 @@ import { getUserProfileUrl } from "../helpers/PodHelper";
 import * as jsonld from "jsonld";
 import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
 import { UserInSessionProfile } from "../shared/shareddtypes";
+import {fetch} from "@inrupt/solid-client-authn-browser";
+import { profile } from "console";
 
 
 const getUserProfile = async (webId : string) => {
-  let profileUrl: string = getUserProfileUrl(webId);
-  let dataset =  await getSolidDataset(profileUrl);  
-  getNamedN
+  let profileUrl: string = getUserProfileUrl(webId);    
+  let userDataset =  await getSolidDataset(profileUrl, {fetch:fetch});  
+  let thing = getThing(userDataset, profileUrl) as Thing;    
+  return thing;  
   
-  console.log("Estoy aqui");
+  
 }
 
 
@@ -18,17 +21,11 @@ const getUserProfile = async (webId : string) => {
  * Obtener la información del perfil del usuario en sesión.
  * @param webId
  */
-const getUserProfileInfo = async (webId: string) => {  
-  // const userProfile = getThing(await getUserProfile(webId), webId) as Thing;
-  // const userName = getStringNoLocale(userProfile,FOAF.firstName);
-  // const imgUrl = getNamedNodeAll(userProfile, VCARD.photo)
-  
-  // return {
-  //   name: userData[FOAF.name][0]["@value"],
-  //   imageUrl: userData[VCARD.hasPhoto][0]["@id"],
-  //   friends: userData[FOAF.knows]
-  // } as UserInSessionProfile;  
-
+const getUserProfileInfo = async (webId: string) => {    
+  const profileUrl:string = getUserProfileUrl(webId) + '#me';
+  let userDataset =  await getSolidDataset(profileUrl, {fetch:fetch});  
+  let thing = getThing(userDataset, profileUrl) as Thing;    
+  return thing;
   // const data = await fetch(profileUrl, {
   //   method: "GET",
   //   headers: {

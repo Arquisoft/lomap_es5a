@@ -1,48 +1,54 @@
-import { Friend } from "../shared/shareddtypes";
+import { Friend, UserInSessionProfile } from "../shared/shareddtypes";
 import {
   getNamedNodeAll,
   getSolidDataset,
   getStringNoLocale,
   getThing,
+  getUrl,
   getUrlAll,
   Thing
 } from "@inrupt/solid-client";
+import {fetch} from "@inrupt/solid-client-authn-browser";
 
 import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
 import { getUserProfileUrl } from "../helpers/PodHelper";
-import { getUserProfile} from "../api/user.api"
+import { getUserProfileInfo } from "./user.api";
 
 
-const getFriendInfo = async (webId : string) => {
-  const friendProfile = await getUserProfile(webId);
-  // const userName = getStringNoLocale(friendProfile, FOAF.firstName);
-  // console.log("Friend name: ", userName);
-  // const frienImgUrl = getNamedNodeAll(friendProfile, VCARD.photo);
-  // console.log("Friend photo url: ", frienImgUrl);
 
-}
 
+/**
+ * Devuelve todos los amigos del usuario en sesión, con la información
+ * necesaria para mostrar en pantalla.
+ * @param webId 
+ * @returns 
+ */
 const getAllFriends = async (webId:string) => {
-  const profileUrl : string = getUserProfileUrl(webId);
+  const profileUrl : string = getUserProfileUrl(webId) + '#me';
 
-  const profileDataset = await getSolidDataset(profileUrl);
+  const profileDataset = await getSolidDataset(profileUrl, {fetch:fetch});
   
-  const profile = getThing(profileDataset, webId) as Thing;
+  const profile = getThing(profileDataset, profileUrl) as Thing;
 
-  const friends = getUrlAll(profile,FOAF.knows);  
-  
-  return friends;
-  //const myFriendsList : Friend[] = [];
+  const friends = getUrlAll(profile,FOAF.knows);
+    
+  const myFriendsList : Friend[] = [];
 
   // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
-  // friendsInfo.map((friend) => {
-  //   myFriendsList.push({
-  //     webId : webId,
-  //     name : friend.
-  //   })
-  // })
+  friends.forEach(async (friend) => {        
+    let friendName = getStringNoLocale(await getUserProfileInfo(friend), FOAF.name) as string;
+    let imgUrl = getUrl(await getUserProfileInfo(friend), VCARD.hasPhoto) as string;
+    let user : Friend = {
+      webId : friend,
+      name : friendName,
+      imgUrl : imgUrl
+    };
+    myFriendsList.push(user);
+  });
+
+  return myFriendsList;
 
  
 };
 
-export { getAllFriends, getFriendInfo };
+export { getAllFriends };
