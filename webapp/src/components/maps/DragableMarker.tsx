@@ -18,7 +18,7 @@ function DraggableMarker() {
         }
       },
     }),
-    []
+    [info.location.coords]
   );
 
   return (

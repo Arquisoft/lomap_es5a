@@ -6,6 +6,7 @@ import { BaseMapPopupProps } from "../../../shared/shareddtypes";
 import BaseBadge from "../../badges/BaseBadge";
 import BaseButton from "../../buttons/BaseButton";
 import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
+import { usePointDetailsStore } from "../../../store/point.store";
 
 function BaseMapPopup({
   name,
@@ -16,6 +17,7 @@ function BaseMapPopup({
   point,
 }: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
+  const {setPointToShow} = usePointDetailsStore();
 
   const navigate = useNavigate();
 
@@ -31,7 +33,9 @@ function BaseMapPopup({
   };
 
   const handleButtonClick = () => {
-    console.log(point?.name);
+    if(point){
+      setPointToShow(point);
+    }
     navigate(encodeURI(`/points/${point?.name}`));
   };
 

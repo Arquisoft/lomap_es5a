@@ -43,8 +43,8 @@ const getUserProfileUrl = (myWedId?: string) => {
 };
 
 const contructPodUrl = (webId: string, path: string) => {
-  checkIsNotEmpty(webId);
-  checkIsNotEmpty(path);
+  checkIsNotEmpty(webId, "webId");
+  checkIsNotEmpty(path, "path");
   return `${HTTP_PREFIX}://${getWebIdFromUrl(webId)}${path}`;
 };
 

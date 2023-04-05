@@ -12,5 +12,14 @@
     & > .base-select-item {
         @include mixins.commonInputStyles();
         border: 2px solid funcs.color(light_gray, base);
+
+        &:focus{
+            border: 2px solid funcs.color(black, base);
+        }
+
+        &:invalid{
+            border: 2px solid funcs.color(error, base);
+            background-color: funcs.color(error, hight_light_alfa);
+        }
     }
 }

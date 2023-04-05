@@ -44,11 +44,19 @@ $pallete: (
     "success": (
         "base": #00b840,
         "high_light": #99d4b0,
-        "dark": #009e36,
+        "hight_light_alfa": rgba(0, 184, 64, 0.15),
+        "dark": #006e27,
+    ),
+    "error": (
+        "base": #ff0000,
+        "high_light": #ff6666,
+        "hight_light_alfa": rgba(255, 0, 0, 0.15),
+        "dark": #e60000,
     ),
     "black": (
         "base": #070707,
         "blur": rgba(0, 0, 0, 0.85),
+        "transparent": rgba(0, 0, 0, .5),
         "high_light": #1c1c1c,
         "dark": #050505,
     )

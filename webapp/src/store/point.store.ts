@@ -56,6 +56,11 @@ interface AllPointsStore {
   setIsFiltering: (isFiltering: boolean) => void;
 }
 
+interface PointCategoryStore {
+  category: Category;
+  setSelectedCategory: (category: Category) => void;
+}
+
 const useAllPointsStore = create<AllPointsStore>((set) => ({
   points: [],
   filteredPoints: [],
@@ -99,6 +104,11 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
 
   setPointToShow: (point: Point) => set({ pointToShow: point }),
+}));
+
+const usePointCategoryStore = create((set) => ({
+  category: Category.NONE,
+  setSelectedCategory: (category: Category) => set({ category }),
 }));
 
 export { usePointDetailsStore, useAllPointsStore };
