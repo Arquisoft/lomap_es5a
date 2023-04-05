@@ -24,9 +24,6 @@ function RecenterMapButton({ coords }: RecenterMapButtonProps) {
     click() {
       map.flyTo(coords, map.getZoom())
     },
-    dragend() {
-      map.flyTo(coords, map.getZoom())
-    }
   });
 
   const handleRecenterMap = () => {
@@ -34,16 +31,6 @@ function RecenterMapButton({ coords }: RecenterMapButtonProps) {
     map.setMaxBounds(map.getBounds());
   };
   return null;
-  // return (
-  //   <div className="recenter-map-button">
-  //     <BaseButton text="centrar" type="button-primary" onClick={handleRecenterMap} styles={{
-  //       position: "absolute",
-  //       top: "10px",
-  //       right: "10px",
-  //       zIndex: 1000,
-  //     }} />
-  //   </div>
-  // );
 }
 
 function MapWithDragableMarker({ position, styles }: Props) {

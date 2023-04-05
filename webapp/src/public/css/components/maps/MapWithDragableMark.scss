@@ -1,4 +1,5 @@
 @use "../../mixins" as mixins;
+@use "../../functions" as funcs;
 
 .map-with-dragable-marker-container{
     @include mixins.flex(column, flex-start, flex-start, 10px);
@@ -12,4 +13,39 @@
             font-size: .9rem;
         }
     }
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+    @include mixins.flex(column, center, center, 5px);
+    border: none;
+}
+
+.leaflet-control-zoom .leaflet-bar .leaflet-control{
+    border: none;
+    border-radius: 100px;
+}
+
+.leaflet-touch .leaflet-bar a:first-child,
+.leaflet-touch .leaflet-bar a:last-child{
+    border-radius: 10px;
+}
+
+.leaflet-touch .leaflet-bar a{
+    @include mixins.flex(row, center, center, 10px);
+    width: 40px;
+    height: 40px;
+}
+
+.leaflet-bar a{
+    background-color: funcs.color("black", "transparent");
+    backdrop-filter: blur(3px);
+    color: white;
+
+    &:hover, &:focus, &:active{
+        background-color: funcs.color("black", "base");
+    }
+}
+
+.leaflet-top{
+    top: 10px;
 }

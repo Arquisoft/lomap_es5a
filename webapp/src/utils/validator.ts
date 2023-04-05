@@ -7,7 +7,7 @@ const NO_OPTION_SELECTED: string = "no-opt"; // Valor por defecto si no se ha se
 const errorMessages = {
   required: (field: string) => `El campo ${field} es obligatorio`,
   empty: (field: string) => `El campo ${field} es obligatorio`,
-  invalidGeoCoordinate: "This field must be a valid geo coordinate",
+  invalidGeoCoordinate: "La coordenadas geográficas no son válidas",
 };
 
 const sanitizeInput = (value: string) => {
@@ -31,18 +31,20 @@ const checkIsNotEmpty = (value: string, fieldName: string) => {
  * @param fieldName Nombre del campo que se está validando.
  */
 const checkAnyOptionIsSelected = (value: string, fieldName: string) => {
+  console.log(value);
   if (value === NO_OPTION_SELECTED) {
     throw new Error(errorMessages.empty(fieldName));
   }
 };
 
-const checkIsValidGeoCoordinate = (value: string, coord: Coordinate) => {
-  const sValue = sanitizeInput(value);
-  checkIsNotEmpty(sValue, coord);
+const checkIsValidGeoCoordinate = (value: number, coord: Coordinate) => {
+  const sValue = sanitizeInput(value.toString());
+  //checkIsNotEmpty(sValue, coord);
   const regex = coord === Coordinate.LAT ? LAT_REGEX : LNG_REGEX;
+  console.log(value, coord, regex);
   if (!regex.test(sValue)) {
     throw new Error(errorMessages.invalidGeoCoordinate);
   }
 };
 
-export { checkIsNotEmpty, checkIsValidGeoCoordinate, checkAnyOptionIsSelected };
+export { checkIsNotEmpty, checkIsValidGeoCoordinate, checkAnyOptionIsSelected, NO_OPTION_SELECTED };

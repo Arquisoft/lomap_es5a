@@ -241,13 +241,15 @@ interface BaseSelect {
 interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
+  showClearButton?: boolean;
   styles?: React.CSSProperties | string;
 };
 
@@ -261,6 +263,7 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+  maxLength?: number;
 }
 
 /**

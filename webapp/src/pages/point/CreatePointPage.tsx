@@ -21,10 +21,7 @@ function CreatePointPage() {
         <div className="create-point-map">
           <MapWithDragableMarker
             position={
-              info.location.coords || {
-                lat: 43.362503991605806,
-                lng: -5.8507845362433235,
-              }
+              info.location.coords
             }
             styles={{
               position: "relative",
