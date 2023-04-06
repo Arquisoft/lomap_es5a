@@ -29,7 +29,8 @@ const findAllPoints = async (webId: string): Promise<Point[]> => {
     return parseJsonToPoint(await data.json())
 
   } catch (err) {
-    console.error("Error findAllPoints: ", err);
+    //console.error("Error findAllPoints: ", err);
+    return [];    
   }
 
   return [];

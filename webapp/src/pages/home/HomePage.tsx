@@ -23,12 +23,13 @@ function HomePage() {
 
   const loadAllPoints = async () => {
     const data: Point[] = await findAllPoints(session.info.webId as string);
+    console.log(data);
     setAllPoints(data);
   };
 
   const loadUserInfo = async () => {
     const userInfo = await getUserProfileInfo(session.info.webId as string);
-    setName(userInfo.name);
+    setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
     setImageUrl(userInfo.imageUrl);
     setFriends(userInfo.friends);
   };
