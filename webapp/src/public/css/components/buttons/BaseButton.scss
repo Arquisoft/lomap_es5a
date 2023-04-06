@@ -14,8 +14,50 @@
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
 }
 
+.button-black{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "solid");
+
+    &:disabled{
+        background-color: funcs.color("dark_grey", "base");
+        color: grey;
+    }
+}
+
+.button-black-outlined{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "outline");
+}
+
 .button-blue-outlined {
     @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "outline");
+}
+
+.button-small-gray{
+    width: 70px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    //left: 0;
+    right: 10px;
+    border-radius: 100px;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    background-color: funcs.color("light_gray", "base");
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.button-absolute {
+    position: absolute;
+    top: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 1000;
+    transition: all .2s ease;
+
+    &:hover{
+        background-color: funcs.color("black", "dark");
+    }
 }
 
 // TODO: Refactorizar

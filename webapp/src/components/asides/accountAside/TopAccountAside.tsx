@@ -1,13 +1,18 @@
+import { useSession } from "@inrupt/solid-ui-react";
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
-import { useSession } from "@inrupt/solid-ui-react";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LockIcon from "@mui/icons-material/Lock";
-import MapIcon from "@mui/icons-material/Map";
-import RoomIcon from "@mui/icons-material/Room";
-import SettingsIcon from "@mui/icons-material/Settings";
+
+import {
+  ArrowBackIosIcon,
+  FavoriteIcon,
+  LockIcon,
+  MapIcon,
+  RoomIcon,
+  SettingsIcon,
+} from "../../../helpers/IconContants";
+
 import { red } from "@mui/material/colors";
+import { BASE_PATH, LOGIN_PATH } from "../../../routes";
 
 function TopAccountAside() {
   const { session } = useSession();
@@ -16,26 +21,33 @@ function TopAccountAside() {
     e.preventDefault();
     sessionStorage.clear();
     await session.logout().then(() => {
-      window.location.href = "http://localhost:3000/login";
-    })
+      window.location.href = `${BASE_PATH}${LOGIN_PATH}`;
+    });
   };
 
   return (
     <div className="top-acc-aside-main">
       <button className="top-acc-aside-back">
-        <ArrowBackIosIcon />
+        <ArrowBackIosIcon aria-hidden="true" />
       </button>
       <div className="top-acc-aside-title">Mi cuenta</div>
       <div className="top-acc-aside-buttons">
-        <TopAsideButton icon={<MapIcon />} text="Ver mapa" />
+        <TopAsideButton icon={<MapIcon aria-hidden="true"/>} text="Ver mapa" />
         <TopAsideButton
-          icon={<FavoriteIcon style={{ color: red[500] }} />}
+          icon={<FavoriteIcon style={{ color: red[500] }} aria-hidden="true"/>}
           text="Puntos guardados"
         />
-        <TopAsideButton icon={<RoomIcon />} text="Crear punto" />
-        <TopAsideButton icon={<SettingsIcon />} text="Ajustes" />
         <TopAsideButton
-          icon={<LockIcon style={{ color: red[500] }} />}
+          icon={<RoomIcon />}
+          aria-hidden="true"
+          text="Crear punto"
+        />
+        <TopAsideButton
+          icon={<SettingsIcon aria-hidden="true" />}
+          text="Ajustes"
+        />
+        <TopAsideButton
+          icon={<LockIcon style={{ color: red[500] }} aria-hidden="true"/>}
           text="Cerrar sesion"
           onClick={handleLogout}
         />

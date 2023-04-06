@@ -9,19 +9,24 @@ function BaseTextArea({
   value,
   placeholder,
   id,
+  maxLength,
   onChange,
 }: BaseTextAreaProps) {
+
+  const textAreaId = id || crypto.randomUUID();
+
   return (
     <div className="base-textarea-container">
-      <label htmlFor="">{label}</label>
+      <label htmlFor={textAreaId}>{label}</label>
       <textarea
         name={name}
-        id={id}
+        id={textAreaId}
         cols={30}
         rows={7}
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        maxLength={maxLength}
       ></textarea>
     </div>
   );

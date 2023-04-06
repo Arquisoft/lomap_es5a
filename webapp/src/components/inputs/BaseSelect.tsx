@@ -14,17 +14,20 @@ function BaseSelect({
   styles
 }: BaseSelectType) {
 
+  const selectId = id || crypto.randomUUID();
+
   return (
     <div className="base-select-container">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={selectId}>{label}</label>
       <select
         //onChange={handleChange}
         onChange={handleChange}
         name={name}
-        id={id}
+        id={selectId}
         className="base-select-item"
         style={styles as React.CSSProperties}
       >
+        <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
         {options.map((opt) => {
           return (
             <option key={opt.value + crypto.randomUUID} value={opt.value}>

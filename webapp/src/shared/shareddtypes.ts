@@ -14,6 +14,11 @@ enum Category {
   NONE = "none",
 }
 
+enum Coordinate {
+  LAT = "lat",
+  LNG = "lng",
+}
+
 type SingleCategory = {
   id: string;
   code: string;
@@ -42,6 +47,17 @@ type User = {
   webId: string;
   email?: string;
   image?: string;
+};
+
+/**
+ * Almacenen de datos de usuario en sesion.
+ */
+type UserInSessionProfile = {
+  webId?: string;
+  name: string;
+  imageUrl?: string;
+  email?: string;
+  friends?: string[];
 };
 
 /**
@@ -100,7 +116,7 @@ type Image = {
 type PointOwner = {
   webId: string;
   name?: string;
-  imageUrl: string;
+  imageUrl?: string;
 };
 
 /**
@@ -121,7 +137,7 @@ type Point = {
   name: string;
   description?: string;
   location: BaseLocation;
-  owner: PointOwner | User;
+  owner: PointOwner;
   reviews?: Review[];
   image?: Image;
   isPublic: boolean;
@@ -225,13 +241,15 @@ interface BaseSelect {
 interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
+  showClearButton?: boolean;
   styles?: React.CSSProperties | string;
 };
 
@@ -245,6 +263,7 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+  maxLength?: number;
 }
 
 /**
@@ -263,8 +282,16 @@ type ProfileInfoWithFollowButtonProps = {
  * Propiedades para el componente de listado de puntos de interés (Home).
  */
 type PointListingAsideProps = {
-  points: PointSummary[];
+  points: Point[];
 }
+
+type SingleFilterProps = {
+  code: string; // Código de la categoria
+  iconFilename: any;
+  iconAlt?: string;
+  text: string;
+  isActive?: boolean;
+};
 
 type FirebaseConfig = {
   apiKey: string;
@@ -296,7 +323,9 @@ export type {
   PointOwner,
   ProfileInfoWithFollowButtonProps,
   PointListingAsideProps,
-  FirebaseConfig
+  FirebaseConfig,
+  UserInSessionProfile,
+  SingleFilterProps
 };
 
-export { Category };
+export { Category, Coordinate };
