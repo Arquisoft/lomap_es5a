@@ -24,14 +24,14 @@ import { getUserProfileInfo } from "./user.api";
  */
 const addFriend = async (webId:string, friendWebId:string) => {
   const userInSesionProfileUrl:string = getUserProfileUrl(webId) + '#me';
-  const userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});
+  let userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});
   const userInSesionProfile = getThing(userDataset, userInSesionProfileUrl) as Thing;
-  const friendUrl = getUserProfileUrl(friendWebId) + '#me';
+  //const friendUrl = getUserProfileUrl(friendWebId) + '#me';  
   if (checkIfExistsFriend(userInSesionProfile, friendWebId)){
     console.log("Ya sois amigoss!!!");
   }else{
-    const newFriend = addUrl(userInSesionProfile, FOAF.knows, friendUrl);
-    setThing(userDataset, newFriend);
+    const newFriend = addUrl(userInSesionProfile, FOAF.knows, friendWebId);    
+    userDataset = setThing(userDataset, newFriend);
     await saveSolidDatasetAt(getUserProfileUrl(webId),userDataset);
   }
 
@@ -79,6 +79,6 @@ const getAllFriends = async (webId:string) => {
  
 };
 
-export { getAllFriends };
+export { getAllFriends, addFriend };
 
 

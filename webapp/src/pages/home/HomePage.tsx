@@ -14,7 +14,7 @@ import "../../public/css/pages/home/HomePage.scss";
 import { useAllPointsStore } from "../../store/point.store";
 import { Category, Point } from "../../shared/shareddtypes";
 import { getUserProfile, getUserProfileInfo } from "../../api/user.api";
-import { getAllFriends } from "../../api/friends.api";
+import { getAllFriends, addFriend } from "../../api/friends.api";
 import { useUserStore } from "../../store/user.store";
 import { getStringNoLocale, Thing } from "@inrupt/solid-client";
 import { FOAF } from "@inrupt/vocab-common-rdf";
@@ -31,8 +31,8 @@ function HomePage() {
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn){
-      const myFriends = await getAllFriends(session.info.webId as string);
-      console.log(myFriends);
+      const friends = await getAllFriends(session.info.webId as string);
+      console.log(friends);
     }else{
       console.log("No estoy logeado");
     }
