@@ -57,7 +57,7 @@ interface AllPointsStore {
 }
 
 interface PointCategoryStore {
-  category: Category;
+  selectedCategory: Category;
   setSelectedCategory: (category: Category) => void;
 }
 
@@ -106,9 +106,9 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 }));
 
-const usePointCategoryStore = create((set) => ({
-  category: Category.NONE,
-  setSelectedCategory: (category: Category) => set({ category }),
+const usePointCategoryStore = create<PointCategoryStore>((set) => ({
+  selectedCategory: Category.NONE,
+  setSelectedCategory: (category: Category) => set({ selectedCategory: category }),
 }));
 
 export { usePointDetailsStore, useAllPointsStore };

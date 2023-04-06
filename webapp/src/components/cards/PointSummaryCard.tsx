@@ -4,6 +4,7 @@ import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 import { Link } from "react-router-dom";
 import { usePointDetailsStore } from "../../store/point.store";
 import { Point } from "../../shared/shareddtypes";
+import { canonizeUrl } from "../../utils/stringUtils";
 
 type Props = {
   imgUrl?: string;
@@ -27,7 +28,7 @@ function PointSummaryCard({
     e.preventDefault();
     if(pointInfo && pointName.length > 0){
       setPointToShow(pointInfo);
-      navigate(`/points/${pointName.replace(/\s/g, "-").toLowerCase()}`);
+      navigate(canonizeUrl("/points", pointName));
     }
   }
 

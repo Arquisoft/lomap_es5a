@@ -7,6 +7,7 @@ import BaseBadge from "../../badges/BaseBadge";
 import BaseButton from "../../buttons/BaseButton";
 import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
 import { usePointDetailsStore } from "../../../store/point.store";
+import { canonizeUrl } from "../../../utils/stringUtils";
 
 function BaseMapPopup({
   name,
@@ -36,7 +37,9 @@ function BaseMapPopup({
     if(point){
       setPointToShow(point);
     }
-    navigate(encodeURI(`/points/${point?.name}`));
+    if(point?.name){
+      navigate(canonizeUrl("/points", point.name));
+    }
   };
 
   return (
