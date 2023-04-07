@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { LoginButton, useSession } from "@inrupt/solid-ui-react";
+//import { LoginButton, useSession } from "@inrupt/solid-ui-react";
 import "../../public/css/components/forms/loginForm/LoginForm.scss";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseButton from "../buttons/BaseButton";
@@ -13,7 +13,7 @@ function LoginForm() {
   const [webId, setWebId] = useState("")
   const [providerUrl, setProviderUrl] = useState(SOLID_PROVIDERS[0].value);  
 
-  const { session } = useSession();
+  //const { session } = useSession();
   const {login} = useAuth();
 
 

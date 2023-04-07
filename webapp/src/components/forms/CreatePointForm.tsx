@@ -136,6 +136,7 @@ function CreatePointForm() {
       <form>
         <div className="create-form-form">
           <BaseTextInput
+            id="nombre"
             label="Nombre (*)"
             type="text"
             name="name"
@@ -160,6 +161,7 @@ function CreatePointForm() {
 
           <div className="create-form-form-coords-inputs">
             <BaseTextInput
+              id="latitud"
               label="Latitud (*)"
               name="lat"
               type="number"
@@ -183,6 +185,7 @@ function CreatePointForm() {
             />
 
             <BaseTextInput
+              id="longitud"
               label="Longitud (*)"
               name="lng"
               type="number"
@@ -207,6 +210,7 @@ function CreatePointForm() {
           </div>
 
           <BaseTextInput
+            id="direccion"
             label="Dirección postal"
             name="address"
             type="text"
