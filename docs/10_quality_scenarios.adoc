@@ -25,7 +25,7 @@ PR --> IPI
 
 === Quality Scenarios
 
-[%header, cols=3]
+[%header, cols=5]
 |===
 |Número
 |Atributo de calidad
