@@ -5,12 +5,12 @@ function SingleDetail() {
     const {info} = usePointDetailsStore();
 
     return(
-        <div>
+        <div className="single-details-containter">
             <h2>Detalles</h2>
             
             {
               info && 
-              <div>
+              <div className="single-details-details">
                 <p>Nombre: {info.name}</p>
                 <p>Coordenadas: {info.location.coords.lat}  {info.location.coords.lng}</p>
                 <p>Dirección: {info.location.address}</p>

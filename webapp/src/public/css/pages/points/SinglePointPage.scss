@@ -1,19 +1,28 @@
 .single-point-details-container{
-    width: 100%;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 .single-point-details__details{
+    padding-top: 40px;
+    width: 912px;
     background-color: aqua;
 }
 
 .single-point-details__reviews{
+    width: 912px;
     background-color: darkgoldenrod;
 }
 
 .single-point-details__addReview{
+    width: 912px;
     background-color: chartreuse;
 }
 
 .single-point-details__reviewListing{
-    background-color: darkkhaki;
+    width: 912px;
+    background-color: darkgoldenrod ;
 }
