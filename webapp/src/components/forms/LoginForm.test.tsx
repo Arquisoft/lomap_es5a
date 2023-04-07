@@ -10,7 +10,7 @@ describe("Funcionamiento del login",()=>{
 
     afterAll(cleanup);
     it("Comprobamos ciertos campos de texto",()=>{
-        const {container,getByText} = render(<LoginForm/>);
+        const {getByText} = render(<LoginForm/>);
         expect(getByText("Iniciar sesión")).toBeInTheDocument;
         expect(getByText("Únete ya")).toBeInTheDocument;
     });
