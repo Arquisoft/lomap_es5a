@@ -1,9 +1,7 @@
-import { getJsonLdParser } from "@inrupt/solid-client";
 import { getUserProfileUrl } from "../helpers/PodHelper";
 import * as jsonld from "jsonld";
-import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
+import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 import { UserInSessionProfile } from "../shared/shareddtypes";
-
 
 
 /**

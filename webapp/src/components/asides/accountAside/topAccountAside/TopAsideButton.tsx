@@ -1,18 +1,18 @@
+import Icon from "@mui/material/Icon";
 import "../../../../public/css/components/asides/accountAside/topAccountAside/TopAsideButton.css";
 
 type Props = {
   icon: React.ReactNode;
   text: string;
-  onClick?: (e: any) => void;
+  isActive?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
-function TopAsideButton({ icon, text, onClick }: Props) {
+function TopAsideButton({ icon, text, isActive, onClick }: Props) {
   return (
-    <div className="aside-button-main">
-      <div className="aside-button-logo">{icon}</div>
-      <button className="aside-button-text" onClick={onClick}>
-        {text}
-      </button>
+    <div className={`aside-button-container ${isActive ? 'aside-button-container--active' : ''}`} onClick={onClick}>
+      <Icon sx={{ fontSize: 24 }}>{icon}</Icon>
+      <p>{text}</p>
     </div>
   );
 }

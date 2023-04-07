@@ -1,4 +1,3 @@
-import { JSONObject } from "puppeteer";
 import type {
   BaseLocation,
   Point,
@@ -177,3 +176,4 @@ const parsePointToJson = (point: Point) => {
 };
 
 export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary };
+

@@ -25,6 +25,11 @@ function PointSummaryWithMap({
   lng,
   hasMap = false,
 }: Props) {
+
+  const handleRedirectToPointDetail = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    
+  };
   return (
     <div className="point-summary-with-map-container">
       {hasMap && (
@@ -49,7 +54,7 @@ function PointSummaryWithMap({
         <BaseButton
           type="button-blue-rounded"
           text="Ver punto"
-          onClick={() => ""}
+          onClick={(e) => handleRedirectToPointDetail(e)}
         />
         <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
       </div>

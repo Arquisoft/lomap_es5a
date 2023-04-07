@@ -1,34 +1,40 @@
 @use "../../mixins" as mixins;
 
-.point-listing-aside-container{
+.point-listing-aside-container {
     @include mixins.flex(column, flex-start, flex-start, 15px);
+    height: 450px;
+    max-height: 700px;
+    overflow-y: hidden;
 
-    // Titulo y boton ver todos los puntos
-    & > .point-listing-aside__head{
-        @include mixins.flex(row, space-between, center, 15px);
-        width: 100%;
-        
-        & > .point-listing_link{
-            background: none;
-            border: none;
-            outline: none;
-            font-size: .9rem;
-            color: gray;
-            opacity: .5;
-            text-decoration: none;
-            cursor: pointer;
+    & > .point-listing-aside-container-wrapper {
+        overflow-y: scroll;
+        //scrollbar-width: none;
+        // Titulo y boton ver todos los puntos
+        & > .point-listing-aside__head {
+            @include mixins.flex(row, space-between, center, 15px);
+            width: 100%;
 
-            &:hover{
-                opacity: .9;
-                text-decoration: underline;
+            & > .point-listing_link {
+                background: none;
+                border: none;
+                outline: none;
+                font-size: 0.9rem;
+                color: gray;
+                opacity: 0.5;
+                text-decoration: none;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.9;
+                    text-decoration: underline;
+                }
             }
         }
-    }
 
-
-    // Listado con los puntos de interes
-    & > .point-listing-aside__body{
-        @include mixins.flex(column, flex-start, flex-start, 5px);
-        width: 100%;
+        // Listado con los puntos de interes
+        & > .point-listing-aside__body {
+            @include mixins.flex(column, flex-start, flex-start, 5px);
+            width: 100%;
+        }
     }
 }

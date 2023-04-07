@@ -105,6 +105,47 @@
   background-color: #1a4aca;
 }
 
+.button-black {
+  width: 128px;
+  height: 38px;
+  border-radius: 100px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+  border: none;
+}
+.button-black:disabled {
+  cursor: not-allowed;
+}
+.button-black:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.button-black:disabled {
+  background-color: #B9B9B9;
+  color: grey;
+}
+
+.button-black-outlined {
+  width: 128px;
+  height: 38px;
+  border-radius: 100px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(0, 0, 0, 0.85);
+}
+.button-black-outlined:disabled {
+  cursor: not-allowed;
+}
+.button-black-outlined:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+}
+
 .button-blue-outlined {
   width: 128px;
   height: 38px;
@@ -122,6 +163,33 @@
 .button-blue-outlined:hover {
   background-color: #1c4fd8;
   color: #ffffff;
+}
+
+.button-small-gray {
+  width: 70px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  border-radius: 100px;
+  font-weight: 400;
+  outline: none;
+  border: none;
+  background-color: #e1e0e0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.button-absolute {
+  position: absolute;
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+.button-absolute:hover {
+  background-color: #050505;
 }
 
 .button-blue-rounded {

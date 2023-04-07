@@ -56,12 +56,13 @@
   align-items: flex-start;
   gap: 3px;
   width: 100%;
+  position: relative;
 }
 .base-text-input-container > label {
   width: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #B9B9B9;
+  color: #070707;
 }
 .base-text-input-container > input {
   width: 100%;
@@ -74,4 +75,14 @@
 }
 .base-text-input-container > input:focus {
   box-shadow: 0 0 0 2px rgba(225, 224, 224, 0.4352941176);
+}
+.base-text-input-container > input:valid, .base-text-input-container > input:-moz-ui-valid {
+  background-color: #FAF9F9;
+}
+.base-text-input-container > input:required:focus:invalid:not(:first-of-type), .base-text-input-container > input:required:focus:-moz-ui-invalid {
+  border: 2px solid #ff0000;
+  background-color: rgba(255, 0, 0, 0.15);
+}
+.base-text-input-container > input:focus {
+  border: 2px solid #070707;
 }/*# sourceMappingURL=BaseTextInput.css.map */

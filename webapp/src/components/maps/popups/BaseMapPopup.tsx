@@ -7,6 +7,8 @@ import BaseBadge from "../../badges/BaseBadge";
 import BaseButton from "../../buttons/BaseButton";
 import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
 import { usePointDetailsStore } from "../../../store/point.store";
+import { canonizeUrl } from "../../../utils/stringUtils";
+import { availableCategories } from "../../../helpers/CategoryFilterHelper";
 
 function BaseMapPopup({
   name,
@@ -36,7 +38,9 @@ function BaseMapPopup({
     if(point){
       setPointToShow(point);
     }
-    navigate(encodeURI(`/points/${point?.name}`));
+    if(point?.name){
+      navigate(canonizeUrl("/points", point.name));
+    }
   };
 
   return (
@@ -47,7 +51,7 @@ function BaseMapPopup({
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={category} styles={badgeStyles} />
+          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} styles={badgeStyles} />
         )}
         <img src={image} alt={""} />
       </div>

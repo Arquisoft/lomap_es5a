@@ -15,6 +15,7 @@ interface PointDetailsStore {
   setIsUploading: (isUploading: boolean) => void;
   setIsFinished: (isFinished: boolean) => void;
   setPointToShow: (point: Point) => void;
+  resetPointInfo: () => void;
 }
 
 let pointInitilization: Point = {
@@ -57,7 +58,7 @@ interface AllPointsStore {
 }
 
 interface PointCategoryStore {
-  category: Category;
+  selectedCategory: Category;
   setSelectedCategory: (category: Category) => void;
 }
 
@@ -104,11 +105,9 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
 
   setPointToShow: (point: Point) => set({ pointToShow: point }),
-}));
 
-const usePointCategoryStore = create((set) => ({
-  category: Category.NONE,
-  setSelectedCategory: (category: Category) => set({ category }),
+  resetPointInfo: () => set({ info: pointInitilization }),
 }));
 
 export { usePointDetailsStore, useAllPointsStore };
+
