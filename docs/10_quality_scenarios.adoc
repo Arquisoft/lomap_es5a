@@ -27,20 +27,28 @@ PR --> IPI
 
 [%header, cols=3]
 |===
+|Número
 |Atributo de calidad
 |Escenario de calidad
 |Prioridad
+|Complejidad de implementación
 
+|1
 |Usabilidad
-|Queremos ofrecer al usuario la posibilidad de filtrar puntos del mapa por amigos, además de un servicio de acceso a información y almacenamiento de datos, en un sistema intuitivo y eficaz para los clientes
+|Queremos ofrecer al usuario la posibilidad de filtrar puntos del mapa por amigos, además de un servicio de acceso a información y almacenamiento de datos, en un sistema intuitivo y eficaz para los clientes (lo más rápido posible)
 |Alta
+|Media
 
+|2
 |Seguridad
-|Garantizaremos la mayor seguridad posible, guardando los datos del usuario de forma segura e intentando prevenir cualquier tipo de ataque o riesgo. Securizar la api rest protegiendo determinadas rutas también será otro objetivo a llevar a cabo
+|Garantizaremos la mayor seguridad posible, guardando la información sensible del usuario de forma segura e intentando prevenir cualquier tipo de ataque o riesgo. Securizar la api rest protegiendo determinadas rutas también será otro objetivo para llevar a cabo
+|Alta
 |Alta
 
+|3
 |Privacidad
-|Vamos a mantener la privacidad de los usuarios, los datos del usuario estarán protegidos. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada
+|Vamos a respetar la privacidad de los usuarios, los datos del usuario estarán protegidos en todo momento. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada
+|Media
 |Media
 
 |===
