@@ -6,15 +6,16 @@ function PointReviewSection(){
     return(
         <div className="point-review-section-container">
             <h2>Valoraciones</h2>
+            <div className="point-review-section-review-container">
+                <div className="point-review-section-review-summary">
+                    <PointReviewSummary />
+                </div>
 
-            <div className="point-review-section-summary">
-                <PointReviewSummary />
-            </div>
+                <p> 20 valoraciones</p>
 
-            <p> 20 valoraciones</p>
-
-            <div className="point-review-section-stars">
-                <ReviewStars />
+                <div className="point-review-section-review-stars">
+                    <ReviewStars />
+                </div>
             </div>
         </div>
     )
