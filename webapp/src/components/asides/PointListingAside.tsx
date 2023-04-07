@@ -7,13 +7,9 @@ import { formatDateWithGenericFormat } from "../../utils/dateUtils";
 function PointListingAside({ points }: PointListingAsideProps) {
   return (
     <div className="point-listing-aside-container">
-          <p>Puntos de interés recientes</p>
+      <p>Puntos de interés recientes</p>
       <div className="point-listing-aside-container-wrapper">
-        <div className="point-listing-aside__head">
-          {/* <Link to="/points" className="point-listing_link">
-          Ver todos
-        </Link> */}
-        </div>
+        <div className="point-listing-aside__head"></div>
 
         <div className="point-listing-aside__body">
           {points && points.length > 0 ? (

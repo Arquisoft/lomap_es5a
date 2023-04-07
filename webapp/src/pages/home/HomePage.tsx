@@ -60,7 +60,6 @@ function HomePage() {
             />
             <PointListingAside points={isFiltering ? filteredPoints : points} />
           </div>
-          <p>{session.info.webId}</p>
         </div>
       </AuthenticatedLayout>
     </div>

@@ -31,6 +31,7 @@ function CreatePointForm() {
     isFinished,
     setIsUploading,
     setIsFinished,
+    resetPointInfo,
     image,
   } = usePointDetailsStore();
   const [errors, setErrors] = useState([] as any);
@@ -85,16 +86,7 @@ function CreatePointForm() {
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    let hasErrors: boolean = validateForm();
-
-    if (hasErrors) {
-      setPosition({ lat: 0, lng: 0 });
-      setCurrentPointProperty("name", "");
-      setCurrentPointProperty("description", "");
-      setCurrentPointProperty("category", Category.NONE);
-
-      return;
-    }
+    validateForm();
 
     console.log("info", info);
     console.log("errors", errors);
@@ -112,7 +104,7 @@ function CreatePointForm() {
 
     await addPoint(
       info,
-      session.info.webId as string,
+      session,
       image,
       (isSuccess: boolean) => {
         setIsUploading(false);
@@ -122,6 +114,8 @@ function CreatePointForm() {
           "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
         );
         navigate(HOME_PATH);
+        setErrors([]);
+        resetPointInfo();
       }
     );
   };
