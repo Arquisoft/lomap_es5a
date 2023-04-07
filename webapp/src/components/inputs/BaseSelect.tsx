@@ -1,7 +1,6 @@
 import React from "react";
 import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
 import "../../public/css/components/inputs/baseSelect/BaseSelect.scss";
-import crypto from 'crypto';
 
 
 function BaseSelect({

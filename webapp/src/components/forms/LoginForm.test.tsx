@@ -9,7 +9,6 @@ import {mount} from 'enzyme';
 describe("Funcionamiento del login",()=>{
 
     afterAll(cleanup);
-
     it("Comprobamos ciertos campos de texto",()=>{
         const {container,getByText} = render(<LoginForm/>);
         expect(getByText("Iniciar sesión")).toBeInTheDocument;

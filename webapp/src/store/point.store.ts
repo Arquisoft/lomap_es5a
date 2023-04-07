@@ -109,9 +109,5 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   resetPointInfo: () => set({ info: pointInitilization }),
 }));
 
-const usePointCategoryStore = create<PointCategoryStore>((set) => ({
-  selectedCategory: Category.NONE,
-  setSelectedCategory: (category: Category) => set({ selectedCategory: category }),
-}));
-
 export { usePointDetailsStore, useAllPointsStore };
+

@@ -1,10 +1,9 @@
-import { useHref, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import "../../public/css/components/cards/point/PointSummaryCard.scss";
-import NoImageSkeleton from "../skeletons/NoImageSkeleton";
-import { Link } from "react-router-dom";
-import { usePointDetailsStore } from "../../store/point.store";
 import { Point } from "../../shared/shareddtypes";
+import { usePointDetailsStore } from "../../store/point.store";
 import { canonizeUrl } from "../../utils/stringUtils";
+import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 
 type Props = {
   imgUrl?: string;

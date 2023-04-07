@@ -1,17 +1,13 @@
-import {
-  getFile,
-  overwriteFile,
-  saveFileInContainer,
-} from "@inrupt/solid-client";
-import { fetch, getDefaultSession } from "@inrupt/solid-client-authn-browser";
-import { Category, Point, Review } from "../shared/shareddtypes";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
+import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { fetch } from "@inrupt/solid-client-authn-browser";
 import {
   checkContainerExists,
   createNewContainer,
   getUserPrivatePointsUrl,
 } from "../helpers/PodHelper";
 import { uploadImage } from "../services/imageService";
+import { Category, Point, Review } from "../shared/shareddtypes";
+import { parseJsonToPoint } from "../utils/parsers/pointParser";
 
 /**
  * Obtener todos los puntos de interés.
@@ -32,11 +28,9 @@ const findAllPoints = async (webId: string): Promise<Point[]> => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    //console.error("Error findAllPoints: ", err);
-    return [];
+    console.error("Error findAllPoints: ", err);
   }
-
-  return [];
+  return new Array<Point>();
 };
 
 /**

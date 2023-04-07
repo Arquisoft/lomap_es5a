@@ -26,7 +26,6 @@ import { useNavigationStore } from "./store/navigation.store";
 
 function App() {
   const { session } = useSession();
-  const {saveCurrentPath, currentPath} = useNavigationStore();
 
   let isPageRefresh =
     (window.performance.getEntriesByType("navigation")[0] as any).type ===

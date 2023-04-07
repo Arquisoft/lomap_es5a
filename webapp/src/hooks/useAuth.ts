@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { redirect } from "react-router-dom";
 import { LOGIN_PATH } from "../routes";
 
@@ -21,13 +21,6 @@ function useAuth() {
     setIsLogged(false);
     redirect(LOGIN_PATH);
   };
-
-  // useEffect(() => {
-  //     if(!isLogged){
-  //         logout();
-  //     }
-
-  // }, [isLogged]);
 
   return {
     isLogged,

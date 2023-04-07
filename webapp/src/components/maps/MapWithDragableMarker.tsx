@@ -1,12 +1,11 @@
 import { LatLng, LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer, useMap, useMapEvent, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import { InfoOutlined } from "../../helpers/IconContants";
 import DraggableMarker from "./DragableMarker";
 
 import "leaflet/dist/leaflet.css";
 import "../../public/css/components/maps/MapWithDragableMark.scss";
 import { usePointDetailsStore } from "../../store/point.store";
-import BaseButton from "../buttons/BaseButton";
 
 type Props = {
   position: LatLngExpression;
@@ -25,11 +24,6 @@ function RecenterMapButton({ coords }: RecenterMapButtonProps) {
       map.flyTo(coords, map.getZoom())
     },
   });
-
-  const handleRecenterMap = () => {
-    map.flyTo(coords, map.getZoom());
-    map.setMaxBounds(map.getBounds());
-  };
   return null;
 }
 

@@ -1,19 +1,16 @@
-import { useEffect, useMemo } from "react";
+import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect } from "react";
+import {
+  findAllPoints
+} from "../../api/point.api";
+import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
-import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
-import { useSession } from "@inrupt/solid-ui-react";
-import {
-  addPoint,
-  editPointById,
-  findAllPoints,
-  findPointsByCategory,
-} from "../../api/point.api";
 import BaseMap from "../../components/maps/BaseMap";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
+import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
-import { Category, Point } from "../../shared/shareddtypes";
-import { getUserProfileInfo } from "../../api/user.api";
 import { useUserStore } from "../../store/user.store";
 
 function HomePage() {
@@ -23,7 +20,6 @@ function HomePage() {
 
   const loadAllPoints = async () => {
     const data: Point[] = await findAllPoints(session.info.webId as string);
-    console.log(data);
     setAllPoints(data);
   };
 

@@ -1,8 +1,11 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
-import { Category, Coordinate } from "../../shared/shareddtypes";
+import { HOME_PATH } from "../../routes";
+import { Coordinate } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
@@ -17,9 +20,6 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import { addPoint } from "../../api/point.api";
-import { useNavigate } from "react-router";
-import { HOME_PATH, LOGIN_PATH } from "../../routes";
 
 function CreatePointForm() {
   const {

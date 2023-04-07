@@ -1,13 +1,9 @@
+import {
+  getPodUrlAll,
+  getSolidDataset
+} from "@inrupt/solid-client";
 import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { checkIsNotEmpty } from "../utils/validator";
-import { useSession } from "@inrupt/solid-ui-react";
-import {
-  deleteContainer,
-  deleteFile,
-  getPodUrlAll,
-  getPodUrlAllFrom,
-  getSolidDataset,
-} from "@inrupt/solid-client";
 
 const HTTP_PREFIX = "https";
 
@@ -94,3 +90,4 @@ export {
   createNewContainer,
   checkContainerExists,
 };
+
