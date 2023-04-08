@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Category, Point } from "../shared/shareddtypes";
+import { Category, Point, SingleCategory } from "../shared/shareddtypes";
 
 interface PointDetailsStore {
   info: Point;
@@ -51,10 +51,20 @@ let pointInitilization: Point = {
 interface AllPointsStore {
   points: Point[];
   filteredPoints: Point[];
+  filteredPointsPreview: Point[];
+  filters: SingleCategory[];
   isFiltering: boolean;
+  showFilterPopup: boolean;
   setAllPoints: (points: Point[]) => void;
+  getAllPoints: () => Point[];
   setFilteredPoints: (pointsToFilter: Point[]) => void;
   setIsFiltering: (isFiltering: boolean) => void;
+  addFilter: (category: SingleCategory) => void;
+  removeFilter: (category: SingleCategory) => void;
+  makeFilteredPointsPreview: () => void;
+  filterPointsBySelectedFilters: () => void;
+  resetFilters: () => void;
+  setShowFilterPopup: (showFilterPopup: boolean) => void;
 }
 
 interface PointCategoryStore {
@@ -62,14 +72,55 @@ interface PointCategoryStore {
   setSelectedCategory: (category: Category) => void;
 }
 
-const useAllPointsStore = create<AllPointsStore>((set) => ({
+const useAllPointsStore = create<AllPointsStore>((set, get) => ({
   points: [],
   filteredPoints: [],
+  filteredPointsPreview: [],
+  filters: [],
+  showFilterPopup: false,
   isFiltering: false,
   setAllPoints: (points: Point[]) => set({ points }),
+  getAllPoints: () => get().points,
   setFilteredPoints: (pointsToFilter: Point[]) =>
     set({ filteredPoints: pointsToFilter }),
   setIsFiltering: (isFiltering: boolean) => set({ isFiltering }),
+  addFilter: (category: SingleCategory) =>
+    set((state: any) => ({
+      filters: [...state.filters, category],
+    })),
+  removeFilter: (category: SingleCategory) =>
+    set((state: any) => ({
+      filters: state.filters.filter(
+        (filter: SingleCategory) => filter !== category
+      ),
+    })),
+  makeFilteredPointsPreview: () => {
+    set({ isFiltering: false });
+    set((state: any) => ({
+      filteredPointsPreview: state.points.filter((point: Point) =>
+        state.filters.map((filter: any) => filter.code).includes(point.category)
+      ),
+    }));
+  },
+  filterPointsBySelectedFilters: () => {
+    set({ isFiltering: true });
+    set((state: any) => ({
+      filteredPoints:
+        state.filters.length > 0
+          ? state.points.filter((point: Point) =>
+              state.filters
+                .map((filter: any) => filter.code)
+                .includes(point.category)
+            )
+          : state.points,
+    }));
+  },
+  resetFilters: () => {
+    set({ filters: [] });
+    set({ filteredPointsPreview: [] });
+    set({ isFiltering: false });
+  },
+  setShowFilterPopup: (showFilterPopup: boolean) => set({ showFilterPopup }),
 }));
 
 /**
@@ -110,4 +161,3 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
 }));
 
 export { usePointDetailsStore, useAllPointsStore };
-

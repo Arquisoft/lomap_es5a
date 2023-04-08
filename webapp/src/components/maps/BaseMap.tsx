@@ -19,7 +19,7 @@ type Props = {
 };
 
 function BaseMap({ position, styles, points }: Props) {
-  const { setIsFiltering, isFiltering } = useAllPointsStore();
+  const { setIsFiltering, isFiltering, filteredPoints, getAllPoints} = useAllPointsStore();
   // Ubicación por defecto: Bruselas
   const defaultMapCenter: LatLngExpression = [
     50.85119149087381, 4.3544687591272835,
@@ -32,7 +32,7 @@ function BaseMap({ position, styles, points }: Props) {
 
   return (
     <div className="base-map-container">
-      {isFiltering && (
+      {isFiltering && getAllPoints().length > filteredPoints.length && (
         <BaseButton
           text="Mostrar todo"
           type="button-black button-absolute"

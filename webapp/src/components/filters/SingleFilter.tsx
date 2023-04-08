@@ -1,5 +1,5 @@
 import Icon from "@mui/material/Icon";
-import "../../public/css/components/filters/SingleFilter.scss";
+import "../../public/css/components/filters/singleFilter/SingleFilter.scss";
 import { SingleFilterProps } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 
@@ -24,6 +24,7 @@ function SingleFilter({
         isActive && "category-filter--active"
       }`}
       onClick={(e) => handleFilterPoints(e)}
+      title={"Filtrar por " + text}
     >
       <Icon>{iconFilename}</Icon>
       <span>{text}</span>

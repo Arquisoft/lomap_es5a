@@ -13,6 +13,8 @@ import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import CloseIcon from "@mui/icons-material/Close";
 
 export {
     ArrowBackIosIcon,
@@ -29,6 +31,8 @@ export {
     InfoOutlined,
     FavoriteBorderIcon,
     ShareIcon,
-    ImageRoundedIcon
+    ImageRoundedIcon,
+    FilterListIcon,
+    CloseIcon
 };
 
