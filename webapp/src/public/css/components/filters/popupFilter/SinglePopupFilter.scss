@@ -1,0 +1,23 @@
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
+
+.single-popup-filter-container{
+    @include mixins.flex(column, center, center, 10px);
+    width: 142px;
+    height: 111px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 100ms cubic-bezier(0.12, 0, 0.39, 0);
+
+    &:hover{
+        background-color: funcs.color("tertiary", "transparent");
+    }
+}
+
+.single-popup-filter-container--active{
+    background-color: funcs.color("tertiary", "transparent");
+    border: 0.4px solid funcs.color("black", "base");
+    border: 0.4px solid funcs.color("black", "base");
+}

@@ -21,6 +21,7 @@ $pallete: (
     "tertiary": (
         "base": #D9D9D9,
         "highlight": #98a3b6,
+        "transparent": rgba(217, 217, 217, 0.31),
         "dark": #7f8a9d,
     ),
     "light_gray": (
@@ -80,3 +81,4 @@ $sizes: (
 );
 
 $z-index-menus: 999;
+$z-index-popups: 1000;

@@ -12,9 +12,11 @@ import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
+import { createPortal } from 'react-dom';
+import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 
 function HomePage() {
-  const { setAllPoints, points, isFiltering, filteredPoints } = useAllPointsStore();
+  const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } = useAllPointsStore();
   const {setName, setImageUrl, setFriends } = useUserStore();
   const { session } = useSession();
 
@@ -42,6 +44,8 @@ function HomePage() {
           padding: "0 50px",
         }}
       >
+        {showFilterPopup && createPortal(<PointCategoryFilterPopup />, document.body)}
+        
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">

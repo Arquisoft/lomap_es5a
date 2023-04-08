@@ -88,11 +88,25 @@ const availableCategories: SingleCategory[] = [
     icon: "local_grocery_store"
   },
   {
+    id: "cat-13",
+    code: Category.PUBLIC_TRANSPORT,
+    name: "Transporte público",
+    description: "Mostrar los establecimientos de transporte público",
+    icon: "directions_bus"
+  },
+  {
+    id: "cat-14",
+    code: Category.MONUMENT,
+    name: "Monumentos",
+    description: "Mostrar los monumentos",
+    icon: "account_balance"
+  },
+  {
     id: "cat-12",
     code: Category.OTHER,
     name: "Otros",
     description: "Mostrar los establecimientos de otros tipos",
-    icon: "category"
+    icon: "more_horiz"
   }
 ];
 

@@ -1,0 +1,51 @@
+@use "../../../functions" as funcs;
+@use "../../../mixins" as mixins;
+@use "../../../variables" as vars;
+
+.point-category-filter-popup-container{
+    @include mixins.flex(column, space-between, flex-start, 30px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    border-radius: vars.$border-radius;
+    background-color: #FFFFFF;
+    z-index: vars.$z-index-popups;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,20,0.1);
+
+
+    & > .point-category-filter-popup__body{
+        @include mixins.flex(column, flex-start, flex-start, 20px);
+        max-height: 400px;
+        position: relative;
+
+        & > .point-category-filter-popup__close-icon{
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            top: 0;
+            right: 0;
+            padding: 7px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover{
+                background-color: funcs.color("light_gray", "high_light");
+            }
+        }
+
+        & > .point-category-filter-popup-body__category-listing{
+            @include mixins.grid(auto, repeat(5, 1fr), 10px);
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            scrollbar-color: #DADADA #FFFFFF;
+        }
+    }
+
+    & > .point-category-filter-popup__footer{
+        @include mixins.flex(row, flex-end, center, 20px);
+        align-self: flex-end;
+    }
+}
