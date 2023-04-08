@@ -13,6 +13,9 @@ import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/Star';
+import StarHalfIcon from '@mui/icons-material/Star';
 
 
 export {
@@ -30,6 +33,9 @@ export {
     InfoOutlined,
     FavoriteBorderIcon,
     ShareIcon,
-    ImageRoundedIcon
+    ImageRoundedIcon,
+    StarIcon,
+    StarBorderIcon,
+    StarHalfIcon
 };
 
