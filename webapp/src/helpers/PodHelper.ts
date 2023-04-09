@@ -16,6 +16,16 @@ const PROFILE_PATH = "/profile/card";
 const webId: string = getDefaultSession().info.webId as string;
 
 /**
+ * 
+ * @param userName nombre de usuario del amigo a añadir en solid (seguifdo de '.'<proveedor>)
+ * @returns webId del user que se quiere agregar.
+ */
+const constructWebIdFromUsername = (userName:string):string => {
+  const webId = 'https://'+userName+'/profile/card#me';
+  return webId; 
+}
+
+/**
  * Formato de entrada: https://<webId>/profile/card#me
  * Formato de salida: <webId>
  * @param url
@@ -89,5 +99,7 @@ export {
   getUserProfileUrl,
   createNewContainer,
   checkContainerExists,
+  constructWebIdFromUsername,
+  getWebIdFromUrl
 };
 

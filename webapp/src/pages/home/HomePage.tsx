@@ -3,17 +3,20 @@ import { useEffect } from "react";
 import {
   findAllPoints
 } from "../../api/point.api";
-import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
+import { Category, Point } from "../../shared/shareddtypes";
+import { getUserProfile, getUserProfileInfo } from "../../api/user.api";
+import { getAllFriends, addFriend } from "../../api/friends.api";
 import { useUserStore } from "../../store/user.store";
 import { createPortal } from 'react-dom';
 import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
+import { getStringNoLocale, Thing } from "@inrupt/solid-client";
+import { FOAF } from "@inrupt/vocab-common-rdf";
 
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } = useAllPointsStore();
@@ -25,16 +28,26 @@ function HomePage() {
     setAllPoints(data);
   };
 
+  const loadUserFriends = async () => {
+    if (session.info.isLoggedIn){
+      const friends = await getAllFriends(session.info.webId as string);
+      console.log(friends);
+    }else{
+      console.log("No estoy logeado");
+    }
+  }
+
   const loadUserInfo = async () => {
     const userInfo = await getUserProfileInfo(session.info.webId as string);
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
-    setImageUrl(userInfo.imageUrl);
-    setFriends(userInfo.friends);
+    setImageUrl(userInfo.imageUrl ?? "");
+    setFriends(userInfo.friends ?? []);
   };
-
+ 
   useEffect(() => {
-    loadUserInfo();
-    loadAllPoints();
+    loadUserFriends();
+    //loadUserInfo();
+    //loadAllPoints();
   }, []);
 
   return (

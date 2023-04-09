@@ -57,6 +57,18 @@ type User = {
 };
 
 /**
+ * Amigo del usuario en sesión. Almacena su webId, su nombre y la url de su imagen (si es que tiene)
+ * @param webId Identificador único del usuario.
+ * @param name nombre del usuario.
+ * @param imageUrl Imagen de perfil usuario.
+ */
+type Friend = {
+  webId : string;
+  name : string;
+  imgUrl? : string;
+};
+
+/**
  * Almacenen de datos de usuario en sesion.
  */
 type UserInSessionProfile = {
@@ -319,6 +331,7 @@ export type {
   BaseMapPopupProps,
   CategoryFilterList,
   ComponentClassName,
+  Friend,
   FirebaseConfig,
   Image,
   Point,
