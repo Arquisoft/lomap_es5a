@@ -9,13 +9,31 @@ import {
   getUrlAll,
   saveSolidDatasetAt,
   setThing,
-  Thing
+  Thing,
+  buildThing
 } from "@inrupt/solid-client";
 import {fetch} from "@inrupt/solid-client-authn-browser";
 
 import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
-import { getUserProfileUrl, constructWebIdFromUsername } from "../helpers/PodHelper";
+import { getUserProfileUrl, constructWebIdFromUsername, getWebIdFromUrl } from "../helpers/PodHelper";
 import { getUserProfile } from "./user.api";
+
+
+
+const deleteFriend = async (webId:string, friendWebId:string) => {
+  const userInSesionProfileUrl:string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
+  let userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});    
+  let userInSesionProfile = getThing(userDataset, webId) as Thing;     
+  
+  if (!checkIfExistsFriend(userInSesionProfile, getWebIdFromUrl(friendWebId))){
+    console.log("No existe dicho amigo");
+  }else{    
+    userInSesionProfile = buildThing(userInSesionProfile).removeUrl(FOAF.knows, friendWebId).build();  
+    userDataset = setThing(userDataset, userInSesionProfile);
+    await saveSolidDatasetAt(userInSesionProfileUrl,userDataset, {fetch:fetch});
+  }
+}
+
 
 /**
  * Añade un amigo en caso de no existir ya.
@@ -79,6 +97,6 @@ const getAllFriends = async (webId:string) => {
  
 };
 
-export { getAllFriends, addFriend };
+export { getAllFriends, addFriend, deleteFriend };
 
 

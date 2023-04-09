@@ -99,6 +99,7 @@ export {
   getUserProfileUrl,
   createNewContainer,
   checkContainerExists,
-  constructWebIdFromUsername
+  constructWebIdFromUsername,
+  getWebIdFromUrl
 };
 
