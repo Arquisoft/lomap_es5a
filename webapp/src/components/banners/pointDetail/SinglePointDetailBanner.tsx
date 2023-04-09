@@ -1,3 +1,4 @@
+import React from "react";
 import MiniMap from "../../maps/MiniMap";
 import "../../../public/css/components/banners/pointDetail/SinglePointDetailBanner.scss";
 

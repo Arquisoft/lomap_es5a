@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";

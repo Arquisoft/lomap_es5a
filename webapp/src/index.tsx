@@ -14,7 +14,9 @@ const app = (
 );
 
 const container = document.getElementById("root");
-const root = createRoot(container!);
-root.render(app);
+if (container) {
+  const root = createRoot(container);
+  root.render(app);
+}
 
 reportWebVitals();

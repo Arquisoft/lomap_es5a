@@ -15,7 +15,7 @@ describe('Comprobamos el componente de comercial box', () => {
     afterAll(cleanup);
 
     it('Comprobamos  Comercial-box',()=>{
-        const message:string = "¡Explora todos los rincones de tu ciudad y compartelos con amigos y todo el mundo!";
+        const message = "¡Explora todos los rincones de tu ciudad y compartelos con amigos y todo el mundo!";
         const { getByText } = render(<ComercialInfo/>);
         expect(getByText(message)).toBeInTheDocument();
     });

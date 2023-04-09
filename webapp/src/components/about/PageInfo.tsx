@@ -1,3 +1,4 @@
+import React from "react";
 import { InfoBox } from "./info/InfoBox";
 import "../../public/css/components/about/PageInfo.css";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";

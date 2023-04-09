@@ -1,3 +1,4 @@
+import React from "react"
 import BaseButton from "../../../components/buttons/BaseButton"
 import "../../../public/css/components/about/comercial/comercialBox.css"
 function ComercialBox(){
