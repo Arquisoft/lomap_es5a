@@ -1,11 +1,12 @@
+import { useNavigate } from "react-router";
 import BaseButton from "../../components/buttons/BaseButton";
-import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
-
 import "../../public/css/pages/error404/error404Page.scss";
+import { HOME_PATH } from "../../routes";
 function Error404Page() {
-  const redirectToHome = (e: React.MouseEvent<HTMLBaseElement>) => {
+  const navigate = useNavigate();
+  const redirectToHome = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    window.location.href = "/";
+    navigate(HOME_PATH);
   };
 
   return (
@@ -15,7 +16,7 @@ function Error404Page() {
       <BaseButton
         type="button-blue"
         text="Volver a inicio"
-        onClick={() => redirectToHome}
+        onClick={(e) => redirectToHome(e)}
       />
     </div>
   );
