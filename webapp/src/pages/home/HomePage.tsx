@@ -3,13 +3,11 @@ import { useEffect } from "react";
 import {
   findAllPoints
 } from "../../api/point.api";
-import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { Category, Point } from "../../shared/shareddtypes";
 import { getUserProfile, getUserProfileInfo } from "../../api/user.api";
@@ -42,10 +40,10 @@ function HomePage() {
   const loadUserInfo = async () => {
     const userInfo = await getUserProfileInfo(session.info.webId as string);
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
-    setImageUrl(userInfo.imageUrl);
-    setFriends(userInfo.friends);
+    setImageUrl(userInfo.imageUrl ?? "");
+    setFriends(userInfo.friends ?? []);
   };
-
+ 
   useEffect(() => {
     loadUserFriends();
     //loadUserInfo();

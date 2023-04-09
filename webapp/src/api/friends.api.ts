@@ -15,7 +15,7 @@ import {fetch} from "@inrupt/solid-client-authn-browser";
 
 import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
 import { getUserProfileUrl, constructWebIdFromUsername } from "../helpers/PodHelper";
-import { getUserProfileInfo } from "./user.api";
+import { getUserProfile } from "./user.api";
 
 /**
  * Añade un amigo en caso de no existir ya.
@@ -23,7 +23,8 @@ import { getUserProfileInfo } from "./user.api";
  * @param friendUsername username del amigo que se quiere añadir (formato: '<username>.<provider>')
  */
 const addFriend = async (webId:string, friendUsername:string) => {
-  // Validar uqe las url llegan bien
+  // Validar uqe las url llegan bien (pendiente de hacer)
+  // Añadir un try/catch para propagar el error en caso de producirse alguno
   const userInSesionProfileUrl:string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
   
   let userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});    
@@ -63,8 +64,8 @@ const getAllFriends = async (webId:string) => {
 
   // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
   friends.forEach(async (friend) => {        
-    let friendName = getStringNoLocale(await getUserProfileInfo(friend), FOAF.name) as string;
-    let imgUrl = getUrl(await getUserProfileInfo(friend), VCARD.hasPhoto) as string;
+    let friendName = getStringNoLocale(await getUserProfile(friend), FOAF.name) as string;
+    let imgUrl = getUrl(await getUserProfile(friend), VCARD.hasPhoto) as string;
     let user : Friend = {
       webId : friend,
       name : friendName,

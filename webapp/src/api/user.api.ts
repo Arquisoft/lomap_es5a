@@ -1,4 +1,4 @@
-import { getJsonLdParser, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, getThingAll, isThing, setThing, Thing } from "@inrupt/solid-client";
+import { getJsonLdParser, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, getThingAll, isThing, setThing, Thing, getUrl, getUrlAll } from "@inrupt/solid-client";
 import { getUserProfileUrl } from "../helpers/PodHelper";
 import * as jsonld from "jsonld";
 import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
@@ -7,10 +7,9 @@ import {fetch} from "@inrupt/solid-client-authn-browser";
 import { profile } from "console";
 
 
-const getUserProfile = async (webId : string) => {
-  let profileUrl: string = getUserProfileUrl(webId);    
-  let userDataset =  await getSolidDataset(profileUrl, {fetch:fetch});  
-  let thing = getThing(userDataset, profileUrl) as Thing;    
+const getUserProfile = async (webId : string) => {      
+  let userDataset =  await getSolidDataset(webId, {fetch:fetch});  
+  let thing = getThing(userDataset, webId) as Thing;    
   return thing;  
   
   
@@ -24,8 +23,14 @@ const getUserProfile = async (webId : string) => {
 const getUserProfileInfo = async (webId: string) => {    
   const profileUrl:string = getUserProfileUrl(webId) + '#me';
   let userDataset =  await getSolidDataset(profileUrl, {fetch:fetch});  
-  let thing = getThing(userDataset, profileUrl) as Thing;    
-  return thing;
+  let thing = getThing(userDataset, profileUrl) as Thing;  
+  
+  return {
+      name: getStringNoLocale(thing,FOAF.name),
+      imageUrl: getUrl(thing,VCARD.hasPhoto),
+      friends: getUrlAll(thing, FOAF.knows)
+    } as UserInSessionProfile;  
+  
   // const data = await fetch(profileUrl, {
   //   method: "GET",
   //   headers: {
