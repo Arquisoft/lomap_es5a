@@ -1,12 +1,5 @@
-import {
-  getFile,
-  overwriteFile,
-  saveFileInContainer
-} from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
-import { Point, Review, User } from "../shared/shareddtypes";
-import { convertArrToJSON } from "../utils/jsonUtils";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
+import { User } from "../shared/shareddtypes";
 
 /*
  * Añadir un usuario al sistema.
