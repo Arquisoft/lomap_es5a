@@ -4,12 +4,14 @@ enum Category {
   CAFE = "cafe",
   HOTEL = "hotel",
   GROCERY = "grocery",
-  SUPERMARKET= "supermarket",
+  SUPERMARKET = "supermarket",
   CINEMA = "cinema",
   SHOP = "shop",
   MUSEUM = "museum",
   PARK = "park",
   GAS_STATION = "gas_station",
+  PUBLIC_TRANSPORT = "public_transport",
+  MONUMENT = "monument",
   OTHER = "other",
   NONE = "none",
 }
@@ -25,7 +27,12 @@ type SingleCategory = {
   name: string;
   description?: string;
   icon?: any;
+  isActivated?: boolean;
 };
+
+interface CategoryFilterList {
+  SingleCategory: SingleCategory[];
+}
 
 /* Clase CSS para componentes JSX */
 type ComponentClassName = {
@@ -253,17 +260,17 @@ interface BaseSelect {
 interface BaseInputProps {
   label: string;
   value?: string | number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
+  showClearButton?: boolean;
   styles?: React.CSSProperties | string;
-};
-
-
+}
 
 interface BaseTextAreaProps {
   label: string;
@@ -273,6 +280,7 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+  maxLength?: number;
 }
 
 /**
@@ -292,14 +300,15 @@ type ProfileInfoWithFollowButtonProps = {
  */
 type PointListingAsideProps = {
   points: Point[];
-}
+};
 
-type SingleFilterProps = {
+interface SingleFilterProps {
   code: string; // Código de la categoria
   iconFilename: any;
   iconAlt?: string;
   text: string;
   isActive?: boolean;
+  filterObject?: SingleCategory;
 };
 
 type FirebaseConfig = {
@@ -312,30 +321,32 @@ type FirebaseConfig = {
 };
 
 export type {
-  SingleCategory,
-  ComponentClassName,
   AuthContextValue,
   AuthUser,
   BaseTextAreaProps,
   BaseInputProps,
   BaseSelect,
   BaseSelectOption,
-  BaseMapPopupProps,
-  User,
-  Friend,
-  UserGroup,
-  Review,
-  Point,
-  Image,
-  PointSummary,
   BaseLocation,
-  Reviewer,
+  BaseMapPopupProps,
+  CategoryFilterList,
+  ComponentClassName,
+  Friend,
+  FirebaseConfig,
+  Image,
+  Point,
   PointOwner,
+  PointSummary,
   ProfileInfoWithFollowButtonProps,
   PointListingAsideProps,
-  FirebaseConfig,
+  Review,
+  Reviewer,
+  SingleCategory,
+  SingleFilterProps,
+  User,
+  UserGroup,
   UserInSessionProfile,
-  SingleFilterProps
 };
-
 export { Category, Coordinate };
+
+

@@ -10,5 +10,15 @@
 }
 
 .base-message__success{
-    background-color: funcs.color("success", "high_light");
+    background-color: funcs.color("success", "hight_light_alfa");
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: funcs.color("success", "dark");
+}
+
+.base-message__error{
+    background-color: funcs.color("error", "hight_light_alfa");
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: funcs.color("error", "dark");
 }

@@ -1,0 +1,27 @@
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
+@use "../../../variables" as vars;
+
+.base-filter-bar{
+    @include mixins.flex(row, flex-start, center, 0);
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.base-filter-bar-filters-button{
+    @include mixins.flex(row, flex-start, center, 0);
+    padding: 10px;
+    border-radius: 8px;
+    border: 0.4px solid funcs.color("tertiary", "base");
+    transition: border-color 0.2s ease-in-out;
+
+    & > span{
+        font-weight: 400;
+        color: funcs.color("black", "base");
+    }
+
+    &:hover{
+        border-color: funcs.color("black", "base");
+    }
+}

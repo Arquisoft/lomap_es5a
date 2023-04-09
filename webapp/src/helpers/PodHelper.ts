@@ -1,6 +1,9 @@
+import {
+  getPodUrlAll,
+  getSolidDataset
+} from "@inrupt/solid-client";
 import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { checkIsNotEmpty } from "../utils/validator";
-import { useSession } from "@inrupt/solid-ui-react";
 
 const HTTP_PREFIX = "https";
 
@@ -46,17 +49,55 @@ const getUserPrivatePointsUrl = (myWedId?: string) => {
 /**
  * Devuelve la URL del perfil de un usuario.
  * @param myWedId WebId del usuario.
- * @returns 
+ * @returns
  */
 const getUserProfileUrl = (myWedId?: string) => {
   return contructPodUrl(myWedId ?? webId, PROFILE_PATH);
 };
 
 const contructPodUrl = (webId: string, path: string) => {
-  checkIsNotEmpty(webId);
-  checkIsNotEmpty(path);
+  checkIsNotEmpty(webId, "webId");
+  checkIsNotEmpty(path, "path");
   return `${HTTP_PREFIX}://${getWebIdFromUrl(webId)}${path}`;
 };
 
-export { getUserPrivatePointsUrl, getUserProfileUrl, constructWebIdFromUsername};
+const createNewContainer = async (session: any, folderName: string) => {
+  const data = await getPodUrlAll(session.info.webId);
+
+  if (data && data.length > 0) {
+    const podUrl = data[0];
+    const response = await session.fetch(`${podUrl}${folderName}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "text/turtle",
+      },
+    });
+    if (response.status !== 201) {
+      throw new Error(`Error creating container: ${response.status}`);
+    }
+  }
+};
+
+const checkContainerExists = async (
+  session: any,
+  folderName: string
+): Promise<boolean> => {
+  const mainFolder: string[] = await getPodUrlAll(session.info.webId);
+
+  console.log(mainFolder, mainFolder[0], folderName);
+
+  const data = await getSolidDataset(`${mainFolder[0]}${folderName}`, {
+    fetch: session.fetch,
+  });
+
+  console.log(data);
+  return data ? true : false;
+};
+
+export {
+  getUserPrivatePointsUrl,
+  getUserProfileUrl,
+  createNewContainer,
+  checkContainerExists,
+};
 

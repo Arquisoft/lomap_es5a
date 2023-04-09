@@ -7,6 +7,7 @@
 
 import { Category, SingleCategory } from "../shared/shareddtypes";
 
+const MAX_CATEGORIES_VISIBLE: number = 6; // Número máximo de categorías visibles.
 
 const availableCategories: SingleCategory[] = [
   {
@@ -51,6 +52,62 @@ const availableCategories: SingleCategory[] = [
     description: "Mostrar los gasolineras",
     icon: "local_gas_station"
   },
+  {
+    id: "cat-7",
+    code: Category.CINEMA,
+    name: "Cines",
+    description: "Mostrar los cines",
+    icon: "local_movies"
+  },
+  {
+    id: "cat-8",
+    code: Category.MUSEUM,
+    name: "Museos",
+    description: "Mostrar los museos",
+    icon: "museum"
+  },
+  {
+    id: "cat-9",
+    code: Category.HOTEL,
+    name: "Hoteles",
+    description: "Mostrar los hoteles",
+    icon: "hotel"
+  },
+  {
+    id: "cat-10",
+    code: Category.CAFE,
+    name: "Cafeterías",
+    description: "Mostrar las cafeterías",
+    icon: "local_cafe"
+  },
+  {
+    id: "cat-11",
+    code: Category.GROCERY,
+    name: "Alimentación",
+    description: "Mostrar los establecimientos de alimentación",
+    icon: "local_grocery_store"
+  },
+  {
+    id: "cat-13",
+    code: Category.PUBLIC_TRANSPORT,
+    name: "Transporte público",
+    description: "Mostrar los establecimientos de transporte público",
+    icon: "directions_bus"
+  },
+  {
+    id: "cat-14",
+    code: Category.MONUMENT,
+    name: "Monumentos",
+    description: "Mostrar los monumentos",
+    icon: "account_balance"
+  },
+  {
+    id: "cat-12",
+    code: Category.OTHER,
+    name: "Otros",
+    description: "Mostrar los establecimientos de otros tipos",
+    icon: "more_horiz"
+  }
 ];
 
-export { availableCategories };
+export { availableCategories, MAX_CATEGORIES_VISIBLE };

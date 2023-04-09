@@ -1,5 +1,5 @@
-@use "../../mixins" as mixins;
-@use "../../functions" as funcs;
+@use "../../../mixins" as mixins;
+@use "../../../functions" as funcs;
 
 .single-filter-container {
     @include mixins.flex(column, center, center, 10px);

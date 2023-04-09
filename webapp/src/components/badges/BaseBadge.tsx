@@ -9,7 +9,7 @@ type Props = {
 
 function BaseBadge({ text, styles }: Props) {
   return (
-    <div className="base-badge" style={styles}>
+    <div className="base-badge" style={styles} role="contentinfo">
       {text}
     </div>
   );

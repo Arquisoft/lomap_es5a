@@ -1,7 +1,7 @@
 import { getJsonLdParser, getNamedNodeAll, getSolidDataset, getStringNoLocale, getThing, getThingAll, isThing, setThing, Thing } from "@inrupt/solid-client";
 import { getUserProfileUrl } from "../helpers/PodHelper";
 import * as jsonld from "jsonld";
-import { FOAF, RDF, VCARD } from "@inrupt/vocab-common-rdf";
+import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
 import { UserInSessionProfile } from "../shared/shareddtypes";
 import {fetch} from "@inrupt/solid-client-authn-browser";
 import { profile } from "console";

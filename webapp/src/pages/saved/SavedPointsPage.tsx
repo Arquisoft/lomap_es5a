@@ -1,4 +1,3 @@
-import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
 import AccountLayout from "../../layouts/AccountLayout";
 import "../../public/css/pages/saved/SavedPointsPage.scss";
 

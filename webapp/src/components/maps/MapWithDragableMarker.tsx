@@ -1,5 +1,5 @@
-import { LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { LatLng, LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import { InfoOutlined } from "../../helpers/IconContants";
 import DraggableMarker from "./DragableMarker";
 
@@ -13,6 +13,19 @@ type Props = {
   height?: string;
   styles?: Object;
 };
+
+type RecenterMapButtonProps = {
+  coords: LatLng
+};
+
+function RecenterMapButton({ coords }: RecenterMapButtonProps) {
+  const map = useMapEvents({
+    click() {
+      map.flyTo(coords, map.getZoom())
+    },
+  });
+  return null;
+}
 
 function MapWithDragableMarker({ position, styles }: Props) {
   const { info } = usePointDetailsStore();
@@ -34,6 +47,7 @@ function MapWithDragableMarker({ position, styles }: Props) {
         doubleClickZoom={true}
         style={styles}
       >
+        <RecenterMapButton coords={info.location.coords as LatLng}/>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?" />
         <DraggableMarker />
       </MapContainer>

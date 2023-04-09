@@ -61,7 +61,7 @@
   width: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #B9B9B9;
+  color: #070707;
 }
 .base-textarea-container > textarea {
   width: 100%;
@@ -88,4 +88,11 @@
   color: #7f8a9d;
   font-weight: 400;
   font-size: 0.9rem;
+}
+.base-textarea-container > textarea:invalid {
+  border: 2px solid #ff0000;
+  background-color: rgba(255, 0, 0, 0.15);
+}
+.base-textarea-container > textarea:focus {
+  border: 2px solid #070707;
 }/*# sourceMappingURL=BaseTextArea.css.map */

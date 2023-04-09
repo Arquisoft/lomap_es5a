@@ -20,13 +20,11 @@ import {
   HOME_PATH,
   LOGIN_PATH,
   SAVED_POINTS_PATH,
-  SINGLE_POINT_PATH
+  SINGLE_POINT_PATH,
 } from "./routes";
-import { useNavigationStore } from "./store/navigation.store";
 
 function App() {
   const { session } = useSession();
-  const {saveCurrentPath, currentPath} = useNavigationStore();
 
   let isPageRefresh =
     (window.performance.getEntriesByType("navigation")[0] as any).type ===
@@ -35,13 +33,11 @@ function App() {
   useEffect(() => {
     sessionStorage.setItem("currentPath", window.location.href);
     const reload = async () => {
-      
       if (isPageRefresh) {
-        await session
-          .handleIncomingRedirect({
-            //restorePreviousSession: true,
-            url: sessionStorage.getItem("currentPath") as string,
-          });
+        await session.handleIncomingRedirect({
+          //restorePreviousSession: true,
+          url: sessionStorage.getItem("currentPath") as string,
+        });
       }
     };
     reload();

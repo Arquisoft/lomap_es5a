@@ -6,6 +6,7 @@
 .base-text-input-container{
     @include mixins.flex(column, flex-start, flex-start, 3px);
     width: 100%;
+    position: relative;
 
     & > label {
        @include mixins.commonInputLabelStyles();
@@ -14,6 +15,19 @@
     & > input {
         @include mixins.commonInputStyles();
         border: 2px solid funcs.color("light_gray", "base");
+
+        &:valid, &:-moz-ui-valid{
+            background-color: funcs.color(dark_grey, high_light);
+        }
+
+        &:required:focus:invalid:not(:first-of-type), &:required:focus:-moz-ui-invalid {
+            border: 2px solid funcs.color("error", "base");
+            background-color: funcs.color("error", "hight_light_alfa");
+        }
+
+        &:focus {
+            border: 2px solid funcs.color("black", "base");
+        }
     }
 
 }

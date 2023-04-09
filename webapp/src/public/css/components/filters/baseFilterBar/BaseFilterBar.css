@@ -57,4 +57,24 @@
   gap: 0;
   width: 100%;
   padding: 10px 0;
+  cursor: pointer;
+}
+
+.base-filter-bar-filters-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 0.4px solid #D9D9D9;
+  transition: border-color 0.2s ease-in-out;
+}
+.base-filter-bar-filters-button > span {
+  font-weight: 400;
+  color: #070707;
+}
+.base-filter-bar-filters-button:hover {
+  border-color: #070707;
 }/*# sourceMappingURL=BaseFilterBar.css.map */

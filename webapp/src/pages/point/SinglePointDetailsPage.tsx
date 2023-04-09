@@ -1,29 +1,26 @@
-import { useEffect } from "react";
 import SinglePointDetailBanner from "../../components/banners/pointDetail/SinglePointDetailBanner";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
-import usePoint from "../../hooks/usePoint";
 import "../../public/css/pages/points/SinglePointPage.scss";
 import { usePointDetailsStore } from "../../store/point.store";
 
 function SinglePointDetailsPage() {
-  const {info} = usePointDetailsStore();
+  const { pointToShow } = usePointDetailsStore();
 
   return (
     <AuthenticatedLayout>
       <div className="single-point-details-container">
-        <SinglePointDetailBanner />
+        <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""}/>
         <section className="single-point-details__details">
           <h2>Detalles</h2>
           <p>
-            {
-              info && <div>
-                <p>Nombre: {info.name}</p>
-                <p>Descripción: {info.description}</p>
-                <p>Latitud: {info.location.coords.lat}</p>
-                <p>Longitud: {info.location.coords.lng}</p>
-
+            {pointToShow && (
+              <div>
+                <p>Nombre: {pointToShow.name}</p>
+                <p>Descripción: {pointToShow.description}</p>
+                <p>Latitud: {pointToShow.location.coords.lat}</p>
+                <p>Longitud: {pointToShow.location.coords.lng}</p>
               </div>
-            }
+            )}
           </p>
         </section>
 

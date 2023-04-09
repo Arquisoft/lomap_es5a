@@ -9,6 +9,7 @@ function BaseTextArea({
   value,
   placeholder,
   id,
+  maxLength,
   onChange,
 }: BaseTextAreaProps) {
 
@@ -25,6 +26,7 @@ function BaseTextArea({
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        maxLength={maxLength}
       ></textarea>
     </div>
   );
