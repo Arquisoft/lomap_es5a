@@ -3,8 +3,8 @@ import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 import { firebaseConfig } from "./dotenv.config";
 
-const AVATAR_BUCKET: string = `gs://${firebaseConfig.storageBucket}/avatars`;
-const POINT_INTEREST_BUCKET: string = `gs://${firebaseConfig.storageBucket}/points`;
+const AVATAR_BUCKET = `gs://${firebaseConfig.storageBucket}/avatars`;
+const POINT_INTEREST_BUCKET = `gs://${firebaseConfig.storageBucket}/points`;
 
 const app = initializeApp(firebaseConfig);
 

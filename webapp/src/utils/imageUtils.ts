@@ -1,8 +1,8 @@
 import Compressor from "compressorjs";
 
-const DEFAULT_IMAGE_COMPRESSION_QUALITY: number = 0.6;
-const DEFAULT_IMAGE_COMPRESSION_WIDTH: number = 640;
-const DEFAULT_IMAGE_COMPRESSION_HEIGHT: number = 640;
+const DEFAULT_IMAGE_COMPRESSION_QUALITY = 0.6;
+const DEFAULT_IMAGE_COMPRESSION_WIDTH = 640;
+const DEFAULT_IMAGE_COMPRESSION_HEIGHT = 640;
 
 /**
  * Compress an image for web performance.

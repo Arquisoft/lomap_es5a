@@ -1,5 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect } from "react";
+import { createPortal } from 'react-dom';
 import {
   findAllPoints
 } from "../../api/point.api";
@@ -7,13 +8,12 @@ import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
+import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
-import { createPortal } from 'react-dom';
-import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } = useAllPointsStore();
@@ -26,10 +26,15 @@ function HomePage() {
   };
 
   const loadUserInfo = async () => {
-    const userInfo = await getUserProfileInfo(session.info.webId as string);
+    const userInfo: any = await getUserProfileInfo(session.info.webId as string);
+
+    if(userInfo){
+      return;
+    }
+
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
-    setImageUrl(userInfo.imageUrl);
-    setFriends(userInfo.friends);
+    setImageUrl(userInfo?.imageUrl);
+    setFriends(userInfo?.friends);
   };
 
   useEffect(() => {

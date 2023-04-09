@@ -8,7 +8,7 @@ interface PointDetailsStore {
   isUploading: boolean; // Flag to indicate if the process of uploading the point is in progress
   isFinished: boolean; // Flag to indicate if the process of uploading the point is finished
   setCurrentPoint: (point: Point) => void;
-  setCurrentPointProperty: (property: string, value: any) => void;
+  setCurrentPointProperty: (property: string, value: unknown) => void;
   setPointAddress: (address: string) => void;
   setPosition: (position: { lat: number; lng: number }) => void;
   setPointImageFile: (image: File) => void;
@@ -18,7 +18,7 @@ interface PointDetailsStore {
   resetPointInfo: () => void;
 }
 
-let pointInitilization: Point = {
+const pointInitilization: Point = {
   _id: "",
   name: "",
   description: "",
@@ -65,11 +65,6 @@ interface AllPointsStore {
   filterPointsBySelectedFilters: () => void;
   resetFilters: () => void;
   setShowFilterPopup: (showFilterPopup: boolean) => void;
-}
-
-interface PointCategoryStore {
-  selectedCategory: Category;
-  setSelectedCategory: (category: Category) => void;
 }
 
 const useAllPointsStore = create<AllPointsStore>((set, get) => ({

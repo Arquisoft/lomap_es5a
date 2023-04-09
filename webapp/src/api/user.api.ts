@@ -8,7 +8,7 @@ import { UserInSessionProfile } from "../shared/shareddtypes";
  * Obtener la información del perfil del usuario en sesión.
  * @param webId
  */
-const getUserProfileInfo = async (webId: string): Promise<any> => {
+const getUserProfileInfo = async (webId: string): Promise<UserInSessionProfile | void> => {
   const profileUrl: string = getUserProfileUrl(webId);
 
   const data = await fetch(profileUrl, {
@@ -22,7 +22,7 @@ const getUserProfileInfo = async (webId: string): Promise<any> => {
     return jsonld.fromRDF(text, { format: 'application/n-quads' });
   }).then(async (doc) => {
     
-    let docAsJson = JSON.parse(JSON.stringify(doc, null, 2))[0];
+    const docAsJson = JSON.parse(JSON.stringify(doc, null, 2))[0];
     // Imagen de perfil
     const userData = docAsJson["@graph"]
     .find((el: any) => el["@id"].includes("profile/card#me"));

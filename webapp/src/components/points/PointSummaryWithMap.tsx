@@ -1,4 +1,4 @@
-import { ShareIcon } from "../../helpers/IconContants";
+import { useNavigate } from "react-router";
 import "../../public/css/components/points/PointSummaryWithMap.scss";
 import { Point } from "../../shared/shareddtypes";
 import { usePointDetailsStore } from "../../store/point.store";
@@ -6,7 +6,6 @@ import { canonizeUrl } from "../../utils/stringUtils";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
 import MiniMap from "../maps/MiniMap";
-import { useNavigate } from "react-router";
 /**
  * name: Nombre del punto de interes.
  * address: Dirección postal del punto.

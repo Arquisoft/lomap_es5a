@@ -8,7 +8,7 @@ import { parseJsonToUserItem } from "./userParser";
  * @returns
  */
 const parseJsonToUserGroup = (inData: any): UserGroup[] => {
-  let newUserGroups: UserGroup[] = [];
+  const newUserGroups: UserGroup[] = [];
   const { groups } = inData;
 
   groups.forEach((item: any) => {
@@ -29,7 +29,7 @@ const parseJsonItemToUserGroup = (inData: any): UserGroup => {
 
   const { _id, name, description, members, points, creator, createdAt } =
     inData;
-  let newUserGroup: UserGroup = {
+  const newUserGroup: UserGroup = {
     _id,
     name,
     description,
@@ -42,7 +42,7 @@ const parseJsonItemToUserGroup = (inData: any): UserGroup => {
 };
 
 const parseMembers = (members: any): User[] => {
-  let newMembers: User[] = [];
+  const newMembers: User[] = [];
   members.forEach((member: any) => {
     newMembers.push(parseJsonToUserItem(member));
   });
@@ -50,7 +50,7 @@ const parseMembers = (members: any): User[] => {
 };
 
 const parsePoints = (points: any): PointSummary[] => {
-  let newPoints: PointSummary[] = [];
+  const newPoints: PointSummary[] = [];
   points.forEach((point: any) => {
     newPoints.push(parseJsonToPointSummary(point));
   });
