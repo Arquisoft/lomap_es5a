@@ -1,7 +1,7 @@
-import type { User } from "../../shared/shareddtypes";
+import type { JSONValue, User } from "../../shared/shareddtypes";
 
 const parseJsonToUser = (inData: any): User[] => {
-  let resUsers: User[] = [];
+  const resUsers: User[] = [];
   const { users } = inData;
 
   users.forEach((item: any) => {
@@ -16,9 +16,9 @@ const parseJsonToUser = (inData: any): User[] => {
  * @param inData
  * @returns
  */
-const parseJsonToUserItem = (inData: any): User => {
-  const { name, email, _id, webId } = inData;
-  let newFriend: User = {
+const parseJsonToUserItem = (inData: User): User => {
+  const { name, email, _id, webId }= inData;
+  const newFriend: User = {
     name,
     email,
     _id,

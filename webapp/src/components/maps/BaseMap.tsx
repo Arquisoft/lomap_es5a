@@ -14,7 +14,7 @@ type Props = {
   position?: LatLngExpression;
   width?: string;
   height?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
   points: any[];
 };
 

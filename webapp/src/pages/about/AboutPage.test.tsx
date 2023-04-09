@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import AboutPage from "./AboutPage";
 
-const HEADING_TEXT: string = "Acerca de";
-const SLOGAN_TEXT: string = "Descubre nuevos lugares, comparte y más";
+const HEADING_TEXT = "Acerca de";
+const SLOGAN_TEXT = "Descubre nuevos lugares, comparte y más";
 
 test("About Page", () => {
   it("Page heading appears on the page", () => {

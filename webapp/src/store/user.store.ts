@@ -9,7 +9,7 @@ interface UserStore {
     setName: (name: string) => void;
     setImageUrl: (imageUrl: string) => void;
     setFriends: (friends: string[]) => void;
-};
+}
 
 
 const useUserStore = create<UserStore>((set) => ({

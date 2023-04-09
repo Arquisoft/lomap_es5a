@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import AboutPage from "./pages/about/AboutPage";
 import UserAccountPage from "./pages/account/UserAccountPage";
@@ -26,7 +26,7 @@ import {
 function App() {
   const { session } = useSession();
 
-  let isPageRefresh =
+  const isPageRefresh =
     (window.performance.getEntriesByType("navigation")[0] as any).type ===
     "reload";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import "../../../public/css/components/about/info/InfoBox.css";
 
 type Props = {

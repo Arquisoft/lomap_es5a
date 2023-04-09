@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
@@ -51,7 +51,8 @@ function BaseMapPopup({
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} styles={badgeStyles} />
+          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} 
+          styles={badgeStyles as React.CSSProperties} />
         )}
         <img src={image} alt={""} />
       </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
@@ -24,7 +25,6 @@ function TopAccountAside() {
     path: string
   ) => {
     e.preventDefault();
-    console.log("path: ", path);
     if (path.includes("logout")) {
       await handleLogout(e);
       return;

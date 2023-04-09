@@ -45,7 +45,7 @@ const MENU_ITEMS_ALIAS = {
   LOGOUT: "logout",
 };
 
-let menuItems: MenuItem[] = [
+const menuItems: MenuItem[] = [
   {
     alias: MENU_ITEMS_ALIAS.HOME,
     name: "Inicio",

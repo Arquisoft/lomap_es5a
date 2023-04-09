@@ -2,7 +2,7 @@ import React from "react";
 import { render } from '@testing-library/react';
 import LoginPage from './LoginPage';
 
-const HEADING_TEXT: string = "Iniciar sesión";
+const HEADING_TEXT = "Iniciar sesión";
 
 test('Login Page', () => {
 

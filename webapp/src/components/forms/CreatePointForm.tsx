@@ -46,7 +46,7 @@ function CreatePointForm() {
   const { name, imageUrl } = useUserStore();
 
   const validateForm = (): boolean => {
-    let hasErrors: boolean = false;
+    let hasErrors = false;
     setErrors([]);
     try {
       if (info.description) {

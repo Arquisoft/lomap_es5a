@@ -1,19 +1,20 @@
-import { Friend } from "../shared/shareddtypes";
 import {
+  Thing,
   addUrl,
+  buildThing,
   getSolidDataset,
   getStringNoLocale,
   getThing,
   getUrl,
   getUrlAll,
   saveSolidDatasetAt,
-  setThing,
-  Thing,
-  buildThing
+  setThing
 } from "@inrupt/solid-client";
+import { Friend } from "../shared/shareddtypes";
 import {fetch} from "@inrupt/solid-client-authn-browser";
 import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
 import { getUserProfileUrl, constructWebIdFromUsername, getWebIdFromUrl } from "../helpers/PodHelper";
+
 import { getUserProfile } from "./user.api";
 
 const deleteFriend = async (webId:string, friendWebId:string) => {
@@ -77,9 +78,9 @@ const getAllFriends = async (webId:string) => {
 
   // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
   friends.forEach(async (friend) => {        
-    let friendName = getStringNoLocale(await getUserProfile(friend), FOAF.name) as string;
-    let imgUrl = getUrl(await getUserProfile(friend), VCARD.hasPhoto) as string;
-    let user : Friend = {
+    const friendName = getStringNoLocale(await getUserProfile(friend), FOAF.name) as string;
+    const imgUrl = getUrl(await getUserProfile(friend), VCARD.hasPhoto) as string;
+    const user : Friend = {
       webId : friend,
       name : friendName,
       imgUrl : imgUrl
@@ -88,8 +89,7 @@ const getAllFriends = async (webId:string) => {
   });
 
   return myFriendsList;
-
- 
 };
+
 
 export { getAllFriends, addFriend, deleteFriend };
