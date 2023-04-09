@@ -10,11 +10,11 @@ import {
   saveSolidDatasetAt,
   setThing
 } from "@inrupt/solid-client";
-import { fetch } from "@inrupt/solid-client-authn-browser";
 import { Friend } from "../shared/shareddtypes";
+import {fetch} from "@inrupt/solid-client-authn-browser";
+import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
+import { getUserProfileUrl, constructWebIdFromUsername, getWebIdFromUrl } from "../helpers/PodHelper";
 
-import { FOAF, VCARD } from "@inrupt/vocab-common-rdf";
-import { constructWebIdFromUsername, getUserProfileUrl, getWebIdFromUrl } from "../helpers/PodHelper";
 import { getUserProfile } from "./user.api";
 
 const deleteFriend = async (webId:string, friendWebId:string) => {
@@ -30,7 +30,6 @@ const deleteFriend = async (webId:string, friendWebId:string) => {
     await saveSolidDatasetAt(userInSesionProfileUrl,userDataset, {fetch:fetch});
   }
 }
-
 
 /**
  * Añade un amigo en caso de no existir ya.
@@ -90,9 +89,7 @@ const getAllFriends = async (webId:string) => {
   });
 
   return myFriendsList;
-
- 
 };
 
-export { getAllFriends, addFriend, deleteFriend };
 
+export { getAllFriends, addFriend, deleteFriend };
