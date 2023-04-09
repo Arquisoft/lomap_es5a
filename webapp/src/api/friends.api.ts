@@ -14,32 +14,33 @@ import {
 import {fetch} from "@inrupt/solid-client-authn-browser";
 
 import { FOAF, VCARD} from "@inrupt/vocab-common-rdf";
-import { getUserProfileUrl } from "../helpers/PodHelper";
+import { getUserProfileUrl, constructWebIdFromUsername } from "../helpers/PodHelper";
 import { getUserProfileInfo } from "./user.api";
 
 /**
- * 
+ * Añade un amigo en caso de no existir ya.
  * @param webId webId del usuario en sesión que quiere añadir un amigo
- * @param friendWebId webId del amigo que se quiere añadir
+ * @param friendUsername username del amigo que se quiere añadir (formato: '<username>.<provider>')
  */
-const addFriend = async (webId:string, friendWebId:string) => {
-  const userInSesionProfileUrl:string = getUserProfileUrl(webId) + '#me';
-  let userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});
-  const userInSesionProfile = getThing(userDataset, userInSesionProfileUrl) as Thing;
-  //const friendUrl = getUserProfileUrl(friendWebId) + '#me';  
-  if (checkIfExistsFriend(userInSesionProfile, friendWebId)){
+const addFriend = async (webId:string, friendUsername:string) => {
+  // Validar uqe las url llegan bien
+  const userInSesionProfileUrl:string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
+  
+  let userDataset = await getSolidDataset(userInSesionProfileUrl, {fetch:fetch});    
+  const userInSesionProfile = getThing(userDataset, webId) as Thing;      
+  if (checkIfExistsFriend(userInSesionProfile, friendUsername)){
     console.log("Ya sois amigoss!!!");
-  }else{
-    const newFriend = addUrl(userInSesionProfile, FOAF.knows, friendWebId);    
+  }else{    
+    const newFriend = addUrl(userInSesionProfile, FOAF.knows, constructWebIdFromUsername(friendUsername));    
     userDataset = setThing(userDataset, newFriend);
-    await saveSolidDatasetAt(getUserProfileUrl(webId),userDataset);
+    await saveSolidDatasetAt(userInSesionProfileUrl,userDataset, {fetch:fetch});
   }
 
 }
 
-const checkIfExistsFriend = (userProfile:any, webId:string):boolean => {
+const checkIfExistsFriend = (userProfile:any, friendUsername:string):boolean => {
   const friends = getUrlAll(userProfile, FOAF.knows);
-  if (friends.includes(webId)){
+  if (friends.includes(constructWebIdFromUsername(friendUsername))){
     return true;
   }
   return false;

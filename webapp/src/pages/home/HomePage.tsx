@@ -31,8 +31,7 @@ function HomePage() {
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn){
-      const friends = await getAllFriends(session.info.webId as string);
-      console.log(friends);
+      await addFriend(session.info.webId as string, "pruebasolid1.inrupt.net");
     }else{
       console.log("No estoy logeado");
     }
