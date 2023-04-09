@@ -38,7 +38,6 @@ const checkAnyOptionIsSelected = (value: string, fieldName: string) => {
 
 const checkIsValidGeoCoordinate = (value: number, coord: Coordinate) => {
   const sValue = sanitizeInput(value.toString());
-  //checkIsNotEmpty(sValue, coord);
   const regex = coord === Coordinate.LAT ? LAT_REGEX : LNG_REGEX;
   console.log(value, coord, regex);
   if (!regex.test(sValue)) {

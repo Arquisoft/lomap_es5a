@@ -1,6 +1,7 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect } from "react";
 import { createPortal } from 'react-dom';
+import { getAllFriends } from "../../api/friends.api";
 import {
   findAllPoints
 } from "../../api/point.api";
@@ -25,19 +26,27 @@ function HomePage() {
     setAllPoints(data);
   };
 
+  const loadUserFriends = async () => {
+    if (session.info.isLoggedIn){
+      const friends = await getAllFriends(session.info.webId as string);
+      console.log(friends);
+    }
+  }
+
   const loadUserInfo = async () => {
     const userInfo: any = await getUserProfileInfo(session.info.webId as string);
 
-    if(userInfo){
+    if(!userInfo){
       return;
     }
 
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
-    setImageUrl(userInfo?.imageUrl);
-    setFriends(userInfo?.friends);
+    setImageUrl(userInfo.imageUrl ?? "");
+    setFriends(userInfo.friends ?? []);
   };
-
+ 
   useEffect(() => {
+    loadUserFriends();
     loadUserInfo();
     loadAllPoints();
   }, []);

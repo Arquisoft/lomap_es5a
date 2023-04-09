@@ -12,7 +12,7 @@ function SinglePointDetailsPage() {
         <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""}/>
         <section className="single-point-details__details">
           <h2>Detalles</h2>
-          <p>
+          <div>
             {pointToShow && (
               <div>
                 <p>Nombre: {pointToShow.name}</p>
@@ -21,7 +21,7 @@ function SinglePointDetailsPage() {
                 <p>Longitud: {pointToShow.location.coords.lng}</p>
               </div>
             )}
-          </p>
+          </div>
         </section>
 
         {/* <section className="single-point-details__reviews">
