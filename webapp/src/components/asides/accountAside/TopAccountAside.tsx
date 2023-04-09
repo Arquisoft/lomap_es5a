@@ -1,7 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
-
 import { ArrowBackIosIcon } from "../../../helpers/IconContants";
 
 import { useNavigate } from "react-router";
@@ -32,10 +31,15 @@ function TopAccountAside() {
     navigate(path);
   };
 
+  const handleGoToThePreviousPage = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    navigate(-1);
+  };
+
   return (
     <div className="top-acc-aside-main">
-      <button className="top-acc-aside-back">
-        <ArrowBackIosIcon aria-hidden="true" />
+      <button className="top-acc-aside-back" onClick={(e) => handleGoToThePreviousPage(e)}>
+        <ArrowBackIosIcon aria-hidden="true"/>
       </button>
       <div className="top-acc-aside-title">Mi cuenta</div>
       <div className="top-acc-aside-buttons">
