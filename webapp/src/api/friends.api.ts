@@ -49,15 +49,13 @@ const checkIfExistsFriend = (userProfile:any, friendUsername:string):boolean => 
 /**
  * Devuelve todos los amigos del usuario en sesión, con la información
  * necesaria para mostrar en pantalla.
- * @param webId 
- * @returns 
+ * @param webId webId del usuario en sesion para el que se quieren obtener los amigos existentes
+ * @returns Array con los amigos del usuario en sesion.
  */
-const getAllFriends = async (webId:string) => {
-  const profileUrl : string = getUserProfileUrl(webId) + '#me';
-
-  const profileDataset = await getSolidDataset(profileUrl, {fetch:fetch});
+const getAllFriends = async (webId:string) => {  
+  const profileDataset = await getSolidDataset(webId, {fetch:fetch});
   
-  const profile = getThing(profileDataset, profileUrl) as Thing;
+  const profile = getThing(profileDataset, webId) as Thing;
 
   const friends = getUrlAll(profile,FOAF.knows);
     
