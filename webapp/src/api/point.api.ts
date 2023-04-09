@@ -149,7 +149,6 @@ const addPoint = async (
     "private/points/"
   ).catch(async () => {
     await createNewContainer(session, "private/points/").then(async () => {
-      console.log("creada");
       const points: Point[] = []; // creamos un array
       points.push(point); // añadimos el punto
 
@@ -170,11 +169,8 @@ const addPoint = async (
   });
 
   if (!existsFolder) {
-    console.log("no existe la carpeta, se ha creado");
     return;
   }
-
-  console.log("La carpeta ya existe");
 
   try {
     const profileDocumentURI = encodeURI(
@@ -218,7 +214,7 @@ const addPoint = async (
     });
     console.log("Punto añadido satisfactoriamente con id = " + point._id);
   } catch (err) {
-    console.error("add point error: " + err);
+    console.error("Error addPoint: " + err);
   }
 };
 
