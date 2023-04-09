@@ -6,7 +6,7 @@ import "../../public/css/pages/account/UserAccountPage.scss";
 import { useAllPointsStore } from "../../store/point.store";
 
 function UserAccountPage() {
-  const {session} = useSession();
+  const { session } = useSession();
   const { points } = useAllPointsStore();
 
   return (
@@ -17,18 +17,21 @@ function UserAccountPage() {
           <h2>Mis puntos</h2>
           <div className="user-account-container-body__gallery">
             {points.length > 0 &&
-              points.filter(point => point.owner.webId === session.info.webId).map((point) => {
-                return (
-                  <PointSummaryWithMap
-                    key={point._id}
-                    name={point.name}
-                    address={point.location.address}
-                    lat={point.location?.coords.lat || 0}
-                    lng={point.location?.coords.lng || 0}
-                    hasMap={true}
-                  />
-                );
-              })}
+              points
+                .filter((point) => point.owner.webId === session.info.webId)
+                .map((point) => {
+                  return (
+                    <PointSummaryWithMap
+                      key={point._id}
+                      name={point.name}
+                      address={point.location.address}
+                      lat={point.location?.coords.lat || 0}
+                      lng={point.location?.coords.lng || 0}
+                      hasMap={true}
+                      pointInfo={point}
+                    />
+                  );
+                })}
           </div>
         </section>
       </div>
