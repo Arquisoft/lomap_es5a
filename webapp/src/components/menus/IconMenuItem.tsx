@@ -2,6 +2,7 @@ import Icon from "@mui/material/Icon";
 import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 import { useSession } from "@inrupt/solid-ui-react";
 import { LOGIN_PATH } from "../../routes";
+import { useNavigate } from "react-router";
 
 /**
  * @param name: Nombre del elemento de menu.
@@ -15,6 +16,7 @@ type Props = {
 
 function IconMenuItem({ name, iconName, url }: Props) {
   const { session } = useSession();
+  const navigate = useNavigate();
 
   const handleRedirect = async (e: any) => {
     if (name === "Cerrar sesión") {
@@ -24,7 +26,7 @@ function IconMenuItem({ name, iconName, url }: Props) {
         window.location.href = LOGIN_PATH;
       });
     }
-    window.location.href = url || "";
+    navigate(url ?? "#");
   };
 
   return (
