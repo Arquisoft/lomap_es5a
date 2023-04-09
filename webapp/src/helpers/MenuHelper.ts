@@ -122,6 +122,7 @@ let menuItems: MenuItem[] = [
     name: "Cerrar sesión",
     parent: "account",
     muiName: "logout_rounded",
+    url: "/logout",
     order: 3,
   },
 ];

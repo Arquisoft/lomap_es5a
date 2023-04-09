@@ -24,6 +24,7 @@ function TopAccountAside() {
     path: string
   ) => {
     e.preventDefault();
+    console.log("path: ", path);
     if (path.includes("logout")) {
       await handleLogout(e);
       return;
