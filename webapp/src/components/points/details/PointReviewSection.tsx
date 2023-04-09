@@ -20,7 +20,7 @@ function PointReviewSection(){
                     <PointReviewSummary media={media}/>
                 </div>
 
-                <p> 20 valoraciones</p>
+                <p> {valoraciones?.length} valoraciones</p>
 
                 <div className="point-review-section-review-stars">
                     <ReviewStars media={media}/>

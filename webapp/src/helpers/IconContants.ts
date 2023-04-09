@@ -16,6 +16,8 @@ import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/Star';
+import AddIcon from '@mui/icons-material/Add';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 export {
@@ -36,6 +38,8 @@ export {
     ImageRoundedIcon,
     StarIcon,
     StarBorderIcon,
-    StarHalfIcon
+    StarHalfIcon,
+    AddIcon,
+    ArrowForwardIosIcon
 };
 
