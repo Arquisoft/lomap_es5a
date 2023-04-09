@@ -6,7 +6,7 @@ type Props = {
   position?: [number, number];
   width?: string;
   height?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
 };
 
 function MiniMap({ position, styles }: Props) {

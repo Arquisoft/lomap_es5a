@@ -4,7 +4,7 @@ import "../../public/css/components/badges/BaseBadge.scss";
 type Props = {
   text: string;
   icon?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
 };
 
 function BaseBadge({ text, styles }: Props) {

@@ -51,7 +51,8 @@ function BaseMapPopup({
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} styles={badgeStyles} />
+          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} 
+          styles={badgeStyles as React.CSSProperties} />
         )}
         <img src={image} alt={""} />
       </div>
