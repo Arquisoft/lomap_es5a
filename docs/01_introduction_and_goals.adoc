@@ -7,7 +7,7 @@ LoMap es el proyecto del curso actual de la asignatura Arquitectura del Software
 - Miguel González Navarro
 - Francisco Coya Abajo
 - Marcos Valín Fernández
-- Sergio Buenaga Gutierrez
+- Sergio Buenaga Gutiérrez
 
 Y, con la ayuda del profesorado:
 
@@ -52,7 +52,7 @@ Segun ISO/IEC 25010
 |===============================================================================================================================================================================================================================================================================
 | Rol                      | Descripción                                                                                    | Expectativas                                                                                                                                      
 | Cliente                  | Empresa que nos contrata, ficticia (HappySw), representada por los profesores de la asignatura | Que la aplicación desarrollada cumpla con los requisitos mencionados en el apartado 1.1                                                           
-| Equipo de desarrollo     | Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín                                 | Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso
+| Equipo de desarrollo     | Ricardo Marqués, Miguel González, Francisco Coya, Marcos Valín y Sergio Buenaga                                 | Desarrollar la aplicación con éxito en base a la documentación, de forma que refleje los conocimientos de arquitectura adquiridos durante el curso
 | Usuarios                 | El conjunto de personas que van a utilizar el producto final desarrollado                      | Que la aplicación funcione correctamente y que cumpla, implícitamente, con los objetivos de calidad                                               
 | Ayuntamiento de Bruselas | Organismo público que contrata al Cliente                                                      | Mismas expectativas que nuestro Cliente (HappySw)                                                                                                 
 |===============================================================================================================================================================================================================================================================================

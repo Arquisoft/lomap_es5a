@@ -1,4 +1,6 @@
 // Rutas de la aplicacion
+const BASE_PATH: string = "http://localhost:3000";
+
 // Pagina de inicio
 const HOME_PATH: string = "/";
 
@@ -22,7 +24,7 @@ const SINGLE_POINT_PATH: string = ":pointId";
 const SAVED_POINTS_PATH: string = "/saved";
 
 //Crear un punto nuevo
-const CREATE_POINT_PATH: string ="/createPoint";
+const CREATE_POINT_PATH: string ="/account/create-point";
 
 // Editar perfil y ajustes generales de la cuenta
 const SETTINGS_PATH: string = "/account/settings";
@@ -34,6 +36,7 @@ const ABOUT_PATH: string = "/about";
 const FAQ_PATH: string = "/faq";
 
 export {
+  BASE_PATH,
   HOME_PATH,
   LOGIN_PATH,
   SIGNUP_PATH,

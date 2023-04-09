@@ -1,5 +1,6 @@
 import React from "react";
 import "../../public/css/avatars/BaseAvatar.scss";
+import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 
 type Props = {
   img: string;
@@ -10,7 +11,12 @@ type Props = {
 function BaseAvatar({ img, imgAlt, onClick }: Props) {
   return (
     <>
-      <img className="base-avatar" src={img} alt={imgAlt} onClick={onClick} />
+    {
+        img ? 
+        (<img className="base-avatar" src={img} alt={imgAlt} title={imgAlt} onClick={onClick} />)
+        : <NoImageSkeleton isRound={true}/>
+    }
+      
     </>
   );
 }

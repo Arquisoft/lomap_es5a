@@ -1,9 +1,12 @@
 @charset "UTF-8";
 /**
- * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
- */
-/**
- * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
  */
 /**
  * -----------------------
@@ -28,6 +31,24 @@
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
  */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+/**
+ * Estilos comunies para inputs (input, select).
+ */
 .base-text-input-container {
   display: flex;
   flex-direction: column;
@@ -35,18 +56,33 @@
   align-items: flex-start;
   gap: 3px;
   width: 100%;
+  position: relative;
 }
 .base-text-input-container > label {
   width: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #B9B9B9;
+  color: #070707;
 }
 .base-text-input-container > input {
   width: 100%;
   height: 40px;
-  border: 2px solid #e1e0e0;
   border-radius: 5px;
   padding: 0 10px;
+  background-color: #FAF9F9;
   outline: none;
+  border: 2px solid #e1e0e0;
+}
+.base-text-input-container > input:focus {
+  box-shadow: 0 0 0 2px rgba(225, 224, 224, 0.4352941176);
+}
+.base-text-input-container > input:valid, .base-text-input-container > input:-moz-ui-valid {
+  background-color: #FAF9F9;
+}
+.base-text-input-container > input:required:focus:invalid:not(:first-of-type), .base-text-input-container > input:required:focus:-moz-ui-invalid {
+  border: 2px solid #ff0000;
+  background-color: rgba(255, 0, 0, 0.15);
+}
+.base-text-input-container > input:focus {
+  border: 2px solid #070707;
 }/*# sourceMappingURL=BaseTextInput.css.map */

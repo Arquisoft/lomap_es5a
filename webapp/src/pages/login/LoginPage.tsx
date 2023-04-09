@@ -1,10 +1,7 @@
-import React from "react";
-import AppLogo from "src/components/AppLogo";
-import NoAuthenticatedLayout from "src/layouts/NoAuthenticatedLayout";
+import AppLogo from "../../components/AppLogo";
 import LoginForm from "../../components/forms/LoginForm";
+import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 import "../../public/css/pages/login/LoginPage.scss";
-
-import bg1 from "../../public/images/bg-1.jpg";
 
 function LoginPage() {
   return (
@@ -14,9 +11,7 @@ function LoginPage() {
           <div className="login-page__image">
             <div className="login-page__image__wrapper">
               <AppLogo width={350} height={200} fill="#FFFFFF" />
-              {/* <h2>Tu aplicación de mapas</h2> */}
             </div>
-            <img src={bg1} alt="" />
           </div>
           <div className="login-page__wrapper">
             <h1>Iniciar sesión</h1>

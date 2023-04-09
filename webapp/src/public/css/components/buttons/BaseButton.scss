@@ -1,19 +1,62 @@
 @use "../../functions" as funcs;
+@use "../../mixins" as mixins;
+
+.button-primary{
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
+    color: #FFFFFF;
+}
+
+.button-primary-outlined {
+    @include mixins.customButton($color: funcs.color("primary", "base"), $type: "outline");
+}
 
 .button-blue{
-    background-color: funcs.color(custom_blue, base);
-    width: 128px;
-    height: 38px;
-    border: none;
+    @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "solid");
+}
+
+.button-black{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "solid");
+
+    &:disabled{
+        background-color: funcs.color("dark_grey", "base");
+        color: grey;
+    }
+}
+
+.button-black-outlined{
+    @include mixins.customButton($color: funcs.color("black", "blur"), $type: "outline");
+}
+
+.button-blue-outlined {
+    @include mixins.customButton($color: funcs.color(custom_blue, base), $type: "outline");
+}
+
+.button-small-gray{
+    width: 70px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    //left: 0;
+    right: 10px;
     border-radius: 100px;
-    color: #FFFFFF;
+    font-weight: 400;
     outline: none;
-    // text-transform: uppercase;
+    border: none;
+    background-color: funcs.color("light_gray", "base");
     cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.button-absolute {
+    position: absolute;
+    top: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 1000;
     transition: all .2s ease;
 
     &:hover{
-        background-color: funcs.color(custom_blue, high_light);
+        background-color: funcs.color("black", "dark");
     }
 }
 
@@ -36,37 +79,13 @@
 }
 
 .button-disabled{
-    background-color: funcs.color("tertiary", "base");
-    width: 128px;
-    height: 38px;
-    border: none;
-    border-radius: 10px;
-    color: gray;
-    outline: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s ease;
-
-    &:hover{
-        background-color: funcs.color("tertiary", "high_light");
-    }
+    @include mixins.customButton(funcs.color("tertiary", "base"), "outline");
 }
-
-
 
 .button-red{
-    background-color: red;
-    width: 210px;
-    height: 57px;
-    border: none;
-    border-radius: 100px;
-    color: #FFFFFF;
-    font-size: 24px;
-    outline: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s ease;
+    @include mixins.customButton(funcs.color("primary", "base"), "solid");
 }
+
 .button-red-form{
     background-color: red;
     width: 150px;

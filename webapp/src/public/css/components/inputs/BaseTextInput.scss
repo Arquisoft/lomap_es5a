@@ -1,24 +1,33 @@
 @use "../../mixins" as mixins;
 @use "../../functions" as funcs;
+@use "../../variables" as vars;
+
 
 .base-text-input-container{
     @include mixins.flex(column, flex-start, flex-start, 3px);
     width: 100%;
+    position: relative;
 
     & > label {
-        width: 100%;
-        font-size: 14px;
-        font-weight: 600;
-        color: funcs.color("dark_grey", "base");
+       @include mixins.commonInputLabelStyles();
     }
 
     & > input {
-        width: 100%;
-        height: 40px;
+        @include mixins.commonInputStyles();
         border: 2px solid funcs.color("light_gray", "base");
-        border-radius: 5px;
-        padding: 0 10px;
-        outline: none;
+
+        &:valid, &:-moz-ui-valid{
+            background-color: funcs.color(dark_grey, high_light);
+        }
+
+        &:required:focus:invalid:not(:first-of-type), &:required:focus:-moz-ui-invalid {
+            border: 2px solid funcs.color("error", "base");
+            background-color: funcs.color("error", "hight_light_alfa");
+        }
+
+        &:focus {
+            border: 2px solid funcs.color("black", "base");
+        }
     }
 
 }

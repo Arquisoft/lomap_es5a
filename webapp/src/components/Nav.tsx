@@ -1,17 +1,20 @@
-import { Button } from "@mui/material";
-import React, { useContext, useState } from "react";
+import { useSession } from "@inrupt/solid-ui-react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { menuItems } from "../helpers/MenuHelper";
 import "../public/css/navs/BaseNav.scss";
+import { LOGIN_PATH } from "../routes";
 import AppLogo from "./AppLogo";
 import BaseAvatar from "./avatars/BaseAvatar";
+import BaseButton from "./buttons/BaseButton";
 import AccountNavMenu from "./menus/AccountNavMenu";
+import { useUserStore } from "../store/user.store";
 
 function BaseNav() {
   // Para mostrar u ocultar el menu asociado al avatar del menu de navegacion.
   const [showAccountMenu, setShowAccountMenu] = useState(false);
-  const isAuthenticated = true;
-
+  const { session } = useSession();
+  const {imageUrl, name} = useUserStore();
 
   /**
    * Muestra el menu asociado al avatar del menu de navegación.
@@ -36,20 +39,18 @@ function BaseNav() {
             ))}
 
           <li>
-            {isAuthenticated ? (
+            {session.info.isLoggedIn ? (
               <BaseAvatar
-                img="https://randomuser.me/api/portraits/women/68.jpg"
-                imgAlt="María Fernández"
+                img={imageUrl}
+                imgAlt={name}
                 onClick={(e) => handleShowAccountNavMenu(e)}
               />
             ) : (
               <div id="nav-">
-                <Button type="button" size="small" variant="outlined">
-                  Crear una cuenta
-                </Button>
-                <Button type="button" size="small" variant="contained">
-                  Iniciar sesión
-                </Button>
+                <BaseButton
+                  type="button-blue"
+                  text="Iniciar sesión"
+                  onClick={(e) => window.location.href = LOGIN_PATH} />
               </div>
             )}
           </li>

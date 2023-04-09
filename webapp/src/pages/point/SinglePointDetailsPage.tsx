@@ -1,32 +1,26 @@
-import { useEffect } from "react";
-import SinglePointDetailBanner from "src/components/banners/pointDetail/SinglePointDetailBanner";
-import AuthenticatedLayout from "src/layouts/AutenticatedLayout";
-import usePoint from "../../hooks/usePoint";
+import SinglePointDetailBanner from "../../components/banners/pointDetail/SinglePointDetailBanner";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/points/SinglePointPage.scss";
+import { usePointDetailsStore } from "../../store/point.store";
 
 function SinglePointDetailsPage() {
-  const { selectedPoint, findPointById } = usePoint();
-
-  useEffect(() => {
-    findPointById("2");
-  }, []);
+  const { pointToShow } = usePointDetailsStore();
 
   return (
     <AuthenticatedLayout>
       <div className="single-point-details-container">
-        <SinglePointDetailBanner />
+        <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""}/>
         <section className="single-point-details__details">
           <h2>Detalles</h2>
           <p>
-            {
-              selectedPoint && <div>
-                <p>Nombre: {selectedPoint.name}</p>
-                <p>Descripción: {selectedPoint.description}</p>
-                <p>Latitud: {selectedPoint.coords.lat}</p>
-                <p>Longitud: {selectedPoint.coords.lng}</p>
-
+            {pointToShow && (
+              <div>
+                <p>Nombre: {pointToShow.name}</p>
+                <p>Descripción: {pointToShow.description}</p>
+                <p>Latitud: {pointToShow.location.coords.lat}</p>
+                <p>Longitud: {pointToShow.location.coords.lng}</p>
               </div>
-            }
+            )}
           </p>
         </section>
 

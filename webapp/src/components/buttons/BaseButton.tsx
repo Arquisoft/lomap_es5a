@@ -1,16 +1,32 @@
 import "../../public/css/components/buttons/BaseButton.scss";
+import spinner from "../../public/images/spinner_1.gif";
 
 type Props = {
   type: string;
-  mode?: string;
   text: string;
+  title?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
+  loadingText?: string;
+  isFinished ?: boolean;
+  styles?: React.CSSProperties;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+};
 
-function BaseButton({ type = "button-blue", mode, text, onClick }: Props) {
+function BaseButton({
+  type = "button-blue",
+  text,
+  isLoading,
+  loadingText,
+  isFinished,
+  title,
+  styles,
+  disabled,
+  onClick,
+}: Props) {
   return (
-    <button className={`${type} ${mode}`} onClick={onClick}>
-      {text}
+    <button className={`${isLoading ? 'button-disabled' : type}`} onClick={onClick} disabled={isLoading || disabled} style={styles} title={title}>
+      {isLoading ? <p>{loadingText || "Cargando..."}</p> : (isFinished ? <p>Finalizado</p> : text)}
     </button>
   );
 }

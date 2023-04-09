@@ -1,12 +1,11 @@
-import InfoOutlined from "@mui/icons-material/InfoOutlined";
-import { LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { LatLng, LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
+import { InfoOutlined } from "../../helpers/IconContants";
 import DraggableMarker from "./DragableMarker";
 
-
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
 import "../../public/css/components/maps/MapWithDragableMark.scss";
+import { usePointDetailsStore } from "../../store/point.store";
 
 type Props = {
   position: LatLngExpression;
@@ -15,8 +14,22 @@ type Props = {
   styles?: Object;
 };
 
+type RecenterMapButtonProps = {
+  coords: LatLng
+};
+
+function RecenterMapButton({ coords }: RecenterMapButtonProps) {
+  const map = useMapEvents({
+    click() {
+      map.flyTo(coords, map.getZoom())
+    },
+  });
+  return null;
+}
+
 function MapWithDragableMarker({ position, styles }: Props) {
-  const [draggable, setDraggable] = useState(false)
+  const { info } = usePointDetailsStore();
+
   return (
     <div className="map-with-dragable-marker-container">
       <div className="map-with-dragable-marker-container__info-msg">
@@ -24,7 +37,7 @@ function MapWithDragableMarker({ position, styles }: Props) {
         <p>Mueve el marcador para obtener las coordenadas</p>
       </div>
       <MapContainer
-        center={position}
+        center={info.location.coords || position}
         zoom={13}
         zoomControl={true}
         scrollWheelZoom={false}
@@ -34,8 +47,9 @@ function MapWithDragableMarker({ position, styles }: Props) {
         doubleClickZoom={true}
         style={styles}
       >
+        <RecenterMapButton coords={info.location.coords as LatLng}/>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?" />
-        <DraggableMarker position={position} />
+        <DraggableMarker />
       </MapContainer>
     </div>
   );

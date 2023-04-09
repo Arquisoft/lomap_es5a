@@ -1,7 +1,11 @@
-import MiniMap from "src/components/maps/MiniMap";
+import MiniMap from "../../maps/MiniMap";
 import "../../../public/css/components/banners/pointDetail/SinglePointDetailBanner.scss";
 
- function SinglePointDetailBanner() {
+type Props = {
+  pointImage?: string;
+}
+
+ function SinglePointDetailBanner({pointImage}: Props) {
   return (
     <div className="single-point-detail-banner">
         <MiniMap
@@ -12,7 +16,7 @@ import "../../../public/css/components/banners/pointDetail/SinglePointDetailBann
               borderRadius: "20px",
             }}
           />
-        <img src="https://images.unsplash.com/photo-1640276380950-9fad7f2aba89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8b3ZpZWRvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="" />
+        <img src={pointImage || ""} alt="" />
     </div>
   )
 }

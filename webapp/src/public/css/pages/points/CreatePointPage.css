@@ -1,6 +1,46 @@
+.create-point-principal{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.create-point-footer{
+    bottom: 0;
+}
+
 .main-create-point{
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap:50px
+}
+
+.create-point-aside{
+    min-width: max-content;
+    /* padding-top: 40px;
+    padding-left: 50px; */
+}
+
+/* .create-point-form{
+    padding-top: 60px;
+} */
+
+.create-point-map{
+    align-self: center;
+}
+
+@media screen and (max-width: 768px){
+    .main-create-point{
+        flex-direction: column;
+        gap: 0px;
+    }
+    .create-point-aside{
+        padding-left: 0px;
+    }
+    .create-point-map{
+        padding-right: 0px;
+    }
 }
 

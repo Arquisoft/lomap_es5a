@@ -1,4 +1,4 @@
-import ShareIcon from "@mui/icons-material/Share";
+import { ShareIcon } from "../../helpers/IconContants";
 import "../../public/css/components/points/PointSummaryWithMap.scss";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
@@ -25,6 +25,11 @@ function PointSummaryWithMap({
   lng,
   hasMap = false,
 }: Props) {
+
+  const handleRedirectToPointDetail = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    
+  };
   return (
     <div className="point-summary-with-map-container">
       {hasMap && (
@@ -46,7 +51,11 @@ function PointSummaryWithMap({
         <ShareIcon />
       </div>
       <div className="point-summary-with-map__buttons">
-        <BaseButton type="button-blue-rounded" text="Ver punto"  onClick={() => ""}/>
+        <BaseButton
+          type="button-blue-rounded"
+          text="Ver punto"
+          onClick={(e) => handleRedirectToPointDetail(e)}
+        />
         <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
       </div>
     </div>

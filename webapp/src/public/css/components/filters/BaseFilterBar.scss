@@ -1,7 +1,0 @@
-@use "../../mixins" as mixins;
-
-.base-filter-bar{
-    @include mixins.flex(row, flex-start, center, 0);
-    width: 100%;
-    padding: 10px 0;
-}

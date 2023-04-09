@@ -1,22 +1,19 @@
-.aside-button-main{
-    padding-bottom: 25px;
+.aside-button-container{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    gap:15px ;
-}
-
-.aside-button-logo{
-    padding-top: 2px;
-}
-
-.aside-button-text{
-    background-color: transparent;
-    border: none;
-    font-family: "Manrope", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    color: black;
+    justify-content: flex-start;
+    align-items: center;
+    gap:10px ;
+    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
+}
+
+.aside-button-container:hover{
+    background-color: #f2f2f2;
+}
+
+.aside-button-container--active{
+    background-color: #f2f2f2;
 }

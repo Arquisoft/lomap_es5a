@@ -21,6 +21,7 @@ $pallete: (
     "tertiary": (
         "base": #D9D9D9,
         "highlight": #98a3b6,
+        "transparent": rgba(217, 217, 217, 0.31),
         "dark": #7f8a9d,
     ),
     "light_gray": (
@@ -30,7 +31,7 @@ $pallete: (
     ),
     "dark_grey": (
         "base": #B9B9B9,
-        "high_light": #98a3b6,
+        "high_light": #FAF9F9,
         "dark": #7f8a9d,
     ),
     "custom_blue": (
@@ -41,10 +42,34 @@ $pallete: (
     "custom_white": (
         "base": #ffffff,
     ),
+    "success": (
+        "base": #00b840,
+        "high_light": #99d4b0,
+        "hight_light_alfa": rgba(0, 184, 64, 0.15),
+        "dark": #006e27,
+    ),
+    "error": (
+        "base": #ff0000,
+        "high_light": #ff6666,
+        "hight_light_alfa": rgba(255, 0, 0, 0.15),
+        "dark": #e60000,
+    ),
+    "black": (
+        "base": #070707,
+        "blur": rgba(0, 0, 0, 0.85),
+        "transparent": rgba(0, 0, 0, .5),
+        "high_light": #1c1c1c,
+        "dark": #050505,
+    )
 );
 
 $border-radius: 20px;
 $nav-height: 80px;
+
+// Variables para los inputs.
+$input-height: 40px;
+$input-border-radius: 5px;
+$input-padding-x: 10px;
 
 $sizes: (
     // Dimensiones para la foto de perfil (width = height).
@@ -52,7 +77,8 @@ $sizes: (
         (
             "sm": 48px,
             "md": 96px,
-        )
+    )
 );
 
 $z-index-menus: 999;
+$z-index-popups: 1000;

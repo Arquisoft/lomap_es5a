@@ -1,0 +1,25 @@
+@use "../../../functions" as funcs;
+@use "../../../mixins" as mixins;
+@use "../../../variables" as vars;
+
+.base-select-container {
+    @include mixins.flex(column, center, flex-start, 5px);
+    width: 100%;
+    & > label {
+        @include mixins.commonInputLabelStyles();
+    }
+
+    & > .base-select-item {
+        @include mixins.commonInputStyles();
+        border: 2px solid funcs.color(light_gray, base);
+
+        &:focus{
+            border: 2px solid funcs.color(black, base);
+        }
+
+        &:invalid{
+            border: 2px solid funcs.color(error, base);
+            background-color: funcs.color(error, hight_light_alfa);
+        }
+    }
+}

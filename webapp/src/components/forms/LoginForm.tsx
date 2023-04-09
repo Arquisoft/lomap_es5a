@@ -1,35 +1,48 @@
 import { ChangeEvent, useState } from "react";
-import { signIn } from "src/helpers/AuthHelper";
-import BaseButton from "../buttons/BaseButton";
-import BaseTextInput from "../inputs/BaseTextInput";
-
+import { SOLID_PROVIDERS } from "../../data/providers";
+import { signIn } from "../../helpers/AuthHelper";
+import useAuth from "../../hooks/useAuth";
 import "../../public/css/components/forms/loginForm/LoginForm.scss";
+import BaseButton from "../buttons/BaseButton";
+import BaseSelect from "../inputs/BaseSelect";
+import { useSession } from "@inrupt/solid-ui-react";
 
 function LoginForm() {
-  const [webId, setWebId] = useState("");
+  const { login } = useAuth();
+  const {session} = useSession();
+  const [providerUrl, setProviderUrl] = useState(SOLID_PROVIDERS[0].value);
 
-  const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    signIn(webId);
+    login();
+    signIn(session, providerUrl);
   };
 
-  const handleWebId = (e: ChangeEvent<HTMLInputElement>) => {
-    setWebId(e.currentTarget.value);
+  const handleSelectProvider = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setProviderUrl(e.target.value);
   };
 
   return (
     <div className="login-form-container">
-        <BaseTextInput
-          label="WebId"
-          onChange={handleWebId}
-          type="text"
-          placeholder="https://id.inrupt.com/..."
-        />
+      <BaseSelect
+        label="Proveedor de POD"
+        id="provider"
+        name="provider"
+        category=""
+        showContent={true}
+        options={SOLID_PROVIDERS}
+        handleChange={handleSelectProvider}
+      />
+      <div className="login-form__button-container">
         <BaseButton
-          type="button-blue"
-          text="Iniciar sesión"
-          onClick={(e) => handleLogin(e)}
+          type="button-blue-outlined"
+          text="Log In"
+          onClick={(e) => {
+            handleLogin(e);
+          }}
         />
+      </div>
     </div>
   );
 }

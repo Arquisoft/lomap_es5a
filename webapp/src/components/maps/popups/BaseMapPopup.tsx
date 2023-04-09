@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import BaseBadge from "src/components/badges/BaseBadge";
-import ProfileInfoWithFollowButton from "src/components/profiles/ProfileInfoWithFollowButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ShareIcon from "@mui/icons-material/ShareOutlined";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
-import BaseButton from "src/components/buttons/BaseButton";
+import { BaseMapPopupProps } from "../../../shared/shareddtypes";
+import BaseBadge from "../../badges/BaseBadge";
+import BaseButton from "../../buttons/BaseButton";
+import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
+import { usePointDetailsStore } from "../../../store/point.store";
+import { canonizeUrl } from "../../../utils/stringUtils";
+import { availableCategories } from "../../../helpers/CategoryFilterHelper";
 
-type Props = {
-  name: string;
-  address: string;
-  category?: string
-}
-
-function BaseMapPopup({ name, address, category}: Props) {
+function BaseMapPopup({
+  name,
+  location,
+  image,
+  owner,
+  category,
+  point,
+}: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
+  const {setPointToShow} = usePointDetailsStore();
+
+  const navigate = useNavigate();
 
   const badgeStyles = {
     backgroundColor: "white",
@@ -27,6 +34,15 @@ function BaseMapPopup({ name, address, category}: Props) {
     setShowCategoryBadge(show);
   };
 
+  const handleButtonClick = () => {
+    if(point){
+      setPointToShow(point);
+    }
+    if(point?.name){
+      navigate(canonizeUrl("/points", point.name));
+    }
+  };
+
   return (
     <div className="base-popup-modal">
       <div
@@ -35,21 +51,18 @@ function BaseMapPopup({ name, address, category}: Props) {
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={category} styles={badgeStyles} />
+          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} styles={badgeStyles} />
         )}
-        <img
-          src="https://images.unsplash.com/photo-1640276380950-9fad7f2aba89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
-          alt=""
-        />
+        <img src={image} alt={""} />
       </div>
       <div className="base-popup-modal__body">
-        <ProfileInfoWithFollowButton />
+        <ProfileInfoWithFollowButton
+          name={owner?.name || ""}
+          imageUrl={owner.imageUrl}
+          webId={owner.webId}
+        />
+
         <div className="popup-modal-social-icons">
-          <ShareIcon
-            sx={{
-              color: "#2B3467",
-            }}
-          />
           <FavoriteBorderIcon
             sx={{
               color: "#ef233c",
@@ -59,10 +72,20 @@ function BaseMapPopup({ name, address, category}: Props) {
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
-          <p>{name}</p>
-          <p>{address}</p>
+          <p>
+            {name?.length > 25 ? name.substring(0, 25).concat("...") : name}
+          </p>
+          <p>
+            {location?.address?.length > 30
+              ? location?.address.substring(0, 30).concat("...")
+              : location?.address}
+          </p>
         </div>
-        <BaseButton type="button-blue" text="Ver punto"  onClick={() => ""}/>
+        <BaseButton
+          type="button-blue"
+          text="Ver punto"
+          onClick={handleButtonClick}
+        />
       </div>
     </div>
   );

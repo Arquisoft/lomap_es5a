@@ -1,29 +1,45 @@
-import AccountLayout from "src/layouts/AccountLayout"
-import "../../public/css/pages/points/CreatePointPage.css"
-import CreatePointForm from "src/components/forms/CreatePointForm"
-import MapWithDragableMarker from "src/components/maps/MapWithDragableMarker"
+import TopAccountAside from "../../components/asides/accountAside/TopAccountAside";
+import UploadImageButton from "../../components/buttons/UploadImageButton";
+import Footer from "../../components/footer/Footer";
+import CreatePointForm from "../../components/forms/CreatePointForm";
+import MapWithDragableMarker from "../../components/maps/MapWithDragableMarker";
+import "../../public/css/pages/points/CreatePointPage.css";
+import { usePointDetailsStore } from "../../store/point.store";
 
+function CreatePointPage() {
+  const { info } = usePointDetailsStore();
 
-function CreatePointPage(){ 
-  return(
-    <AccountLayout hasBanner={false}>
+  return (
+    <div className="create-point-principal">
       <div className="main-create-point">
+        <div className="create-point-aside">
+          <TopAccountAside />
+        </div>
         <div className="create-point-form">
           <CreatePointForm />
         </div>
         <div className="create-point-map">
-        <MapWithDragableMarker
-            position={[42.883267366785304, -2.676109097850461]}
+          <MapWithDragableMarker
+            position={
+              info.location.coords
+            }
             styles={{
-              width: "300px",
-              height: "400px",
-              borderRadius: "20px"
+              position: "relative",
+              width: "400px",
+              height: "455px",
+              borderRadius: "20px",
             }}
           />
+          <div className="create-form-buttons">
+            <UploadImageButton />
+          </div>
         </div>
       </div>
-    </AccountLayout>
-  )
+      <div className="create-point-footer">
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
-export  default CreatePointPage
+export default CreatePointPage;
