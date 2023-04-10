@@ -1,12 +1,12 @@
 import "leaflet/dist/leaflet.css";
-
+import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 
 type Props = {
   position?: [number, number];
   width?: string;
   height?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
 };
 
 function MiniMap({ position, styles }: Props) {

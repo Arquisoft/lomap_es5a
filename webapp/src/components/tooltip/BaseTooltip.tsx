@@ -19,7 +19,7 @@ type Props = {
   pos?: TooltipPosition;
 };
 
-function BaseTooltip({ children, text, pos = TooltipPosition.Right }: Props) {
+function BaseTooltip({ children, text }: Props) {
   return (
     <div className="base-tooltip">
       <span className="base-tooltip__content">{text}</span>

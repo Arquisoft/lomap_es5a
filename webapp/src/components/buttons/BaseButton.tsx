@@ -1,10 +1,11 @@
+import React from "react";
 import "../../public/css/components/buttons/BaseButton.scss";
-import spinner from "../../public/images/spinner_1.gif";
 
 type Props = {
   type: string;
   text: string;
   title?: string;
+  disabled?: boolean;
   isLoading?: boolean;
   loadingText?: string;
   isFinished ?: boolean;
@@ -20,11 +21,12 @@ function BaseButton({
   isFinished,
   title,
   styles,
+  disabled,
   onClick,
 }: Props) {
   return (
-    <button className={`${isLoading ? 'button-disabled' : type}`} onClick={onClick} disabled={isLoading} style={styles} title={title}>
-      {isLoading ? <p>{loadingText || "Cargando..."}</p> : isFinished ? <p>Finalizado</p> : text}
+    <button className={`${isLoading ? 'button-disabled' : type}`} onClick={onClick} disabled={isLoading || disabled} style={styles} title={title}>
+      {isLoading ? <p>{loadingText || "Cargando..."}</p> : (isFinished ? <p>Finalizado</p> : text)}
     </button>
   );
 }

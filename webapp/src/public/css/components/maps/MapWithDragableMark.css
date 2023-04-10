@@ -55,6 +55,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
+  position: relative;
 }
 .map-with-dragable-marker-container > .map-with-dragable-marker-container__info-msg {
   display: flex;
@@ -65,4 +66,47 @@
 }
 .map-with-dragable-marker-container > .map-with-dragable-marker-container__info-msg > p {
   font-size: 0.9rem;
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: none;
+}
+
+.leaflet-control-zoom .leaflet-bar .leaflet-control {
+  border: none;
+  border-radius: 100px;
+}
+
+.leaflet-touch .leaflet-bar a:first-child,
+.leaflet-touch .leaflet-bar a:last-child {
+  border-radius: 10px;
+}
+
+.leaflet-touch .leaflet-bar a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.leaflet-bar a {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  color: white;
+}
+.leaflet-bar a:hover, .leaflet-bar a:focus, .leaflet-bar a:active {
+  background-color: #070707;
+}
+
+.leaflet-top {
+  top: 10px;
 }/*# sourceMappingURL=MapWithDragableMark.css.map */

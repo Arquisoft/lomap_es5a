@@ -1,3 +1,4 @@
+import React from 'react';
 import "../../public/css/components/buttons/BaseButton.scss";
 import "../../public/css/components/buttons/IconButton.scss";
 import Icon from '@mui/material/Icon';

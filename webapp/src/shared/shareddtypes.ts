@@ -1,18 +1,28 @@
+
 enum Category {
   RESTAURANT = "restaurant",
   BAR = "bar",
   CAFE = "cafe",
   HOTEL = "hotel",
   GROCERY = "grocery",
-  SUPERMARKET= "supermarket",
+  SUPERMARKET = "supermarket",
   CINEMA = "cinema",
   SHOP = "shop",
   MUSEUM = "museum",
   PARK = "park",
   GAS_STATION = "gas_station",
+  PUBLIC_TRANSPORT = "public_transport",
+  MONUMENT = "monument",
   OTHER = "other",
   NONE = "none",
 }
+
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>;
 
 enum Coordinate {
   LAT = "lat",
@@ -24,8 +34,13 @@ type SingleCategory = {
   code: string;
   name: string;
   description?: string;
-  icon?: any;
+  icon?: string;
+  isActivated?: boolean;
 };
+
+interface CategoryFilterList {
+  SingleCategory: SingleCategory[];
+}
 
 /* Clase CSS para componentes JSX */
 type ComponentClassName = {
@@ -47,6 +62,18 @@ type User = {
   webId: string;
   email?: string;
   image?: string;
+};
+
+/**
+ * Amigo del usuario en sesión. Almacena su webId, su nombre y la url de su imagen (si es que tiene)
+ * @param webId Identificador único del usuario.
+ * @param name nombre del usuario.
+ * @param imageUrl Imagen de perfil usuario.
+ */
+type Friend = {
+  webId : string;
+  name : string;
+  imgUrl? : string;
 };
 
 /**
@@ -82,9 +109,10 @@ type Reviewer = {
  */
 type Review = {
   _id: string;
-  reviewer: Reviewer;
-  rating: number;
+  title: string;
   comment: string;
+  rating: number;
+  reviewer: Reviewer;
   createdAt: Date;
 };
 
@@ -240,18 +268,18 @@ interface BaseSelect {
 // For text inputs
 interface BaseInputProps {
   label: string;
-  value?: string | number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
   type: string;
   name?: string;
   id?: string;
   placeholder?: string;
   required?: boolean;
+  showClearButton?: boolean;
   styles?: React.CSSProperties | string;
-};
-
-
+}
 
 interface BaseTextAreaProps {
   label: string;
@@ -261,6 +289,7 @@ interface BaseTextAreaProps {
   id?: string;
   placeholder?: string;
   required?: boolean;
+  maxLength?: number;
 }
 
 /**
@@ -280,15 +309,16 @@ type ProfileInfoWithFollowButtonProps = {
  */
 type PointListingAsideProps = {
   points: Point[];
-}
+};
 
-type SingleFilterProps = {
+interface SingleFilterProps {
   code: string; // Código de la categoria
-  iconFilename: any;
+  iconFilename?: string;
   iconAlt?: string;
   text: string;
   isActive?: boolean;
-};
+  filterObject?: SingleCategory;
+}
 
 type FirebaseConfig = {
   apiKey: string;
@@ -300,29 +330,32 @@ type FirebaseConfig = {
 };
 
 export type {
-  SingleCategory,
-  ComponentClassName,
+  JSONValue,
   AuthContextValue,
   AuthUser,
   BaseTextAreaProps,
   BaseInputProps,
   BaseSelect,
   BaseSelectOption,
-  BaseMapPopupProps,
-  User,
-  UserGroup,
-  Review,
-  Point,
-  Image,
-  PointSummary,
   BaseLocation,
-  Reviewer,
+  BaseMapPopupProps,
+  CategoryFilterList,
+  ComponentClassName,
+  Friend,
+  FirebaseConfig,
+  Image,
+  Point,
   PointOwner,
+  PointSummary,
   ProfileInfoWithFollowButtonProps,
   PointListingAsideProps,
-  FirebaseConfig,
+  Review,
+  Reviewer,
+  SingleCategory,
+  SingleFilterProps,
+  User,
+  UserGroup,
   UserInSessionProfile,
-  SingleFilterProps
 };
-
 export { Category, Coordinate };
+

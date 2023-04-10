@@ -1,4 +1,3 @@
-import React from "react";
 import { BaseTextAreaProps } from "../../shared/shareddtypes";
 
 import "../../public/css/components/inputs/baseTextArea/BaseTextArea.scss";
@@ -9,6 +8,7 @@ function BaseTextArea({
   value,
   placeholder,
   id,
+  maxLength,
   onChange,
 }: BaseTextAreaProps) {
 
@@ -25,6 +25,7 @@ function BaseTextArea({
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        maxLength={maxLength}
       ></textarea>
     </div>
   );

@@ -1,9 +1,12 @@
-import { ShareIcon } from "../../helpers/IconContants";
+import React from "react";
+import { useNavigate } from "react-router";
 import "../../public/css/components/points/PointSummaryWithMap.scss";
+import { Point } from "../../shared/shareddtypes";
+import { usePointDetailsStore } from "../../store/point.store";
+import { canonizeUrl } from "../../utils/stringUtils";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
 import MiniMap from "../maps/MiniMap";
-
 /**
  * name: Nombre del punto de interes.
  * address: Dirección postal del punto.
@@ -16,6 +19,7 @@ type Props = {
   lat: number;
   lng: number;
   hasMap?: boolean;
+  pointInfo?: Point;
 };
 
 function PointSummaryWithMap({
@@ -24,7 +28,20 @@ function PointSummaryWithMap({
   lat,
   lng,
   hasMap = false,
+  pointInfo
 }: Props) {
+  const navigate = useNavigate();
+  const {setPointToShow} = usePointDetailsStore();
+
+  const handleRedirectToPointDetail = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if(pointInfo){
+      setPointToShow(pointInfo);
+      navigate(canonizeUrl("/points", name));
+    }
+  };
   return (
     <div className="point-summary-with-map-container">
       {hasMap && (
@@ -43,13 +60,12 @@ function PointSummaryWithMap({
           <p>{name}</p>
           <span>{address}</span>
         </div>
-        <ShareIcon />
       </div>
       <div className="point-summary-with-map__buttons">
         <BaseButton
           type="button-blue-rounded"
           text="Ver punto"
-          onClick={() => ""}
+          onClick={(e) => handleRedirectToPointDetail(e)}
         />
         <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
       </div>

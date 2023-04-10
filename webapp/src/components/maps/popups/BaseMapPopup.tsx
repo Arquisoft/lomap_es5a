@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
@@ -6,6 +6,9 @@ import { BaseMapPopupProps } from "../../../shared/shareddtypes";
 import BaseBadge from "../../badges/BaseBadge";
 import BaseButton from "../../buttons/BaseButton";
 import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowButton";
+import { usePointDetailsStore } from "../../../store/point.store";
+import { canonizeUrl } from "../../../utils/stringUtils";
+import { availableCategories } from "../../../helpers/CategoryFilterHelper";
 
 function BaseMapPopup({
   name,
@@ -16,6 +19,7 @@ function BaseMapPopup({
   point,
 }: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
+  const {setPointToShow} = usePointDetailsStore();
 
   const navigate = useNavigate();
 
@@ -31,8 +35,12 @@ function BaseMapPopup({
   };
 
   const handleButtonClick = () => {
-    console.log(point?.name);
-    navigate(encodeURI(`/points/${point?.name}`));
+    if(point){
+      setPointToShow(point);
+    }
+    if(point?.name){
+      navigate(canonizeUrl("/points", point.name));
+    }
   };
 
   return (
@@ -43,7 +51,8 @@ function BaseMapPopup({
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={category} styles={badgeStyles} />
+          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} 
+          styles={badgeStyles as React.CSSProperties} />
         )}
         <img src={image} alt={""} />
       </div>

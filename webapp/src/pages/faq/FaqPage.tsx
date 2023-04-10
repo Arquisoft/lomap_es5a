@@ -1,6 +1,6 @@
 import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 
-function FaqPage({...props}){
+function FaqPage(){
     return (
     <NoAuthenticatedLayout>
         <p>Página de FAQ</p>

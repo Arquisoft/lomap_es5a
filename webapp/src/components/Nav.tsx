@@ -50,7 +50,7 @@ function BaseNav() {
                 <BaseButton
                   type="button-blue"
                   text="Iniciar sesión"
-                  onClick={(e) => window.location.href = LOGIN_PATH} />
+                  onClick={() => window.location.href = LOGIN_PATH} />
               </div>
             )}
           </li>

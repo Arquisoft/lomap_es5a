@@ -1,4 +1,3 @@
-import { JSONObject } from "puppeteer";
 import type {
   BaseLocation,
   Point,
@@ -8,7 +7,7 @@ import type {
 import { Category } from "../../shared/shareddtypes";
 
 const parseJsonToPoint = (inData: any): Point[] => {
-  let newPoints: Point[] = [];
+  const newPoints: Point[] = [];
   const { points } = inData;
 
   points.forEach((item: any) => {
@@ -53,7 +52,7 @@ const parseJsonToPointItem = (inData: any): Point => {
     updatedAt,
   } = inData;
 
-  let newPoint: Point = {
+  const newPoint: Point = {
     _id,
     name,
     description,
@@ -83,7 +82,7 @@ const parseJsonToPointSummary = (inData: any): PointSummary => {
     createdAt,
   } = inData;
 
-  let pointSummary: PointSummary = {
+  const pointSummary: PointSummary = {
     _id,
     name,
     description,
@@ -114,7 +113,7 @@ const parseCategory = (newCategory: string): Category => {
  */
 const parseLocation = (location: any): BaseLocation => {
   const { coords, address, postalCode, city, country } = location;
-  let { lat, lng } = coords;
+  const { lat, lng } = coords;
 
   if (!coords) {
     throw new Error("Location must have coords");
@@ -138,7 +137,7 @@ const parseLocation = (location: any): BaseLocation => {
  */
 const parseReviews = (reviews: any) => {
   return reviews.map((review: Review) => {
-    const { _id, reviewer, rating, comment, createdAt } = review;
+    const { _id, reviewer, rating, title, comment, createdAt } = review;
 
     if (!reviewer) {
       throw new Error("Review must have a reviewer");
@@ -148,12 +147,13 @@ const parseReviews = (reviews: any) => {
 
     return {
       _id,
+      title,
+      comment,
       reviewer: {
         webId,
         imageUrl,
       },
       rating,
-      comment,
       createdAt: new Date(createdAt),
     };
   });
@@ -177,3 +177,4 @@ const parsePointToJson = (point: Point) => {
 };
 
 export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary };
+

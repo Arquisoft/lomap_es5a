@@ -4,12 +4,12 @@ import "../../public/css/components/badges/BaseBadge.scss";
 type Props = {
   text: string;
   icon?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
 };
 
 function BaseBadge({ text, styles }: Props) {
   return (
-    <div className="base-badge" style={styles}>
+    <div className="base-badge" style={styles} role="contentinfo">
       {text}
     </div>
   );

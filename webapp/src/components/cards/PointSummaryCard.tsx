@@ -1,9 +1,10 @@
-import { useHref, useNavigate } from "react-router";
+import React from "react";
+import { useNavigate } from "react-router";
 import "../../public/css/components/cards/point/PointSummaryCard.scss";
-import NoImageSkeleton from "../skeletons/NoImageSkeleton";
-import { Link } from "react-router-dom";
-import { usePointDetailsStore } from "../../store/point.store";
 import { Point } from "../../shared/shareddtypes";
+import { usePointDetailsStore } from "../../store/point.store";
+import { canonizeUrl } from "../../utils/stringUtils";
+import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 
 type Props = {
   imgUrl?: string;
@@ -20,14 +21,14 @@ function PointSummaryCard({
   pointCreatedAt,
   pointInfo
 }: Props) {
-  const {setCurrentPoint} = usePointDetailsStore();
+  const {setPointToShow} = usePointDetailsStore();
   const navigate = useNavigate();
 
   const handleRedirectToPointDetailsPage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if(pointInfo && pointName.length > 0){
-      setCurrentPoint(pointInfo);
-      navigate(`/points/${pointName.replace(/\s/g, "-").toLowerCase()}`);
+      setPointToShow(pointInfo);
+      navigate(canonizeUrl("/points", pointName));
     }
   }
 

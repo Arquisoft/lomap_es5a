@@ -61,7 +61,7 @@
   width: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #B9B9B9;
+  color: #070707;
 }
 .base-select-container > .base-select-item {
   width: 100%;
@@ -74,4 +74,11 @@
 }
 .base-select-container > .base-select-item:focus {
   box-shadow: 0 0 0 2px rgba(225, 224, 224, 0.4352941176);
+}
+.base-select-container > .base-select-item:focus {
+  border: 2px solid;
+}
+.base-select-container > .base-select-item:invalid {
+  border: 2px solid #ff0000;
+  background-color: rgba(255, 0, 0, 0.15);
 }/*# sourceMappingURL=BaseSelect.css.map */

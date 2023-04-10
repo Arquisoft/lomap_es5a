@@ -50,14 +50,16 @@
  * Estilos comunies para inputs (input, select).
  */
 .point-summary-card-container {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 .point-summary-card-container > img {
   width: 48px;

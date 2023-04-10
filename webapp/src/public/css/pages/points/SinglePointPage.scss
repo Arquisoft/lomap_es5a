@@ -1,4 +1,11 @@
+@use "../../functions" as funcs;
+
 .single-point-details-container{
+
+    position: relative;
+
+    min-height: funcs.getMaxPageHeight();
+
     height: 100%;
     width: 100%;
     display: flex;
@@ -24,4 +31,5 @@
 
 .single-point-details__reviewListing{
     width: 912px;
+
 }

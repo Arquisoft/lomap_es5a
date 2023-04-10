@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import {
   FirebaseConfig,
 } from "../shared/shareddtypes";
@@ -13,5 +12,5 @@ const firebaseConfig: FirebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID as string,
 };
 
-export {firebaseConfig };
+export { firebaseConfig };
 
