@@ -1,6 +1,5 @@
 import { render, screen,cleanup } from '@testing-library/react';
 import PointSummaryWithMap from './PointSummaryWithMap';
-import React from "react";
 
 describe('Renderizacion del componente', () => {
   afterAll(cleanup);

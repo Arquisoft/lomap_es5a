@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router";
 import "../../public/css/components/points/PointSummaryWithMap.scss";
 import { Point } from "../../shared/shareddtypes";

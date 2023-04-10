@@ -1,4 +1,3 @@
-import React from "react";
 import { cleanup,render } from "@testing-library/react";
 import { InfoBox } from "./InfoBox";
 import FingerprintRoundedIcon from '@mui/icons-material/FingerprintRounded';

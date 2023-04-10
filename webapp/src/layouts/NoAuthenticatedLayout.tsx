@@ -1,3 +1,4 @@
+import React from "react";
 import "../public/css/layouts/noAuthenticatedLayout/NoAuthenticatedLayout.scss";
 
 type Props = {

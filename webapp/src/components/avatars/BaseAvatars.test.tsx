@@ -1,4 +1,3 @@
-import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import BaseAvatar from './BaseAvatar';
 
@@ -18,7 +17,9 @@ describe("Comprobacion de componente baseavatar",()=>{
 
     it("Renderizado",()=>{
         //do nothing
-        const func = ()=>{};
+        const func = ()=>{
+            console.log("click");
+        };
         
         const {getByRole} = render(<BaseAvatar img='imagen/source' imgAlt='Avatar image' onClick={func}/>);
         const imgComponent = getByRole('img', { name: 'Avatar image' });

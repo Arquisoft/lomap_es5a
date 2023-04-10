@@ -1,4 +1,4 @@
-import type { JSONValue, User } from "../../shared/shareddtypes";
+import type { User } from "../../shared/shareddtypes";
 
 const parseJsonToUser = (inData: any): User[] => {
   const resUsers: User[] = [];
@@ -28,3 +28,4 @@ const parseJsonToUserItem = (inData: User): User => {
 };
 
 export { parseJsonToUser, parseJsonToUserItem };
+
