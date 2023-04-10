@@ -22,7 +22,7 @@ function SinglePointDetailsPage() {
           <PointReviewSection pointToShow = {pointToShow} />
         </section> 
         <section className="single-point-details__addReview" >
-          <AddNewPointLink />
+          <AddNewPointLink pointToShow={pointToShow}/>
         </section>
         <section className="single-point-details__reviewListing" >
           <ReviewListing />
