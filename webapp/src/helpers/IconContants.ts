@@ -47,8 +47,7 @@ export {
 
     FilterListIcon,
     CloseIcon,
-    CheckRoundedIcon
-
+    CheckRoundedIcon,
     StarIcon,
     StarBorderIcon,
     StarHalfIcon,
