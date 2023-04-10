@@ -16,9 +16,12 @@ import { SyntheticEvent } from "react";
 import BaseStarRating from "../stars/BaseStarRating";
 
 function SuccessReviewPopupSection() {
-  const { setShowAddReviewPopup } = usePointReviewStore();
+  const { setShowAddReviewPopup, setIsReviewPublished, setIsSendingReview } =
+    usePointReviewStore();
   const handleHidePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setIsReviewPublished(false);
+    setIsSendingReview(false);
     setShowAddReviewPopup(false);
   };
 
@@ -56,6 +59,8 @@ function AddNewReviewToPointPopup({
 
   const handleClosePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setIsReviewPublished(false);
+    setIsSendingReview(false);
     setShowAddReviewPopup(false);
   };
 
