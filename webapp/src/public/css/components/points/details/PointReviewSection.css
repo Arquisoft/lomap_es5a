@@ -1,0 +1,27 @@
+h2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+}
+
+.point-review-section-review-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0px 30px 20px;
+    background: rgba(240, 240, 240, 0.54);
+    border-radius: 12px;
+}
+
+.point-review-section-review-container >p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+}

@@ -67,6 +67,11 @@ interface AllPointsStore {
   setShowFilterPopup: (showFilterPopup: boolean) => void;
 }
 
+interface AllSavedPointsStore {
+  savedPoints: Point[];
+  setSavedPoints: (points: Point[]) => void;
+}
+
 const useAllPointsStore = create<AllPointsStore>((set, get) => ({
   points: [],
   filteredPoints: [],
@@ -155,4 +160,12 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   resetPointInfo: () => set({ info: pointInitilization }),
 }));
 
-export { usePointDetailsStore, useAllPointsStore };
+/**
+ * Obtener todos los puntos guardados por el usuario
+ */
+const useAllSavedPointsStore = create<AllSavedPointsStore>((set, get) => ({
+  savedPoints: [],
+  setSavedPoints: (points: Point[]) => set({ savedPoints: points }),
+}));
+
+export { usePointDetailsStore, useAllPointsStore, useAllSavedPointsStore };

@@ -13,10 +13,19 @@ import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+
 import FilterListIcon from "@mui/icons-material/FilterList";
 import CloseIcon from "@mui/icons-material/Close";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/Star';
+import StarHalfIcon from '@mui/icons-material/Star';
+import AddIcon from '@mui/icons-material/Add';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+
 
 export {
     ArrowBackIosIcon,
@@ -35,8 +44,16 @@ export {
     FavoriteBorderIcon,
     ShareIcon,
     ImageRoundedIcon,
+
     FilterListIcon,
     CloseIcon,
-    CheckRoundedIcon
+    CheckRoundedIcon,
+
+    StarIcon,
+    StarBorderIcon,
+    StarHalfIcon,
+    AddIcon,
+    ArrowForwardIosIcon
+
 };
 

@@ -27,6 +27,12 @@ interface PointReviewStore {
   setIsReviewPublished: (isPublished: boolean) => void;
 }
 
+interface AllPointReviewsStore {
+  allReviews: Review[];
+  setAllReviews: (reviews: Review[]) => void;
+  getAllReviews: () => Review[];
+}
+
 /**
  * Gestión de la valoración de un punto de interés.
  */
@@ -53,4 +59,10 @@ const usePointReviewStore = create<PointReviewStore>((set, get) => ({
     set({ isReviewPublished: isPublished }),
 }));
 
-export { usePointReviewStore };
+const useAllPointReviewStore = create<AllPointReviewsStore>((set, get) => ({
+  allReviews: [],
+  setAllReviews: (reviews: Review[]) => set({ allReviews: reviews }),
+  getAllReviews: (): Review[] => get().allReviews,
+}));
+
+export { usePointReviewStore, useAllPointReviewStore };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
@@ -9,6 +9,13 @@ import ProfileInfoWithFollowButton from "../../profiles/ProfileInfoWithFollowBut
 import { usePointDetailsStore } from "../../../store/point.store";
 import { canonizeUrl } from "../../../utils/stringUtils";
 import { availableCategories } from "../../../helpers/CategoryFilterHelper";
+import {
+  isPointSaved,
+  savePoint,
+  unsavePoint,
+} from "../../../api/save.point.api";
+import { useSession } from "@inrupt/solid-ui-react";
+import { FavoriteIcon } from "../../../helpers/IconContants";
 
 function BaseMapPopup({
   name,
@@ -19,7 +26,9 @@ function BaseMapPopup({
   point,
 }: BaseMapPopupProps) {
   const [showCategoryBadge, setShowCategoryBadge] = useState(false);
-  const {setPointToShow} = usePointDetailsStore();
+  const [isSaved, setIsSaved] = useState(false);
+  const { setPointToShow } = usePointDetailsStore();
+  const { session } = useSession();
 
   const navigate = useNavigate();
 
@@ -34,14 +43,63 @@ function BaseMapPopup({
     setShowCategoryBadge(show);
   };
 
+  /**
+   * Guardar el punto actual en los puntos guardados.
+   */
+  const handleSavePoint = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (point) {
+      await savePoint(point, session);
+    }
+  };
+
+  /**
+   * Eliminar de puntos guardados el punto actual.
+   */
+  const handleUnSavePoint = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (point) {
+      await unsavePoint(point?._id, session?.info.webId as string);
+    }
+  };
+
+  /**
+   * Comprobar si el punto ha sido guardado por el usuario en sesion.
+   * @returns
+   */
+  const checkIfPointIsSaved = async () => {
+    if (!point) {
+      setIsSaved(false);
+      return;
+    }
+
+    await isPointSaved(point?._id, session.info.webId as string).then(
+      (result: boolean) => {
+        setIsSaved(result);
+      }
+    );
+  };
+
   const handleButtonClick = () => {
-    if(point){
+    if (point) {
       setPointToShow(point);
     }
-    if(point?.name){
+    if (point?.name) {
       navigate(canonizeUrl("/points", point.name));
     }
   };
+
+  /**
+   * Comprueba si el usuario en sesion es el propietario del punto.
+   * En caso de serlo, no se le permite guardar el punto.
+   * @returns
+   */
+  const isUserInSessionTheOwner = (): boolean =>
+    session?.info?.webId === owner?.webId;
+
+  useEffect(() => {
+    checkIfPointIsSaved();
+  }, [isSaved]);
 
   return (
     <div className="base-popup-modal">
@@ -51,8 +109,13 @@ function BaseMapPopup({
         onMouseLeave={() => handleShowBadge(false)}
       >
         {category && showCategoryBadge && (
-          <BaseBadge text={availableCategories.find(cat => cat.code === category)?.name || "Otros"} 
-          styles={badgeStyles as React.CSSProperties} />
+          <BaseBadge
+            text={
+              availableCategories.find((cat) => cat.code === category)?.name ||
+              "Otros"
+            }
+            styles={badgeStyles as React.CSSProperties}
+          />
         )}
         <img src={image} alt={""} />
       </div>
@@ -63,13 +126,25 @@ function BaseMapPopup({
           webId={owner.webId}
         />
 
-        <div className="popup-modal-social-icons">
-          <FavoriteBorderIcon
-            sx={{
-              color: "#ef233c",
-            }}
-          />
-        </div>
+        {!isUserInSessionTheOwner && (
+          <div className="popup-modal-social-icons">
+            {isSaved ? (
+              <FavoriteIcon
+                sx={{
+                  color: "#ef233c",
+                }}
+                onClick={(e: any) => handleUnSavePoint(e)}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                sx={{
+                  color: "#ef233c",
+                }}
+                onClick={(e: any) => handleSavePoint(e)}
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
