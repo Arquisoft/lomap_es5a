@@ -9,15 +9,6 @@
  * - dark. Color de contraste, alternativo al color base.
  */
 /**
- * -----------------------
- * -- PALETA DE COLORES --
- * -----------------------
- * 
- * - base. Color del elemento en su estado normal.
- * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
- * - dark. Color de contraste, alternativo al color base.
- */
-/**
  * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
  * La paleta de colores se define como un mapa.
  * 
@@ -30,6 +21,15 @@
  * 
  * - $type: Por ejemplo, profileImage.
  * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
  */
 /**
  * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
@@ -49,50 +49,49 @@
 /**
  * Estilos comunies para inputs (input, select).
  */
-.base-text-input-container {
+.add-new-review-point-popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 20, 0.1);
+  width: 500px;
+  max-width: 500px;
+}
+.add-new-review-point-popup-container > .add-new-review-point-popup__body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 3px;
+  gap: 10px;
   width: 100%;
-  position: relative;
 }
-.base-text-input-container > label {
+.add-new-review-point-popup-container > .add-new-review-point-popup__body > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
   width: 100%;
-  font-size: 14px;
-  font-weight: 600;
-  color: #070707;
 }
-.base-text-input-container > input {
+.add-new-review-point-popup-container > .add-new-review-point-popup__body > form > .add-new-review-form__form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
   width: 100%;
-  height: 40px;
-  border-radius: 5px;
-  padding: 0 10px;
-  background-color: #FAF9F9;
-  outline: none;
-  border: 2px solid #e1e0e0;
 }
-.base-text-input-container > input:focus {
-  box-shadow: 0 0 0 2px rgba(225, 224, 224, 0.4352941176);
-}
-.base-text-input-container > input::-moz-placeholder {
-  color: #7f8a9d;
-  font-weight: 300;
-  font-size: 0.9rem;
-}
-.base-text-input-container > input::placeholder {
-  color: #7f8a9d;
-  font-weight: 300;
-  font-size: 0.9rem;
-}
-.base-text-input-container > input:valid, .base-text-input-container > input:-moz-ui-valid {
-  background-color: #FAF9F9;
-}
-.base-text-input-container > input:required:focus:invalid:not(:first-of-type), .base-text-input-container > input:required:focus:-moz-ui-invalid {
-  border: 2px solid #ff0000;
-  background-color: rgba(255, 0, 0, 0.15);
-}
-.base-text-input-container > input:focus {
-  border: 2px solid #070707;
-}/*# sourceMappingURL=BaseTextInput.css.map */
+.add-new-review-point-popup-container > .add-new-review-point-popup__body > form > .add-new-review-form__form-group > span {
+  font-size: 0.8rem;
+  color: #B9B9B9;
+}/*# sourceMappingURL=AddNewReviewToPointPopup.css.map */

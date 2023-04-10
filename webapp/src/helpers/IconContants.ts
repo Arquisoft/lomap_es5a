@@ -15,6 +15,8 @@ import ShareIcon from "@mui/icons-material/Share";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import CloseIcon from "@mui/icons-material/Close";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 export {
     ArrowBackIosIcon,
@@ -23,6 +25,7 @@ export {
     MapIcon,
     RoomIcon,
     SettingsIcon,
+    StarRoundedIcon,
     FingerprintRoundedIcon,
     ShareRoundedIcon,
     GppGoodRoundedIcon,
@@ -33,6 +36,7 @@ export {
     ShareIcon,
     ImageRoundedIcon,
     FilterListIcon,
-    CloseIcon
+    CloseIcon,
+    CheckRoundedIcon
 };
 

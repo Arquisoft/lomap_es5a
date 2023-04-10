@@ -16,6 +16,12 @@
         @include mixins.commonInputStyles();
         border: 2px solid funcs.color("light_gray", "base");
 
+        &::placeholder{
+            color: funcs.color("dark_grey", "dark");
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
         &:valid, &:-moz-ui-valid{
             background-color: funcs.color(dark_grey, high_light);
         }

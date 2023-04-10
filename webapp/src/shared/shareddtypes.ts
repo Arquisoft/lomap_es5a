@@ -109,9 +109,10 @@ type Reviewer = {
  */
 type Review = {
   _id: string;
-  reviewer: Reviewer;
-  rating: number;
+  title: string;
   comment: string;
+  rating: number;
+  reviewer: Reviewer;
   createdAt: Date;
 };
 

@@ -356,7 +356,6 @@ const addReviewPoint = async (
         contentType: fichero.type,
         fetch: fetch,
       });
-      console.log("Review añadida satisfactoriamente con id = " + review._id);
     }
   } catch (err) {
     console.error("Error addReviewPoint: ", err);

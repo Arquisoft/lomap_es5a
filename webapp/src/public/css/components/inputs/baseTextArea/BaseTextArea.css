@@ -81,12 +81,12 @@
 }
 .base-textarea-container > textarea::-moz-placeholder {
   color: #7f8a9d;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 0.9rem;
 }
 .base-textarea-container > textarea::placeholder {
   color: #7f8a9d;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 0.9rem;
 }
 .base-textarea-container > textarea:invalid {

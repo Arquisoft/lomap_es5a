@@ -19,8 +19,8 @@
         padding: 10px;
 
         &::placeholder{
-            color: funcs.color("light_gray", "dark");
-            font-weight: 400;
+            color: funcs.color("dark_grey", "dark");
+            font-weight: 300;
             font-size: 0.9rem;
         }
 
