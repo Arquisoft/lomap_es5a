@@ -12,7 +12,6 @@ type Props = {
 }
 
 function SingleDetail(point : Props) {
-  console.log(point.pointToShow);
     return(
         <div className="single-details-containter">
             <h2>Detalles</h2>          
