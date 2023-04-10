@@ -1,4 +1,3 @@
-import React from "react";
 import AccountLayout from "../../layouts/AccountLayout";
 import "../../public/css/pages/saved/SavedPointsPage.scss";
 
@@ -7,8 +6,7 @@ function SavedPointsPage() {
     <AccountLayout hasBanner={false}>
       <section className="saved-points-container">
         <h2>Puntos guardados</h2>
-        <div>
-        </div>
+        <div></div>
       </section>
     </AccountLayout>
   );

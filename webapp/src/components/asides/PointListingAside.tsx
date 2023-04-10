@@ -1,4 +1,3 @@
-import React from "react";
 import PointSummaryCard from "../cards/PointSummaryCard";
 import "../../public/css/components/asides/PointListingAside.scss";
 import { PointListingAsideProps } from "../../shared/shareddtypes";

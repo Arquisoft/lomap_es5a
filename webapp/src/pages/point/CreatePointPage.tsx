@@ -1,4 +1,3 @@
-import React from "react";
 import TopAccountAside from "../../components/asides/accountAside/TopAccountAside";
 import UploadImageButton from "../../components/buttons/UploadImageButton";
 import Footer from "../../components/footer/Footer";

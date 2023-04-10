@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import { createPortal } from "react-dom";
 import { getAllFriends } from "../../api/friends.api";
@@ -66,6 +66,7 @@ function HomePage() {
           <BaseFilterBar />
           <div className="home-map-wrapper">
             <BaseMap
+              data-testid="home-map"
               position={[43.36297198377049, -5.851084856954243]}
               points={isFiltering ? filteredPoints : points}
               styles={{

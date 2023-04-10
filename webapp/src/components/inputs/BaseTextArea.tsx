@@ -1,4 +1,3 @@
-import React from "react";
 import { BaseTextAreaProps } from "../../shared/shareddtypes";
 
 import "../../public/css/components/inputs/baseTextArea/BaseTextArea.scss";

@@ -1,4 +1,3 @@
-import React from "react";
 import Icon from "@mui/material/Icon";
 import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 import { useSession } from "@inrupt/solid-ui-react";

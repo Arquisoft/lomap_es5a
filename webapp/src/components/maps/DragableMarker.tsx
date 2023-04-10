@@ -1,5 +1,5 @@
 import { Icon } from "leaflet";
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Marker } from "react-leaflet";
 import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 import { usePointDetailsStore } from "../../store/point.store";

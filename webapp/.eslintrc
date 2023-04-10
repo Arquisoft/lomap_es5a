@@ -1,17 +1,33 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "settings": {
+        "react": {
+          "version": "18"
+        }
+      }
+    },
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "react"
     ],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:react/recommended",
-      "plugin:jest/recommended"
+      "plugin:jest/recommended",
+      "plugin:react/jsx-runtime"
     ],
     "rules": {
-      "no-empty": "error"
+      "no-empty": "error",
+      "@typescript-eslint/no-explicit-any": "off",
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error"
     }
   }

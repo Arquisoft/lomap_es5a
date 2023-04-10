@@ -1,4 +1,3 @@
-import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { mount } from 'enzyme';
 import LoginForm from "./LoginForm";
@@ -43,9 +42,10 @@ describe("Funcionamiento del login",()=>{
 
     it("Comprobamos que se guardan valores y realiza funcion",()=>{
         //introducimos el nombre del WEBID
-        const component //{container,getByLabelText, getByText} 
-        = render(<LoginForm/>);
-        const inputWebId = component.container.querySelector('input[label="WebId"]')!;
+        const component = render(<LoginForm/>);
+
+        const inputWebId = component.getByLabelText('WebId');
+
         fireEvent.change(inputWebId, {target: {value :"lomap_es5a"}});
         //esperamos que el campo de texto sea el valor introducido
         expect(inputWebId).toEqual("lomap_es5a");

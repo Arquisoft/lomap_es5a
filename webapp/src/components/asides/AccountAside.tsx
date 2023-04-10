@@ -1,4 +1,3 @@
-import React from "react"
 import TopAccountAside from "./accountAside/TopAccountAside"
 import BottomAccountAside from "./accountAside/BottomAccountAside"
 import "../../public/css/components/asides/AccountAside.css"

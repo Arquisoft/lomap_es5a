@@ -1,4 +1,3 @@
-import React from "react";
 import SinglePointDetailBanner from "../../components/banners/pointDetail/SinglePointDetailBanner";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/points/SinglePointPage.scss";

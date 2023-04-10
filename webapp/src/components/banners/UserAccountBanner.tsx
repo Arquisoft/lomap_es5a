@@ -1,4 +1,3 @@
-import React from "react";
 import BaseProfileItem from "../profiles/BaseProfileItem";
 import "../../public/css/components/banners/AccountBanner.scss";
 import { useUserStore } from "../../store/user.store";
