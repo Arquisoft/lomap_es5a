@@ -137,7 +137,7 @@ const parseLocation = (location: any): BaseLocation => {
  */
 const parseReviews = (reviews: any) => {
   return reviews.map((review: Review) => {
-    const { _id, reviewer, rating, comment, createdAt } = review;
+    const { _id, reviewer, rating, title, comment, createdAt } = review;
 
     if (!reviewer) {
       throw new Error("Review must have a reviewer");
@@ -147,12 +147,13 @@ const parseReviews = (reviews: any) => {
 
     return {
       _id,
+      title,
+      comment,
       reviewer: {
         webId,
         imageUrl,
       },
       rating,
-      comment,
       createdAt: new Date(createdAt),
     };
   });
