@@ -1,3 +1,4 @@
+import React from "react";
 import AccountLayout from "../../layouts/AccountLayout";
 import "../../public/css/pages/saved/SavedPointsPage.scss";
 

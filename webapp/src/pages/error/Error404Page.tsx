@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router";
 import BaseButton from "../../components/buttons/BaseButton";
 import "../../public/css/pages/error404/error404Page.scss";

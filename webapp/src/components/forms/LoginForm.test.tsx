@@ -1,7 +1,7 @@
-import {cleanup, fireEvent, render} from '@testing-library/react';
-import React from "react";
+import React from 'react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { mount } from 'enzyme';
 import LoginForm from "./LoginForm";
-import {mount} from 'enzyme';
 
 
 //mount renderiza en el arbol DOM todos los elementos incluidos los hijos, shallow solo el principal
@@ -11,8 +11,8 @@ describe("Funcionamiento del login",()=>{
     afterAll(cleanup);
     it("Comprobamos ciertos campos de texto",()=>{
         const {getByText} = render(<LoginForm/>);
-        expect(getByText("Iniciar sesión")).toBeInTheDocument;
-        expect(getByText("Únete ya")).toBeInTheDocument;
+        expect(getByText("Iniciar sesión")).toBeInTheDocument();
+        expect(getByText("Únete ya")).toBeInTheDocument();
     });
 
     it("Comprobamos que cambia la propiead webId cuando se selecciona una opcion",()=>{

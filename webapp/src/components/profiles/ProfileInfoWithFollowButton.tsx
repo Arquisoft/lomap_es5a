@@ -1,4 +1,4 @@
-
+import React from "react";
 import "../../public/css/components/profiles/ProfileInfoWithFollowButton.scss";
 import { ProfileInfoWithFollowButtonProps } from "../../shared/shareddtypes";
 import NoImageSkeleton from "../skeletons/NoImageSkeleton";

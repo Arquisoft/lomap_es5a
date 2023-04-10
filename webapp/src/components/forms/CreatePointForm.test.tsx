@@ -1,13 +1,11 @@
-import {cleanup, fireEvent, render} from '@testing-library/react';
-import React from "react";
-import CreatePointForm from './CreatePointForm';
-import {mount} from 'enzyme';
-import Enzyme from 'enzyme';
-import BaseTextInput from '../inputs/BaseTextInput';
-import BaseSelect from '../inputs/BaseSelect';
+import React from 'react';
+import { cleanup } from '@testing-library/react';
+import { mount } from 'enzyme';
 import BaseButton from '../buttons/BaseButton';
+import BaseSelect from '../inputs/BaseSelect';
+import BaseTextInput from '../inputs/BaseTextInput';
+import CreatePointForm from './CreatePointForm';
 
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 //Enzyme.configure({ adapter: new Adapter() });
 

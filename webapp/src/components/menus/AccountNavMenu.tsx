@@ -1,3 +1,4 @@
+import React from "react";
 import "../../public/css/components/menus/nav/AccountNavMenu.scss";
 import { menuItems } from "../../helpers/MenuHelper";
 import IconMenuItem from "./IconMenuItem";

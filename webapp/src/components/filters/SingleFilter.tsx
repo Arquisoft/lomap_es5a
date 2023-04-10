@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "@mui/material/Icon";
 import "../../public/css/components/filters/singleFilter/SingleFilter.scss";
 import { SingleFilterProps } from "../../shared/shareddtypes";
@@ -5,7 +6,6 @@ import { useAllPointsStore } from "../../store/point.store";
 
 function SingleFilter({
   iconFilename,
-  iconAlt,
   text,
   code,
   isActive = false,

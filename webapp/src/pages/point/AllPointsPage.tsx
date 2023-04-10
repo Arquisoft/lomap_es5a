@@ -1,3 +1,4 @@
+import React from 'react';
 import AuthenticatedLayout from '../../layouts/AutenticatedLayout';
 
 import "../../public/css/pages/points/AllPointsPage.scss";

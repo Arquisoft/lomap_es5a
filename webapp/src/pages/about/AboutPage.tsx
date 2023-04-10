@@ -1,8 +1,9 @@
+import React from "react";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import ComercialInfo from "../../components/about/ComercialInfo";
 import  PageInfo  from "../../components/about/PageInfo";
 
-import "../../public/css/pages/about/AboutPage.css"; // TODO: Cambiar a scss
+import "../../public/css/pages/about/AboutPage.css";
 
 function AboutPage() {
   return (

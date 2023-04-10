@@ -1,3 +1,4 @@
+import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import "../../public/css/components/skeletons/points/PointListingAsideSkeleton.scss";
 

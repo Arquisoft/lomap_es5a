@@ -1,3 +1,4 @@
+import React from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import PointSummaryWithMap from "../../components/points/PointSummaryWithMap";
 import AccountLayout from "../../layouts/AccountLayout";

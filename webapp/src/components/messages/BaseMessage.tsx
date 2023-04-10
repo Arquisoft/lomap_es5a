@@ -1,3 +1,4 @@
+import React from "react";
 import "../../public/css/components/messages/BaseMessage.scss";
 
 type Props = {

@@ -1,3 +1,4 @@
+import React from "react";
 import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 
 function FaqPage({...props}){

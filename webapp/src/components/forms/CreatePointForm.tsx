@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
@@ -34,7 +34,7 @@ function CreatePointForm() {
     resetPointInfo,
     image,
   } = usePointDetailsStore();
-  const [errors, setErrors] = useState([] as any);
+  const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
     category: NO_OPTION_SELECTED,

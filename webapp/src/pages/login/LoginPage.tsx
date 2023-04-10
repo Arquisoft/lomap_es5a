@@ -1,3 +1,4 @@
+import React from "react";
 import AppLogo from "../../components/AppLogo";
 import LoginForm from "../../components/forms/LoginForm";
 import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";

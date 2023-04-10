@@ -1,3 +1,4 @@
+import React from "react";
 import "../../public/css/components/profiles/BaseProfileItem.scss";
 import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 

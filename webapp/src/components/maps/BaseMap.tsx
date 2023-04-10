@@ -1,5 +1,5 @@
 import { icon, LatLngExpression } from "leaflet";
-
+import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 import BaseMapPopup from "./popups/BaseMapPopup";
@@ -7,8 +7,8 @@ import BaseMapPopup from "./popups/BaseMapPopup";
 import "leaflet/dist/leaflet.css";
 import "../../public/css/components/maps/BaseMap.scss";
 import { Point, PointOwner } from "../../shared/shareddtypes";
-import BaseButton from "../buttons/BaseButton";
 import { useAllPointsStore } from "../../store/point.store";
+import BaseButton from "../buttons/BaseButton";
 
 type Props = {
   position?: LatLngExpression;
