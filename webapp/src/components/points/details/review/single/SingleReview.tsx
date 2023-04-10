@@ -15,8 +15,8 @@ function SingleReview(review:Props){
 
     const hoursDiff = differenceInHours(review.createdAt,new Date()) * -1;
 
+    const nombre =review.reviewer.webId
 
-    console.log(review)
     return(
         <div className="single-review-container">
             <div className="single-review-top">
@@ -24,7 +24,7 @@ function SingleReview(review:Props){
                 <div className="single-review-user">
                     <img src= {review.reviewer.imageUrl} />
                     <div className="single-review-user-data">
-                        <h3>{review.reviewer.webId}</h3>
+                        <h3>{nombre}</h3>
                         <p>Hace {hoursDiff} horas</p>
                     </div>
                 </div>
