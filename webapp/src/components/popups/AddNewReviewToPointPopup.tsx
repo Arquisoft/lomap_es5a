@@ -13,6 +13,7 @@ import BaseTextInput from "../inputs/BaseTextInput";
 import { Point } from "../../shared/shareddtypes";
 import Rating from "@mui/material/Rating";
 import { SyntheticEvent } from "react";
+import BaseStarRating from "../stars/BaseStarRating";
 
 function SuccessReviewPopupSection() {
   const { setShowAddReviewPopup } = usePointReviewStore();
@@ -115,19 +116,9 @@ function AddNewReviewToPointPopup({
             <h3>Puntuación para el punto de interés</h3>
 
             <form action="#">
-              <Rating
-                name="hover-feedback"
-                value={review.rating}
-                precision={0.5}
-                size="large"
-                onChange={(e, value) => handleChangeRating(e, value)}
-                emptyIcon={
-                  <StarRoundedIcon
-                    style={{ opacity: 0.55 }}
-                    fontSize="inherit"
-                  />
-                }
-                icon={<StarRoundedIcon fontSize="inherit" />}
+              <BaseStarRating
+                rating={review.rating}
+                handleChangeRating={(e, value) => handleChangeRating(e, value)}
               />
               <div className="add-new-review-form__form-group">
                 <BaseTextInput

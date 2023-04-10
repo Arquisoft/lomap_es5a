@@ -5,6 +5,7 @@ import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/points/SinglePointPage.scss";
 import { usePointDetailsStore } from "../../store/point.store";
 import { usePointReviewStore } from "../../store/review.store";
+import BaseStarRating from "../../components/stars/BaseStarRating";
 
 function SinglePointDetailsPage() {
   const { pointToShow } = usePointDetailsStore();
