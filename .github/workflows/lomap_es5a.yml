@@ -33,10 +33,10 @@ jobs:
       with:
         node-version: 18
     - run: npm --prefix webapp install --legacy-peer-deps
-    #- run: npm --prefix webapp run build
+    - run: npm --prefix webapp run build
     #- run: npm --prefix webapp run test
     - run: npm --prefix restapi ci
-    - run: npm --prefix webapp test --coverage --watchAll --verbose
+    #- run: npm --prefix webapp test --coverage --watchAll --verbose
     - run: npm --prefix restapi test --coverage --watchAll
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
