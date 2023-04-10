@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import {
   findAllPoints
 } from "../../api/point.api";
+import {
+  sharePointWithFriends
+} from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
@@ -18,6 +21,7 @@ import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilte
 import { getStringNoLocale, Thing } from "@inrupt/solid-client";
 import { FOAF } from "@inrupt/vocab-common-rdf";
 
+
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } = useAllPointsStore();
   const {setName, setImageUrl, setFriends } = useUserStore();
@@ -27,6 +31,12 @@ function HomePage() {
     const data: Point[] = await findAllPoints(session.info.webId as string);
     setAllPoints(data);
   };
+
+  const constructSharingFolder = async () => {
+    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});         
+    //console.log(point);
+    await sharePointWithFriends(point,session,[]);
+  }
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn){
@@ -45,7 +55,8 @@ function HomePage() {
   };
  
   useEffect(() => {
-    loadUserFriends();
+    constructSharingFolder();
+    //loadUserFriends();
     //loadUserInfo();
     //loadAllPoints();
   }, []);

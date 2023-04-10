@@ -12,7 +12,8 @@ import { compressImage } from "../utils/imageUtils";
  * @param image
  */
 const uploadImage = async (image: File, callback: (downloadUrl: string) => void) => {
-  const imgExtension = image.name.split(".").slice().pop();
+  // const imgExtension = image.name.split(".").slice().pop();  
+  const imgExtension = image?.name.split(".").slice().pop() ?? ""; // Necesario si no llega una imagen al añadir un punto
   const imgId: string = crypto.randomUUID();
   try {
     compressImage(

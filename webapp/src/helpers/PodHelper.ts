@@ -9,6 +9,8 @@ const HTTP_PREFIX = "https";
 
 // Fichero que contiene todos los puntos del usuario
 const PRIVATE_POINTS_PATH = "/private/points/points.json";
+// Fichero que contiene todos los puntos del usuario
+const SHARED_POINTS_PATH = "/private/sharedpoints/";
 
 // Información del perfil del usuario
 const PROFILE_PATH = "/profile/card";
@@ -44,6 +46,16 @@ const getWebIdFromUrl = (url: string): string => {
  */
 const getUserPrivatePointsUrl = (myWedId?: string) => {
   return contructPodUrl(myWedId ?? webId, PRIVATE_POINTS_PATH);
+};
+
+/**
+ * Devuelve la URL de los puntos privados de un usuario.
+ * @param webId WebId del usuario.
+ * @returns
+ * @throws Error si no se proporciona una URL de perfil.
+ */
+const getUserSharedPointsUrl = (myWedId?: string) => {  
+  return contructPodUrl(myWedId ?? webId, SHARED_POINTS_PATH);
 };
 
 /**
@@ -100,6 +112,7 @@ export {
   createNewContainer,
   checkContainerExists,
   constructWebIdFromUsername,
-  getWebIdFromUrl
+  getWebIdFromUrl,
+  getUserSharedPointsUrl
 };
 
