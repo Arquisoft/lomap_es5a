@@ -12,7 +12,8 @@ function ReviewListing(point:Props){
         <div className="review-listing-container">
             <h2> Valoraciones de los usuarios</h2>
             <div className="review-listing-listReviews">
-                {point.pointToShow.reviews?.map( review => 
+                 
+               {point.pointToShow.reviews?.map( review => 
                     <SingleReview 
                         key={review.title}
                         comment={review.comment}
@@ -21,6 +22,7 @@ function ReviewListing(point:Props){
                         createdAt= {review.createdAt}
                     />
                 )}
+
             </div>
         </div>
     )

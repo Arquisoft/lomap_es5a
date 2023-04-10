@@ -1,0 +1,22 @@
+h2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.review-listing-container{
+    padding-top: 60px;
+}
+
+.review-listing-listReviews{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 30px;
+}
