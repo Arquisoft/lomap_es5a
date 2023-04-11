@@ -33,8 +33,7 @@ function HomePage() {
   };
 
   const constructSharingFolder = async () => {
-    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});         
-    //console.log(point);
+    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});             
     await sharePointWithFriends(point,session,[]);
   }
 

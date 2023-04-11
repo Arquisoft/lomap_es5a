@@ -1,4 +1,4 @@
-import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { overwriteFile, saveFileInContainer, getFile } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { 
     checkContainerExists,
@@ -12,63 +12,101 @@ import { uploadImage } from "../services/imageService";
 
 
 
+/**
+ * Obtener toda la información de un punto de interes por su id.
+ *
+ * @param idPoint Identificador del punto de interes
+ * @param webId webId del usuario en sesión
+ * @returns point
+ */
+const existsPoint = async (
+  idPoint: string,
+  webId: string
+) :Promise<boolean> => {  
+  try {
+    const sharedPointUrl = getUserSharedPointsUrl(webId) + idPoint + '.json';    
+    await getFile(
+      sharedPointUrl,
+      {fetch:fetch}
+    );
+    return true;
+
+    //console.log(file);
+  } catch (err) {
+    return false;
+    //console.error("Error findPointById: ", err);
+  }  
+  return false;
+};
+
 const sharePointWithFriends = async (
-    point: Point,
-    session: any,
-    friends: Friend[],
-    image?: File,    
-    callback?: (isSuccess: any) => void
+  point: Point,
+  session: any,
+  friends: Friend[],
+  image?: File,
+  callback?: (isSuccess: any) => void
 ) => {
-    let isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
-    const existsFolder = await checkContainerExists(
-      session,
-      "private/sharedpoints/"
-    ).catch(async (err) => {
-      await createNewContainer(session, "private/sharedpoints/").then(async () => {
-        console.log("creada");  
-        await saveFileInContainer(
-            getUserSharedPointsUrl(session.info.webId),
-          new Blob([JSON.stringify({ point })], {
-            type: "application/json",
-          }),
-          { slug: `${point._id}.json`, contentType: "application/json", fetch: fetch }
-        );
-        console.log("Punto añadido satisfactoriamente con id = " + point._id);
-        return false;
-      });
+  let isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
+  const existsFolder = await checkContainerExists(
+    session,
+    "private/sharedpoints/"
+  ).catch(async (err) => {
+    await createNewContainer(session, "private/sharedpoints/").then(async () => {
+      console.log("creada");
+      await saveFileInContainer(
+        getUserSharedPointsUrl(session.info.webId),
+        new Blob([JSON.stringify({ point })], {
+          type: "application/json",
+        }),
+        { slug: `${point._id}.json`, contentType: "application/json", fetch: fetch }
+      );
+      console.log("Punto añadido satisfactoriamente con id = " + point._id);
       return false;
     });
+    return false;
+  });
 
-    if (!existsFolder) {
-        console.log("no existe la carpeta, se ha creado");
-        return;
-      }
-    
-      console.log("La carpeta ya existe"); 
-    
-      try {                    
-        // Subir la imagen del punto y obtener la url
-        // await uploadImage(image as File, async (downloadUrl) => {
-        //   point.image = {
-        //     url: downloadUrl ?? "",
-        //     alt: point?.name ?? "",
-        //   };            
-    
-          await saveFileInContainer(
-            getUserSharedPointsUrl(session.info.webId),
+  if (!existsFolder) {
+    console.log("no existe la carpeta, se ha creado");
+    return;
+  }
+
+  console.log("La carpeta ya existe");
+
+  try {
+    // Subir la imagen del punto y obtener la url
+    // await uploadImage(image as File, async (downloadUrl) => {
+    //   point.image = {
+    //     url: downloadUrl ?? "",
+    //     alt: point?.name ?? "",
+    //   };            
+
+    // Intentar solucionarlo para dejar la subida de la imagen como lo tenia kiko
+
+    await existsPoint(point._id, session.info.webId as string).then(async (respuesta) => {
+      !respuesta ?
+        await saveFileInContainer(
+          getUserSharedPointsUrl(session.info.webId),
           new Blob([JSON.stringify({ point })], {
             type: "application/json",
           }),
           { slug: `${point._id}.json`, contentType: "application/json", fetch: fetch }
-          )
-        // ).then(() => {
-        //     callback && callback(isSuccess);
-        //   });
-        // });
-        console.log("Punto añadido satisfactoriamente con id = " + point._id);
-      } catch (err) {
-        console.error("add point error: " + err);
-      }
+        ).then(() => {
+          console.log("Punto añadido satisfactoriamente con id = " + point._id);
+          callback && callback(isSuccess);
+        }).catch((err) => {
+          console.error("Se ha producido algun error al añadir el punto");
+        })
+        :
+        console.error("El punto con id = " + point._id + " ya existe");
+    }).catch(async (err) => {
+      console.error("Se ha producido algun error comprobano si existe el fichero");
+    })
+
+    
+  } catch (err) {
+    console.error("add point error: " + err);
+  }
 }
 
 

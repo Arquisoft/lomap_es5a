@@ -54,7 +54,7 @@ const getUserPrivatePointsUrl = (myWedId?: string) => {
  * @returns
  * @throws Error si no se proporciona una URL de perfil.
  */
-const getUserSharedPointsUrl = (myWedId?: string) => {  
+const getUserSharedPointsUrl = (myWedId?: string):string => {  
   return contructPodUrl(myWedId ?? webId, SHARED_POINTS_PATH);
 };
 
