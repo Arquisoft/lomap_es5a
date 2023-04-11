@@ -9,7 +9,7 @@
 ----
 actor Usuario
 Component LoMap
-Component pod as "Inrupt/Proveedor POD"
+Component pod as "inrupt.net/solidcommunity.net"
 
 Usuario -right-> LoMap: interactúa
 
@@ -17,7 +17,8 @@ LoMap <-right-> pod: obtiene datos Usuario
 ----
 
 Motivation::
-LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
+LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan. 
+Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
 La información personal del usuario se almacena de forma descentralizada en PODs.
 
 Contained Building Blocks::
