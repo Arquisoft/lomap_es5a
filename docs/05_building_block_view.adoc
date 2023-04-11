@@ -33,21 +33,18 @@ Contained Building Blocks::
 
 === Level 1
 
-[plantuml, "level-2", png]
+[plantuml, "level-1", png]
 ----
 actor Usuario
 Component LoMap {
   Component web as "WebApp"
   Component api as "RestAPI"
 }
-Database db as "MongoDB"
-Component pod as "Inrupt"
+Component pod as "inrupt.net/solidcommunity.net"
 
 Usuario -right-> web: interactua
-web <-right-> api: envia peticiones
-api <-down-> db: almacena/recupera datos
 
-LoMap <-down-> pod: obtiene datos
+web <-down-> pod: obtiene/almacena datos
 ----
 
 Motivation::
@@ -58,8 +55,7 @@ Contained Building Blocks::
 [cols="1,2" options="header"]
 |===
 | **Nombre** | **Responsabildad**
-| WebApp | Parte del sistema con la que interactúa el usuario (Frontend).
-| ResAPI | Parte del sistema encargada de llevar a cabo las acciones indicadas por el usuario. Se comunica con la WebApp y con MongoDB (Backend). 
-| MongoDB | Base de datos empleada para almacenar la información no personal de los usuarios.
+| WebApp | Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.
+| ResAPI | En principio, no se va a emplear. 
 |===
 
