@@ -32,9 +32,9 @@ function HomePage() {
     setAllPoints(data);
   };
 
-  const constructSharingFolder = async () => {
+  const sharePoint = async () => {
     const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});             
-    await sharePointWithFriends(point,session,[]);
+    await sharePointWithFriends(point._id,session.info.webId as string,[]);
   }
 
   const loadUserFriends = async () => {
@@ -54,7 +54,7 @@ function HomePage() {
   };
  
   useEffect(() => {
-    constructSharingFolder();
+    sharePoint();
     //loadUserFriends();
     //loadUserInfo();
     //loadAllPoints();

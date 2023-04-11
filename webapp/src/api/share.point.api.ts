@@ -1,4 +1,16 @@
-import { overwriteFile, saveFileInContainer, getFile } from "@inrupt/solid-client";
+import {
+  overwriteFile,
+  saveFileInContainer,
+  getFile,
+  getSolidDatasetWithAcl,
+  getFallbackAcl,
+  hasResourceAcl,
+  createAclFromFallbackAcl,
+  hasAccessibleAcl,
+  hasFallbackAcl,
+  getResourceAcl,
+  saveAclFor
+  } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { 
     checkContainerExists,
@@ -13,11 +25,12 @@ import { uploadImage } from "../services/imageService";
 
 
 /**
- * Obtener toda la información de un punto de interes por su id.
- *
+ * Comprueba si ya existe el punto en la carpeta sharedpoints.
+ * De esta forma se evita que solid genere un nuevo fichero con el mismo
+ * contenido que el existente con un nuevo nombre (generado por solid).
  * @param idPoint Identificador del punto de interes
  * @param webId webId del usuario en sesión
- * @returns point
+ * @returns true si existe el fichero, false en caso contrario
  */
 const existsPoint = async (
   idPoint: string,
@@ -35,11 +48,55 @@ const existsPoint = async (
   } catch (err) {
     return false;
     //console.error("Error findPointById: ", err);
-  }  
-  return false;
+  }    
 };
 
+
+
+
 const sharePointWithFriends = async (
+  idPoint: string,
+  webId: string,
+  friends: Friend[]
+) => {    
+  const resourceUrl = getUserSharedPointsUrl(webId);   
+  
+  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
+  
+  let datasetAcl;
+  if (!hasResourceAcl(userDatasetWithAcl)){
+    console.log("Entro por aqui")
+    if (!hasAccessibleAcl(userDatasetWithAcl)){
+      console.error("No tiene un acl accesible para el usuario autenticado");
+      return;
+    }
+    if (!hasFallbackAcl(userDatasetWithAcl)){
+      console.error("No tiene un ac que haya heredado de su contenedor/contenedores padres");
+      return;
+    }
+    datasetAcl = createAclFromFallbackAcl(userDatasetWithAcl);
+    // 
+    await saveAclFor(userDatasetWithAcl, datasetAcl,{fetch :fetch});  
+  }else{
+    console.log("Entro por esti otru lau");
+    datasetAcl = getResourceAcl(userDatasetWithAcl);
+    console.log(datasetAcl);
+    
+  }
+  
+}
+
+
+/**
+ * 
+ * @param point 
+ * @param session 
+ * @param friends 
+ * @param image 
+ * @param callback 
+ * @returns 
+ */
+const addSharePoint = async (
   point: Point,
   session: any,
   friends: Friend[],
@@ -203,5 +260,6 @@ const addPoint = async (
   };
 
   export{
+    addSharePoint,
     sharePointWithFriends
   }
