@@ -12,8 +12,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.comercialbox-title-left{
-    font-family: 'Poppins';
+.comercialbox-title-left{    
     font-style: normal;
     font-weight: 600;
     font-size: 57px;
@@ -26,7 +25,6 @@
 }
 
 .comercialbox-title-rigth{
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 23px;
@@ -38,7 +36,6 @@
     padding-top: 15px;
 }
 .comercialbox-slogan{
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
@@ -52,7 +49,6 @@
 }
 
 .comercialbox-discount{
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 40px;

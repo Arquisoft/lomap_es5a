@@ -10,12 +10,12 @@ import "../../public/css/components/buttons/BaseButton.scss";
 import "../../public/css/components/buttons/uploadImageButton/UploadImageButton.scss";
 
 function UploadImageButton() {
-  const { setPointImageFile, image } = usePointDetailsStore();
+  const { setPointImageFile, imageToUpload } = usePointDetailsStore();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const file = e.target.files?.[0];
-    if (file) {
+    if (e.target.files && e.target.files?.length > 0) {
+      const file = e.target.files?.[0];
       setPointImageFile(file);
     }
   };
@@ -35,14 +35,14 @@ function UploadImageButton() {
         <FileUploadRoundedIcon fill="#ffffff" />
         Subir imagen
       </label>
-      {image && (
+      {imageToUpload && (
         <span>
-          {image.name.length > 10
-            ? image.name.substring(0, 10).concat("... ")
-            : image.name}
+          {imageToUpload.name.length > 10
+            ? imageToUpload.name.substring(0, 10).concat("... ")
+            : imageToUpload.name}
         </span>
       )}
-      {image && (
+      {imageToUpload && (
         <CheckCircleRoundedIcon
           style={{
             color: "#41c300",

@@ -1,3 +1,4 @@
+
 enum Category {
   RESTAURANT = "restaurant",
   BAR = "bar",
@@ -16,6 +17,13 @@ enum Category {
   NONE = "none",
 }
 
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>;
+
 enum Coordinate {
   LAT = "lat",
   LNG = "lng",
@@ -26,7 +34,7 @@ type SingleCategory = {
   code: string;
   name: string;
   description?: string;
-  icon?: any;
+  icon?: string;
   isActivated?: boolean;
 };
 
@@ -87,6 +95,7 @@ type UserInSessionProfile = {
 type Reviewer = {
   webId: string;
   imageUrl: string;
+  name?: string;
 };
 
 /**
@@ -101,9 +110,10 @@ type Reviewer = {
  */
 type Review = {
   _id: string;
-  reviewer: Reviewer;
-  rating: number;
+  title: string;
   comment: string;
+  rating: number;
+  reviewer: Reviewer;
   createdAt: Date;
 };
 
@@ -259,7 +269,7 @@ interface BaseSelect {
 // For text inputs
 interface BaseInputProps {
   label: string;
-  value?: string | number | undefined;
+  value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
@@ -269,6 +279,7 @@ interface BaseInputProps {
   placeholder?: string;
   required?: boolean;
   showClearButton?: boolean;
+  disabled?: boolean;
   styles?: React.CSSProperties | string;
 }
 
@@ -304,12 +315,12 @@ type PointListingAsideProps = {
 
 interface SingleFilterProps {
   code: string; // Código de la categoria
-  iconFilename: any;
+  iconFilename?: string;
   iconAlt?: string;
   text: string;
   isActive?: boolean;
   filterObject?: SingleCategory;
-};
+}
 
 type FirebaseConfig = {
   apiKey: string;
@@ -321,6 +332,7 @@ type FirebaseConfig = {
 };
 
 export type {
+  JSONValue,
   AuthContextValue,
   AuthUser,
   BaseTextAreaProps,
@@ -348,5 +360,4 @@ export type {
   UserInSessionProfile,
 };
 export { Category, Coordinate };
-
 

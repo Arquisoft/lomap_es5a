@@ -8,7 +8,7 @@ type Props = {
   isRound?: boolean;
 };
 
-function NoImageSkeleton({ styles, isRound }: Props) {
+function NoImageSkeleton({ isRound }: Props) {
   return (
     <div
       className="no-image-skeleton-container"

@@ -9,7 +9,7 @@ function SinglePopupFilter({
   text,
   filterObject,
 }: SingleFilterProps) {
-  const { filters, points ,addFilter, removeFilter, makeFilteredPointsPreview } =
+  const { filters, addFilter, removeFilter, makeFilteredPointsPreview } =
     useAllPointsStore();
 
   /**

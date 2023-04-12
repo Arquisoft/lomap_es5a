@@ -1,8 +1,9 @@
-import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect } from "react";
-import {
-  findAllPoints
-} from "../../api/point.api";
+import { useSession } from "@inrupt/solid-ui-react";
+
+import { getAllFriends } from "../../api/friends.api";
+import { findAllPoints } from "../../api/point.api";
+import { getUserProfileInfo } from "../../api/user.api";
 import {
   addSharePoint,
   sharePointWithFriends
@@ -12,10 +13,8 @@ import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
+import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
-import { Category, Point } from "../../shared/shareddtypes";
-import { getUserProfile, getUserProfileInfo } from "../../api/user.api";
-import { getAllFriends, addFriend } from "../../api/friends.api";
 import { useUserStore } from "../../store/user.store";
 import { createPortal } from 'react-dom';
 import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
@@ -24,8 +23,9 @@ import { FOAF } from "@inrupt/vocab-common-rdf";
 
 
 function HomePage() {
-  const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } = useAllPointsStore();
-  const {setName, setImageUrl, setFriends } = useUserStore();
+  const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } =
+    useAllPointsStore();
+  const { setName, setImageUrl, setFriends } = useUserStore();
   const { session } = useSession();
 
   const loadAllPoints = async () => {
@@ -39,26 +39,31 @@ function HomePage() {
   }
 
   const loadUserFriends = async () => {
-    if (session.info.isLoggedIn){
+    if (session.info.isLoggedIn) {
       const friends = await getAllFriends(session.info.webId as string);
       console.log(friends);
-    }else{
-      console.log("No estoy logeado");
     }
-  }
+  };
 
   const loadUserInfo = async () => {
-    const userInfo = await getUserProfileInfo(session.info.webId as string);
+    const userInfo: any = await getUserProfileInfo(
+      session.info.webId as string
+    );
+
+    if (!userInfo) {
+      return;
+    }
+
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
     setImageUrl(userInfo.imageUrl ?? "");
     setFriends(userInfo.friends ?? []);
   };
- 
+
   useEffect(() => {
     sharePoint();
-    //loadUserFriends();
-    //loadUserInfo();
-    //loadAllPoints();
+    loadUserFriends();
+    loadUserInfo();
+    loadAllPoints();
   }, []);
 
   return (
@@ -68,12 +73,14 @@ function HomePage() {
           padding: "0 50px",
         }}
       >
-        {showFilterPopup && createPortal(<PointCategoryFilterPopup />, document.body)}
-        
+        {showFilterPopup &&
+          createPortal(<PointCategoryFilterPopup />, document.body)}
+
         <div className="home-container">
           <BaseFilterBar />
           <div className="home-map-wrapper">
             <BaseMap
+              data-testid="home-map"
               position={[43.36297198377049, -5.851084856954243]}
               points={isFiltering ? filteredPoints : points}
               styles={{

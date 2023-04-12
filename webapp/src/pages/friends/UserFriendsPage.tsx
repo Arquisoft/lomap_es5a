@@ -1,4 +1,4 @@
-function UserFriendsPage({...props}){
+function UserFriendsPage(){
     return (<>
         <p>Amigos del usuario en sesion</p>
     </>);

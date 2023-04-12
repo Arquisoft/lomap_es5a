@@ -1,3 +1,9 @@
+@use "../../mixins" as mixins;
+
 .saved-points-container{
-    
+    @include mixins.flex(column, flex-start, flex-start, 10px);
+    & > .saved-points-container-listing{
+        @include mixins.flex(row, flex-start, flex-start, 10px);
+        flex-wrap: wrap;
+    }
 }

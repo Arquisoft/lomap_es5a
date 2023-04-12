@@ -1,6 +1,5 @@
-import React from "react";
 import { BaseTextAreaProps } from "../../shared/shareddtypes";
-
+import crypto from 'crypto';
 import "../../public/css/components/inputs/baseTextArea/BaseTextArea.scss";
 
 function BaseTextArea({
@@ -13,7 +12,7 @@ function BaseTextArea({
   onChange,
 }: BaseTextAreaProps) {
 
-  const textAreaId = id || crypto.randomUUID();
+  const textAreaId = id || window.crypto.randomUUID();
 
   return (
     <div className="base-textarea-container">

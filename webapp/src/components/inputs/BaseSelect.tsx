@@ -1,6 +1,7 @@
 import React from "react";
 import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
 import "../../public/css/components/inputs/baseSelect/BaseSelect.scss";
+import crypto from 'crypto';
 
 
 function BaseSelect({
@@ -13,7 +14,7 @@ function BaseSelect({
   styles
 }: BaseSelectType) {
 
-  const selectId = id || crypto.randomUUID();
+  const selectId = id || window.crypto.randomUUID();
 
   return (
     <div className="base-select-container">

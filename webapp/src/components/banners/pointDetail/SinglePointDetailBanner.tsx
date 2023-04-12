@@ -8,15 +8,15 @@ type Props = {
  function SinglePointDetailBanner({pointImage}: Props) {
   return (
     <div className="single-point-detail-banner">
-        <MiniMap
+        {/* <MiniMap
             position={[50.85119149087381, 4.3544687591272835]}
             styles={{
               width: "100%",
               height: "350px",
               borderRadius: "20px",
             }}
-          />
-        <img src={pointImage || ""} alt="" />
+          /> */}
+        <img src={pointImage || ""} alt=""/>
     </div>
   )
 }

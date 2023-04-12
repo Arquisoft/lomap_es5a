@@ -76,6 +76,16 @@
 .base-text-input-container > input:focus {
   box-shadow: 0 0 0 2px rgba(225, 224, 224, 0.4352941176);
 }
+.base-text-input-container > input::-moz-placeholder {
+  color: #7f8a9d;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+.base-text-input-container > input::placeholder {
+  color: #7f8a9d;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
 .base-text-input-container > input:valid, .base-text-input-container > input:-moz-ui-valid {
   background-color: #FAF9F9;
 }

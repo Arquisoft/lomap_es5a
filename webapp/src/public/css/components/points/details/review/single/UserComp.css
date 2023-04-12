@@ -1,0 +1,19 @@
+.user-comp-container{
+    box-sizing: border-box;
+  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px;
+    gap: 10px;
+
+    border: 1px solid #909090;
+    border-radius: 10px;    
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #909090;
+}
+

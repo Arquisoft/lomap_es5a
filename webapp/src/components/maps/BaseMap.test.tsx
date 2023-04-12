@@ -4,10 +4,8 @@ import HomePage from "../../pages/home/HomePage";
 describe("Comprobacion del mapa",()=>{
     afterAll(cleanup);
     it("Comprobamos el componente se renderiza correctamente",()=>{
-
-        //const {container} = 
-        render(<HomePage/>);
-        //const basemap = findByType(container,BaseMap);
-        //expect(basemap).toBeInTheDocument();
+        const {getByTestId} = render(<HomePage/>);
+        const map = getByTestId("home-map");
+        expect(map).toBeInTheDocument();
     });
 });

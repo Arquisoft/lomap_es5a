@@ -26,7 +26,7 @@ import {
 function App() {
   const { session } = useSession();
 
-  let isPageRefresh =
+  const isPageRefresh =
     (window.performance.getEntriesByType("navigation")[0] as any).type ===
     "reload";
 

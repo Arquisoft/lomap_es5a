@@ -7,7 +7,7 @@
 
 import { Category, SingleCategory } from "../shared/shareddtypes";
 
-const MAX_CATEGORIES_VISIBLE: number = 6; // Número máximo de categorías visibles.
+const MAX_CATEGORIES_VISIBLE = 6; // Número máximo de categorías visibles.
 
 const availableCategories: SingleCategory[] = [
   {

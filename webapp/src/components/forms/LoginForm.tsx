@@ -1,11 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { useSession } from "@inrupt/solid-ui-react";
+import React, { useState } from "react";
 import { SOLID_PROVIDERS } from "../../data/providers";
 import { signIn } from "../../helpers/AuthHelper";
 import useAuth from "../../hooks/useAuth";
 import "../../public/css/components/forms/loginForm/LoginForm.scss";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
-import { useSession } from "@inrupt/solid-ui-react";
 
 function LoginForm() {
   const { login } = useAuth();
@@ -18,7 +18,7 @@ function LoginForm() {
     signIn(session, providerUrl);
   };
 
-  const handleSelectProvider = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
     setProviderUrl(e.target.value);
   };

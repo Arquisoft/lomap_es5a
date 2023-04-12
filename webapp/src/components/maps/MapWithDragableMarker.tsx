@@ -1,3 +1,4 @@
+import React from "react";
 import { LatLng, LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import { InfoOutlined } from "../../helpers/IconContants";
@@ -11,7 +12,7 @@ type Props = {
   position: LatLngExpression;
   width?: string;
   height?: string;
-  styles?: Object;
+  styles?: React.CSSProperties;
 };
 
 type RecenterMapButtonProps = {
