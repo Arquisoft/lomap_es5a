@@ -1,5 +1,5 @@
 import { BaseTextAreaProps } from "../../shared/shareddtypes";
-
+import crypto from 'crypto';
 import "../../public/css/components/inputs/baseTextArea/BaseTextArea.scss";
 
 function BaseTextArea({
