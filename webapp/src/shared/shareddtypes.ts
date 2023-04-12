@@ -278,6 +278,7 @@ interface BaseInputProps {
   placeholder?: string;
   required?: boolean;
   showClearButton?: boolean;
+  disabled?: boolean;
   styles?: React.CSSProperties | string;
 }
 

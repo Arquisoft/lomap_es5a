@@ -7,52 +7,56 @@
 [plantuml, "ModeloDeDominio", png]
 ----
 
-object Persona{
-    id:String
-    role:String
-    verified:boolean
-}
-object Grupo{
-    id:String
-    persons:Person[]
+
+object Point{
+    idPoint: String
+    name: String
+    description: String
+    location: BaseLocation
+    owner: User
+    reviews: Review[]
+    image: String
+    isPublic: Boolean
+    category: Category
+    createdAt: Date
+    updatedAt: Date
 }
 
-object Punto{
-    webId:String 
-    idPoint:String
-    name:String
-    description:String
-    lat:number 
-    lng:number 
-    category:String
-    address:String
-    opinions:Opinion[]
-    likes:String[]
+object Map{
+    code: String
+    points: Point[]
 }
 
-object Mapa{
-    code:String
-    point: Punto[]
+object Review{
+    id: String
+    reviewer: User
+    rating: Number
+    comment: String
+    createdAt: Date
 }
 
-object Opinion{
-    id:String
-    webId:String 
-    description:String
-    note : number 
+object User{
+    id: String
+    name: String
+    webId: String
+    email: String
+    image: String
 }
 
-object Imagen{
-    url:String
+object BaseLocation{
+    coords: number[2]
+    address: string
+    postalCode: number
+    city: string
+    country : string
 }
 
-Opinion *--->Persona
-Opinion *--->Punto
-Punto *--->Mapa
-Mapa *--->Persona
-Grupo *---> Persona
-Persona *--->Imagen
-Mapa *--->Imagen
+Map*--Point
+Point--->Review
+User--->Point
+Review--->User
+Point--->BaseLocation
+
 ----
 === Security
 

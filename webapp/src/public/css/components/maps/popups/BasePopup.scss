@@ -49,6 +49,9 @@
                 &:first-child{
                     font-size: 1rem;
                 }
+                &:last-child{
+                    font-size: 0.75rem;
+                }
                 margin: 0;
             }
         }

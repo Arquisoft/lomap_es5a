@@ -1,24 +1,22 @@
 import { useSession } from "@inrupt/solid-ui-react";
+import { SyntheticEvent } from "react";
 import { addReviewPoint } from "../../api/point.api";
-import {
-  CloseIcon,
-  StarRoundedIcon,
-  CheckRoundedIcon,
-} from "../../helpers/IconContants";
+import { CheckRoundedIcon, CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/addNewReview/AddNewReviewToPointPopup.scss";
+import { Point } from "../../shared/shareddtypes";
 import { usePointReviewStore } from "../../store/review.store";
 import BaseButton from "../buttons/BaseButton";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
-import { Point } from "../../shared/shareddtypes";
-import Rating from "@mui/material/Rating";
-import { SyntheticEvent } from "react";
 import BaseStarRating from "../stars/BaseStarRating";
 
 function SuccessReviewPopupSection() {
-  const { setShowAddReviewPopup } = usePointReviewStore();
+  const { setShowAddReviewPopup, setIsReviewPublished, setIsSendingReview } =
+    usePointReviewStore();
   const handleHidePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setIsReviewPublished(false);
+    setIsSendingReview(false);
     setShowAddReviewPopup(false);
   };
 
@@ -51,11 +49,14 @@ function AddNewReviewToPointPopup({
     setIsReviewPublished,
     setReviewProperty,
     setShowAddReviewPopup,
+    resetReview,
   } = usePointReviewStore();
   const { session } = useSession();
 
   const handleClosePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setIsReviewPublished(false);
+    setIsSendingReview(false);
     setShowAddReviewPopup(false);
   };
 
@@ -83,6 +84,7 @@ function AddNewReviewToPointPopup({
           if (!err) {
             setIsSendingReview(false);
             setIsReviewPublished(true);
+            resetReview();
           }
         }
       );
