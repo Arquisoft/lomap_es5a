@@ -6,7 +6,7 @@ import { findAllPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
   addSharePoint,
-  sharePointWithFriends
+  sharePointsWithFriends
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -35,7 +35,7 @@ function HomePage() {
 
   const sharePoint = async () => {
     const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
-    await addSharePoint(point, session, []);
+    await sharePointsWithFriends(session.info.webId as string);
   }
 
   const loadUserFriends = async () => {

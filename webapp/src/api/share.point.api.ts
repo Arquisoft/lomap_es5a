@@ -9,7 +9,9 @@ import {
   hasAccessibleAcl,
   hasFallbackAcl,
   getResourceAcl,
-  saveAclFor
+  saveAclFor,
+  setAgentResourceAccess,
+  setAgentDefaultAccess
   } from "@inrupt/solid-client";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 import { 
@@ -21,6 +23,7 @@ import {
 import { Friend, Point } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { uploadImage } from "../services/imageService";
+import { tr } from "date-fns/locale";
 
 
 
@@ -55,21 +58,22 @@ const existsPoint = async (
 
 /**
  * 
- * @param idPoint 
  * @param webId 
- * @param friends 
+ * @param friendWebId 
  * @returns 
  */
-const sharePointWithFriends = async (
-  idPoint: string,
+const sharePointsWithFriends = async (
   webId: string,
-  friends: Friend[]
+  friendWebId?: string
 ) => {    
-  const resourceUrl = getUserSharedPointsUrl(webId);   
+  const resourceUrl = getUserSharedPointsUrl(webId).replace(
+    "private/sharedpoints/sharedPoints.json",
+    "private/sharedpoints/"
+  );   
   
   const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
   
-  let datasetAcl;
+  let resourceAcl;
   if (!hasResourceAcl(userDatasetWithAcl)){
     console.log("Entro por aqui")
     if (!hasAccessibleAcl(userDatasetWithAcl)){
@@ -77,18 +81,32 @@ const sharePointWithFriends = async (
       return;
     }
     if (!hasFallbackAcl(userDatasetWithAcl)){
-      console.error("No tiene un ac que haya heredado de su contenedor/contenedores padres");
+      console.error("No tiene un acl que haya heredado de su contenedor/contenedores padres");
       return;
     }
-    datasetAcl = createAclFromFallbackAcl(userDatasetWithAcl);
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);
     // 
-    await saveAclFor(userDatasetWithAcl, datasetAcl,{fetch :fetch});  
+    
   }else{
     console.log("Entro por esti otru lau");
-    datasetAcl = getResourceAcl(userDatasetWithAcl);
-    console.log(datasetAcl);
-    
+    resourceAcl = getResourceAcl(userDatasetWithAcl);
+    console.log(resourceAcl.internal_accessTo);
   }
+  // Nos damos control access del folder
+  const updatedFolderAcl = setAgentResourceAccess(
+    resourceAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );
+  // Nos damos todos los permisos sobre el fichero de puntos
+  const updatedPointsFileAcl = setAgentDefaultAccess(
+    updatedFolderAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );
+
+  // almacenamos el acl
+  await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
   
 }
 
@@ -192,5 +210,5 @@ const addSharePoint = async (
 
   export{
     addSharePoint,
-    sharePointWithFriends
+    sharePointsWithFriends
   }
