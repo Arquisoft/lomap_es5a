@@ -1,17 +1,23 @@
+import { useEffect } from "react";
 import "../../../public/css/components/points/details/ReviewListing.css";
 import { Point } from "../../../shared/shareddtypes";
+import { usePointDetailsStore } from "../../../store/point.store";
 import SingleReview from "./review/single/SingleReview";
 
-type Props = {
-  pointToShow: Point;
-};
+function ReviewListing() {
+  const { pointToShow } = usePointDetailsStore();
 
-function ReviewListing(point: Props) {
+  useEffect(() => {
+    usePointDetailsStore.subscribe((point: any) => {
+      pointToShow.reviews = point.reviews;
+    });
+  }, []);
+
   return (
     <div className="review-listing-container">
       <h2> Valoraciones de los usuarios</h2>
       <div className="review-listing-listReviews">
-        {point.pointToShow.reviews?.map((review) => (
+        {pointToShow.reviews?.map((review) => (
           <SingleReview
             key={review.title}
             comment={review.comment}

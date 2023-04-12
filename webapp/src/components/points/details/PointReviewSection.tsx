@@ -13,7 +13,7 @@ function PointReviewSection(point:Props){
     let media = 0;
     if(valoraciones){
         const sumValor = valoraciones.reduce((a,b)=> a + b,0) 
-        media = sumValor/ valoraciones.length
+        media = sumValor / valoraciones.length
     }
     
     return(
@@ -27,7 +27,7 @@ function PointReviewSection(point:Props){
                 <p> {valoraciones?.length} valoraciones</p>
 
                 <div className="point-review-section-review-stars">
-                    <BaseStarRating rating ={media}/>
+                    <BaseStarRating rating ={media.toPrecision(2)}/>
                 </div>
             </div>
         </div>

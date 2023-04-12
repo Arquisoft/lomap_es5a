@@ -10,7 +10,7 @@ function PointReviewSummary(media:Props){
 
     return(
         <div className="point-review-summary-container">
-            <div className="point-review-summary-container-media">{ceilNumber(media.media, 0)} </div><p> / 5</p>
+            <div className="point-review-summary-container-media">{(media.media as number).toPrecision(2)}</div><p> / 5</p>
         </div>
     )
 }
