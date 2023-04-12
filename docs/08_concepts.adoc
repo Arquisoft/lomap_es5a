@@ -71,8 +71,8 @@ enum Category{
 
 Map*--Point
 Point--->Review
-User--->Point
-Review--->User
+Point--->User
+Review*-->User
 Point--->BaseLocation
 Point--->Category
 
