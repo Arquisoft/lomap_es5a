@@ -51,11 +51,30 @@ object BaseLocation{
     country : string
 }
 
+enum Category{
+    RESTAURANT
+    BAR 
+    CAFE
+    HOTEL
+    GROCERY
+    SUPERMARKET
+    CINEMA
+    SHOP
+    MUSEUM
+    PARK
+    GAS_STATION
+    PUBLIC_TRANSPORT
+    MONUMENT
+    OTHER
+    NONE
+}
+
 Map*--Point
 Point--->Review
 User--->Point
 Review--->User
 Point--->BaseLocation
+Point--->Category
 
 ----
 === Security
