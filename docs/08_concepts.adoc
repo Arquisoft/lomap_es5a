@@ -69,10 +69,10 @@ enum Category{
     NONE
 }
 
-Map*--Point
-Point--->Review
+Map*-->Point
+Point*-->Review
 Point--->User
-Review*-->User
+Review--->User
 Point--->BaseLocation
 Point--->Category
 
