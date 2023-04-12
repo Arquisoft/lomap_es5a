@@ -4,6 +4,7 @@ import {
   checkContainerExists,
   createNewContainer,
   getUserPrivatePointsUrl,
+  getWebIdFromUrl,
 } from "../helpers/PodHelper";
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
@@ -325,6 +326,9 @@ const addReviewPoint = async (
   webId: string
 ) => {
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
+  const userInSessionName = getWebIdFromUrl(webId);
+  review.reviewer.name = userInSessionName.split(".")[0];
+
   try {
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",
@@ -342,7 +346,7 @@ const addReviewPoint = async (
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
       const result: Point[] = [...pointsOriginal, punto]; // obtenemos el array de puntos
-      console.log(result);
+
       const blob = new Blob([JSON.stringify({ points: result })], {
         type: "application/json",
       });

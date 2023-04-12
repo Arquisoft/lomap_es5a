@@ -103,7 +103,6 @@ const checkContainerExists = async (
     fetch: session.fetch,
   });
 
-  console.log(data);
   return data ? true : false;
 };
 

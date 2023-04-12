@@ -79,6 +79,7 @@ function AddNewReviewToPointPopup({
     if (session.info.isLoggedIn && pointInfo) {
       setIsReviewPublished(false);
       setIsSendingReview(true);
+      
       addReviewPoint(pointInfo._id, review, session.info.webId as string).then(
         (err: any) => {
           if (!err) {

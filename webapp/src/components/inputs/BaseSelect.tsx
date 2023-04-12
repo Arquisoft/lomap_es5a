@@ -14,7 +14,7 @@ function BaseSelect({
   styles
 }: BaseSelectType) {
 
-  const selectId = id || crypto.randomUUID();
+  const selectId = id || window.crypto.randomUUID();
 
   return (
     <div className="base-select-container">

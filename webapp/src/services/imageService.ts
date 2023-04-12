@@ -18,7 +18,7 @@ const uploadImage = async (image: File | undefined): Promise<string> => {
   }
 
   const imgExtension = image.name.split(".").slice().pop();
-  const imgId: string = crypto.randomUUID();
+  const imgId: string = window.crypto.randomUUID();
 
 
   const imgCompressed = await compressImage(image, DEFAULT_IMAGE_COMPRESSION_WIDTH, DEFAULT_IMAGE_COMPRESSION_HEIGHT);

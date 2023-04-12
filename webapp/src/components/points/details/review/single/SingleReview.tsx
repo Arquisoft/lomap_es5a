@@ -1,3 +1,4 @@
+import {useEffect} from "react"
 import "../../../../../public/css/components/points/details/review/single/SingleReview.css"
 import { Reviewer } from "../../../../../shared/shareddtypes"
 import NoImageSkeleton from "../../../../skeletons/NoImageSkeleton"
@@ -16,7 +17,12 @@ function SingleReview(review:Props){
 
     const hoursDiff = differenceInHours(review.createdAt,new Date()) * -1;
 
-    const nombre =review.reviewer.name
+    const nombre =review.reviewer.name ? review.reviewer.name : review.reviewer.webId.split("/")[2]
+
+
+    useEffect(() => {
+        console.log(review.reviewer);
+    }, []);
 
     return(
         <div className="single-review-container">

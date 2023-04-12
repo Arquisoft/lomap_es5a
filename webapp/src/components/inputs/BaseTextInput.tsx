@@ -21,7 +21,7 @@ function BaseTextInput({
 }: BaseInputProps) {
   const [showClearButtonState, setShowClearButtonState] = useState(false);
 
-  const inputId = id || crypto.randomUUID();
+  const inputId = id || window.crypto.randomUUID();
 
   const handleShowClearButton = (show: boolean) => {
     setShowClearButtonState(show);

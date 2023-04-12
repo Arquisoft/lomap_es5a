@@ -143,7 +143,7 @@ const parseReviews = (reviews: any) => {
       throw new Error("Review must have a reviewer");
     }
 
-    const { webId, imageUrl } = reviewer;
+    const { webId, imageUrl, name } = reviewer;
 
     return {
       _id,
@@ -151,6 +151,7 @@ const parseReviews = (reviews: any) => {
       comment,
       reviewer: {
         webId,
+        name,
         imageUrl,
       },
       rating,

@@ -12,7 +12,7 @@ function BaseTextArea({
   onChange,
 }: BaseTextAreaProps) {
 
-  const textAreaId = id || crypto.randomUUID();
+  const textAreaId = id || window.crypto.randomUUID();
 
   return (
     <div className="base-textarea-container">
