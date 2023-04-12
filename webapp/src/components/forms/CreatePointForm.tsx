@@ -32,7 +32,7 @@ function CreatePointForm() {
     setIsUploading,
     setIsFinished,
     resetPointInfo,
-    image,
+    imageToUpload,
   } = usePointDetailsStore();
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
@@ -53,8 +53,8 @@ function CreatePointForm() {
         checkIsNotEmpty(info.description, "descripción del punto");
       }
       checkAnyOptionIsSelected(info.category, "categoría del punto");
-      checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+      // checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
+      // checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasErrors = true;
@@ -67,8 +67,8 @@ function CreatePointForm() {
     return (
       requiredFormData.name.length > 0 &&
       requiredFormData.category !== NO_OPTION_SELECTED &&
-      (!isNaN(requiredFormData.lat) || !isNaN(info.location.coords.lat)) &&
-      (!isNaN(requiredFormData.lng) || !isNaN(info.location.coords.lng))
+      !isNaN(info.location.coords.lat) &&
+      !isNaN(info.location.coords.lng)
     );
   };
 
@@ -88,11 +88,6 @@ function CreatePointForm() {
 
     validateForm();
 
-    console.log("info", info);
-    console.log("errors", errors);
-
-    console.log("Punto creado correctamente!");
-
     setIsUploading(true);
     setIsFinished(false);
     info._id = crypto.randomUUID();
@@ -101,23 +96,24 @@ function CreatePointForm() {
     info.location.country = "";
     info.owner.name = name;
     info.owner.imageUrl = imageUrl;
+    if (!info.image) {
+      info.image = {
+        url: "",
+        alt: "",
+      };
+    }
 
-    await addPoint(
-      info,
-      session,
-      image,
-      (isSuccess: boolean) => {
-        setIsUploading(false);
-        setIsFinished(isSuccess);
-        console.log(
-          "%c 📍 Punto creado correctamente! ",
-          "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
-        );
-        navigate(HOME_PATH);
-        setErrors([]);
-        resetPointInfo();
-      }
-    );
+    await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
+      setIsUploading(false);
+      setIsFinished(isSuccess);
+      console.log(
+        "%c 📍 Punto creado correctamente! ",
+        "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
+      );
+      navigate(HOME_PATH);
+      setErrors([]);
+      resetPointInfo();
+    });
   };
 
   useEffect(() => {
@@ -182,6 +178,7 @@ function CreatePointForm() {
                 width: "296px",
                 height: "62px",
               }}
+              disabled={true}
             />
 
             <BaseTextInput
@@ -190,6 +187,7 @@ function CreatePointForm() {
               name="lng"
               type="number"
               required={true}
+              disabled={true}
               onChange={(e) => {
                 setPosition({
                   lat: info.location.coords.lat,

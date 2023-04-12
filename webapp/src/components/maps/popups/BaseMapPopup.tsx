@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FavoriteBorderIcon } from "../../../helpers/IconContants";
 import "../../../public/css/components/maps/popups/BasePopup.scss";
 import { BaseMapPopupProps } from "../../../shared/shareddtypes";
 import BaseBadge from "../../badges/BaseBadge";
@@ -15,7 +14,10 @@ import {
   unsavePoint,
 } from "../../../api/save.point.api";
 import { useSession } from "@inrupt/solid-ui-react";
-import { FavoriteIcon } from "../../../helpers/IconContants";
+import {
+  FavoriteIcon,
+  FavoriteBorderIcon,
+} from "../../../helpers/IconContants";
 
 function BaseMapPopup({
   name,

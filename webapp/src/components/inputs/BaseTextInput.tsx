@@ -16,6 +16,7 @@ function BaseTextInput({
   placeholder,
   styles,
   required,
+  disabled
 }: BaseInputProps) {
   const [showClearButtonState, setShowClearButtonState] = useState(false);
 
@@ -39,6 +40,7 @@ function BaseTextInput({
         value={value}
         id={inputId}
         required={required}
+        disabled={disabled || false}
         style={styles as React.CSSProperties}
       />
       {showClearButton && showClearButtonState && value && (

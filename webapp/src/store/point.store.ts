@@ -4,7 +4,7 @@ import { Category, Point, SingleCategory } from "../shared/shareddtypes";
 interface PointDetailsStore {
   info: Point;
   pointToShow: Point; // Point to show in the details page
-  image?: File;
+  imageToUpload?: File;
   isUploading: boolean; // Flag to indicate if the process of uploading the point is in progress
   isFinished: boolean; // Flag to indicate if the process of uploading the point is finished
   setCurrentPoint: (point: Point) => void;
@@ -129,7 +129,7 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
 const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   info: pointInitilization,
   pointToShow: pointInitilization,
-  image: undefined,
+  imageToUpload: undefined as File | undefined,
   isUploading: false,
   isFinished: false,
   // Update some property of the current point
@@ -150,7 +150,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
     })),
 
   // Imagen del punto de interés
-  setPointImageFile: (image: File) => set({ image }),
+  setPointImageFile: (imageToUpload: File) => set({ imageToUpload }),
 
   setIsUploading: (isUploading: boolean) => set({ isUploading }),
   setIsFinished: (isFinished: boolean) => set({ isFinished }),

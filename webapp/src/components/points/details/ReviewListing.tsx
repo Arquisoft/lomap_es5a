@@ -1,23 +1,28 @@
 import "../../../public/css/components/points/details/ReviewListing.css";
-import { useAllPointReviewStore } from "../../../store/review.store";
-import SingleReview from "./review/SingleReview";
+import { Point } from "../../../shared/shareddtypes";
+import SingleReview from "./review/single/SingleReview";
 
-function ReviewListing(){
-    const {getAllReviews} = useAllPointReviewStore();
-    return(
-        <div className="review-listing-container">
-            <h2> Valoraciones de los usuarios</h2>
-            <div className="review-listing-listReviews">
-                {
-                    getAllReviews() && getAllReviews().map((review) => {
-                        return(
-                            <SingleReview key={review._id} review={review} />
-                        )
-                    })
-                }
-            </div>
-        </div>
-    )
+type Props = {
+  pointToShow: Point;
+};
+
+function ReviewListing(point: Props) {
+  return (
+    <div className="review-listing-container">
+      <h2> Valoraciones de los usuarios</h2>
+      <div className="review-listing-listReviews">
+        {point.pointToShow.reviews?.map((review) => (
+          <SingleReview
+            key={review.title}
+            comment={review.comment}
+            rating={review.rating}
+            reviewer={review.reviewer}
+            createdAt={review.createdAt}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default ReviewListing
+export default ReviewListing;
