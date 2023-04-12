@@ -745,10 +745,6 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Con el objetivo de que la aplicación pueda mostrar imágenes de las ubicaciones, se utilizará el servicio Firebase Cloud Storage para almacenar el contenido multimedia.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Por otro lado, para almacenar el resto de la información necesaria que no se almacene en los pod de usuario ni en Firebase Cloud Storage, se hará uso de una base de datos MongoDB.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub será el controlador de versiones que emplearemos durante el proceso de desarrollo.</p></td>
 </tr>
@@ -1274,27 +1270,6 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p>El desplieque de la aplicación está orientado para ser integrado en un entorno de integración continua (CI/CD), con el propósito de tener en producción el producto desde el primer día. Para ello, se ha decidido, en base al entorno de pruebas proporcionado, utilizar los contenedores de Docker para empaquetar los respectivos lados de la aplicación (Cliente y servidor). Los contenedores, se albergan en una máquina virtual de Azure.</p>
-</dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
-<dd>
-<p>El uso de docker para crear un entorno de ejecución virtual, hace que el proceso de despliegue sea más ligero y por ende, se obtenga un mayor rendimiento. Se consigue gracias a trabajar con una imagen de NodeJS (Oficial), que garantiza un entorno estable y listo para ejecutar.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>El desarrollo de la webapp utilizando React hace que el tiempo de carga de las páginas sea más rápido (Sin tener en cuenta otros factores, como peticiones a APIs externas como Leaflet).</p>
-</div>
-<div class="paragraph">
-<p>El almacenamiento de las imágenes de la aplicación (Puntos, avatares, etc.) se realiza en Firebase, que es un servicio de almacenamiento de recursos multimedia, que ofrece un rendimiento y escalabilidad muy alto.</p>
-</div>
-<div class="paragraph">
-<p>Por último, la integración de la API de Leaflet facilita el desarrollo del producto, ya que es un proyecto mantenido con frecuencia y de código abierto.</p>
-</div>
-<div class="dlist">
-<dl>
 <dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
 </dl>
 </div>
@@ -1708,7 +1683,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-21 13:46:32 +0100
+Last updated 2023-03-24 15:08:41 +0100
 </div>
 </div>
 </body>
