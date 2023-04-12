@@ -473,6 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</a></li>
 <li><a href="#_level_1">5.2. Level 1</a></li>
+<li><a href="#_level_2">5.3. Level 2</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
@@ -915,10 +916,6 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker es una herramienta que facilita la creación, implementación y ejecución de aplicaciones mediante el uso de contenedores. Los contenedores permiten empaquetar una aplicación con todas las partes que necesita, como bibliotecas y otras dependencias, y desplegarla como un solo paquete.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema gestor de bases de datos NoSQL, orientado a documentos. Almacena estructuras de datos BSON (similar a JSON) haciendo que la integración de los datos en ciertas aplicaciones sea más sencilla y rápida.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio empleado para almacenar contenido generado por los usuarios, por ejemplo, imágenes y vídeos.</p></td>
 </tr>
@@ -974,7 +971,7 @@ y negocios actuales de la ciudad.</p>
 <h3 id="_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="578" height="87">
+<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="682" height="138">
 </div>
 </div>
 <div class="dlist">
@@ -982,6 +979,7 @@ y negocios actuales de la ciudad.</p>
 <dt class="hdlist1">Motivation</dt>
 <dd>
 <p>LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
+Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
 La información personal del usuario se almacena de forma descentralizada en PODs.</p>
 </dd>
 <dt class="hdlist1">Contained Building Blocks</dt>
@@ -1005,10 +1003,10 @@ La información personal del usuario se almacena de forma descentralizada en POD
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LoMap</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener la información necesaria del usuario.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt/Proveedor POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inrupt.net/solidcommunity.net</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.</p></td>
 </tr>
 </tbody>
@@ -1018,7 +1016,7 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <h3 id="_level_1">5.2. Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level-2.png" alt="level 2" width="615" height="258">
+<img src="./images/level-1.png" alt="level 1" width="349" height="289">
 </div>
 </div>
 <div class="dlist">
@@ -1044,15 +1042,70 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema con la que interactúa el usuario (Frontend).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ResAPI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Parte del sistema encargada de llevar a cabo las acciones indicadas por el usuario. Se comunica con la WebApp y con MongoDB (Backend).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">En principio, no se va a emplear.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_level_2">5.3. Level 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/level-2.png" alt="level 2" width="871" height="479">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Base de datos empleada para almacenar la información no personal de los usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inicio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Editar punto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario en sesión editar sus puntos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detalle punto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Amigos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puntos guardados</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que ha decidido guardar.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mis puntos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que él/ella ha creado.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1294,7 +1347,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="343" height="997">
+<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="564" height="1032">
 </div>
 </div>
 </div>
@@ -1360,7 +1413,7 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Organiza de forma descentralizada</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Dificil de utilizar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D">ADR 03</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-v3-%5BFront-End%5D">ADR 18</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NodeJS</p></td>
@@ -1387,10 +1440,10 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D">ADR 06</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB y Firebase Cloud Storage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integración dentro del stack MERN, su capacidad de almacenamiento, facilidad para el despliegue</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB">ADR 12</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gran velocidad de desarrollo, y no necesidad de servidor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Principiantes con ella</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos-para-imagenes">ADR 19</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
@@ -1402,8 +1455,14 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">JEST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Buena documentación y recursos, paralización de test y facil configuración.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No tenemos conocimiento con esta libreria</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End">ADR 10</a></p>
-<p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End">ADR 11</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End">ADR 10</a>
+<a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End">ADR 11</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zustand</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ofrece mayor rendimiento por la sencillez de su implementación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No sigue un patrón, la estructura es libre para el desarrollador</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Gesti%C3%B3n-de-estados-(Front-End)">ADR 17</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1649,7 +1708,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-22 12:18:20 +0100
+Last updated 2023-02-21 13:46:32 +0100
 </div>
 </div>
 </body>
