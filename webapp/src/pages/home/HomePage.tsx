@@ -35,7 +35,7 @@ function HomePage() {
 
   const sharePoint = async () => {
     const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
-    await sharePointsWithFriends(session.info.webId as string);
+    await sharePointsWithFriends(session.info.webId as string,"https://pruebasolid1.inrupt.net/profile/card#me");
   }
 
   const loadUserFriends = async () => {

@@ -64,7 +64,7 @@ const existsPoint = async (
  */
 const sharePointsWithFriends = async (
   webId: string,
-  friendWebId?: string
+  friendWebId: string
 ) => {    
   const resourceUrl = getUserSharedPointsUrl(webId).replace(
     "private/sharedpoints/sharedPoints.json",
@@ -104,9 +104,15 @@ const sharePointsWithFriends = async (
     webId,
     {read:true, append:true, write:true, control:true}
   );
+  // Le damos permisos de lectura al amigo
+  const pointsFileFriendAcl = setAgentDefaultAccess(
+    updatedPointsFileAcl,
+    friendWebId,
+    {read:true, append:false, write:false, control:false}
+  )
 
   // almacenamos el acl
-  await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
+  await saveAclFor(userDatasetWithAcl, pointsFileFriendAcl,{fetch :fetch});  
   
 }
 
