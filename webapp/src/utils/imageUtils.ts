@@ -1,8 +1,8 @@
 import Compressor from "compressorjs";
 
 const DEFAULT_IMAGE_COMPRESSION_QUALITY = 0.6;
-const DEFAULT_IMAGE_COMPRESSION_WIDTH = 640;
-const DEFAULT_IMAGE_COMPRESSION_HEIGHT = 640;
+const DEFAULT_IMAGE_COMPRESSION_WIDTH = 350;
+const DEFAULT_IMAGE_COMPRESSION_HEIGHT = 240;
 
 /**
  * Compress an image for web performance.
@@ -15,34 +15,34 @@ const DEFAULT_IMAGE_COMPRESSION_HEIGHT = 640;
  */
 const compressImage = (
   img: File,
-  callback: (result: File | Blob) => void,
+  // callback: (result: File | Blob) => void,
   width = DEFAULT_IMAGE_COMPRESSION_WIDTH,
   height = DEFAULT_IMAGE_COMPRESSION_HEIGHT,
-  quality = DEFAULT_IMAGE_COMPRESSION_QUALITY,
-) => {
+  quality = DEFAULT_IMAGE_COMPRESSION_QUALITY
+): Promise<File> => {
   //!img?.type.includes('image')
   if (!img) {
-    return;
+    return Promise.reject("No image provided");
   }
 
-  try {
+  return new Promise<File>((resolve, reject) => {
     new Compressor(img, {
       quality,
       width,
       height,
       resize: "cover",
       success(result) {
-        callback(result);
+        resolve(result as File);
       },
       error(err) {
         console.error(err.message);
+        reject(err);
       },
     });
-  } catch (error) {
-    console.error(
-      `An unexpected error ocurred proccessing the image. ${error}`
-    );
-  }
+  }).catch((err) => {
+    console.error(err);
+    return Promise.reject(err);
+  });
 };
 
 /**
@@ -54,4 +54,10 @@ const checkIsImageFile = (file: File) => {
   return file.type.includes("image");
 };
 
-export { compressImage, checkIsImageFile };
+export {
+  compressImage,
+  checkIsImageFile,
+  DEFAULT_IMAGE_COMPRESSION_WIDTH,
+  DEFAULT_IMAGE_COMPRESSION_HEIGHT,
+  DEFAULT_IMAGE_COMPRESSION_QUALITY,
+};

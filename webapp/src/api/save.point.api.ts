@@ -3,7 +3,7 @@ import { Session, fetch } from "@inrupt/solid-client-authn-browser";
 import {
   checkContainerExists,
   createNewContainer,
-  getUserPrivateSavePointsUrl
+  getUserPrivateSavePointsUrl,
 } from "../helpers/PodHelper";
 import { Point } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
@@ -56,9 +56,15 @@ const savePoint = async (point: Point, session: Session) => {
         new Blob([JSON.stringify({ points: points })], {
           type: "application/json",
         }),
-        { slug: "savedPoints.json", contentType: "application/json", fetch: fetch }
+        {
+          slug: "savedPoints.json",
+          contentType: "application/json",
+          fetch: fetch,
+        }
       );
-      console.log("Punto añadido a favoritos satisfactoriamente con id = " + point._id);
+      console.log(
+        "Punto añadido a favoritos satisfactoriamente con id = " + point._id
+      );
       return false;
     });
     return false;
@@ -70,7 +76,7 @@ const savePoint = async (point: Point, session: Session) => {
 
   try {
     const profileDocumentURI = encodeURI(
-       getUserPrivateSavePointsUrl(session.info.webId)
+      getUserPrivateSavePointsUrl(session.info.webId)
     );
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",
@@ -84,18 +90,24 @@ const savePoint = async (point: Point, session: Session) => {
     totalPoints.push(point); // añadimos el punto
 
     const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-        type: "application/json",
+      type: "application/json",
     });
 
     const fichero = new File([blob], "savedPoints.json", { type: blob.type });
 
     // actualizamos el POD
-    await overwriteFile(getUserPrivateSavePointsUrl(session.info.webId), fichero, {
+    await overwriteFile(
+      getUserPrivateSavePointsUrl(session.info.webId),
+      fichero,
+      {
         contentType: fichero.type,
         fetch: fetch,
-    });
+      }
+    );
 
-    console.log("Punto añadido a favoritos satisfactoriamente con id = " + point._id);
+    console.log(
+      "Punto añadido a favoritos satisfactoriamente con id = " + point._id
+    );
   } catch (err) {
     console.error("Error savePoint: " + err);
   }
@@ -132,19 +144,28 @@ const unsavePoint = async (idPoint: string, webId: string) => {
       const fichero = new File([blob], "savedPoints.json", { type: blob.type });
 
       // actualizamos el POD
-      await overwriteFile(getUserPrivateSavePointsUrl(webId), fichero, { 
+      await overwriteFile(getUserPrivateSavePointsUrl(webId), fichero, {
         contentType: fichero.type,
         fetch: fetch,
       });
-      console.log("Punto eliminado de favoritos satisfactoriamente con id = " + idPoint);
+      console.log(
+        "Punto eliminado de favoritos satisfactoriamente con id = " + idPoint
+      );
     }
   } catch (err) {
     console.error("Error unsavePoint: ", err);
   }
 };
 
-export {
-  findAllSavePoints,
-  savePoint,
-  unsavePoint
+/**
+ * Comprueba si el punto de interés está guardado por el usuario en sesión.
+ * @param idPoint
+ * @param webId
+ * @returns
+ */
+const isPointSaved = async (idPoint: string, webId: string) => {
+  const allSavedPoints = await findAllSavePoints(webId);
+  return allSavedPoints.find((item) => item._id === idPoint) ? true : false;
 };
+
+export { findAllSavePoints, savePoint, unsavePoint, isPointSaved };

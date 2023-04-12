@@ -5,46 +5,36 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "../config/firebase.config";
-import { compressImage } from "../utils/imageUtils";
+import { DEFAULT_IMAGE_COMPRESSION_HEIGHT, DEFAULT_IMAGE_COMPRESSION_WIDTH, compressImage } from "../utils/imageUtils";
 
 /**
  * Subida de una imagen a Firebase Storage.
  * @param image
  */
-const uploadImage = async (image: File, callback: (downloadUrl: string) => void) => {
+//callback: (downloadUrl: string) => void
+const uploadImage = async (image: File | undefined): Promise<string> => {
+  if (!image || !image.name || !image.size || !image.type || !image.lastModified) {
+    throw new Error("No se ha seleccionado ninguna imagen");
+  }
+
   const imgExtension = image.name.split(".").slice().pop();
   const imgId: string = crypto.randomUUID();
+
+
+  const imgCompressed = await compressImage(image, DEFAULT_IMAGE_COMPRESSION_WIDTH, DEFAULT_IMAGE_COMPRESSION_HEIGHT);
+
   try {
-    compressImage(
-      image,
-      (imageCompressed) => {
-        if (!imageCompressed) {
-          throw new Error("Error al comprimir la imagen");
-        }
+    const snapshot = await uploadBytes(
+      ref(storage, `${POINT_INTEREST_BUCKET}/${imgId}.${imgExtension}`),
+      imgCompressed
+    ).catch(() => {
+      throw new Error("Error al subir la imagen");
+    });
 
-        try {
-          uploadBytes(
-            ref(storage, `${POINT_INTEREST_BUCKET}/${imgId}.${imgExtension}`),
-            imageCompressed
-          )
-            .then((snapshot) => {
-              getDownloadURL(snapshot.ref).then((downloadUrl) => {
-                callback(downloadUrl);
-              });
+    return await getDownloadURL(snapshot.ref);
 
-            })
-            .catch((err) => {
-              throw new Error(err);
-            });
-        } catch (err) {
-          // TODO: Manejar el error
-        }
-      },
-      350,
-      240
-    );
-  } catch (err) {
-    console.error(`An error ocurred compressing the image. ${err}`);
+  } catch (err1) {
+    throw new Error("Error al subir la imagen. ");
   }
 };
 

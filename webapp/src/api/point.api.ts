@@ -185,34 +185,32 @@ const addPoint = async (
 
     const totalPoints = parseJsonToPoint(await originalPoints.json());
 
-    // Subir la imagen del punto y obtener la url
-    await uploadImage(image as File, async (downloadUrl) => {
+    try{
+      const downloadUrl = await uploadImage(image);
       point.image = {
         url: downloadUrl ?? "",
         alt: point?.name ?? "",
       };
+    }catch(err){
+      console.log("Error al subir la imagen: " + err);
+    }
+    
 
-      totalPoints.push(point); // añadimos el punto
+    totalPoints.push(point); // añadimos el punto
 
-      const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-        type: "application/json",
-      });
-
-      const fichero = new File([blob], "points.json", { type: blob.type });
-
-      // actualizamos el POD
-      await overwriteFile(
-        getUserPrivatePointsUrl(session.info.webId),
-        fichero,
-        {
-          contentType: fichero.type,
-          fetch: fetch,
-        }
-      ).then(() => {
-        callback && callback(isSuccess);
-      });
+    const blob = new Blob([JSON.stringify({ points: totalPoints })], {
+      type: "application/json",
     });
-    console.log("Punto añadido satisfactoriamente con id = " + point._id);
+
+    const fichero = new File([blob], "points.json", { type: blob.type });
+
+    // actualizamos el POD
+    await overwriteFile(getUserPrivatePointsUrl(session.info.webId), fichero, {
+      contentType: fichero.type,
+      fetch: fetch,
+    }).then(() => {
+      callback && callback(isSuccess);
+    });
   } catch (err) {
     console.error("Error addPoint: " + err);
   }
