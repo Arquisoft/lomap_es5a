@@ -1,3 +1,4 @@
+import React from "react";
 import {
   MAX_CATEGORIES_VISIBLE,
   availableCategories,

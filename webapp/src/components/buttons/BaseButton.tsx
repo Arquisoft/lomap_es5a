@@ -1,5 +1,5 @@
+import React from "react";
 import "../../public/css/components/buttons/BaseButton.scss";
-import spinner from "../../public/images/spinner_1.gif";
 
 type Props = {
   type: string;

@@ -10,10 +10,23 @@ const HTTP_PREFIX = "https";
 // Fichero que contiene todos los puntos del usuario
 const PRIVATE_POINTS_PATH = "/private/points/points.json";
 
+// Fichero que contiene todos los puntos guardados del usuario
+const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
+
 // Información del perfil del usuario
 const PROFILE_PATH = "/profile/card";
 
 const webId: string = getDefaultSession().info.webId as string;
+
+/**
+ * 
+ * @param userName nombre de usuario del amigo a añadir en solid (seguifdo de '.'<proveedor>)
+ * @returns webId del user que se quiere agregar.
+ */
+const constructWebIdFromUsername = (userName:string):string => {
+  const webId = 'https://'+userName+'/profile/card#me';
+  return webId; 
+}
 
 /**
  * Formato de entrada: https://<webId>/profile/card#me
@@ -34,6 +47,16 @@ const getWebIdFromUrl = (url: string): string => {
  */
 const getUserPrivatePointsUrl = (myWedId?: string) => {
   return contructPodUrl(myWedId ?? webId, PRIVATE_POINTS_PATH);
+};
+
+/**
+ * Devuelve la URL de los puntos guardados privados de un usuario.
+ * @param webId WebId del usuario.
+ * @returns
+ * @throws Error si no se proporciona una URL de perfil.
+ */
+const getUserPrivateSavePointsUrl = (myWedId?: string) => {
+  return contructPodUrl(myWedId ?? webId, PRIVATE_SAVE_POINTS_PATH);
 };
 
 /**
@@ -80,14 +103,16 @@ const checkContainerExists = async (
     fetch: session.fetch,
   });
 
-  console.log(data);
   return data ? true : false;
 };
 
 export {
   getUserPrivatePointsUrl,
+  getUserPrivateSavePointsUrl,
   getUserProfileUrl,
   createNewContainer,
   checkContainerExists,
+  constructWebIdFromUsername,
+  getWebIdFromUrl
 };
 

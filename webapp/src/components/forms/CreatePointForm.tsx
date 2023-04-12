@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
@@ -32,9 +32,9 @@ function CreatePointForm() {
     setIsUploading,
     setIsFinished,
     resetPointInfo,
-    image,
+    imageToUpload,
   } = usePointDetailsStore();
-  const [errors, setErrors] = useState([] as any);
+  const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
     category: NO_OPTION_SELECTED,
@@ -46,15 +46,15 @@ function CreatePointForm() {
   const { name, imageUrl } = useUserStore();
 
   const validateForm = (): boolean => {
-    let hasErrors: boolean = false;
+    let hasErrors = false;
     setErrors([]);
     try {
       if (info.description) {
         checkIsNotEmpty(info.description, "descripción del punto");
       }
       checkAnyOptionIsSelected(info.category, "categoría del punto");
-      checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+      // checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
+      // checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasErrors = true;
@@ -65,10 +65,10 @@ function CreatePointForm() {
 
   const hasAnyRequiredFieldInvalid = (): boolean => {
     return (
-      requiredFormData.name.length > 0 &&
+      requiredFormData.name.length >= 0 &&
       requiredFormData.category !== NO_OPTION_SELECTED &&
-      (!isNaN(requiredFormData.lat) || !isNaN(info.location.coords.lat)) &&
-      (!isNaN(requiredFormData.lng) || !isNaN(info.location.coords.lng))
+      !isNaN(info.location.coords.lat) &&
+      !isNaN(info.location.coords.lng)
     );
   };
 
@@ -88,36 +88,32 @@ function CreatePointForm() {
 
     validateForm();
 
-    console.log("info", info);
-    console.log("errors", errors);
-
-    console.log("Punto creado correctamente!");
-
     setIsUploading(true);
     setIsFinished(false);
-    info._id = crypto.randomUUID();
+    info._id = window.crypto.randomUUID();
     info.location.postalCode = 0;
     info.location.city = "";
     info.location.country = "";
     info.owner.name = name;
     info.owner.imageUrl = imageUrl;
+    if (!info.image) {
+      info.image = {
+        url: "",
+        alt: "",
+      };
+    }
 
-    await addPoint(
-      info,
-      session,
-      image,
-      (isSuccess: boolean) => {
-        setIsUploading(false);
-        setIsFinished(isSuccess);
-        console.log(
-          "%c 📍 Punto creado correctamente! ",
-          "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
-        );
-        navigate(HOME_PATH);
-        setErrors([]);
-        resetPointInfo();
-      }
-    );
+    await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
+      setIsUploading(false);
+      setIsFinished(isSuccess);
+      console.log(
+        "%c 📍 Punto creado correctamente! ",
+        "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
+      );
+      navigate(HOME_PATH);
+      setErrors([]);
+      resetPointInfo();
+    });
   };
 
   useEffect(() => {
@@ -151,7 +147,7 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              refreshErrors();
+              //refreshErrors();
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{
@@ -182,6 +178,7 @@ function CreatePointForm() {
                 width: "296px",
                 height: "62px",
               }}
+              disabled={true}
             />
 
             <BaseTextInput
@@ -190,6 +187,7 @@ function CreatePointForm() {
               name="lng"
               type="number"
               required={true}
+              disabled={true}
               onChange={(e) => {
                 setPosition({
                   lat: info.location.coords.lat,
@@ -285,7 +283,7 @@ function CreatePointForm() {
       {errors.length > 0 &&
         errors.map((err: any) => {
           return (
-            <BaseMessage key={crypto.randomUUID()} type="error" text={err} />
+            <BaseMessage key={window.crypto.randomUUID()} type="error" text={err} />
           );
         })}
     </div>

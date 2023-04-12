@@ -1,3 +1,4 @@
+import React from "react";
 import Footer from "../components/footer/Footer";
 import Nav from "../components/Nav";
 import "../public/css/layouts/authenticatedLayout/AutenticatedLayout.scss";

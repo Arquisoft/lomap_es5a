@@ -9,15 +9,16 @@
 ----
 actor Usuario
 Component LoMap
-Component pod as "Inrupt/Proveedor POD"
+Component pod as "inrupt.net/solidcommunity.net"
 
 Usuario -right-> LoMap: interactúa
-
-LoMap <-right-> pod: obtiene datos Usuario
+Usuario -right-> pod: tiene
+LoMap <-right-> pod: obtiene/almacena datos Usuario
 ----
 
 Motivation::
-LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
+LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan. 
+Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
 La información personal del usuario se almacena de forma descentralizada en PODs.
 
 Contained Building Blocks::
@@ -26,27 +27,25 @@ Contained Building Blocks::
 |===
 | **Nombre** | **Responsabildad**
 | Usuario | Interactúa con la aplicación.
-| LoMap | Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener la información necesaria del usuario.
-| Inrupt/Proveedor POD | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
+| LoMap | Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.
+| inrupt.net/solidcommunity.net | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
 |===
 
 === Level 1
 
-[plantuml, "level-2", png]
+[plantuml, "level-1", png]
 ----
 actor Usuario
 Component LoMap {
   Component web as "WebApp"
   Component api as "RestAPI"
 }
-Database db as "MongoDB"
-Component pod as "Inrupt"
+Component pod as "inrupt.net/solidcommunity.net"
 
 Usuario -right-> web: interactua
-web <-right-> api: envia peticiones
-api <-down-> db: almacena/recupera datos
+Usuario -right-> pod: tiene
 
-LoMap <-down-> pod: obtiene datos
+web <-down-> pod: obtiene/almacena datos
 ----
 
 Motivation::
@@ -57,8 +56,51 @@ Contained Building Blocks::
 [cols="1,2" options="header"]
 |===
 | **Nombre** | **Responsabildad**
-| WebApp | Parte del sistema con la que interactúa el usuario (Frontend).
-| ResAPI | Parte del sistema encargada de llevar a cabo las acciones indicadas por el usuario. Se comunica con la WebApp y con MongoDB (Backend). 
-| MongoDB | Base de datos empleada para almacenar la información no personal de los usuarios.
+| WebApp | Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.
+| RestApi | En principio, no se va a emplear. 
 |===
+
+=== Level 2
+[plantuml, "level-2", png]
+
+----
+actor user as "Usuario"
+
+Component LoMap{
+  Component web as "WebApp" {
+    Component lo as "Log in"
+    Component ini as "Inicio"
+    Component ed as "Editar punto"
+    Component det as "Detalle punto"
+    Component am as "Amigos"
+    Component gua as "Puntos guardados"    
+    Component mi as "Mis puntos"
+  } 
+  Component api as "RestApi "
+}
+
+Database pod as "Solid pod"
+
+web <-left- user: interactua
+user -up-> pod: tiene
+web -down-> pod: obtiene/almacena datos
+----
+
+Motivation::
+Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.
+
+Contained Building Blocks::
+
+[cols="1,2" options="header"]
+|===
+| **Nombre** | **Responsabildad**
+| Log in | Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.
+| Inicio | Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría. 
+| Editar punto | Permite al usuario en sesión editar sus puntos.
+| Detalle punto | Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado.
+| Amigos | Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).
+| Puntos guardados | Permite al usuario interactuar con los puntos que ha decidido guardar.
+| Mis puntos | Permite al usuario interactuar con los puntos que él/ella ha creado.
+|===
+
 

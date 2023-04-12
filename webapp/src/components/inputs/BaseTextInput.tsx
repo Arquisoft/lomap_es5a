@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../../public/css/components/inputs/BaseTextInput.scss";
 import { BaseInputProps } from "../../shared/shareddtypes";
 import BaseButton from "../buttons/BaseButton";
+import crypto from 'crypto';
 
 function BaseTextInput({
   label,
@@ -16,10 +17,11 @@ function BaseTextInput({
   placeholder,
   styles,
   required,
+  disabled
 }: BaseInputProps) {
   const [showClearButtonState, setShowClearButtonState] = useState(false);
 
-  const inputId = id || crypto.randomUUID();
+  const inputId = id || window.crypto.randomUUID();
 
   const handleShowClearButton = (show: boolean) => {
     setShowClearButtonState(show);
@@ -39,6 +41,7 @@ function BaseTextInput({
         value={value}
         id={inputId}
         required={required}
+        disabled={disabled || false}
         style={styles as React.CSSProperties}
       />
       {showClearButton && showClearButtonState && value && (

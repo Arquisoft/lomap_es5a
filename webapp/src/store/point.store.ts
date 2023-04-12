@@ -4,11 +4,11 @@ import { Category, Point, SingleCategory } from "../shared/shareddtypes";
 interface PointDetailsStore {
   info: Point;
   pointToShow: Point; // Point to show in the details page
-  image?: File;
+  imageToUpload?: File;
   isUploading: boolean; // Flag to indicate if the process of uploading the point is in progress
   isFinished: boolean; // Flag to indicate if the process of uploading the point is finished
   setCurrentPoint: (point: Point) => void;
-  setCurrentPointProperty: (property: string, value: any) => void;
+  setCurrentPointProperty: (property: string, value: unknown) => void;
   setPointAddress: (address: string) => void;
   setPosition: (position: { lat: number; lng: number }) => void;
   setPointImageFile: (image: File) => void;
@@ -18,7 +18,7 @@ interface PointDetailsStore {
   resetPointInfo: () => void;
 }
 
-let pointInitilization: Point = {
+const pointInitilization: Point = {
   _id: "",
   name: "",
   description: "",
@@ -67,9 +67,9 @@ interface AllPointsStore {
   setShowFilterPopup: (showFilterPopup: boolean) => void;
 }
 
-interface PointCategoryStore {
-  selectedCategory: Category;
-  setSelectedCategory: (category: Category) => void;
+interface AllSavedPointsStore {
+  savedPoints: Point[];
+  setSavedPoints: (points: Point[]) => void;
 }
 
 const useAllPointsStore = create<AllPointsStore>((set, get) => ({
@@ -129,7 +129,7 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
 const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   info: pointInitilization,
   pointToShow: pointInitilization,
-  image: undefined,
+  imageToUpload: undefined as File | undefined,
   isUploading: false,
   isFinished: false,
   // Update some property of the current point
@@ -150,7 +150,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
     })),
 
   // Imagen del punto de interés
-  setPointImageFile: (image: File) => set({ image }),
+  setPointImageFile: (imageToUpload: File) => set({ imageToUpload }),
 
   setIsUploading: (isUploading: boolean) => set({ isUploading }),
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
@@ -160,4 +160,12 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   resetPointInfo: () => set({ info: pointInitilization }),
 }));
 
-export { usePointDetailsStore, useAllPointsStore };
+/**
+ * Obtener todos los puntos guardados por el usuario
+ */
+const useAllSavedPointsStore = create<AllSavedPointsStore>((set, get) => ({
+  savedPoints: [],
+  setSavedPoints: (points: Point[]) => set({ savedPoints: points }),
+}));
+
+export { usePointDetailsStore, useAllPointsStore, useAllSavedPointsStore };

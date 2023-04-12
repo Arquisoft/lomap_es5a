@@ -1,3 +1,4 @@
+import React from "react";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import { CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/pointCategoryFilter/PointCategoryFilterPopup.scss";

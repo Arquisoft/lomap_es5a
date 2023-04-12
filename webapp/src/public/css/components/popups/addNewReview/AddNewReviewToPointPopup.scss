@@ -1,0 +1,63 @@
+@use "../../../functions" as funcs;
+@use "../../../mixins" as mixins;
+@use "../../../variables" as vars;
+
+.add-new-review-point-popup-container {
+    @include mixins.commonPopupStyles();
+    width: 500px;
+    max-width: 500px;
+
+    & > .add-new-review-point-popup__header {
+        @include mixins.flex(row, flex-end, center, 0);
+        width: 100%;
+
+        & > .point-category-filter-popup__close-icon {
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            padding: 8px;
+            border-radius: 100px;
+
+            &:hover {
+                background-color: funcs.color("light_gray", "high_light");
+            }
+        }
+    }
+
+    & > .add-new-review-point-popup__body {
+        @include mixins.flex(column, flex-start, flex-start, 10px);
+        width: 100%;
+
+        & > form {
+            @include mixins.flex(column, flex-start, flex-start, 10px);
+            width: 100%;
+
+            & > .add-new-review-form__form-group {
+                @include mixins.flex(column, flex-start, flex-start, 5px);
+                width: 100%;
+
+                & > span {
+                    font-size: 0.8rem;
+                    color: funcs.color("dark_grey", "base");
+                }
+            }
+        }
+
+        & > .add-new-review-point-popup__success-review{
+            @include mixins.flex(column, center, center, 20px);
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: funcs.color("light_green", "base");
+
+           & > .add-new-review-point-popup-success__icon{
+                width: 36px;
+                height: 36px;
+                padding: 5px;
+                background-color: funcs.color("success", "base");
+                fill: #FFFFFF;
+                border-radius: 100px;
+           }
+        }
+    }
+}

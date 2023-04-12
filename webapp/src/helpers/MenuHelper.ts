@@ -45,7 +45,7 @@ const MENU_ITEMS_ALIAS = {
   LOGOUT: "logout",
 };
 
-let menuItems: MenuItem[] = [
+const menuItems: MenuItem[] = [
   {
     alias: MENU_ITEMS_ALIAS.HOME,
     name: "Inicio",
@@ -65,7 +65,7 @@ let menuItems: MenuItem[] = [
     name: "Amigos",
     url: FRIENDS_PATH,
     muiName: "people_alt_rounded",
-    show: true,
+    show: false,
   },
   {
     alias: MENU_ITEMS_ALIAS.ADD_POINT,
@@ -122,6 +122,7 @@ let menuItems: MenuItem[] = [
     name: "Cerrar sesión",
     parent: "account",
     muiName: "logout_rounded",
+    url: "/logout",
     order: 3,
   },
 ];

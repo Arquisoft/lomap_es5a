@@ -1,3 +1,4 @@
+
 enum Category {
   RESTAURANT = "restaurant",
   BAR = "bar",
@@ -16,6 +17,13 @@ enum Category {
   NONE = "none",
 }
 
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>;
+
 enum Coordinate {
   LAT = "lat",
   LNG = "lng",
@@ -26,7 +34,7 @@ type SingleCategory = {
   code: string;
   name: string;
   description?: string;
-  icon?: any;
+  icon?: string;
   isActivated?: boolean;
 };
 
@@ -57,6 +65,18 @@ type User = {
 };
 
 /**
+ * Amigo del usuario en sesión. Almacena su webId, su nombre y la url de su imagen (si es que tiene)
+ * @param webId Identificador único del usuario.
+ * @param name nombre del usuario.
+ * @param imageUrl Imagen de perfil usuario.
+ */
+type Friend = {
+  webId : string;
+  name : string;
+  imgUrl? : string;
+};
+
+/**
  * Almacenen de datos de usuario en sesion.
  */
 type UserInSessionProfile = {
@@ -75,6 +95,7 @@ type UserInSessionProfile = {
 type Reviewer = {
   webId: string;
   imageUrl: string;
+  name?: string;
 };
 
 /**
@@ -89,9 +110,10 @@ type Reviewer = {
  */
 type Review = {
   _id: string;
-  reviewer: Reviewer;
-  rating: number;
+  title: string;
   comment: string;
+  rating: number;
+  reviewer: Reviewer;
   createdAt: Date;
 };
 
@@ -247,7 +269,7 @@ interface BaseSelect {
 // For text inputs
 interface BaseInputProps {
   label: string;
-  value?: string | number | undefined;
+  value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
   onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
@@ -257,6 +279,7 @@ interface BaseInputProps {
   placeholder?: string;
   required?: boolean;
   showClearButton?: boolean;
+  disabled?: boolean;
   styles?: React.CSSProperties | string;
 }
 
@@ -292,12 +315,12 @@ type PointListingAsideProps = {
 
 interface SingleFilterProps {
   code: string; // Código de la categoria
-  iconFilename: any;
+  iconFilename?: string;
   iconAlt?: string;
   text: string;
   isActive?: boolean;
   filterObject?: SingleCategory;
-};
+}
 
 type FirebaseConfig = {
   apiKey: string;
@@ -309,6 +332,7 @@ type FirebaseConfig = {
 };
 
 export type {
+  JSONValue,
   AuthContextValue,
   AuthUser,
   BaseTextAreaProps,
@@ -319,6 +343,7 @@ export type {
   BaseMapPopupProps,
   CategoryFilterList,
   ComponentClassName,
+  Friend,
   FirebaseConfig,
   Image,
   Point,
@@ -335,5 +360,4 @@ export type {
   UserInSessionProfile,
 };
 export { Category, Coordinate };
-
 

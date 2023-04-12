@@ -1,6 +1,5 @@
 
 .create-form-title{
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
@@ -9,7 +8,6 @@
 }
 
 .create-form-info{
-    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;

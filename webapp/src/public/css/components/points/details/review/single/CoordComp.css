@@ -1,0 +1,10 @@
+.coord-comp-containter{
+    padding: 7px;
+    border: 1px solid #1C4FD8;
+    border-radius: 10px;    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1C4FD8;
+}

@@ -25,7 +25,7 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |SOLID
 |Organiza de forma descentralizada
 |Dificil de utilizar
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-%5BFront-End%5D[ADR 03]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-v3-%5BFront-End%5D[ADR 18]
 
 |NodeJS
 |Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.
@@ -48,10 +48,10 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |A veces da bastantes problemas
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
 
-|MongoDB y Firebase Cloud Storage
-| Integración dentro del stack MERN, su capacidad de almacenamiento, facilidad para el despliegue
-| Al ser no relacional, es mas fácil duplicar documentos, y al ser NoSQL mas dificultado al principio para usarla
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Cambio-a-base-de-datos-MongoDB[ADR 12]
+|Firebase Cloud Storage
+|Gran velocidad de desarrollo, y no necesidad de servidor
+|Principiantes con ella
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos-para-imagenes[ADR 19]
 
 |Visual Studio Code
 |Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.
@@ -62,8 +62,12 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |Buena documentación y recursos, paralización de test y facil configuración.
 |No tenemos conocimiento con esta libreria
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End[ADR 10]
-
 https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR 11]
+
+|Zustand
+|Ofrece mayor rendimiento por la sencillez de su implementación
+|No sigue un patrón, la estructura es libre para el desarrollador
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Gesti%C3%B3n-de-estados-(Front-End)[ADR 17]
 |===
 
 

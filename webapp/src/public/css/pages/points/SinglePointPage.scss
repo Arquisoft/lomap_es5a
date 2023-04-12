@@ -1,4 +1,35 @@
+@use "../../functions" as funcs;
+
 .single-point-details-container{
-    width: 100%;
+
+    position: relative;
+
+    min-height: funcs.getMaxPageHeight();
+
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.single-point-details__details{
+    padding-top: 40px;
+    width: 912px;
+
+}
+
+.single-point-details__reviews{
+    padding-top: 70px;
+    width: 912px;
+
+}
+
+.single-point-details__addReview{
+    width: 912px;
+}
+
+.single-point-details__reviewListing{
+    width: 912px;
+
 }

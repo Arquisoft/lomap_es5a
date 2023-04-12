@@ -1,0 +1,13 @@
+.point-review-summary-container{
+    padding-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: last baseline;
+    gap: 8px;
+}
+
+.point-review-summary-container-media{
+    font-weight: 550;
+    font-size: 36px;
+
+}

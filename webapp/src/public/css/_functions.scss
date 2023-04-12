@@ -45,3 +45,7 @@
     @warn "No se reconoce el tamaño especificado: `#{$size}`";
     @return null;
 }
+
+@function getMaxPageHeight() {
+    @return calc(100vh - $nav-height);
+}
