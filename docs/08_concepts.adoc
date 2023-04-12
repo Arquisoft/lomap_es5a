@@ -51,7 +51,7 @@ object BaseLocation{
     country : string
 }
 
-Map*---Point
+Map*--Point
 Point--->Review
 User--->Point
 Review--->User
