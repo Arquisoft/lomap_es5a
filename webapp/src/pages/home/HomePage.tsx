@@ -4,6 +4,7 @@ import {
   findAllPoints
 } from "../../api/point.api";
 import {
+  addSharePoint,
   sharePointWithFriends
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
@@ -34,7 +35,7 @@ function HomePage() {
 
   const sharePoint = async () => {
     const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});             
-    await sharePointWithFriends(point._id,session.info.webId as string,[]);
+    await addSharePoint(point, session, []);
   }
 
   const loadUserFriends = async () => {
