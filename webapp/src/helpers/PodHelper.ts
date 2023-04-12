@@ -13,7 +13,7 @@ const PRIVATE_POINTS_PATH = "/private/points/points.json";
 // Fichero que contiene todos los puntos guardados del usuario
 const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
 // Fichero que contiene todos los puntos del usuario
-const SHARED_POINTS_PATH = "/private/sharedpoints/";
+const SHARED_POINTS_PATH = "/private/sharedpoints/sharedPoints.json";
 
 // Información del perfil del usuario
 const PROFILE_PATH = "/profile/card";

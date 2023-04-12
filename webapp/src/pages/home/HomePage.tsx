@@ -34,7 +34,7 @@ function HomePage() {
   };
 
   const sharePoint = async () => {
-    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});             
+    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
     await addSharePoint(point, session, []);
   }
 
@@ -61,9 +61,9 @@ function HomePage() {
 
   useEffect(() => {
     sharePoint();
-    loadUserFriends();
-    loadUserInfo();
-    loadAllPoints();
+    // loadUserFriends();
+    // loadUserInfo();
+    // loadAllPoints();
   }, []);
 
   return (

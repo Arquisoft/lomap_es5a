@@ -105,26 +105,30 @@ const sharePointWithFriends = async (
 const addSharePoint = async (
   point: Point,
   session: any,
-  friends: Friend[],
-  image?: File,
-  callback?: (isSuccess: any) => void
+  friends: Friend[]
 ) => {
-  let isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   const existsFolder = await checkContainerExists(
     session,
     "private/sharedpoints/"
   ).catch(async (err) => {
     await createNewContainer(session, "private/sharedpoints/").then(async () => {
       console.log("creada");
-      let points: Point[] = []; // creamos un array
+      const points: Point[] = []; // creamos un array
       points.push(point); // añadimos el punto
 
       await saveFileInContainer(
-        getUserSharedPointsUrl(session.info.webId),
-        new Blob([JSON.stringify({ poinsts: points })], {
+        getUserSharedPointsUrl(session.info.webId).replace(
+          "private/sharedpoints/sharedPoints.json",
+          "private/sharedpoints"
+        ),
+        new Blob([JSON.stringify({ points: points })], {
           type: "application/json",
         }),
-        { slug: "points.json", contentType: "application/json", fetch: fetch }
+        { 
+          slug: "sharedPoints.json",
+          contentType: "application/json",
+          fetch: fetch
+        }
       );
       console.log("Punto añadido satisfactoriamente con id = " + point._id);
       return false;
@@ -141,7 +145,7 @@ const addSharePoint = async (
 
   try {
 
-    let sharedPointsURI = encodeURI(getUserSharedPointsUrl(session.info.webId));
+    const sharedPointsURI = encodeURI(getUserSharedPointsUrl(session.info.webId));
 
     const originalPoints = await fetch(sharedPointsURI, {
       method: "GET",
@@ -150,7 +154,7 @@ const addSharePoint = async (
       },
     });
 
-    let totalPoints = parseJsonToPoint(await originalPoints.json());
+    const totalPoints = parseJsonToPoint(await originalPoints.json());
 
     // Subir la imagen del punto y obtener la url
     // await uploadImage(image as File, async (downloadUrl) => {
@@ -165,7 +169,7 @@ const addSharePoint = async (
       type: "application/json",
     });
 
-    let fichero = new File([blob], "points.json", { type: blob.type });
+    const fichero = new File([blob], "sharedPoints.json", { type: blob.type });
 
     // actualizamos el POD
     await overwriteFile(
@@ -175,9 +179,7 @@ const addSharePoint = async (
         contentType: fichero.type,
         fetch: fetch,
       }
-    ).then(() => {
-      callback && callback(isSuccess);
-    });
+    );
     console.log("Punto añadido satisfactoriamente con id = " + point._id);
 
   } catch (err) {
