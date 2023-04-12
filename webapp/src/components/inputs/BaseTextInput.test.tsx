@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { render, screen, cleanup } from "@testing-library/react";
 import BaseTextInput from "./BaseTextInput";
 
 describe("BaseTextInput component", () => {

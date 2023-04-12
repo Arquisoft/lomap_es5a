@@ -64,17 +64,16 @@ describe("BaseSelect component", () => {
     expect(options).toHaveLength(props.options.length + 1); // +1 for the default option
 
     options.forEach((option, index) => {
-      if (index === 0) {
-        expect(option.props().value).toEqual("no-opt");
-        expect(option.props().defaultValue).toEqual("no-opt");
-        expect(option.text()).toEqual("Selecciona una opción");
-      } else {
-        const optionIndex = index - 1;
-        const optionProps = props.options[optionIndex];
-
-        expect(option.props().value).toEqual(optionProps.value);
-        expect(option.text()).toEqual(optionProps.content);
-      }
-        });
+      const optionIndex = index - 1;
+      const optionProps = optionIndex >= 0 ? props.options[optionIndex] : null;
+      const value = optionProps ? optionProps.value : "no-opt";
+      const defaultValue = optionProps ? undefined : "no-opt";
+      const text = optionProps ? optionProps.content : "Selecciona una opción";
+  
+      expect(option.props().value).toEqual(value);
+      expect(option.props().defaultValue).toEqual(defaultValue);
+      expect(option.text()).toEqual(text);
     });
+
+  });
 });
