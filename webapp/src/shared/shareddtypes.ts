@@ -95,6 +95,7 @@ type UserInSessionProfile = {
 type Reviewer = {
   webId: string;
   imageUrl: string;
+  name?: string;
 };
 
 /**

@@ -22,16 +22,13 @@ function SinglePointDetailsPage() {
         <section className="single-point-details__reviews">
           <PointReviewSection pointToShow={pointToShow} />
         </section>
-        <p>
-          {session.info.webId} - {pointToShow?.owner?.webId}
-        </p>
         {session.info.webId !== pointToShow?.owner?.webId && (
           <section className="single-point-details__addReview">
             <AddNewPointLink pointToShow={pointToShow} />
           </section>
         )}
         <section className="single-point-details__reviewListing">
-          <ReviewListing pointToShow={pointToShow} />
+          <ReviewListing />
         </section>
       </div>
     </AuthenticatedLayout>

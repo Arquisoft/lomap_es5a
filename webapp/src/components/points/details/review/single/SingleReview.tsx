@@ -1,5 +1,6 @@
 import "../../../../../public/css/components/points/details/review/single/SingleReview.css"
 import { Reviewer } from "../../../../../shared/shareddtypes"
+import NoImageSkeleton from "../../../../skeletons/NoImageSkeleton"
 import BaseStarRating from "../../../../stars/BaseStarRating"
 import {differenceInHours } from 'date-fns'
 
@@ -15,14 +16,18 @@ function SingleReview(review:Props){
 
     const hoursDiff = differenceInHours(review.createdAt,new Date()) * -1;
 
-    const nombre =review.reviewer.webId
+    const nombre =review.reviewer.name
 
     return(
         <div className="single-review-container">
             <div className="single-review-top">
     
                 <div className="single-review-user">
-                    <img src= {review.reviewer.imageUrl} />
+                    {
+                        review.reviewer.imageUrl ? 
+                        <img src= {review.reviewer.imageUrl} />
+                        : <NoImageSkeleton isRound={true}/>
+                    }
                     <div className="single-review-user-data">
                         <h3>{nombre}</h3>
                         <p>Hace {hoursDiff} horas</p>
