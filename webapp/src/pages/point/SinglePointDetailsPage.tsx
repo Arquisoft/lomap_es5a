@@ -19,9 +19,12 @@ function SinglePointDetailsPage() {
         <section className="single-point-details__details">
           <SingleDetail pointToShow={pointToShow} />
         </section>
-        <section className="single-point-details__reviews">
-          <PointReviewSection pointToShow={pointToShow} />
-        </section>
+        {pointToShow?.reviews && pointToShow?.reviews?.length > 0 && (
+          <section className="single-point-details__reviews">
+            <PointReviewSection pointToShow={pointToShow} />
+          </section>
+        )}
+
         {session.info.webId !== pointToShow?.owner?.webId && (
           <section className="single-point-details__addReview">
             <AddNewPointLink pointToShow={pointToShow} />

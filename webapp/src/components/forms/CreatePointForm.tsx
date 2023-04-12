@@ -65,7 +65,7 @@ function CreatePointForm() {
 
   const hasAnyRequiredFieldInvalid = (): boolean => {
     return (
-      requiredFormData.name.length > 0 &&
+      requiredFormData.name.length >= 0 &&
       requiredFormData.category !== NO_OPTION_SELECTED &&
       !isNaN(info.location.coords.lat) &&
       !isNaN(info.location.coords.lng)
@@ -90,7 +90,7 @@ function CreatePointForm() {
 
     setIsUploading(true);
     setIsFinished(false);
-    info._id = crypto.randomUUID();
+    info._id = window.crypto.randomUUID();
     info.location.postalCode = 0;
     info.location.city = "";
     info.location.country = "";
@@ -147,7 +147,7 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              refreshErrors();
+              //refreshErrors();
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{
@@ -283,7 +283,7 @@ function CreatePointForm() {
       {errors.length > 0 &&
         errors.map((err: any) => {
           return (
-            <BaseMessage key={crypto.randomUUID()} type="error" text={err} />
+            <BaseMessage key={window.crypto.randomUUID()} type="error" text={err} />
           );
         })}
     </div>
