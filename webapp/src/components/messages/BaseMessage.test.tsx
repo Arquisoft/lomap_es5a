@@ -15,8 +15,8 @@ describe("BaseMessage component", () => {
     
     const messageContainer = container.querySelector('.base-message-container');
     expect(messageContainer).toBeInTheDocument();
-    expect(messageContainer.classList.contains('base-message__success')).toBe(true);
-    expect(messageContainer.classList.contains('base-message__error')).toBe(false);
+    expect(messageContainer?.classList.contains('base-message__success')).toBe(true);
+    expect(messageContainer?.classList.contains('base-message__error')).toBe(false);
     
     const messageText = getByText(text);
     expect(messageText).toBeInTheDocument();
