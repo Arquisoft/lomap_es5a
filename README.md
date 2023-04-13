@@ -11,11 +11,18 @@ Lomap es una aplicación web descentralizada que permite compartir puntos de int
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
-
-## Funcionalidades
-
-
 ## Instalación
+
+<hr>
+
+### Versiones
+La aplicación se ha desarrollado y probado utilizando las siguientes versiones de librerías:
+
+- React: v18.0.2
+- NodeJS: 18.15.0
+- NPM: 8.19.3
+
+<hr>
 
 1. Acceder a la [siguiente página](https://github.com/Arquisoft/lomap_es5a/releases) y descargar la última versión (latest release) del proyecto.
 
@@ -58,8 +65,6 @@ REACT_APP_NODE_ENV=development
    npm install --legacy-peer-deps
 ```
 
-
-
 ## Guía de inicio rápido
 
 A continuación, te indicamos los pasos necesarios para ejecutar el proyecto y probar las principales funcionalidades desde tu entorno local.
@@ -88,6 +93,19 @@ npm run test:e2e
 ``` shell
 npm run build
 ```
+
+### Añadir un nuevo punto
+Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción del menú de navegación superior denominada "Añadir punto", rellenar el formulario (Algunos campos son obligatorios, ver indicaciones).
+<br><br>
+![imagen](https://user-images.githubusercontent.com/56480356/231787019-34695258-91ee-4d6c-a2f4-269a13e412b6.png)
+<br><br>
+Para añadir el nuevo punto, seguir los siguientes pasos:
+- Escribir un nombre para el punto, que se utilizará como título de este.
+- Arrastrar el marcador dentro del mapa, las coordenadas se autocompletarán en los respectivos campos latitud y longitud.
+- Seleccionar la categoría del punto.
+- Indicar una descripción (Opcional).
+- Seleccionar una imagen pulsando el botón "Subir imagen". Dicha imagen se mostrará en el popup del punto en mapa, entre otras ubicaciones. Esta acción también es opcional.
+<br><br>
 
 ## Colaboradores
 Este proyecto es posible gracias a los siguientes desarrolladores:
