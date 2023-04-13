@@ -96,7 +96,7 @@ Este proyecto es posible gracias a los siguientes desarrolladores:
    <a href="https://github.com/franciscocoya" target="_blank">
       <img src="https://user-images.githubusercontent.com/56480356/231735724-81d30a4a-87d4-4e09-a549-9027a529a7f5.png" style="border-radius: 100px;" width="96px" height="96px"/>
    </a>
-   <a href="https://github.com/UO282337" target="_blank">
+   <a href="https://github.com/miguelglez8" target="_blank">
       <img src="https://user-images.githubusercontent.com/56480356/231735744-9f8faf71-b843-42b5-b36f-bd7792406070.png" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
    </a>
    <a href="https://github.com/UO277414" target="_blank">
