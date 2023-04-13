@@ -27,6 +27,8 @@ cd webapp
 
 3. Copiar el fichero de variables de entorno denominado ```.env.development``` dentro del directorio anterior.
 
+<img src="https://user-images.githubusercontent.com/56480356/231736706-8a3e24bf-52b7-4e74-a63b-227249f65356.png" alt="Estructura directorios aplicación lomap" width="auto" height="300px"/>
+
 > Importante
 >
 > El fichero ```.env.development``` no se encuentra en este repositorio por motivos de seguridad. Contactar con <a href="mailto:uo257239@uniovi.es">el responsable</a>
