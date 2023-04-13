@@ -145,6 +145,7 @@ const addPoint = async (
   callback?: (isSuccess: boolean) => void
 ) => {
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
+  // si no existe la carpeta, la crea y dentro el fichero
   const existsFolder = await checkContainerExists(
     session,
     "private/points/"
@@ -170,6 +171,30 @@ const addPoint = async (
   });
 
   if (!existsFolder) {
+    return;
+  }
+
+  // si existe la carpeta pero no el fichero, crea dentro de la carpeta ese fichero
+  const existsFile = await checkContainerExists(
+    session,
+    "private/points/points.json"
+  ).catch(async () => {
+    const points: Point[] = []; // creamos un array
+    points.push(point); // añadimos el punto
+    await saveFileInContainer(
+      getUserPrivatePointsUrl(session.info.webId).replace(
+        "/private/points/points.json",
+        "/private/points/"
+      ),
+      new Blob([JSON.stringify({ points: points })], {
+        type: "application/json",
+      }),
+      { slug: "points.json", contentType: "application/json", fetch: fetch }
+    );
+    console.log("Punto añadido satisfactoriamente con id = " + point._id);
+  });
+
+  if (!existsFile) {
     return;
   }
 

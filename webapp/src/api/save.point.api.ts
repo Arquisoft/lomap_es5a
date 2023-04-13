@@ -40,6 +40,7 @@ const findAllSavePoints = async (webId: string): Promise<Point[]> => {
  * @returns
  */
 const savePoint = async (point: Point, session: Session) => {
+  // si no existe la carpeta, la crea y dentro el fichero
   const existsFolder = await checkContainerExists(
     session,
     "private/savedPoints/"
@@ -71,6 +72,30 @@ const savePoint = async (point: Point, session: Session) => {
   });
 
   if (!existsFolder) {
+    return;
+  }
+
+  // si existe la carpeta pero no el fichero, crea dentro de la carpeta ese fichero
+  const existsFile = await checkContainerExists(
+    session,
+    "private/savedPoints/savedPoints.json"
+  ).catch(async () => {
+    const points: Point[] = []; // creamos un array
+    points.push(point); // añadimos el punto
+    await saveFileInContainer(
+      getUserPrivateSavePointsUrl(session.info.webId).replace(
+        "/private/savedPoints/savedPoints.json",
+        "/private/savedPoints/"
+      ),
+      new Blob([JSON.stringify({ points: points })], {
+        type: "application/json",
+      }),
+      { slug: "savedPoints.json", contentType: "application/json", fetch: fetch }
+    );
+    console.log("Punto añadido a favoritos satisfactoriamente con id = " + point._id);
+  });
+
+  if (!existsFile) {
     return;
   }
 

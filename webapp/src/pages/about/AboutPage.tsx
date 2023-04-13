@@ -1,24 +1,23 @@
-import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import ComercialInfo from "../../components/about/ComercialInfo";
 import  PageInfo  from "../../components/about/PageInfo";
 
 import "../../public/css/pages/about/AboutPage.css";
 
-function AboutPage() {
-  return (
-    <div>    
+function AboutPage(): JSX.Element {
+  return (   
       <AuthenticatedLayout
         styles={{
           padding: "0 50px",
         }}
       >
-        <div className="about-title">
+        <h1 className="about-title">
           Acerca de
-        </div>
+        </h1>
 
-        <div className="about-slogan">
+        <h2 className="about-slogan">
           Descubre nuevos lugares, comparte y más
-        </div>
+        </h2>
         <div className="about-comercialPosition">
           <ComercialInfo />
         </div>
@@ -26,7 +25,6 @@ function AboutPage() {
           <PageInfo />
         </div>
       </AuthenticatedLayout>
-    </div>
   );
 }
 
