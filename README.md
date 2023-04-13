@@ -92,18 +92,18 @@ Este proyecto es posible gracias a los siguientes desarrolladores:
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; padding: 20px 0;">
    <a href="https://github.com/franciscocoya" target="_blank">
-      <img src="https://avatars.githubusercontent.com/u/56480356?v=4" style="border-radius: 100px;" width="96px" height="96px"/>
+      <img src="https://user-images.githubusercontent.com/56480356/231735724-81d30a4a-87d4-4e09-a549-9027a529a7f5.png" style="border-radius: 100px;" width="96px" height="96px"/>
    </a>
    <a href="https://github.com/UO282337" target="_blank">
-      <img src="https://avatars.githubusercontent.com/u/113930788?v=4" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
+      <img src="https://user-images.githubusercontent.com/56480356/231735744-9f8faf71-b843-42b5-b36f-bd7792406070.png" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
    </a>
    <a href="https://github.com/UO277414" target="_blank">
-      <img src="https://avatars.githubusercontent.com/u/91190179?v=4" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
+      <img src="https://user-images.githubusercontent.com/56480356/231735775-76ef4b6c-72e3-42c5-92b6-d56d566e7deb.png" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
    </a>
    <a href="https://github.com/RichardPix12" target="_blank">
-      <img src="https://avatars.githubusercontent.com/u/79644476?v=4" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
+      <img src="https://user-images.githubusercontent.com/56480356/231735801-1d65a1da-723d-4771-96fb-0d65f431d8db.png" style="border-radius: 100px; filter: grayscale(100);" width="96px" height="96px"/>
    </a>
    <a href="https://github.com/UO271572" target="_blank">
-      <img src="https://avatars.githubusercontent.com/u/91533653?v=4" style="border-radius: 100px" width="96px" height="96px"/>
+      <img src="https://user-images.githubusercontent.com/56480356/231734815-6411d057-8fd7-41ff-8419-b75a1bd741ad.png" style="border-radius: 100px" width="96px" height="96px"/>
    </a>
 </div>
