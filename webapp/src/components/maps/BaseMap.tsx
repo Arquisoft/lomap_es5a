@@ -1,14 +1,39 @@
 import { icon, LatLngExpression } from "leaflet";
 import React from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 import BaseMapPopup from "./popups/BaseMapPopup";
 
 import "leaflet/dist/leaflet.css";
 import "../../public/css/components/maps/BaseMap.scss";
 import { Point, PointOwner } from "../../shared/shareddtypes";
-import { useAllPointsStore } from "../../store/point.store";
+import { useAllPointsStore, usePointDetailsStore } from "../../store/point.store";
 import BaseButton from "../buttons/BaseButton";
+import { useNavigate } from "react-router";
+import { CREATE_POINT_PATH } from "../../routes";
+
+
+function MapRedirect() {
+  const {setPosition} = usePointDetailsStore();
+  const navigate = useNavigate();
+  
+  useMapEvents({
+    click(e) {
+      const confirm = window.confirm("¿Quieres crear un punto aquí?");
+      
+      if (confirm) {
+        setPosition(e.latlng)
+        navigate(CREATE_POINT_PATH);
+      }
+    },
+
+    mousemove(e) {
+      //console.log(e.sourceTarget);
+    }
+  });
+  
+  return null;
+}
 
 type Props = {
   position?: LatLngExpression;
@@ -16,10 +41,12 @@ type Props = {
   height?: string;
   styles?: React.CSSProperties;
   points: any[];
+  isClickableToAddNewPoint?: boolean;
 };
 
-function BaseMap({ position, styles, points }: Props) {
+function BaseMap({ position, styles, points, isClickableToAddNewPoint }: Props) {
   const { setIsFiltering, isFiltering, filteredPoints, getAllPoints} = useAllPointsStore();
+  
   // Ubicación por defecto: Bruselas
   const defaultMapCenter: LatLngExpression = [
     50.85119149087381, 4.3544687591272835,
@@ -44,11 +71,16 @@ function BaseMap({ position, styles, points }: Props) {
       {/* <Suspense fallback={<BaseMapSkeleton />}> */}
       <MapContainer
         id="map"
+        className={isClickableToAddNewPoint ? "map-clickable" : ""}
         center={position || defaultMapCenter}
         zoom={13}
         scrollWheelZoom={false}
         style={styles}
       >
+        {
+          isClickableToAddNewPoint && <MapRedirect />
+        }
+
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?"
@@ -75,7 +107,7 @@ function BaseMap({ position, styles, points }: Props) {
                       image={point?.image?.url as string}
                       location={point.location}
                       category={point.category}
-                      owner={point.owner as PointOwner}
+                      owner={point.owner}
                       point={point}
                     />
                   </Popup>
