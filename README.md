@@ -106,6 +106,11 @@ Para añadir el nuevo punto, seguir los siguientes pasos:
 - Indicar una descripción (Opcional).
 - Seleccionar una imagen pulsando el botón "Subir imagen". Dicha imagen se mostrará en el popup del punto en mapa, entre otras ubicaciones. Esta acción también es opcional.
 <br><br>
+<a href="https://youtu.be/bU9S6Q43PTw" target="_blank">
+   <img src="https://user-images.githubusercontent.com/56480356/231818798-5a50c952-131a-4c5f-a749-fadf2821f924.png" alt="thumbnail"
+   width="80%" height="auto"/>
+</a>
+<br><br />
 
 ## Colaboradores
 Este proyecto es posible gracias a los siguientes desarrolladores:
