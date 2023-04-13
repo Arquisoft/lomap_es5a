@@ -14,7 +14,7 @@ function BaseAvatar({ img, imgAlt, onClick }: Props) {
     {
         img ? 
         (<img className="base-avatar" src={img} alt={imgAlt} title={imgAlt} onClick={onClick} />)
-        : <NoImageSkeleton isRound={true}/>
+        : <NoImageSkeleton isRound={true} onClick={onClick}/>
     }
       
     </>
