@@ -66,6 +66,7 @@ function HomePage() {
           <BaseFilterBar />
           <div className="home-map-wrapper">
             <BaseMap
+              isClickableToAddNewPoint={true}
               data-testid="home-map"
               position={[43.36297198377049, -5.851084856954243]}
               points={isFiltering ? filteredPoints : points}

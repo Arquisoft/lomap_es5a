@@ -5,8 +5,8 @@ interface PointDetailsStore {
   info: Point;
   pointToShow: Point; // Point to show in the details page
   imageToUpload?: File;
-  isUploading: boolean; // Flag to indicate if the process of uploading the point is in progress
-  isFinished: boolean; // Flag to indicate if the process of uploading the point is finished
+  isUploading: boolean; // Flag que indica si el proceso de subida del punto está en curso
+  isFinished: boolean; // Flag que indica si el proceso de subida del punto ha finalizado
   setCurrentPoint: (point: Point) => void;
   setCurrentPointProperty: (property: string, value: unknown) => void;
   setPointAddress: (address: string) => void;
@@ -158,6 +158,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 
   resetPointInfo: () => set({ info: pointInitilization }),
+
 }));
 
 /**
