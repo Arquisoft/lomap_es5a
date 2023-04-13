@@ -32,19 +32,6 @@ Mapping of Building Blocks to Infrastructure::
 :imagesdir: images
 image::DIAGRAMA_DESPLIEGUE_extended_v2_LOMAP.svg[]
 
-Motivation::
-
-El desplieque de la aplicación está orientado para ser integrado en un entorno de integración continua (CI/CD), con el propósito de tener en producción el producto desde el primer día. Para ello, se ha decidido, en base al entorno de pruebas proporcionado, utilizar los contenedores de Docker para empaquetar los respectivos lados de la aplicación (Cliente y servidor). Los contenedores, se albergan en una máquina virtual de Azure.
-
-Quality and/or Performance Features::
-
-El uso de docker para crear un entorno de ejecución virtual, hace que el proceso de despliegue sea más ligero y por ende, se obtenga un mayor rendimiento. Se consigue gracias a trabajar con una imagen de NodeJS (Oficial), que garantiza un entorno estable y listo para ejecutar.
-
-El desarrollo de la webapp utilizando React hace que el tiempo de carga de las páginas sea más rápido (Sin tener en cuenta otros factores, como peticiones a APIs externas como Leaflet).
-
-El almacenamiento de las imágenes de la aplicación (Puntos, avatares, etc.) se realiza en Firebase, que es un servicio de almacenamiento de recursos multimedia, que ofrece un rendimiento y escalabilidad muy alto.
-
-Por último, la integración de la API de Leaflet facilita el desarrollo del producto, ya que es un proyecto mantenido con frecuencia y de código abierto.
 
 Mapping of Building Blocks to Infrastructure::
 
