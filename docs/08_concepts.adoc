@@ -86,7 +86,7 @@ Usaremos react con Typescript. React es un framework que facilita mucho la inter
 La seguridad de la aplicación es una parte muy importante.
 Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.
 
-== Privacity
+=== Privacity
 
 El sistema debe mantendrá la privacidad del usuario. Atendiendo a las características de los principios SOLID, toda la información del usuario será almacenada el su propio POD, por lo que no tendrá ninguna vulnerabilidad por tener datos almacenados en una base de datos.
 
