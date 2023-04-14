@@ -446,8 +446,79 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
 <li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
+<li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
+<ul class="sectlevel2">
+<li><a href="#_technical_constraints">2.1. Technical constraints</a></li>
+<li><a href="#_organizational_constraints">2.2. Organizational Constraints</a></li>
+<li><a href="#_conventions">2.3. Conventions</a></li>
+</ul>
+</li>
+<li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
+<ul class="sectlevel2">
+<li><a href="#_business_context">3.1. Business Context</a></li>
+<li><a href="#_technical_context">3.2. Technical Context</a></li>
+</ul>
+</li>
+<li><a href="#section-solution-strategy">4. Solution Strategy</a>
+<ul class="sectlevel2">
+<li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
+<li><a href="#_decisions_on_how_to_achieve_quality_goals">4.2. Decisions on how to achieve quality goals</a></li>
+<li><a href="#_relevant_organizational_decisions">4.3. Relevant organizational decisions</a></li>
+</ul>
+</li>
+<li><a href="#section-building-block-view">5. Building Block View</a>
+<ul class="sectlevel2">
+<li><a href="#_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</a></li>
+<li><a href="#_level_1">5.2. Level 1</a></li>
+<li><a href="#_level_2">5.3. Level 2</a></li>
+</ul>
+</li>
+<li><a href="#section-runtime-view">6. Runtime View</a>
+<ul class="sectlevel2">
+<li><a href="#_runtime_level_1">6.1. Runtime Level 1</a></li>
+<li><a href="#_runtime_level_2">6.2. Runtime Level 2</a></li>
+<li><a href="#_runtime_level_3">6.3. Runtime Level 3</a></li>
+</ul>
+</li>
+<li><a href="#section-deployment-view">7. Deployment View</a>
+<ul class="sectlevel2">
+<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+</ul>
+</li>
+<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_domain_model">8.1. Domain model</a></li>
+<li><a href="#_usability">8.2. Usability</a></li>
+<li><a href="#_security">8.3. Security</a></li>
+</ul>
+</li>
+<li><a href="#_privacity">9. Privacity</a>
+<ul class="sectlevel2">
+<li><a href="#_testability">9.1. Testability</a></li>
+</ul>
+</li>
+<li><a href="#section-design-decisions">10. Design decisions</a>
+<ul class="sectlevel2">
+<li><a href="#_accepted_decisions">10.1. Accepted decisions</a></li>
+</ul>
+</li>
+<li><a href="#section-quality-scenarios">11. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_quality_tree">11.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">11.2. Quality Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">12. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_risks">12.1. Risks</a></li>
+<li><a href="#_technical_debts">12.2. Technical Debts</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">13. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -596,18 +667,25 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se implementarán pruebas unitarias en la aplicación para asegurar el correcto funcionamiento del sistema.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_stakeholders">1.3. Stakeholders</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=============================================================================================================================================================================================================================================================================================================================================================================</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p>
-<p class="tableblock">=== Stakeholders</p>
-<p class="tableblock">[options="header"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===============================================================================================================================================================================================================================================================================</p></td>
+<th class="tableblock halign-left valign-top">Rol</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">Expectativas</th>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rol</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expectativas</p></td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cliente</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Empresa que nos contrata, ficticia (HappySw), representada por los profesores de la asignatura</p></td>
@@ -628,700 +706,706 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Organismo público que contrata al Cliente</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mismas expectativas que nuestro Cliente (HappySw)</p></td>
 </tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_technical_constraints">2.1. Technical constraints</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===============================================================================================================================================================================================================================================================================</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-architecture-constraints"></a>
-== Architecture Constraints</p>
-<p class="tableblock">=== Technical constraints</p>
-<p class="tableblock">[options="header", cols="1,2"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restricción</p></td>
+<th class="tableblock halign-left valign-top">Restricción</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Haremos uso de las especificaciones SOLID de forma que la información de los usuarios no esté centralizada y el uso de la aplicación sea más seguro. Para nuestro caso se ha decidido utilizar el proovedor INRUPT.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">El lenguaje de programación que se empleará para realizar la aplicación será TypeScript.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">React JS</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React JS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se empleará React JS para realizar la parte de front end de la aplicación. ReactJS ofrece gestión de estados, hooks (con posibilidad de personalización), pero obtamos por el uso de la librería Zustand.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Librerías externas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para facilitar el trabajo y poder llegar a los plazos de entrega, se tiene el riesgo de utilizar librerías que realicen ciertas funcionalidades con el riesgo que conlleva. En principio el uso de estas librerias facilitarán el desarrollo del proyecto pero si algun modulo de dependencias falla podria ocasionar daños en nuestra aplicación.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node JS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para el back end se utilizará Node JS.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Con el objetivo de que la aplicación pueda mostrar imágenes de las ubicaciones, se utilizará el servicio Firebase Cloud Storage para almacenar el contenido multimedia.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub será el controlador de versiones que emplearemos durante el proceso de desarrollo.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jest</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Con el fin de poder probar la funcionalidad de la aplicación se utilizará la librería de pruebas Jest.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React Leaflet</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para poder implementar la funcionalidad del mapa se hará uso de la librería React Leaflet.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p>
-<p class="tableblock">=== Organizational Constraints</p>
-<p class="tableblock">[options="header" , cols="1,2"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_organizational_constraints">2.2. Organizational Constraints</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restricción</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<th class="tableblock halign-left valign-top">Restricción</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equipo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El proyecto se llevará a cabo mediante un equipo de 5 personas. Los integrantes son Ricardo Marqués Garay, Miguel González Navarro, Francisco Coya Abajo, Marcos Valín Fernández y Sergio Buenaga Gutiérrez</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reuniones</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">El equipo deberá reunirse periodicamente de forma obligatoria.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fechas límites de las entregas</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Las distintas versiones del proyecto deberán entregarse antes de la fecha límite para cada una de ellas. Estas fechas las dictaminarán los profesores de la asignatura.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Organización del proyecto</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Organización del proyecto</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar un orden establecido, se ha optado por realizar una estructura guiada por paquetes separados por su distinta funcionalidad.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Experiencia</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La Experiencia de los miembros del equipo es variada y por ello el ritmo de desarrollo sera flexible.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo de trabajo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Las horas de trabajo que se dediquen al desarrollo, documentación o investigación seran cruciales para menantener el proyecto al orden del día.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Distribucion de tareas</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tras las reuniones los integrantes del proyecto se repartirán las tareas a realizar. Principalmente se destaca el equipo de backend y el equipo de frontend.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p>
-<p class="tableblock">=== Conventions</p>
-<p class="tableblock">[options="header" , cols="1,2"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_conventions">2.3. Conventions</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restricción</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<th class="tableblock halign-left valign-top">Restricción</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Para llevar a cabo la documentación del proyecto se utilizará el modelo Arc42.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idioma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La documentación estará redactada en español.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">W3C standars</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se utilizara las convenciones de W3C para la usabilidad de la aplicación.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">================================================================================================================================================================================================================</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-system-scope-and-context"></a>
-== System Scope and Context</p>
-<p class="tableblock">=== Business Context</p>
-<p class="tableblock">:imagesdir: images
-image::Contexto_de_negocio.png[]</p>
-<p class="tableblock">=== Technical Context</p>
-<p class="tableblock">:imagesdir: images
-image::Contexto_tecnico.png[]</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-solution-strategy"></a>
-== Solution Strategy</p>
-<p class="tableblock">=== Technology decisions
-[cols=2*,options="header"]</p></td>
 </tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-system-scope-and-context">3. System Scope and Context</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_business_context">3.1. Business Context</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Contexto_de_negocio.png" alt="Contexto de negocio">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_technical_context">3.2. Technical Context</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Contexto_tecnico.png" alt="Contexto tecnico">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-solution-strategy">4. Solution Strategy</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_technology_decisions">4.1. Technology decisions</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tecnología</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<th class="tableblock halign-left valign-top">Tecnología</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Git</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sistema de control de versiones de software.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio basado en la nube que aloja al sistema de control de versiones antes mencionado, Git.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Especificación que permite almacenar datos de forma segura en almacenes descentralizados de datos denominados Pods.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Entorno de ejecución para JavaScript empleado para desarrollar aplicaciones escalables del lado del servidor.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework para la construcción de aplicaciones web en Node.js.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje de programación construido a un nivel superior de JavaScript que ofrece una mayor seguridad, escalabilidad y limpieza en el código.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Biblioteca de JavaScript que nos permite creear interfaces de usuario interactivas de manera sencilla. Se basa en componentes.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Leaflet</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Leaflet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Biblioteca de mapas, open-source y basada en OpenStreetMaps.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker es una herramienta que facilita la creación, implementación y ejecución de aplicaciones mediante el uso de contenedores. Los contenedores permiten empaquetar una aplicación con todas las partes que necesita, como bibliotecas y otras dependencias, y desplegarla como un solo paquete.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio empleado para almacenar contenido generado por los usuarios, por ejemplo, imágenes y vídeos.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jest</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jest</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework de pruebas para JavaScript.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">=== Decisions on how to achieve quality goals
-- Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.
-- Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
-- Seguridad: nos preocuparemos de implementar todas las medidas que consideremos oportunas para securizar nuestra aplicación. Además, el mantener la información personal de los usuarios descentralizada constituye un gran paso en el proceso.
-- Testabilidad: es un objetivo de calidad importante para garantizar que el software sea confiable, robusto y libre de errores. Es importante implementar prácticas de desarrollo de software adecuadas, como la separación de preocupaciones y el diseño modular.</p>
-<p class="tableblock">=== Relevant organizational decisions
-En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:</p>
-<p class="tableblock">- Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.
-- La comunicación entre los miembros del equipo se produce, principalmente, a través de un grupo de WhatsApp, pero cualquier problema que surja también se refleja como una issue en Github.
-- Empleamos un tablero Kanban dentro de github para tener bien organizadas y de forma muy clara las tareas que tiene que realizar/está realizando cada miembro del equipo.</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-building-block-view"></a></p>
-<p class="tableblock">== Building Block View</p>
-<p class="tableblock">=== Level 0: Whitebox of the Overall System</p>
-<p class="tableblock">[plantuml, "whitebox-overall-system", png]
-----
-actor Usuario
-Component LoMap
-Component pod as "inrupt.net/solidcommunity.net"</p>
-<p class="tableblock">Usuario -right&#8594; LoMap: interactúa
-Usuario -right&#8594; pod: tiene
-LoMap &#8592;right&#8594; pod: obtiene/almacena datos Usuario
-----</p>
-<p class="tableblock">Motivation::
-LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_decisions_on_how_to_achieve_quality_goals">4.2. Decisions on how to achieve quality goals</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.</p>
+</li>
+<li>
+<p>Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.</p>
+</li>
+<li>
+<p>Seguridad: nos preocuparemos de implementar todas las medidas que consideremos oportunas para securizar nuestra aplicación. Además, el mantener la información personal de los usuarios descentralizada constituye un gran paso en el proceso.</p>
+</li>
+<li>
+<p>Testabilidad: es un objetivo de calidad importante para garantizar que el software sea confiable, robusto y libre de errores. Es importante implementar prácticas de desarrollo de software adecuadas, como la separación de preocupaciones y el diseño modular.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_relevant_organizational_decisions">4.3. Relevant organizational decisions</h3>
+<div class="paragraph">
+<p>En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las reuniones extraordinarias, las hacemos a través de Discord, por estar todos los miembros del equipo familiarizados con dicha herramienta.</p>
+</li>
+<li>
+<p>La comunicación entre los miembros del equipo se produce, principalmente, a través de un grupo de WhatsApp, pero cualquier problema que surja también se refleja como una issue en Github.</p>
+</li>
+<li>
+<p>Empleamos un tablero Kanban dentro de github para tener bien organizadas y de forma muy clara las tareas que tiene que realizar/está realizando cada miembro del equipo.</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-building-block-view">5. Building Block View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="682" height="138">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>LoMap es la estructura principal de un sistema en el que el usuario interactúa con su mapa, personalizándolo con los lugares que le interesan.
 Además, el usuario puede añadir a sus amigos a la aplicación y compartir con ellos sus marcadores.
 La información personal del usuario se almacena de forma descentralizada en PODs.</p>
-<p class="tableblock">Contained Building Blocks::</p>
-<p class="tableblock">[cols="1,2" options="header"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-</tr>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Nombre</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Responsabildad</strong></p></td>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usuario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Interactúa con la aplicación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> Interactúa con la aplicación.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LoMap</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">inrupt.net/solidcommunity.net</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">=== Level 1</p>
-<p class="tableblock">[plantuml, "level-1", png]
-----
-actor Usuario
-Component LoMap {
-  Component web as "WebApp"
-  Component api as "RestAPI"
-}
-Component pod as "inrupt.net/solidcommunity.net"</p>
-<p class="tableblock">Usuario -right&#8594; web: interactua
-Usuario -right&#8594; pod: tiene</p>
-<p class="tableblock">web &#8592;down&#8594; pod: obtiene/almacena datos
-----</p>
-<p class="tableblock">Motivation::
-Muestra como funcionan los distintos componentes de LoMap, a grandes rasgos.</p>
-<p class="tableblock">Contained Building Blocks::</p>
-<p class="tableblock">[cols="1,2" options="header"]</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_level_1">5.2. Level 1</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/level-1.png" alt="level 1" width="349" height="289">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Muestra como funcionan los distintos componentes de LoMap, a grandes rasgos.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Nombre</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Responsabildad</strong></p></td>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">En principio, no se va a emplear.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">=== Level 2
-[plantuml, "level-2", png]</p>
-<p class="tableblock">----
-actor user as "Usuario"</p>
-<p class="tableblock">Component LoMap{
-  Component web as "WebApp" {
-    Component lo as "Log in"
-    Component ini as "Inicio"
-    Component ed as "Editar punto"
-    Component det as "Detalle punto"
-    Component am as "Amigos"
-    Component gua as "Puntos guardados"
-    Component mi as "Mis puntos"
-  }
-  Component api as "RestApi "
-}</p>
-<p class="tableblock">Database pod as "Solid pod"</p>
-<p class="tableblock">web &#8592;left- user: interactua
-user -up&#8594; pod: tiene
-web -down&#8594; pod: obtiene/almacena datos
-----</p>
-<p class="tableblock">Motivation::
-Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.</p>
-<p class="tableblock">Contained Building Blocks::</p>
-<p class="tableblock">[cols="1,2" options="header"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_level_2">5.3. Level 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/level-2.png" alt="level 2" width="871" height="479">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Muestra como funcionan los distintos componentes de LoMap, con mas detalle que el nivel anterior. Se profundiza en los distintos componentes de la aplicación que forman parte de WebApp.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Nombre</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Responsabildad</strong></p></td>
+<th class="tableblock halign-left valign-top"><strong>Nombre</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsabildad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Inicio</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Editar punto</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario en sesión editar sus puntos.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Detalle punto</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detalle punto</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Amigos</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Puntos guardados</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que ha decidido guardar.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mis puntos</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que él/ella ha creado.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-runtime-view"></a>
-== Runtime View</p>
-<p class="tableblock">=== Runtime Level 1</p>
-<p class="tableblock">==== Inicio de sesión</p>
-<p class="tableblock">El inicio de sesión de la aplicación se gestiona a través del proveedor de SOLID Inrupt, que se encarga de almacenar las credenciales e información privada del usuario.
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-runtime-view">6. Runtime View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_runtime_level_1">6.1. Runtime Level 1</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión">6.1.1. Inicio de sesión</h4>
+<div class="paragraph">
+<p>El inicio de sesión de la aplicación se gestiona a través del proveedor de SOLID Inrupt, que se encarga de almacenar las credenciales e información privada del usuario.
 El usuario se comunica con el sistema Lomap y accede a su POD personal. Al introducir el webId en el formulario, se redirecciona al proveedor Inrupt para su autenticación y, si los datos son verídicos, se redirecciona a lomap, mostrando en una vista de la aplicación el mapa con los puntos de interés añadidos (y que el usuario en sesión tenga permiso para ver).</p>
-<p class="tableblock">[plantuml, "runtime-6-1-1", svg]</p>
-<p class="tableblock">----
-actor Usuario
-participant lomap as "Sistema Lomap"
-database Pod as "Pod personal"
-Usuario &#8594; lomap: Introducir credenciales
-lomap &#8594; Pod: Recuperar datos
-Pod -&#8594; lomap: Redirección a vista
-lomap -&#8594; Usuario: Interacción visual
-----</p>
-<p class="tableblock">==== Listado de puntos de interés de un usuario
-Los puntos de interés se almacenan en el pod personal de cada usuario. El sistema lomap se encarga de recuperar los datos del pod personal del usuario y mostrarlos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés.</p>
-<p class="tableblock">[plantuml, "runtime-6-1-2", svg]
-----
-actor Usuario
-participant lomap as "Sistema Lomap"
-database Pod as "Pod personal"
-activate lomap
-Usuario &#8594; lomap: Acceder a vista
-lomap &#8594; Pod: getPoints()
-Pod -&#8594; lomap: Redirección a vista
-lomap -&#8594; Usuario: Interacción visual
-deactivate lomap
-----</p>
-<p class="tableblock">==== Añadir un punto de interés al mapa
-Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con el pod personal del usuario y actualizar la interfaz de usuario.</p>
-<p class="tableblock">[plantuml, "runtime-6-1-3", svg]
-----
-actor Usuario
-participant lomap as "Sistema Lomap"
-database pod as "Pod personal"</p>
-<p class="tableblock">Usuario &#8594; lomap: redirectToPointViewPage()
-activate lomap
-lomap &#8594; lomap: validarDatos()
-lomap &#8594; pod: storeNewPoint()
-pod -&#8594; lomap: success
-lomap &#8594; lomap: Actualizar componente mapa
-lomap -&#8594; Usuario: Mostrar vista actualizada</p>
-<p class="tableblock">deactivate lomap
-----</p>
-<p class="tableblock">=== Runtime Level 2</p>
-<p class="tableblock">==== Inicio de sesión
-Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODs recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario.</p>
-<p class="tableblock">[plantuml,"runtime-6-2-1",svg]
-----
-actor Usuario
-participant personal as "Vista Home"
-participant form as "Formulario login"
-participant Api as "API cliente"
-database Pod as "Pod personal"
-Usuario &#8594; form: Rellenar formulario</p>
-<p class="tableblock">activate Api
-form &#8594; Api: iniciar sesión
-Api &#8594; Api: Validar webId
-Api &#8594; Pod: iniciar sesión
-Pod &#8594; Pod: Comprobar webId
-Pod -&#8594; Api: Enviar datos Pod
-Api -&#8594; form: Enviar datos pod
-deactivate Api</p>
-<p class="tableblock">form -&#8594; personal: Redireccionar a página de inicio
-----</p>
-<p class="tableblock">==== Listado de puntos de un usuario
-El listado de puntos de interés de un usuario se obtiene del pod del usuario. Sin embargo, el sistema lomap se encarga de gestionar la petición y mostrar los datos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés. El fichero JSON devuelto por el POD tiene que ser procesado para mostrar los datos en la vista.</p>
-<p class="tableblock">[plantuml,"runtime-6-2-2", svg]
-----
-actor Usuario
-participant inicio as "Vista Home"
-participant Api as "Api cliente"
-participant parser as "Parser"
-database Pod as "Pod personal"</p>
-<p class="tableblock">Usuario &#8594; inicio: Acceder a vista</p>
-<p class="tableblock">activate Api
-inicio &#8594; Api: findAllPointsFromCurrentUser()
-Api &#8594; Pod: Recuperar datos
-Pod -&#8594; Api: Enviar datos en .json
-Api &#8594; parser: Parsear datos
-parser -&#8594; Api: Enviar datos (Tipo Point)
-Api -&#8594; inicio: Mostrar datos
-deactivate Api</p>
-<p class="tableblock">----</p>
-<p class="tableblock">==== Añadir un punto de interés en el mapa
-Para añadir un punto de interés en el mapa se contemplan varias opciones. El siguiente diagrama representa el escenario de añadir un punto de interés desde la vista privada del usuario (Dashboard).</p>
-<p class="tableblock">[plantuml,"runtime-6-2-3", svg]
-----
-actor Usuario
-participant personal as "Vista privada"
-participant home as "Vista inicio"
-participant Api as "Api Cliente"
-participant parser as "Parser"
-box "Servicio de Inrupt" #wheat
-database pod as "Pod personal"
-end box
-database firebase as "Firebase Storage"</p>
-<p class="tableblock">Usuario &#8594; personal:
-activate Api
-personal &#8594; Api: crear punto interés
-Api &#8594; Api: Validar datos</p>
-<p class="tableblock">activate parser
-Api &#8594; parser: Parsear datos
-parser -&#8594; Api: Enviar datos (Tipo Point)
-deactivate parser</p>
-<p class="tableblock">Api &#8594; firebase: <a href="#async">[async]</a>Almacenar imagen del punto
-firebase -&#8594; Api: Respuesta
-Api &#8594; pod: Almacenar datos
-pod -&#8594; Api: Enviar datos
-Api -&#8594; home: Enviar datos
-deactivate Api</p>
-<p class="tableblock">activate home
-home &#8594; home: actualizar datos del mapa
-home -&#8594; Usuario: Mostrar mensaje
-deactivate home
-----</p>
-<p class="tableblock">=== Runtime Level 3</p>
-<p class="tableblock">==== Inicio de sesión
-[plantuml,"runtime-6-3-1", svg]
-----
-actor Usuario
-participant personal as "Vista Home"
-participant form as "Formulario login"
-participant Api as "API Cliente"</p>
-<p class="tableblock">box "Servicio de Inrupt" #wheat
-database Pod as "Pod personal"
-end box</p>
-<p class="tableblock">Usuario &#8594; form: Introducir webId
-form &#8594; Api: iniciar sesión</p>
-<p class="tableblock">activate Api
-Api &#8594; Api: Validar webId
-Api &#8594; Pod: iniciar sesión
-deactivate Api</p>
-<p class="tableblock">activate Pod
-Pod &#8594; Pod: Comprobar webId
-Pod -&#8594; Api: Enviar datos Pod
-deactivate Pod</p>
-<p class="tableblock">activate Api
-Api -&#8594; personal: Enviar datos pod
-deactivate Api</p>
-<p class="tableblock">----</p>
-<p class="tableblock">==== Listado de puntos de interés de un usuario
-[plantuml,"runtime-6-3-2", svg]
-----
-actor Usuario
-participant personal as "Vista Personal"
-participant api as "API Cliente"
-participant servicio as "Servicio"
-participant parser as "JSON Parser"</p>
-<p class="tableblock">box "Servicio de Inrupt" #wheat
-database pod as "Pod personal"
-end box</p>
-<p class="tableblock">Usuario &#8594; personal: Acceder a vista
-activate api
-personal &#8594; api: findAllPointsFromCurrentUser()
-api &#8594; api: Comprobar usuario en sesión
-api &#8594; servicio: Recuperar datos</p>
-<p class="tableblock">activate servicio
-activate pod
-servicio &#8594; pod: obtener JSON de puntos
-pod -&#8594; servicio: Enviar datos en .json
-deactivate pod</p>
-<p class="tableblock">activate parser
-servicio &#8594; parser: Parsear datos
-parser -&#8594; servicio: Enviar datos (Tipo Point)
-note right
-Los datos se parsean de JSON a un objeto Point
-end note
-deactivate parser</p>
-<p class="tableblock">servicio -&#8594; api: Enviar array de puntos (Tipo Point)</p>
-<p class="tableblock">deactivate servicio</p>
-<p class="tableblock">api -&#8594; personal: Mostrar puntos en la vista
-deactivate api</p>
-<p class="tableblock">personal -&#8594; Usuario: actualizar vista</p>
-<p class="tableblock">----</p>
-<p class="tableblock">==== Añadir un punto de interés en el mapa
-[plantuml,"runtime-6-3-3", svg]
-----
-actor Usuario
-participant Personal as ":Vista Home"
-participant PointView as ":Vista añadir punto de interés"
-participant Home as ":Vista Inicio"</p>
-<p class="tableblock">box "api" #Moccasin
-participant Api as ":Api Cliente"
-participant Service as ":PointService"
-end box</p>
-<p class="tableblock">participant parser as ":JSON Parser"
-participant util as ":JSON Utils"</p>
-<p class="tableblock">box "Database" #LightBlue
-database firebase as ":Firebase Storage"
-end box</p>
-<p class="tableblock">box "Proveedor POD" #PapayaWhip
-database pod as ":POD personal"
-end box</p>
-<p class="tableblock">Usuario &#8594; Personal:
-Personal &#8594; PointView: redirectToPointView()
-note left
-Redireccionar a una vista exclusiva
-para añadir el nuevo punto de interés
-end note
-activate PointView
-PointView &#8594; Api: handleOnClick()
-activate Personal
-Api &#8594; Api: Validar datos
-activate Api
-Api -&#8594; Personal</p>
-<p class="tableblock">Api &#8594; Service: addNewPoint()
-activate Service
-Service &#8594; Service: checkParams()
-Service -&#8594; Api: sendParamErrors()
-note left: Comprobación parámetros punto</p>
-<p class="tableblock">activate firebase</p>
-<p class="tableblock">Service &#8594; firebase: <a href="#async">[async]</a> storePointImage()
-firebase -&#8594; Service: sendError()
-Service -&#8594; Api: respuesta del error</p>
-<p class="tableblock">deactivate firebase
-note right
-El punto puede o no contener una imagen.
-En en supuesto de que dicho punto no tenga imagen,
-no se almacenará la URL.
-end note</p>
-<p class="tableblock">firebase -&#8594; Service: successMsg()
-Service &#8594; Service: getStoredImageUrl()
-Service &#8594; Service: addNewPoint()
-Service &#8594; pod: storeNewPoint()
-Service -&#8594; Api: mensaje éxito
-deactivate Service</p>
-<p class="tableblock">Api &#8594; util: convertir a JSON
-util -&#8594; Api: fichero JSON
-Api &#8594; pod: Enviar datos en Blob</p>
-<p class="tableblock">activate pod
-pod &#8594; pod: Añadir fichero .json
-note right
-Se envía el punto en un fichero de tipo
-.json que contiene toda su información.
-end note
-pod -&#8594; Api: success
-deactivate pod</p>
-<p class="tableblock">Api -&#8594; Personal: Datos actualizados
-deactivate Api</p>
-<p class="tableblock">deactivate PointView
-deactivate Personal</p>
-<p class="tableblock">----</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-deployment-view"></a></p>
-<p class="tableblock">== Deployment View</p>
-<p class="tableblock">=== Infrastructure Level 1
-:imagesdir: images
-image::DIAGRAMA_DESPLIEGUE_v2_LOMAP.svg[]
-Motivation::</p>
-<p class="tableblock">La aplicación consta de dos partes claramente diferenciadas y separadas, que son lado cliente y lado servidor. En este primer nivel se puede apreciar una arquitectura cliente-servidor, donde el lado del cliente realiza y recibe peticiones HTTP (Mediante dicho protocolo) al lado del servidor, que lo forma una API Rest, la cual realiza consultas contra una base de datos no relacional documental (NoSQL) de MongoDB</p>
-<p class="tableblock">Mapping of Building Blocks to Infrastructure::</p>
-<p class="tableblock">[cols="1,2", stripes=even]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-</tr>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-1.svg" alt="runtime 6 1 1" width="365" height="306">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_listado_de_puntos_de_interés_de_un_usuario">6.1.2. Listado de puntos de interés de un usuario</h4>
+<div class="paragraph">
+<p>Los puntos de interés se almacenan en el pod personal de cada usuario. El sistema lomap se encarga de recuperar los datos del pod personal del usuario y mostrarlos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-2.svg" alt="runtime 6 1 2" width="344" height="306">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_al_mapa">6.1.3. Añadir un punto de interés al mapa</h4>
+<div class="paragraph">
+<p>Para añadir un punto de interés al mapa, el usuario tendrá varias opciones. A continuación, se explicará la opción más "compleja". El usuario interactúa dentro de su vista privada y accede a una opción que le redirecciona a una vista específica para añadir un nuevo punto al mapa. La vista de añadir nuevo punto contiene un formulario, a través del cual se envían los datos al sistema lomap, que se encarga de comunicar con el pod personal del usuario y actualizar la interfaz de usuario.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-1-3.svg" alt="runtime 6 1 3" width="448" height="392">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_level_2">6.2. Runtime Level 2</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión_2">6.2.1. Inicio de sesión</h4>
+<div class="paragraph">
+<p>Para iniciar sesión, el usuario introducirá su webId en el formulario. El proveedor de PODs recibe el webId y procesa la petición. Redirecciona a la página privada del usuario y, a su vez, los datos del POD de éste. Si se produce un error al realizar la petición, se mostrará un error en el formulario de la página de inicio de sesión. En caso de producirse un error en el proveedor (Por otros motivos inherentes a él), se gestionará el error redireccionando de nuevo al formulario.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-2-1.svg" alt="runtime 6 2 1" width="685" height="453">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_listado_de_puntos_de_un_usuario">6.2.2. Listado de puntos de un usuario</h4>
+<div class="paragraph">
+<p>El listado de puntos de interés de un usuario se obtiene del pod del usuario. Sin embargo, el sistema lomap se encarga de gestionar la petición y mostrar los datos en la vista correspondiente. El usuario puede interactuar con la vista y acceder a la información de cada punto de interés. El fichero JSON devuelto por el POD tiene que ser procesado para mostrar los datos en la vista.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-2-2.svg" alt="runtime 6 2 2" width="652" height="397">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_en_el_mapa">6.2.3. Añadir un punto de interés en el mapa</h4>
+<div class="paragraph">
+<p>Para añadir un punto de interés en el mapa se contemplan varias opciones. El siguiente diagrama representa el escenario de añadir un punto de interés desde la vista privada del usuario (Dashboard).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-2-3.svg" alt="runtime 6 2 3" width="839" height="570">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_level_3">6.3. Runtime Level 3</h3>
+<div class="sect3">
+<h4 id="_inicio_de_sesión_3">6.3.1. Inicio de sesión</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-1.svg" alt="runtime 6 3 1" width="588" height="435">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_listado_de_puntos_de_interés_de_un_usuario_2">6.3.2. Listado de puntos de interés de un usuario</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-2.svg" alt="runtime 6 3 2" width="1082" height="549">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_añadir_un_punto_de_interés_en_el_mapa_2">6.3.3. Añadir un punto de interés en el mapa</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/runtime-6-3-3.svg" alt="runtime 6 3 3" width="1649" height="973">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-deployment-view">7. Deployment View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/DIAGRAMA_DESPLIEGUE_v2_LOMAP.svg" alt="DIAGRAMA DESPLIEGUE v2 LOMAP">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>La aplicación consta de dos partes claramente diferenciadas y separadas, que son lado cliente y lado servidor. En este primer nivel se puede apreciar una arquitectura cliente-servidor, donde el lado del cliente realiza y recibe peticiones HTTP (Mediante dicho protocolo) al lado del servidor, que lo forma una API Rest, la cual realiza consultas contra una base de datos no relacional documental (NoSQL) de MongoDB</p>
+</dd>
+<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<th class="tableblock halign-left valign-top">Nodo</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Proveedor SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que representa al proveedor de PODS de SOLID de la empresa Inrupt. Almacenará los PODS personales de los usuario, donde se guardará información privada.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">=== Infrastructure Level 2
-:imagesdir: images
-image::DIAGRAMA_DESPLIEGUE_extended_v2_LOMAP.svg[]</p>
-<p class="tableblock">Mapping of Building Blocks to Infrastructure::</p>
-<p class="tableblock">[cols="1,2", stripes=even]</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/DIAGRAMA_DESPLIEGUE_extended_v2_LOMAP.svg" alt="DIAGRAMA DESPLIEGUE extended v2 LOMAP">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Descripción</p></td>
+<th class="tableblock halign-left valign-top">Nodo</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Contenedor Docker</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Utilidad que encapsula un entorno de ejecución de software, incluyendo todas las herramientas de compilación y despliegue necesarias.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Leaftlet</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Leaftlet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">API Open Source para integración de mapas en el lado del cliente. Proporciona componentes para React.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor Inrupt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio descentralizado para almacenas los PODS de los usuarios que se registren en él. Cada POD contiene información única de cada usuario.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Entorno que ofrece un servicio de almacenamiento de recursos multimedia, utilizado para almacenar las imágenes de la aplicación (Véase avatares o imágenes referentes al punto de interés). El servicio se denomina "Firebase Cloud Storage".</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">webapp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nodo que engloba el Front-End de la aplicación, ofreciendo una interfaz de usuario y comunicándose con la api rest para obtener y mostrar los resultados.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Dispositivo electrónico</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cualquier dispositivo con acceso a internet, que se conecte al servidor web. Este puede ser un smartphone, tableta, ordenador, consola, etc.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-concepts"></a></p>
-<p class="tableblock">== Cross-cutting Concepts</p>
-<p class="tableblock">=== Domain model</p>
-<p class="tableblock">[plantuml, "ModeloDeDominio", png]
-----</p>
-<p class="tableblock">object Point{
-    idPoint: String
-    name: String
-    description: String
-    location: BaseLocation
-    owner: User
-    reviews: Review[]
-    image: String
-    isPublic: Boolean
-    category: Category
-    createdAt: Date
-    updatedAt: Date
-}</p>
-<p class="tableblock">object Map{
-    code: String
-    points: Point[]
-}</p>
-<p class="tableblock">object Review{
-    id: String
-    reviewer: User
-    rating: Number
-    comment: String
-    createdAt: Date
-}</p>
-<p class="tableblock">object User{
-    id: String
-    name: String
-    webId: String
-    email: String
-    image: String
-}</p>
-<p class="tableblock">object BaseLocation{
-    coords: number[2]
-    address: string
-    postalCode: number
-    city: string
-    country : string
-}</p>
-<p class="tableblock">enum Category{
-    RESTAURANT
-    BAR
-    CAFE
-    HOTEL
-    GROCERY
-    SUPERMARKET
-    CINEMA
-    SHOP
-    MUSEUM
-    PARK
-    GAS_STATION
-    PUBLIC_TRANSPORT
-    MONUMENT
-    OTHER
-    NONE
-}</p>
-<p class="tableblock">Map*-&#8594;Point
-Point*-&#8594;Review
-Point--&#8594;User
-Review--&#8594;User
-Point--&#8594;BaseLocation
-Point--&#8594;Category</p>
-<p class="tableblock">----
-=== Usability</p>
-<p class="tableblock">Usaremos react con Typescript. React es un framework que facilita mucho la interactividad con la interfaz de usuario, por lo que es importante para llegar a los usuarios</p>
-<p class="tableblock">=== Security</p>
-<p class="tableblock">La seguridad de la aplicación es una parte muy importante.
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_domain_model">8.1. Domain model</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="561" height="1088">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usability">8.2. Usability</h3>
+<div class="paragraph">
+<p>Usaremos react con Typescript. React es un framework que facilita mucho la interactividad con la interfaz de usuario, por lo que es importante para llegar a los usuarios</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security">8.3. Security</h3>
+<div class="paragraph">
+<p>La seguridad de la aplicación es una parte muy importante.
 Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.</p>
-<p class="tableblock">== Privacity</p>
-<p class="tableblock">El sistema debe mantendrá la privacidad del usuario. Atendiendo a las características de los principios SOLID, toda la información del usuario será almacenada el su propio POD, por lo que no tendrá ninguna vulnerabilidad por tener datos almacenados en una base de datos.</p>
-<p class="tableblock">=== Testability</p>
-<p class="tableblock">Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componentes. Es importante unos test para que el usuario tenga la mejor experiencia posible.</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-design-decisions"></a>
-== Design decisions</p>
-<p class="tableblock">=== Accepted decisions</p>
-<p class="tableblock">Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:</p>
-<p class="tableblock">[%header, cols=4]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decision arquitectonica</p></td>
-</tr>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_privacity">9. Privacity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El sistema debe mantendrá la privacidad del usuario. Atendiendo a las características de los principios SOLID, toda la información del usuario será almacenada el su propio POD, por lo que no tendrá ninguna vulnerabilidad por tener datos almacenados en una base de datos.</p>
+</div>
+<div class="sect2">
+<h3 id="_testability">9.1. Testability</h3>
+<div class="paragraph">
+<p>Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componentes. Es importante unos test para que el usuario tenga la mejor experiencia posible.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-design-decisions">10. Design decisions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_accepted_decisions">10.1. Accepted decisions</h3>
+<div class="paragraph">
+<p>Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ventajas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desventajas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enlace al ADR</p></td>
+<th class="tableblock halign-left valign-top">Decision arquitectonica</th>
+<th class="tableblock halign-left valign-top">Ventajas</th>
+<th class="tableblock halign-left valign-top">Desventajas</th>
+<th class="tableblock halign-left valign-top">Enlace al ADR</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Resuelve uno de los grandes problemas de JavaScript, el enlace dinámico.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ninguno de nosotros hemos usado nunca, y debemos aprender.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje">ADR 00</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Lenguaje">ADR 00</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React js</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Actualiza componentes y vistas en tiempo real, permite modularizar la interfaz de usuario en componentes.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Documentación muy escueta, dificultando el aprendizaje.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-React-JS">ADR 01</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Organiza de forma descentralizada</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Dificil de utilizar</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Estructura-Cliente-v3-%5BFront-End%5D">ADR 18</a></p></td>
@@ -1330,18 +1414,16 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">NodeJS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se integra con solid, contiene muchas librerias probadas y verificadas, creación de APIs mas sencilla.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Monohilo, la integración de asincronía puede hacer el codigo inmantenible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D">ADR 02</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-NodeJS-%5BBack-End%5D">ADR 02</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React Leflet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Calidad-coste superior a las demás.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nunca hemos trabajado con el.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Librer%C3%ADa-de-Mapas-%5BFront-End%5D">ADR 05</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Styled Components</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Styled Components</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Facilita enormemente el trabajo, altamente probados y validados por la comunidad.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se depende del mantenimiento de y licencia de uso de esta libreria.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components">ADR 07</a></p></td>
@@ -1350,18 +1432,16 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nos aseguramos tener una base de otras asignaturas y disponemos de credito</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A veces da bastantes problemas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D">ADR 06</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D">ADR 06</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Firebase Cloud Storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gran velocidad de desarrollo, y no necesidad de servidor</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Principiantes con ella</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.--Base-de-datos-para-imagenes">ADR 19</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Muy facil de usar, experiencia con el, y disponible en muchos sistemas operativos.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Necesidad de instalar muchos pluggins.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE">ADR 09</a></p></td>
@@ -1370,76 +1450,69 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock">JEST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Buena documentación y recursos, paralización de test y facil configuración.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No tenemos conocimiento con esta libreria</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End">ADR 10</a>
 <a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End">ADR 11</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zustand</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ofrece mayor rendimiento por la sencillez de su implementación</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No sigue un patrón, la estructura es libre para el desarrollador</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Gesti%C3%B3n-de-estados-(Front-End)">ADR 17</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-quality-scenarios"></a>
-== Quality Requirements</p>
-<p class="tableblock">=== Quality Tree</p>
-<p class="tableblock">[plantuml, "Quality tree", png]
-----
-left to right direction
-(Productos de calidad del software) as (PDC)
-(Usabilidad) as (US)
-(Seguridad) as (SE)
-(Privacidad) as (PR)
-(Testabilidad) as (TS)
-(Capacidad de reconocimiento\nCapacidad de aprendizaje\nFácil de usar) as (CCF)
-(Confidencialidad\nIntegridad\nAutenticación) as (CIA)
-(Integridad de datos\nProtección física\nIntegridad) as (IPI)
-(Automatización de pruebas\nEstabilidad\nControlabilidad) as (AEC)</p>
-<p class="tableblock">PDC -&#8594; US
-PDC -&#8594; SE
-PDC -&#8594; PR
-PDC -&#8594; TS
-US -&#8594; CCF
-SE -&#8594; CIA
-PR -&#8594; IPI
-TS -&#8594; AEC</p>
-<p class="tableblock">----</p>
-<p class="tableblock">=== Quality Scenarios</p>
-<p class="tableblock">[%header, cols=5]</p></td>
 </tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-quality-scenarios">11. Quality Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_quality_tree">11.1. Quality Tree</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Quality%20tree.png" alt="Quality tree" width="800" height="439">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_scenarios">11.2. Quality Scenarios</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Número</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo de calidad</p></td>
+<th class="tableblock halign-left valign-top">Número</th>
+<th class="tableblock halign-left valign-top">Atributo de calidad</th>
+<th class="tableblock halign-left valign-top">Escenario de calidad</th>
+<th class="tableblock halign-left valign-top">Prioridad</th>
+<th class="tableblock halign-left valign-top">Complejidad de implementación</th>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario de calidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prioridad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Complejidad de implementación</p></td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Queremos ofrecer al usuario la posibilidad de filtrar puntos del mapa por amigos, además de un servicio de acceso a información y almacenamiento de datos, en un sistema intuitivo y eficaz para los clientes (lo más rápido posible)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Garantizaremos la mayor seguridad posible, guardando la información sensible del usuario de forma segura e intentando prevenir cualquier tipo de ataque o riesgo. Securizar la api rest protegiendo determinadas rutas también será otro objetivo para llevar a cabo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacidad</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Vamos a respetar la privacidad de los usuarios, los datos del usuario estarán protegidos en todo momento. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
@@ -1448,126 +1521,189 @@ TS -&#8594; AEC</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Testabilidad</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La aplicacion sera sometida a pruebas unitarias, de aceptación y de carga, para probar que funcione correctamente. Si se da el caso de que se añaden nuevas funcionalidades al mapa, se deberá poder probar exhaustivamente antes del despliegue</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-technical-risks"></a>
-== Risks and Technical Debts</p>
-<p class="tableblock">=== Risks</p>
-<p class="tableblock">[%header, cols=3]</p></td>
 </tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-technical-risks">12. Risks and Technical Debts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_risks">12.1. Risks</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Riesgo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explicación</p></td>
+<th class="tableblock halign-left valign-top">Riesgo</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+<th class="tableblock halign-left valign-top">Solución</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solución</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Vamos a estar continuamente condicionados por el tiempo para entregar el proyecto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Debemos de trabajar en equipo y trabajar lo más eficiente posible para no perjudicarnos a lo largo del tiempo, evitando cualquier conflicto innecesario</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No hemos trabajado tan a fondo con GitHub, tenemos una base pequeña sobre lo básico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pull Request, issues, commits&#8230;&#8203;)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Aprender e investigar lo máximo posible, además de hacer pruebas propias (como pull Request, issues, commits&#8230;&#8203;)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nuevas tecnologías</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para la mayoría del grupo la falta de conocimiento de tecnologías como React, Node.js o Solid; supondrá un extra añadido a la dificultad del desarrollo de la aplicación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos la documentación de cada una, donde podemos encontrar numerosos ejemplos de como empezar,para desenvolvernos y ganar agilidad a corto plazo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Comunicación del equipo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La comunicación no es inmediata y mucho menos de todos los miembros del grupo al mismo tiempo, cada miembro tiene unos horarios y asignaturas diferentes, luego será un factor añadido en contra para nosotros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Los miembros del equipo deberán hacer un esfuerzo colectivo para colaborar entre todos, facilitando las opciones tanto del horario de cada uno como la disponibilidad, por ello las reuniones en Microsoft Teams agilizarán el proceso ya que nos permite reunirnos virtualmente</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Posible abandono de algún miembro del grupo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Uno o varios miembros podrían abandonar la asignatura debido a la carga de trabajo acumulada a lo largo del semestre</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Intentaremos aliviar la situación reforzando el trabajo en grupo y el apoyo extra en las tareas, en especial a aquellas que son críticas para el proyecto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">=== Technical Debts
-[%header, cols=2]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_technical_debts">12.2. Technical Debts</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deuda técnica</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explicación</p></td>
+<th class="tableblock halign-left valign-top">Deuda técnica</th>
+<th class="tableblock halign-left valign-top">Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nos gustaría que la usabilidad fuera uno de nuestros puntos fuertes, logrando que personas reales puedan probar nuestra aplicación, y realizar el número máximo de pruebas posibles</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Código limpio para el desarrollo ágil del software</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">El código debe ser claro y refactorizado, sobre todo en la parte del backend; y también el frontend, para hacerlo más conciso y modificable.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Investigación</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Una búsqueda amplica de información acerca de cómo trabajar con Typescript, React y Solid facilitará el trabajo una vez iniciado el proyecto. Solo hemos utilizado JavaScript, nunca Typescript, luego supondrá un periodo de adaptación a dicha tecnología</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Toma de decisiones</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es importante decidir con cabeza y con un buen razonamiento la arquitectura del proyecto, hay que evitar improvisar en todo momento, ya que puede afectar negativamente al proyecto en gran medida</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p>
-<p class="tableblock">El desconocimiento inicial por parte de la mayoría de los miembros del grupo supondrá una deuda técnica, trataremos de colaborar el máximo y reforzar los conocimientos de manera progresiva, con el objetivo de ganar estabilidad y constancia a lo largo del proyecto.</p>
-<p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-glossary"></a>
-== Glossary</p>
-<p class="tableblock">[options="header"]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
 </tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El desconocimiento inicial por parte de la mayoría de los miembros del grupo supondrá una deuda técnica, trataremos de colaborar el máximo y reforzar los conocimientos de manera progresiva, con el objetivo de ganar estabilidad y constancia a lo largo del proyecto.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-glossary">13. Glossary</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Término</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Definición</p></td>
+<th class="tableblock halign-left valign-top">Término</th>
+<th class="tableblock halign-left valign-top">Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la documentación de la arquitectura del sistema.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Plantilla para la documentación de la arquitectura del sistema.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de nube que ofrece, entre otros muchos, servicios de virtualización para máquinas. Se utiliza para desplegar aplicaciones y servicios en servidores remotos (Propietarios de Microsoft).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Commit</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Consiste en confirmar un conjunto de cambios provisionales de forma permanente. Los utilizaremos para poder medir el trabajo de cada uno en el proyecto.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Herramienta de código abierto (Open Source) que permite gestionar contenedores. Se ejecuta bajo un entorno virtualizado y contiene todas las librerías y dependencias del proyecto que lo integra, evitando la instalación y gestión de dichas herramientas en un entorno local.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Discord</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servicio de mensajería instantánea y chat de voz VolP, donde nos comunicaremos en las reuniones extraordinarias de manera virtual- Este servicio cuenta con la posibilidad de compartir el escritorio de cada uno de los miembros a la vez, lo cuál facilitará la resolución de dudas y conceptos</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Plataforma donde se alojará el proyecto, con sus distintas ramas de desarrollador (tanto para el código como para la documentación)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Issue</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es una nota en un repositorio que trata de llamar la atención sobre un problema o un tema. Puede ser un error a corregir, una petición para añadir una nueva opción o característica, una pregunta para aclarar algún tema que no está correctamente aclarado o muchas otras cosas diferentes. Se utilizará para contar las tareas que se van desarrollando y quién las realiza</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ReactJS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Marco de trabajo (framework) basado en JavaScript para crear aplicaciones web en el entorno cliente. Permite crear aplicaciones web reactivas a cambios (en tiempo real) y se organiza en componentes. Entre sus características principales, destaca la incorporación de un DOM virtual, que es una copia del árbol DOM pero dinámico, sin afectar directamente al árbol DOM original.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pod</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Referente al proyecto SOLID, es un mecanismo de almacenamiento distribuido que almacena la información de un usuario de forma privada y segura. Se puede comunicar con otros PODS. Se identifica mediante una URL.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pull request</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pull request</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es la acción de validar un código que se va a mergear de una rama a otra, una petición para que el propietario del repositorio original incorpore los commits que están en la rama</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebId</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Referente al proyecto SOLID, es un identificador que representa de manera única a un usuario.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas empiricas cuyo objetivo es proporcionar informacion sobre la calidad del producto</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida en la cual un producto puede ser usado por usuarios con efectividad.</p></td>
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>About arc42</strong></p>
+</div>
+<div class="paragraph lead">
+<p>arc42, the Template for documentation of
+software and system architecture.</p>
+</div>
+<div class="paragraph">
+<p>By Dr. Gernot Starke, Dr. Peter Hruschka and contributors.</p>
+</div>
+<div class="paragraph">
+<p>Template Revision: 7.0 EN (based on asciidoc), January 2017</p>
+</div>
+<div class="paragraph">
+<p>&#169;
+We acknowledge that this document uses material from the
+arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
+Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 </div>
 </div>
