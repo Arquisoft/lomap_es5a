@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
+import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
 import ComercialInfo from "../../components/about/ComercialInfo";
 import  PageInfo  from "../../components/about/PageInfo";
 
