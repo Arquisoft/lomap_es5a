@@ -10,16 +10,20 @@ left to right direction
 (Usabilidad) as (US)
 (Seguridad) as (SE)
 (Privacidad) as (PR)
+(Testabilidad) as (TS)
 (Capacidad de reconocimiento\nCapacidad de aprendizaje\nFácil de usar) as (CCF)
 (Confidencialidad\nIntegridad\nAutenticación) as (CIA)
 (Integridad de datos\nProtección física\nIntegridad) as (IPI)
+(Automatización de pruebas\nEstabilidad\nControlabilidad) as (AEC)
 
 PDC --> US
 PDC --> SE
 PDC --> PR
+PDC --> TS
 US --> CCF
 SE --> CIA
 PR --> IPI
+TS --> AEC
 
 ----
 
@@ -49,6 +53,12 @@ PR --> IPI
 |Privacidad
 |Vamos a respetar la privacidad de los usuarios, los datos del usuario estarán protegidos en todo momento. El objetivo es minimizar la cantidad de datos que tome nuestra aplicación, siempre teniendo en cuenta una entrega descentralizada
 |Media
+|Media
+
+|4
+|Testabilidad
+|La aplicacion sera sometida a pruebas unitarias, de aceptación y de carga, para probar que funcione correctamente. Si se da el caso de que se añaden nuevas funcionalidades al mapa, se deberá poder probar exhaustivamente antes del despliegue
+|Alta
 |Media
 
 |===
