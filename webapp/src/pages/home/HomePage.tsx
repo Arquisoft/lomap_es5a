@@ -8,7 +8,7 @@ import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
 import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
-import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";

@@ -5,12 +5,12 @@ import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 import BaseMapPopup from "./popups/BaseMapPopup";
 
 import "leaflet/dist/leaflet.css";
+import { useNavigate } from "react-router";
 import "../../public/css/components/maps/BaseMap.scss";
-import { Point, PointOwner } from "../../shared/shareddtypes";
+import { CREATE_POINT_PATH } from "../../routes";
+import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore, usePointDetailsStore } from "../../store/point.store";
 import BaseButton from "../buttons/BaseButton";
-import { useNavigate } from "react-router";
-import { CREATE_POINT_PATH } from "../../routes";
 
 
 function MapRedirect() {

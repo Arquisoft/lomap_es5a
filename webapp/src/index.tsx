@@ -4,13 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./public/css/global.scss";
 import reportWebVitals from "./reportWebVitals";
+import React from "react";
 
 const app = (
-  <BrowserRouter>
-    <SessionProvider sessionId="lomap-solid-ssid">
-      <App />
-    </SessionProvider>
-  </BrowserRouter>
+    <BrowserRouter>
+      <SessionProvider sessionId="lomap-solid-ssid">
+        <App />
+      </SessionProvider>
+    </BrowserRouter>
 );
 
 const container = document.getElementById("root");
@@ -19,4 +20,4 @@ if (container) {
   root.render(app);
 }
 
-reportWebVitals();
+//reportWebVitals();
