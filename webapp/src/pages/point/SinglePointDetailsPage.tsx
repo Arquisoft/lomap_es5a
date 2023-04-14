@@ -4,7 +4,7 @@ import AddNewPointLink from "../../components/points/details/AddNewPointLink";
 import PointReviewSection from "../../components/points/details/PointReviewSection";
 import ReviewListing from "../../components/points/details/ReviewListing";
 import SingleDetail from "../../components/points/details/SingleDetails";
-import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/points/SinglePointPage.scss";
 import { usePointDetailsStore } from "../../store/point.store";
 

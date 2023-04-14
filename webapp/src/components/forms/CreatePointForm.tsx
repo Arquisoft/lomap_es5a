@@ -20,6 +20,7 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { generateUUID } from "../../utils/stringUtils";
 
 function CreatePointForm() {
   const {
@@ -90,7 +91,7 @@ function CreatePointForm() {
 
     setIsUploading(true);
     setIsFinished(false);
-    info._id = window.crypto.randomUUID();
+    info._id = generateUUID();
     info.location.postalCode = 0;
     info.location.city = "";
     info.location.country = "";
@@ -283,7 +284,7 @@ function CreatePointForm() {
       {errors.length > 0 &&
         errors.map((err: any) => {
           return (
-            <BaseMessage key={window.crypto.randomUUID()} type="error" text={err} />
+            <BaseMessage key={generateUUID()} type="error" text={err} />
           );
         })}
     </div>

@@ -4,9 +4,16 @@ import BaseButton from '../buttons/BaseButton';
 import BaseSelect from '../inputs/BaseSelect';
 import BaseTextInput from '../inputs/BaseTextInput';
 import CreatePointForm from './CreatePointForm';
+import { MemoryRouter } from "react-router-dom";
+import { CREATE_POINT_PATH } from '../../routes';
+
 
 describe('Creacion de un punto para comprobarlo con el formulario',()=>{
-    
+    mount(
+        <MemoryRouter>
+          <CreatePointForm />
+        </MemoryRouter>
+      );
     afterEach(cleanup);
     afterAll(cleanup);
     
