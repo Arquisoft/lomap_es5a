@@ -494,31 +494,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_domain_model">8.1. Domain model</a></li>
 <li><a href="#_usability">8.2. Usability</a></li>
 <li><a href="#_security">8.3. Security</a></li>
+<li><a href="#_privacity">8.4. Privacity</a></li>
+<li><a href="#_testability">8.5. Testability</a></li>
 </ul>
 </li>
-<li><a href="#_privacity">9. Privacity</a>
+<li><a href="#section-design-decisions">9. Design decisions</a>
 <ul class="sectlevel2">
-<li><a href="#_testability">9.1. Testability</a></li>
+<li><a href="#_accepted_decisions">9.1. Accepted decisions</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">10. Design decisions</a>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_accepted_decisions">10.1. Accepted decisions</a></li>
+<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-quality-scenarios">11. Quality Requirements</a>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">11.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">11.2. Quality Scenarios</a></li>
+<li><a href="#_risks">11.1. Risks</a></li>
+<li><a href="#_technical_debts">11.2. Technical Debts</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">12. Risks and Technical Debts</a>
-<ul class="sectlevel2">
-<li><a href="#_risks">12.1. Risks</a></li>
-<li><a href="#_technical_debts">12.2. Technical Debts</a></li>
-</ul>
-</li>
-<li><a href="#section-glossary">13. Glossary</a></li>
+<li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -1351,16 +1348,14 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 Para que cada persona tenga el control de su información y puedan gestionarla, tendrán cada uno un POD propio.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_privacity">9. Privacity</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_privacity">8.4. Privacity</h3>
 <div class="paragraph">
 <p>El sistema debe mantendrá la privacidad del usuario. Atendiendo a las características de los principios SOLID, toda la información del usuario será almacenada el su propio POD, por lo que no tendrá ninguna vulnerabilidad por tener datos almacenados en una base de datos.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_testability">9.1. Testability</h3>
+<h3 id="_testability">8.5. Testability</h3>
 <div class="paragraph">
 <p>Para el correcto funcionamiento de la aplicacion, para checkear el funcionamiento de los componentes. Es importante unos test para que el usuario tenga la mejor experiencia posible.</p>
 </div>
@@ -1369,10 +1364,10 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-design-decisions">10. Design decisions</h2>
+<h2 id="section-design-decisions">9. Design decisions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_accepted_decisions">10.1. Accepted decisions</h3>
+<h3 id="_accepted_decisions">9.1. Accepted decisions</h3>
 <div class="paragraph">
 <p>Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:</p>
 </div>
@@ -1466,10 +1461,10 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-quality-scenarios">11. Quality Requirements</h2>
+<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_quality_tree">11.1. Quality Tree</h3>
+<h3 id="_quality_tree">10.1. Quality Tree</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/Quality%20tree.png" alt="Quality tree" width="800" height="439">
@@ -1477,7 +1472,7 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">11.2. Quality Scenarios</h3>
+<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1531,10 +1526,10 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">12. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_risks">12.1. Risks</h3>
+<h3 id="_risks">11.1. Risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1578,7 +1573,7 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_technical_debts">12.2. Technical Debts</h3>
+<h3 id="_technical_debts">11.2. Technical Debts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1617,7 +1612,7 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">13. Glossary</h2>
+<h2 id="section-glossary">12. Glossary</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
