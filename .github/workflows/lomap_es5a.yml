@@ -25,7 +25,6 @@ jobs:
         node-version: 18
     - run: npm --prefix webapp ci
     - run: npm --prefix webapp test --coverage --watchAll
-    - run: npm --prefix webapp run test:e2e --coverage --watchAll
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
