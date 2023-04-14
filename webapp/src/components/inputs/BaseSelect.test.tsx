@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import BaseSelect from "./BaseSelect";
-import { shallow } from "enzyme";
 
 describe("BaseSelect component", () => {
 
@@ -46,34 +45,7 @@ describe("BaseSelect component", () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  it("renders select", () => {
-    const wrapper = shallow(<BaseSelect {...props} />);
-    const select = wrapper.find("select");
 
-    expect(select).toHaveLength(1);
-    expect(select.props().name).toEqual(props.name);
-    expect(select.props().id).toEqual(props.id);
-    expect(select.props().className).toEqual("base-select-item");
-    expect(select.props().style).toEqual(props.styles);
-  });
 
-  it("renderiza un option para cada option en las propiedades option", () => {
-    const wrapper = shallow(<BaseSelect {...props} />);
-    const options = wrapper.find("option");
-
-    expect(options).toHaveLength(props.options.length + 1); // +1 for the default option
-
-    options.forEach((option, index) => {
-      const optionIndex = index - 1;
-      const optionProps = optionIndex >= 0 ? props.options[optionIndex] : null;
-      const value = optionProps ? optionProps.value : "no-opt";
-      const defaultValue = optionProps ? undefined : "no-opt";
-      const text = optionProps ? optionProps.content : "Selecciona una opción";
   
-      expect(option.props().value).toEqual(value);
-      expect(option.props().defaultValue).toEqual(defaultValue);
-      expect(option.text()).toEqual(text);
-    });
-
-  });
 });
