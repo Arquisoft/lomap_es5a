@@ -18,7 +18,7 @@ function BaseFilterBar() {
 
   return (
     <div className="base-filter-bar">
-      {availableCategories.slice(0, MAX_CATEGORIES_VISIBLE).map((filter) => (
+      {/* {availableCategories.slice(0, MAX_CATEGORIES_VISIBLE).map((filter) => (
         <SingleFilter
           code={filter.code}
           key={filter.id}
@@ -26,7 +26,7 @@ function BaseFilterBar() {
           text={filter.name}
           iconAlt={filter.description}
         />
-      ))}
+      ))} */}
       <div
         className="base-filter-bar-filters-button"
         role="button"

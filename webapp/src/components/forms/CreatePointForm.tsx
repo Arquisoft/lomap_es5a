@@ -21,6 +21,7 @@ import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
 import { generateUUID } from "../../utils/stringUtils";
+import { TRUE } from "sass";
 
 function CreatePointForm() {
   const {
@@ -35,6 +36,10 @@ function CreatePointForm() {
     resetPointInfo,
     imageToUpload,
   } = usePointDetailsStore();
+
+  // Mostrar errores después de 5 segundos
+  const [showErrorTimeoutConsumed, setShowErrorTimeoutConsumed] =
+    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -54,11 +59,12 @@ function CreatePointForm() {
         checkIsNotEmpty(info.description, "descripción del punto");
       }
       checkAnyOptionIsSelected(info.category, "categoría del punto");
-      // checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      // checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+      checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
+      checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasErrors = true;
+      showErrorMessagesWithTimeout();
     }
 
     return hasErrors;
@@ -66,7 +72,7 @@ function CreatePointForm() {
 
   const hasAnyRequiredFieldInvalid = (): boolean => {
     return (
-      requiredFormData.name.length >= 0 &&
+      info.name.length >= 0 &&
       requiredFormData.category !== NO_OPTION_SELECTED &&
       !isNaN(info.location.coords.lat) &&
       !isNaN(info.location.coords.lng)
@@ -81,6 +87,8 @@ function CreatePointForm() {
   const refreshErrors = () => {
     if (hasAnyRequiredFieldInvalid()) {
       setErrors([]);
+    } else {
+      showErrorMessagesWithTimeout();
     }
   };
 
@@ -91,6 +99,7 @@ function CreatePointForm() {
 
     setIsUploading(true);
     setIsFinished(false);
+
     info._id = generateUUID();
     info.location.postalCode = 0;
     info.location.city = "";
@@ -114,7 +123,24 @@ function CreatePointForm() {
       navigate(HOME_PATH);
       setErrors([]);
       resetPointInfo();
+
+    }).catch(err => {
+      if(err){
+        setIsUploading(false);
+        setIsFinished(false);
+        setErrors([...errors, "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde"]);
+      }
     });
+  };
+
+  /**
+   * Muestra el mensaje durante 5 segundos.
+   */
+  const showErrorMessagesWithTimeout = () => {
+    setShowErrorTimeoutConsumed(true);
+    setTimeout(() => {
+      setShowErrorTimeoutConsumed(false);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -146,6 +172,7 @@ function CreatePointForm() {
                 setCurrentPointProperty("name", e.target.value);
                 handleRequiredDataChange(e);
               } catch (error) {
+                setCurrentPointProperty("name", "");
                 setErrors([...errors, (error as Error).message]);
               }
               //refreshErrors();
@@ -155,58 +182,6 @@ function CreatePointForm() {
               height: "62px",
             }}
           />
-
-          <div className="create-form-form-coords-inputs">
-            <BaseTextInput
-              id="latitud"
-              label="Latitud (*)"
-              name="lat"
-              type="number"
-              required={true}
-              value={info.location.coords.lat || 0}
-              onChange={(e) => {
-                setPosition({
-                  lat: !isNaN(parseFloat(e.currentTarget.value))
-                    ? parseFloat(e.currentTarget.value)
-                    : 0,
-                  lng: info.location.coords.lng,
-                });
-
-                handleRequiredDataChange(e);
-              }}
-              placeholder="43.12345"
-              styles={{
-                width: "296px",
-                height: "62px",
-              }}
-              disabled={true}
-            />
-
-            <BaseTextInput
-              id="longitud"
-              label="Longitud (*)"
-              name="lng"
-              type="number"
-              required={true}
-              disabled={true}
-              onChange={(e) => {
-                setPosition({
-                  lat: info.location.coords.lat,
-                  lng: !isNaN(parseFloat(e.target.value))
-                    ? parseFloat(e.target.value)
-                    : 0,
-                });
-
-                handleRequiredDataChange(e);
-              }}
-              value={info.location.coords.lng || 0}
-              placeholder="-6.98765"
-              styles={{
-                width: "296px",
-                height: "62px",
-              }}
-            />
-          </div>
 
           <BaseTextInput
             id="direccion"
@@ -269,9 +244,7 @@ function CreatePointForm() {
           <BaseButton
             type="button-black"
             text="Publicar"
-            disabled={
-              errors.length > 0 || !hasAnyRequiredFieldInvalid() || isUploading
-            }
+            disabled={isUploading}
             isLoading={isUploading}
             loadingText="Publicando..."
             onClick={handleAddPoint}
@@ -283,9 +256,7 @@ function CreatePointForm() {
       )}
       {errors.length > 0 &&
         errors.map((err: any) => {
-          return (
-            <BaseMessage key={generateUUID()} type="error" text={err} />
-          );
+          return <BaseMessage key={generateUUID()} type="error" text={err} />;
         })}
     </div>
   );
