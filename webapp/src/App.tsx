@@ -7,7 +7,6 @@ import Error404Page from "./pages/error/Error404Page";
 import FaqPage from "./pages/faq/FaqPage";
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/login/LoginPage";
-import AllPointsPage from "./pages/point/AllPointsPage";
 import CreatePointPage from "./pages/point/CreatePointPage";
 import SinglePointDetailsPage from "./pages/point/SinglePointDetailsPage";
 import SavedPointsPage from "./pages/saved/SavedPointsPage";
@@ -54,7 +53,6 @@ function App() {
       <Route path={LOGIN_PATH} element={<LoginPage />} />
       <Route path={HOME_PATH} element={<HomePage />}/>
       <Route path={GENERAL_POINT_PATH}>
-        <Route index element={<AllPointsPage />} />
         <Route path={SINGLE_POINT_PATH} element={<SinglePointDetailsPage />} />
       </Route>
       <Route path={SAVED_POINTS_PATH} element={<SavedPointsPage />} />
