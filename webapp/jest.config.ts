@@ -20,6 +20,7 @@ export default {
         "/dist/"
     ],
 
+
     // plugins: [
     //     new NodePolyfillPlugin({
 	// 		includeAliases: ['console']

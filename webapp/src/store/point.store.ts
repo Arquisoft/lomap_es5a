@@ -164,7 +164,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
 /**
  * Obtener todos los puntos guardados por el usuario
  */
-const useAllSavedPointsStore = create<AllSavedPointsStore>((set, get) => ({
+const useAllSavedPointsStore = create<AllSavedPointsStore>((set) => ({
   savedPoints: [],
   setSavedPoints: (points: Point[]) => set({ savedPoints: points }),
 }));

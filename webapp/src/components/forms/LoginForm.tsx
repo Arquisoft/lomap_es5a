@@ -1,5 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { SOLID_PROVIDERS } from "../../data/providers";
 import { signIn } from "../../helpers/AuthHelper";
 import useAuth from "../../hooks/useAuth";

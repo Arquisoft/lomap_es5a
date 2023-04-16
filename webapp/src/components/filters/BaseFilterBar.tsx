@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FilterListIcon } from "../../helpers/IconContants";
 import "../../public/css/components/filters/baseFilterBar/BaseFilterBar.scss";
 import { useAllPointsStore } from "../../store/point.store";
