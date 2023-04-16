@@ -5,7 +5,7 @@ import {MemoryRouter} from "react-router-dom";
 describe("NoImageSkeleton component", () => {
   afterAll(cleanup);
 
-  test("renders label and input", () => {
+  test("Valor de borderRadius si isRadius es false", () => {
     render(
         <MemoryRouter>
             <NoImageSkeleton
@@ -13,8 +13,28 @@ describe("NoImageSkeleton component", () => {
         </MemoryRouter>
     );
 
+    const styles = screen.getByTestId("skeleton"); 
+    expect(styles.style.borderRadius).toBe('8px');
+
     const childComponent = screen.getByTestId("rounded-icon"); 
     expect(childComponent).toBeInTheDocument();
   });
+
+  test("Valor de borderRadius si isRadius es true", () => {
+    render(
+      <MemoryRouter>
+          <NoImageSkeleton isRound={true}
+          />
+      </MemoryRouter>
+    );
+
+    const styles = screen.getByTestId("skeleton"); 
+    expect(styles.style.borderRadius).toBe('50%');
+
+    const childComponent = screen.getByTestId("rounded-icon"); 
+    expect(childComponent).toBeInTheDocument();
+  });
+
 });
+
 

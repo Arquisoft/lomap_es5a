@@ -12,7 +12,11 @@ describe("Footer component", () => {
             />
         </MemoryRouter>
     );
-    const labelName = screen.getByText(/Todos los Derechos Reservados./i);
+    expect(new Date().getFullYear()).toBe(2023);
+    const labelName = screen.getByText("© 2023 Lomap. Todos los Derechos Reservados.");
     expect(labelName).toBeInTheDocument();
+
+    const labelName2 = screen.getByText(/Lomap_es5a/i);
+    expect(labelName2).toBeInTheDocument();
   });
 });
