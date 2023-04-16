@@ -96,8 +96,6 @@ function BaseMapPopup({
    * En caso de serlo, no se le permite guardar el punto.
    * @returns
    */
-  const isUserInSessionTheOwner = (): boolean =>
-    session?.info?.webId === owner?.webId;
 
   useEffect(() => {
     checkIfPointIsSaved();
