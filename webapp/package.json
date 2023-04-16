@@ -48,11 +48,6 @@
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -18,7 +18,7 @@ function MapRedirect() {
   const navigate = useNavigate();
   
   useMapEvents({
-    click(e) {
+    dblclick(e) {
       const confirm = window.confirm("¿Quieres crear un punto aquí?");
       
       if (confirm) {

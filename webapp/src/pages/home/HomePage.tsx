@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import { createPortal } from "react-dom";
 import { getAllFriends } from "../../api/friends.api";
-import { findAllPoints } from "../../api/point.api";
+import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -21,14 +21,13 @@ function HomePage() {
   const { session } = useSession();
 
   const loadAllPoints = async () => {
-    const data: Point[] = await findAllPoints(session.info.webId as string);
+    const data: Point[] = await findAllUserPoints(session.info.webId as string);
     setAllPoints(data);
   };
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn) {
       const friends = await getAllFriends(session.info.webId as string);
-      console.log(friends);
     }
   };
 

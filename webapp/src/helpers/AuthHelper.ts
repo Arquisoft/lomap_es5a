@@ -8,7 +8,7 @@ async function signIn(session: any, providerUrl: string) {
   if (!session.info.isLoggedIn) {
     await login({
       oidcIssuer: encodeURI(providerUrl),
-      redirectUrl: "http://localhost:3000/",
+      redirectUrl: window.location.href,
       clientName: "Lomap",
     });
   }
