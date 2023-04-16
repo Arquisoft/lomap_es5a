@@ -27,7 +27,7 @@ function MapRedirect() {
       }
     },
 
-    mousemove(e) {
+    mousemove() {
       //console.log(e.sourceTarget);
     }
   });

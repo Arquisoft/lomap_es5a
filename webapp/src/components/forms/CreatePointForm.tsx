@@ -21,7 +21,7 @@ import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
 import { generateUUID } from "../../utils/stringUtils";
-import { TRUE } from "sass";
+
 
 function CreatePointForm() {
   const {

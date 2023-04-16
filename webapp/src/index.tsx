@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./public/css/global.scss";
-import reportWebVitals from "./reportWebVitals";
+
 import React from "react";
 
 const app = (

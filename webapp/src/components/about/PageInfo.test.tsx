@@ -1,4 +1,4 @@
-import {cleanup, render} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import PageInfo from "./PageInfo";
 
 test('Comprobamos pageinfo',async () => {
