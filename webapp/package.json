@@ -43,7 +43,7 @@
     "build": "CI=true react-scripts build",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "test": "react-scripts test --coverage --watchAll",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
   },
