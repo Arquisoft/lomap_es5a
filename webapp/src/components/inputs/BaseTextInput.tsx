@@ -17,7 +17,7 @@ function BaseTextInput({
   required,
   disabled,
 }: BaseInputProps) {
-  const [showClearButtonState, setShowClearButtonState] = useState(false);
+  const [, setShowClearButtonState] = useState(false);
 
   const inputId = id || generateUUID();
 

@@ -38,7 +38,7 @@ function CreatePointForm() {
   } = usePointDetailsStore();
 
   // Mostrar errores después de 5 segundos
-  const [showErrorTimeoutConsumed, setShowErrorTimeoutConsumed] =
+  const [, setShowErrorTimeoutConsumed] =
     useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
