@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../public/css/components/inputs/BaseTextInput.scss";
 import { BaseInputProps } from "../../shared/shareddtypes";
-import BaseButton from "../buttons/BaseButton";
 import { generateUUID } from "../../utils/stringUtils";
 
 function BaseTextInput({
@@ -18,7 +17,7 @@ function BaseTextInput({
   required,
   disabled,
 }: BaseInputProps) {
-  const [showClearButtonState, setShowClearButtonState] = useState(false);
+  const [, setShowClearButtonState] = useState(false);
 
   const inputId = id || generateUUID();
 

@@ -1,12 +1,9 @@
 import React from "react";
-import {
-  MAX_CATEGORIES_VISIBLE,
-  availableCategories,
-} from "../../helpers/CategoryFilterHelper";
+
 import { FilterListIcon } from "../../helpers/IconContants";
 import "../../public/css/components/filters/baseFilterBar/BaseFilterBar.scss";
 import { useAllPointsStore } from "../../store/point.store";
-import SingleFilter from "./SingleFilter";
+
 
 function BaseFilterBar() {
   const { setShowFilterPopup } = useAllPointsStore();

@@ -5,13 +5,19 @@ on:
     branches:
       - master
       - develop
-      - jest-tests
       - Pruebas-test2
   pull_request:
     branches:
       - develop
       - master
-      - jest-tests
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
 
 jobs:
   unit-tests:
@@ -23,7 +29,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm --prefix webapp ci -legacy-peer-deps
+    - run: npm --prefix webapp install --legacy-peer-deps
     - run: npm --prefix webapp test --coverage --watchAll
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master

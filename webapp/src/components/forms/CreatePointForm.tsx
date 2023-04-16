@@ -21,7 +21,7 @@ import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
 import { generateUUID } from "../../utils/stringUtils";
-import { TRUE } from "sass";
+
 
 function CreatePointForm() {
   const {
@@ -38,7 +38,7 @@ function CreatePointForm() {
   } = usePointDetailsStore();
 
   // Mostrar errores después de 5 segundos
-  const [showErrorTimeoutConsumed, setShowErrorTimeoutConsumed] =
+  const [, setShowErrorTimeoutConsumed] =
     useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({

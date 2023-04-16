@@ -1,5 +1,5 @@
 import "../../../../public/css/components/points/details/review/PointReviewSummary.css"
-import { ceilNumber } from "../../../../utils/numberUtils"
+
 
 
 type Props = {
