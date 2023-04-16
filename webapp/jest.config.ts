@@ -19,8 +19,7 @@ export default {
         "/node_modules/",
         "/dist/"
     ],
-    
-    setupFilesAfterEnv: ['./jest.setup.js']
+
 
     // plugins: [
     //     new NodePolyfillPlugin({
