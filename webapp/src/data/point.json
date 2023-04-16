@@ -152,8 +152,8 @@
           "comment": "minim adipisicing esse sunt excepteur sint est Lorem ut nisi ex anim dolore aliqua voluptate laborum reprehenderit deserunt nulla consequat commodo et excepteur consequat veniam nostrud consequat quis anim enim aliquip occaecat exercitation fugiat eu amet laboris consequat sit minim commodo duis nulla officia eu sint ad est qui enim aliqua elit consequat aliqua deserunt nisi laborum minim magna reprehenderit ea elit occaecat ullamco consectetur ipsum dolor et officia do non dolore culpa officia enim laborum incididunt non fugiat anim quis aliquip ad",
           "reviewer": {
             "webId": "",
-            "imageUrl": "https://randomuser.me/api/portraits/men/75.jpg",
-            "name":"Ana Carmona"
+            "name": "Ana Carmona",
+            "imageUrl": "https://randomuser.me/api/portraits/men/75.jpg"
           },
           "rating": 3,
           "createdAt": "2018-07-07T19:38:39.022Z"
@@ -164,7 +164,7 @@
           "comment": "ex esse amet occaecat dolor Lorem dolor do id consequat aliqua excepteur Lorem voluptate minim minim reprehenderit cillum adipisicing deserunt pariatur tempor mollit ullamco deserunt consequat ullamco ex eu non elit minim aliqua veniam eu labore incididunt sunt id culpa ut excepteur labore voluptate sint velit excepteur excepteur ex enim ea fugiat consequat velit qui ipsum do Lorem amet non nostrud est ad aute proident aliquip sint nostrud culpa id sit magna consectetur adipisicing dolor",
           "reviewer": {
             "webId": "",
-            "name":"Ana Carmona",
+            "name": "Ana Carmona",
             "imageUrl": "https://randomuser.me/api/portraits/men/78.jpg"
           },
           "rating": 4,
@@ -945,8 +945,8 @@
           "_id": "",
           "title": "asdfasdfasdf",
           "comment": "asfdasdfasdf",
-          "rating": 3.5,
           "reviewer": { "webId": "", "imageUrl": "" },
+          "rating": 3.5,
           "createdAt": "2023-04-12T00:28:26.295Z"
         }
       ],
@@ -958,6 +958,27 @@
       "isPublic": false,
       "createdAt": "2020-05-25T23:18:18.767Z",
       "updatedAt": "2018-06-14T11:46:11.877Z"
+    },
+    {
+      "_id": "86ef801a-0a62-4097-a7cc-69909eea7330",
+      "name": "Vistas a la playa",
+      "description": "Acampando con vistas increibles",
+      "location": {
+        "coords": { "lat": 43.55091201787063, "lng": -5.398921966552735 },
+        "postalCode": 0,
+        "city": "",
+        "country": ""
+      },
+      "owner": { "webId": "", "name": "pepe", "imageUrl": "" },
+      "reviews": [],
+      "image": {
+        "url": "https://firebasestorage.googleapis.com/v0/b/lomapes05a.appspot.com/o/points%2Fb9535126-1b2c-4935-9f33-c4342ea81eff.jpg?alt=media&token=ba75822a-ad6d-4610-bb6b-6d54dbfc3e45",
+        "alt": "Vistas a la playa"
+      },
+      "isPublic": false,
+      "category": "park",
+      "createdAt": "2023-04-13T14:28:15.196Z",
+      "updatedAt": "2023-04-13T14:28:15.196Z"
     }
   ]
 }

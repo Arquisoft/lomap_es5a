@@ -21,7 +21,6 @@ import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
 import { generateUUID } from "../../utils/stringUtils";
-import { TRUE } from "sass";
 
 function CreatePointForm() {
   const {
@@ -52,22 +51,19 @@ function CreatePointForm() {
   const { name, imageUrl } = useUserStore();
 
   const validateForm = (): boolean => {
-    let hasErrors = false;
+    let hasNoErrors = true;
     setErrors([]);
     try {
-      if (info.description) {
-        checkIsNotEmpty(info.description, "descripción del punto");
-      }
+      checkIsNotEmpty(info.name, "nombre del punto");
       checkAnyOptionIsSelected(info.category, "categoría del punto");
-      checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
-      hasErrors = true;
-      showErrorMessagesWithTimeout();
+      hasNoErrors = false;
+      //showErrorMessagesWithTimeout();
     }
 
-    return hasErrors;
+    return hasNoErrors;
   };
 
   const hasAnyRequiredFieldInvalid = (): boolean => {
@@ -95,7 +91,10 @@ function CreatePointForm() {
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    validateForm();
+    if(!validateForm()){
+      console.log("Formulario inválido", info);
+      return;
+    }
 
     setIsUploading(true);
     setIsFinished(false);
@@ -225,7 +224,7 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              refreshErrors();
+              //refreshErrors();
             }}
           />
           <BaseTextArea
