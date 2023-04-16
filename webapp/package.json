@@ -44,8 +44,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test",
-    "test:cov": "react-scripts test --coverage",
-    "test:e2e": "start-server-and-test 'npm --prefix ../restapi start' http://localhost:5000/api/users/list prod 3000 'cd e2e && jest'",
+    "test:cov": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
   },
