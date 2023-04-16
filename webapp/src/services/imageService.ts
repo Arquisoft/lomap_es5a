@@ -6,6 +6,7 @@ import {
   getDownloadURL,
 } from "../config/firebase.config";
 import { DEFAULT_IMAGE_COMPRESSION_HEIGHT, DEFAULT_IMAGE_COMPRESSION_WIDTH, compressImage } from "../utils/imageUtils";
+import { generateUUID } from "../utils/stringUtils";
 
 /**
  * Subida de una imagen a Firebase Storage.
@@ -18,7 +19,7 @@ const uploadImage = async (image: File | undefined): Promise<string> => {
   }
 
   const imgExtension = image.name.split(".").slice().pop();
-  const imgId: string = window.crypto.randomUUID();
+  const imgId: string = generateUUID();
 
 
   const imgCompressed = await compressImage(image, DEFAULT_IMAGE_COMPRESSION_WIDTH, DEFAULT_IMAGE_COMPRESSION_HEIGHT);

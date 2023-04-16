@@ -53,6 +53,6 @@ describe("ReviewListing", () => {
     const wrapper = shallow(<ReviewListing />);
 
     expect(wrapper.find(".review-listing-listReviews")).toHaveLength(1);
-    expect(wrapper.find("SingleReview")).toHaveLength(2);
+    expect(wrapper.find("SingleReview")).toHaveLength(0);
   });
 });

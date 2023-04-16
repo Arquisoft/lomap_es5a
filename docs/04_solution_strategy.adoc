@@ -49,6 +49,7 @@
 - Usabilidad: el equipo se preocupará de diseñar una interfaz clara y accesible para cualquier usuario. Para ello nos basaremos en los estándares de usabilidad en la web.
 - Privacidad: la información privada del usuario se almacenará en pods de SOLID, manteniéndola, de este modo, descentralizada. Sólo se almacenará en una base de datos centralizada lo estrictamente necesario.
 - Seguridad: nos preocuparemos de implementar todas las medidas que consideremos oportunas para securizar nuestra aplicación. Además, el mantener la información personal de los usuarios descentralizada constituye un gran paso en el proceso.
+- Testabilidad: es un objetivo de calidad importante para garantizar que el software sea confiable, robusto y libre de errores. Es importante implementar prácticas de desarrollo de software adecuadas, como la separación de preocupaciones y el diseño modular.
 
 === Relevant organizational decisions
 En cuanto a la organización dentro del equipo, hemos tomado las siguientes decisiones:

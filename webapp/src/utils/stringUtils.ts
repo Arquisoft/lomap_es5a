@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 /**
  * Canoniza una url, reemplazando los espacios por guiones y convirtiendo a minúsculas
  * @param parent Si la url es hija de otra, se le pasa la url padre en el formato
@@ -12,4 +14,8 @@ const canonizeUrl = (parent: string, url: string): string => {
     : encodeURI(url.replace(/\s/g, "-").toLowerCase());
 };
 
-export { canonizeUrl };
+const generateUUID = (): string => {
+  return uuidv4();
+};
+
+export { canonizeUrl, generateUUID };

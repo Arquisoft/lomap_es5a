@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../public/css/components/inputs/BaseTextInput.scss";
 import { BaseInputProps } from "../../shared/shareddtypes";
 import BaseButton from "../buttons/BaseButton";
-import crypto from 'crypto';
+import { generateUUID } from "../../utils/stringUtils";
 
 function BaseTextInput({
   label,
@@ -11,24 +11,26 @@ function BaseTextInput({
   onChange,
   onInput,
   onPaste,
-  showClearButton,
   type,
   id,
   placeholder,
   styles,
   required,
-  disabled
+  disabled,
 }: BaseInputProps) {
   const [showClearButtonState, setShowClearButtonState] = useState(false);
 
-  const inputId = id || window.crypto.randomUUID();
+  const inputId = id || generateUUID();
 
   const handleShowClearButton = (show: boolean) => {
     setShowClearButtonState(show);
   };
 
   return (
-    <div className="base-text-input-container" onBlur={() => handleShowClearButton(false)}>
+    <div
+      className="base-text-input-container"
+      onBlur={() => handleShowClearButton(false)}
+    >
       <label htmlFor={inputId}>{label}</label>
       <input
         type={type}
@@ -44,21 +46,6 @@ function BaseTextInput({
         disabled={disabled || false}
         style={styles as React.CSSProperties}
       />
-      {showClearButton && showClearButtonState && value && (
-        <BaseButton
-          type="button-small-gray"
-          text="Borrar"
-          onClick={(e) => {
-            e.preventDefault();
-            onChange && onChange({
-              currentTarget: {
-                value: "",
-              },
-            } as React.ChangeEvent<HTMLInputElement>);
-            handleShowClearButton(false);
-          }}
-        />
-      )}
     </div>
   );
 }

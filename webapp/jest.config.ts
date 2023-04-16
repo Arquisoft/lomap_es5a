@@ -1,14 +1,14 @@
-import { TextEncoder } from 'util'
-global.TextEncoder = TextEncoder
+const esModules = ['@react-leaflet', 'react-leaflet', 'react-router-dom', 'react-router'].join('|');
 
 export default {
+    testEnvironment: "node",
     transform: {
         "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
         "^.+\\.tsx?$": "ts-jest",
         
     },
     transformIgnorePatterns: [
-        "/node_modules/(?!react-leaflet)/"
+        `/node_modules/(?!${esModules}))`
       ],
 
     testMatch: [
@@ -19,5 +19,14 @@ export default {
         "/node_modules/",
         "/dist/"
     ],
+
+
+    // plugins: [
+    //     new NodePolyfillPlugin({
+	// 		includeAliases: ['console']
+	// 	})
+    // ],
+
+    // setupFilesAfterEnv: ['<rootDir>/setup-test.ts'],
 
 }

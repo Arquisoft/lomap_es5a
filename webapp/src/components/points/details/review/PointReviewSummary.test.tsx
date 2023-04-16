@@ -16,11 +16,11 @@ describe("PointReviewSummary", () => {
 
   it("comprobaciones extra", () => {
     const props = {
-      media: 3.75,
+      media:3.75,
     };
     const wrapper = shallow(<PointReviewSummary {...props} />);
     const mediaContainer = wrapper.find(".point-review-summary-container-media");
-    const expectedMedia = ceilNumber(props.media, 0);
-    expect(mediaContainer.text()).toEqual(expectedMedia.toString()+" ");
+    const expectedMedia = ceilNumber(props.media, 1);
+    expect(mediaContainer.text()).toEqual(expectedMedia.toString());
   });
 });

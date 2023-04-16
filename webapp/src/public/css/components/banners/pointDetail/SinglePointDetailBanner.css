@@ -52,7 +52,7 @@
 .single-point-detail-banner {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 35% auto;
+  grid-template-columns: 1fr;
   gap: 10px;
   width: 60%;
   margin: 0 auto;
