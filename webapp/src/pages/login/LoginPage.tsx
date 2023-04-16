@@ -3,6 +3,7 @@ import LoginForm from "../../components/forms/LoginForm";
 import NoAuthenticatedLayout from "../../layouts/NoAuthenticatedLayout";
 import "../../public/css/pages/login/LoginPage.scss";
 
+
 function LoginPage() {
   return (
     <>
