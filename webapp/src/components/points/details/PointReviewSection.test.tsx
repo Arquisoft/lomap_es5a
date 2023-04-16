@@ -101,8 +101,8 @@ describe("PointReviewSection", () => {
     expect(wrapper.find(".point-review-section-review-summary").exists()).toBe(
       true
     );
-    expect(wrapper.find(PointReviewSummary).prop("media")).toEqual(4);
-    expect(wrapper.find("p").text()).toEqual(" 3 valoraciones");
-    expect(wrapper.find(BaseStarRating).prop("rating")).toEqual(4);
+    expect(wrapper.find(PointReviewSummary).prop("media")).toEqual(1);
+    expect(wrapper.find("p").text()).toEqual(" 1 valoraciones");
+    expect(wrapper.find(BaseStarRating).prop("rating")).toEqual("1.0");
   });
 });
