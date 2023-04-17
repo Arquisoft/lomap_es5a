@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 
 import { getAllFriends } from "../../api/friends.api";
-import { findAllPoints } from "../../api/point.api";
+import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
   addSharePoint,
@@ -11,7 +11,7 @@ import {
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
-import AuthenticatedLayout from "../../layouts/AutenticatedLayout";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
@@ -29,7 +29,7 @@ function HomePage() {
   const { session } = useSession();
 
   const loadAllPoints = async () => {
-    const data: Point[] = await findAllPoints(session.info.webId as string);
+    const data: Point[] = await findAllUserPoints(session.info.webId as string);
     setAllPoints(data);
   };
 
@@ -41,7 +41,6 @@ function HomePage() {
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn) {
       const friends = await getAllFriends(session.info.webId as string);
-      console.log(friends);
     }
   };
 
@@ -80,6 +79,7 @@ function HomePage() {
           <BaseFilterBar />
           <div className="home-map-wrapper">
             <BaseMap
+              isClickableToAddNewPoint={true}
               data-testid="home-map"
               position={[43.36297198377049, -5.851084856954243]}
               points={isFiltering ? filteredPoints : points}

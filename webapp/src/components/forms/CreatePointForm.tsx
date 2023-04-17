@@ -5,15 +5,14 @@ import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
 import { HOME_PATH } from "../../routes";
-import { Coordinate } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
+import { generateUUID } from "../../utils/stringUtils";
 import {
   NO_OPTION_SELECTED,
   checkAnyOptionIsSelected,
-  checkIsNotEmpty,
-  checkIsValidGeoCoordinate,
+  checkIsNotEmpty
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
@@ -34,6 +33,10 @@ function CreatePointForm() {
     resetPointInfo,
     imageToUpload,
   } = usePointDetailsStore();
+
+  // Mostrar errores después de 5 segundos
+  const [, setShowErrorTimeoutConsumed] =
+    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -46,30 +49,18 @@ function CreatePointForm() {
   const { name, imageUrl } = useUserStore();
 
   const validateForm = (): boolean => {
-    let hasErrors = false;
+    let hasNoErrors = true;
     setErrors([]);
     try {
-      if (info.description) {
-        checkIsNotEmpty(info.description, "descripción del punto");
-      }
+      checkIsNotEmpty(info.name, "nombre del punto");
       checkAnyOptionIsSelected(info.category, "categoría del punto");
-      // checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      // checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
-      hasErrors = true;
+      hasNoErrors = false;
     }
 
-    return hasErrors;
-  };
-
-  const hasAnyRequiredFieldInvalid = (): boolean => {
-    return (
-      requiredFormData.name.length >= 0 &&
-      requiredFormData.category !== NO_OPTION_SELECTED &&
-      !isNaN(info.location.coords.lat) &&
-      !isNaN(info.location.coords.lng)
-    );
+    return hasNoErrors;
   };
 
   const handleRequiredDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,20 +68,18 @@ function CreatePointForm() {
     setRequiredFormData({ ...requiredFormData, [name]: value });
   };
 
-  const refreshErrors = () => {
-    if (hasAnyRequiredFieldInvalid()) {
-      setErrors([]);
-    }
-  };
-
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    validateForm();
+    if(!validateForm()){
+      console.log("Formulario inválido", info);
+      return;
+    }
 
     setIsUploading(true);
     setIsFinished(false);
-    info._id = window.crypto.randomUUID();
+
+    info._id = generateUUID();
     info.location.postalCode = 0;
     info.location.city = "";
     info.location.country = "";
@@ -113,6 +102,13 @@ function CreatePointForm() {
       navigate(HOME_PATH);
       setErrors([]);
       resetPointInfo();
+
+    }).catch(err => {
+      if(err){
+        setIsUploading(false);
+        setIsFinished(false);
+        setErrors([...errors, "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde"]);
+      }
     });
   };
 
@@ -129,7 +125,7 @@ function CreatePointForm() {
       <div className="create-form-info">
         Los campos con (*) son obligatorios.
       </div>
-      <form>
+      <form id="">
         <div className="create-form-form">
           <BaseTextInput
             id="nombre"
@@ -145,6 +141,7 @@ function CreatePointForm() {
                 setCurrentPointProperty("name", e.target.value);
                 handleRequiredDataChange(e);
               } catch (error) {
+                setCurrentPointProperty("name", "");
                 setErrors([...errors, (error as Error).message]);
               }
               //refreshErrors();
@@ -154,58 +151,6 @@ function CreatePointForm() {
               height: "62px",
             }}
           />
-
-          <div className="create-form-form-coords-inputs">
-            <BaseTextInput
-              id="latitud"
-              label="Latitud (*)"
-              name="lat"
-              type="number"
-              required={true}
-              value={info.location.coords.lat || 0}
-              onChange={(e) => {
-                setPosition({
-                  lat: !isNaN(parseFloat(e.currentTarget.value))
-                    ? parseFloat(e.currentTarget.value)
-                    : 0,
-                  lng: info.location.coords.lng,
-                });
-
-                handleRequiredDataChange(e);
-              }}
-              placeholder="43.12345"
-              styles={{
-                width: "296px",
-                height: "62px",
-              }}
-              disabled={true}
-            />
-
-            <BaseTextInput
-              id="longitud"
-              label="Longitud (*)"
-              name="lng"
-              type="number"
-              required={true}
-              disabled={true}
-              onChange={(e) => {
-                setPosition({
-                  lat: info.location.coords.lat,
-                  lng: !isNaN(parseFloat(e.target.value))
-                    ? parseFloat(e.target.value)
-                    : 0,
-                });
-
-                handleRequiredDataChange(e);
-              }}
-              value={info.location.coords.lng || 0}
-              placeholder="-6.98765"
-              styles={{
-                width: "296px",
-                height: "62px",
-              }}
-            />
-          </div>
 
           <BaseTextInput
             id="direccion"
@@ -249,7 +194,7 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              refreshErrors();
+              //refreshErrors();
             }}
           />
           <BaseTextArea
@@ -268,9 +213,7 @@ function CreatePointForm() {
           <BaseButton
             type="button-black"
             text="Publicar"
-            disabled={
-              errors.length > 0 || !hasAnyRequiredFieldInvalid() || isUploading
-            }
+            disabled={isUploading}
             isLoading={isUploading}
             loadingText="Publicando..."
             onClick={handleAddPoint}
@@ -282,9 +225,7 @@ function CreatePointForm() {
       )}
       {errors.length > 0 &&
         errors.map((err: any) => {
-          return (
-            <BaseMessage key={window.crypto.randomUUID()} type="error" text={err} />
-          );
+          return <BaseMessage key={generateUUID()} type="error" text={err} />;
         })}
     </div>
   );

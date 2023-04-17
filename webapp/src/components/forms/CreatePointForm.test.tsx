@@ -1,23 +1,38 @@
-import { cleanup } from '@testing-library/react';
-import { mount } from 'enzyme';
-import BaseButton from '../buttons/BaseButton';
-import BaseSelect from '../inputs/BaseSelect';
-import BaseTextInput from '../inputs/BaseTextInput';
-import CreatePointForm from './CreatePointForm';
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
-describe('Creacion de un punto para comprobarlo con el formulario',()=>{
-    
-    afterEach(cleanup);
-    afterAll(cleanup);
-    
+import CreatePointForm from "./CreatePointForm";
+import { BrowserRouter as Router } from "react-router-dom";
+import CreatePointPage from "../../pages/point/CreatePointPage";
 
-    it("Comprobacion de componentes del test",()=>{
-        const wrapper = mount(<CreatePointForm/>);
-        const basetextinput = wrapper.find(BaseTextInput);
-        expect(basetextinput.length).toEqual(1);
-        const baseselect = wrapper.find(BaseSelect);
-        expect(baseselect.length).toEqual(1);
-        const basebutton = wrapper.find(BaseButton);
-        expect(basebutton.length).toEqual(2);
-    });   
+describe("Create Point Form component", () => {
+  afterAll(cleanup);
+
+  test("renders form inputs", () => {
+    const { container } = render(
+      <Router>
+        <CreatePointForm />
+      </Router>
+    );
+    expect(container).toBeInTheDocument();
+
+    // Campo nombre
+    const labelName = screen.getByLabelText("Nombre (*)");
+    expect(labelName).toBeInTheDocument();
+
+    const labelDescription = screen.getByLabelText("Descripción");
+    expect(labelDescription).toBeInTheDocument();
+
+    const labelDirection = screen.getByLabelText("Dirección postal");
+    expect(labelDirection).toBeInTheDocument();
+
+    const labelCategory = screen.getByLabelText("Categoría (*)");
+    expect(labelCategory).toBeInTheDocument();
+
+    // Seleccionar una categoria y comprobar que se muestra
+    fireEvent.change(screen.getByLabelText("Categoría (*)"), {
+      target: { value: "shop" },
+    });
+
+    expect(screen.getByText("Tiendas")).toBeInTheDocument();
+  });
 });

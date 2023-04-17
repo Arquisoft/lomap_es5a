@@ -1,4 +1,5 @@
 import {
+  getFile,
   getPodUrlAll,
   getSolidDataset
 } from "@inrupt/solid-client";
@@ -109,14 +110,29 @@ const checkContainerExists = async (
 ): Promise<boolean> => {
   const mainFolder: string[] = await getPodUrlAll(session.info.webId);
 
-  console.log(mainFolder, mainFolder[0], folderName);
-
   const data = await getSolidDataset(`${mainFolder[0]}${folderName}`, {
     fetch: session.fetch,
+  }).catch(() => {
+    return null;
   });
 
   return data ? true : false;
 };
+
+const checkFileExists = async (
+  session: any,
+  fileName: string
+): Promise<boolean> => {
+  const mainFolder: string[] = await getPodUrlAll(session.info.webId);
+
+  const data = await getFile(`${mainFolder[0]}${fileName}`, {
+    fetch: session.fetch,
+  }).catch(() => {
+    return null;
+  });
+
+  return data ? true : false;
+}
 
 export {
   getUserPrivatePointsUrl,
@@ -126,6 +142,7 @@ export {
   checkContainerExists,
   constructWebIdFromUsername,
   getWebIdFromUrl,
+  checkFileExists,
   getUserSharedPointsUrl
 };
 

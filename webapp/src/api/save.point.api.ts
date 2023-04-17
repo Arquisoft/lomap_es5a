@@ -2,6 +2,7 @@ import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { Session, fetch } from "@inrupt/solid-client-authn-browser";
 import {
   checkContainerExists,
+  checkFileExists,
   createNewContainer,
   getUserPrivateSavePointsUrl,
 } from "../helpers/PodHelper";
@@ -43,7 +44,10 @@ const savePoint = async (point: Point, session: Session) => {
   const existsFolder = await checkContainerExists(
     session,
     "private/savedPoints/"
-  ).catch(async () => {
+  );
+
+  // si no existe la carpeta, la crea y dentro el fichero
+  if (!existsFolder) {
     await createNewContainer(session, "private/savedPoints/").then(async () => {
       const points: Point[] = []; // creamos un array
       points.push(point); // añadimos el punto
@@ -62,54 +66,71 @@ const savePoint = async (point: Point, session: Session) => {
           fetch: fetch,
         }
       );
-      console.log(
-        "Punto añadido a favoritos satisfactoriamente con id = " + point._id
+    });
+  } else {
+    // si existe la carpeta pero no el fichero, crea dentro de la carpeta ese fichero
+    const existsFile = await checkFileExists(
+      session,
+      "private/savedPoints/savedPoints.json"
+    );
+
+    // Si no existe el fichero
+    if (!existsFile) {
+      const points: Point[] = []; // creamos un array
+      points.push(point); // añadimos el punto
+      await saveFileInContainer(
+        getUserPrivateSavePointsUrl(session.info.webId).replace(
+          "/private/savedPoints/savedPoints.json",
+          "/private/savedPoints/"
+        ),
+        new Blob([JSON.stringify({ points: points })], {
+          type: "application/json",
+        }),
+        {
+          slug: "savedPoints.json",
+          contentType: "application/json",
+          fetch: fetch,
+        }
       );
-      return false;
-    });
-    return false;
-  });
+    } else {
 
-  if (!existsFolder) {
-    return;
-  }
+      // Si existe la carpeta y el fichero, añadimos el punto al fichero
+      try {
+        const profileDocumentURI = encodeURI(
+          getUserPrivateSavePointsUrl(session.info.webId)
+        );
+        const originalPoints = await fetch(profileDocumentURI, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-  try {
-    const profileDocumentURI = encodeURI(
-      getUserPrivateSavePointsUrl(session.info.webId)
-    );
-    const originalPoints = await fetch(profileDocumentURI, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+        const totalPoints = parseJsonToPoint(await originalPoints.json());
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
+        totalPoints.push(point); // añadimos el punto
 
-    totalPoints.push(point); // añadimos el punto
+        const blob = new Blob([JSON.stringify({ points: totalPoints })], {
+          type: "application/json",
+        });
 
-    const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-      type: "application/json",
-    });
+        const fichero = new File([blob], "savedPoints.json", {
+          type: blob.type,
+        });
 
-    const fichero = new File([blob], "savedPoints.json", { type: blob.type });
-
-    // actualizamos el POD
-    await overwriteFile(
-      getUserPrivateSavePointsUrl(session.info.webId),
-      fichero,
-      {
-        contentType: fichero.type,
-        fetch: fetch,
+        // actualizamos el POD
+        await overwriteFile(
+          getUserPrivateSavePointsUrl(session.info.webId),
+          fichero,
+          {
+            contentType: fichero.type,
+            fetch: fetch,
+          }
+        );
+      } catch (err) {
+        console.error("Error savePoint: " + err);
       }
-    );
-
-    console.log(
-      "Punto añadido a favoritos satisfactoriamente con id = " + point._id
-    );
-  } catch (err) {
-    console.error("Error savePoint: " + err);
+    }
   }
 };
 

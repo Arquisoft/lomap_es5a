@@ -9,14 +9,14 @@ type Props = {
 
 function BaseProfileItem({ profileImage, name, email }: Props) {
   return (
-    <div className="base-profile-item-container">
+    <div data-testid="baseprofile" className="base-profile-item-container">
       {
         profileImage ? 
         <img src={profileImage} alt="" />
         : <NoImageSkeleton isRound={true}/>
 
       }
-      <div className="base-profile-item__details">
+      <div className="base-profile-item__details" role="base-profile-item__details">
         <p className="base-profile-item-details__name">{name}</p>
         <p className="base-profile-item-details__email">{email}</p>
       </div>

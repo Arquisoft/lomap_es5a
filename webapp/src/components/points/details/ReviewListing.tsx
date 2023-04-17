@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+
 import "../../../public/css/components/points/details/ReviewListing.css";
-import { Point } from "../../../shared/shareddtypes";
 import { usePointDetailsStore } from "../../../store/point.store";
 import SingleReview from "./review/single/SingleReview";
 

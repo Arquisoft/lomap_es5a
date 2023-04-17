@@ -1,18 +1,47 @@
-import { cleanup, screen } from '@testing-library/react';
+import {render, screen, cleanup } from '@testing-library/react';
+import BaseProfileItem from "./BaseProfileItem";
+import { MemoryRouter } from 'react-router-dom';
 
-describe("Componente BaseProfileItem" ,()=>{
+//mockeamos la consola pra realizar la prueba
+console.log = jest.fn();
+
+describe('BaseProfileItem componente', () => {
 
     afterAll(cleanup);
 
-    it("Renderizado",()=>{
-        const props = {
-            profileImage: 'https://example.com/image.png',
-            name: 'Pedro',
-            email: 'pedor@hotmail.com'
-          };
-          
-        expect(screen.getByRole('img')).toHaveAttribute('src',props.profileImage);
-        expect(screen.getByText(props.name)).toBeInTheDocument();
-        expect(screen.getByText(props.email)).toBeInTheDocument();
-    })
-});
+    test("renderiza el componente sin profile", () => {
+        render(
+            <MemoryRouter>
+                <BaseProfileItem profileImage={''} name={'name'} email={'email'} />
+            </MemoryRouter>
+        );
+    
+        const styles = screen.getByTestId("baseprofile"); 
+        expect(styles).toBeInTheDocument();
+
+        const labelName = screen.getByText('name');
+        expect(labelName).toBeInTheDocument();
+
+        const labelEmail = screen.getByText('email');
+        expect(labelEmail).toBeInTheDocument();
+      });
+    
+    test("renderiza el componente con profile", () => {
+        render(
+            <MemoryRouter>
+                <BaseProfileItem profileImage={'profile'} name={'name'} email={'email'} />
+            </MemoryRouter>
+        );
+    
+        const styles = screen.getByTestId("baseprofile"); 
+        expect(styles).toBeInTheDocument();
+
+        const labelName = screen.getByText('name');
+        expect(labelName).toBeInTheDocument();
+
+        const labelEmail = screen.getByText('email');
+        expect(labelEmail).toBeInTheDocument();
+      });
+  
+   
+  });
