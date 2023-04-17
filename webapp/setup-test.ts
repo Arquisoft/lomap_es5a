@@ -1,5 +1,11 @@
+import util from 'util';
 
-// global.TextEncoder = TextEncoder;
-//global.TextDecoder = TextDecoder;
+const encoder = new util.TextEncoder();
+const decoder = new util.TextDecoder();
+
+export {
+    encoder,
+    decoder
+}
 
 

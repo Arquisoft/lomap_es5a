@@ -17,13 +17,5 @@ export default {
         "/dist/"
     ],
 
-
-    // plugins: [
-    //     new NodePolyfillPlugin({
-	// 		includeAliases: ['console']
-	// 	})
-    // ],
-
-    // setupFilesAfterEnv: ['<rootDir>/setup-test.ts'],
-
+    setupFilesAfterEnv: ['<rootDir>/setup-test.ts'],
 }
