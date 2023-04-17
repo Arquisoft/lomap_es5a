@@ -11,6 +11,7 @@ import { useUserStore } from "../../store/user.store";
 import { generateUUID } from "../../utils/stringUtils";
 import {
   NO_OPTION_SELECTED,
+  checkAnyCategoryIsSelected,
   checkAnyOptionIsSelected,
   checkIsNotEmpty
 } from "../../utils/validator";
@@ -53,7 +54,7 @@ function CreatePointForm() {
     setErrors([]);
     try {
       checkIsNotEmpty(info.name, "nombre del punto");
-      checkAnyOptionIsSelected(info.category, "categoría del punto");
+      checkAnyCategoryIsSelected(info.category, "categoría del punto");
 
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
@@ -182,7 +183,7 @@ function CreatePointForm() {
             }}
             handleChange={(e) => {
               try {
-                if (e.currentTarget.value === "not-opt") {
+                if (e.target.value === "not-opt") {
                   throw new Error("Debes seleccionar una categoría");
                 }
                 setRequiredFormData({
@@ -194,7 +195,6 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              //refreshErrors();
             }}
           />
           <BaseTextArea

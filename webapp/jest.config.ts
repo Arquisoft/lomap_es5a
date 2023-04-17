@@ -1,4 +1,4 @@
-const esModules = ['@react-leaflet', 'react-leaflet', 'react-router-dom', 'react-router'].join('|');
+//const esModules = ['@react-leaflet', 'react-leaflet'].join('|');
 
 export default {
     testEnvironment: "node",
@@ -7,9 +7,6 @@ export default {
         "^.+\\.tsx?$": "ts-jest",
         
     },
-    transformIgnorePatterns: [
-        `/node_modules/(?!${esModules}))`
-      ],
 
     testMatch: [
         "**/__tests__/**/*.[jt]s?(x)",
