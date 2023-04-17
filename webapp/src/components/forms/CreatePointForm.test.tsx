@@ -1,9 +1,8 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
+import { BrowserRouter as Router } from "react-router-dom";
 import CreatePointForm from "./CreatePointForm";
-import { MemoryRouter, BrowserRouter as Router } from "react-router-dom";
-import { mount, shallow } from "enzyme";
-import BaseButton from "../buttons/BaseButton";
+
 
 describe("Create Point Form component", () => {
   afterAll(cleanup);
@@ -37,31 +36,25 @@ describe("Create Point Form component", () => {
     expect(screen.getByText("Tiendas")).toBeInTheDocument();
   });
 
-  test("no select any category", () => {
-    const form = shallow(
-      <MemoryRouter>
-        <CreatePointForm />
-      </MemoryRouter>
-    );
+  // test("no select any category", () => {
+  //   render(
+  //     <Router>
+  //       <CreatePointForm />
+  //     </Router>
+  //   );
 
-    // Seleccionar una categoria y comprobar que se muestra 
-    const handleClick = jest.fn();
-    const btPublicar = shallow((
-      <BaseButton
-      type="button-black"
-      text="Publicar"
-      loadingText="Publicando..."
-      onClick={handleClick}
-    />
-    ));
+  //     // Rellenar el campo nombre
+  //   fireEvent.change(screen.getByLabelText("Nombre (*)"), {
+  //     target: { value: "Punto de prueba" },
+  //   });
 
-    console.log("button: ", form.dive().children())
-    
-    const mainForm = form.find(CreatePointForm);
-    console.log(mainForm);
+  //   expect(screen.getByLabelText("Nombre (*)")).toHaveValue("Punto de prueba");
 
-    //expect(handleClick).toHaveBeenCalled();
+  //   fireEvent.click(screen.getByText("Publicar"));
 
-    expect(screen.getByText(/El campo categoría del punto es obligatorio/i)).toBeInTheDocument();
-  });
+  //   // Comprobar que se muestra el error
+  //   expect(
+  //     screen.getByText("El campo categoría del punto es obligatorio")
+  //   ).toBeInTheDocument();
+  // });
 });

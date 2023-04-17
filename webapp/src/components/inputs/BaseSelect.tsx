@@ -29,9 +29,9 @@ function BaseSelect({
         style={styles as React.CSSProperties}
       >
         <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
-        {options.map((opt) => {
+        {options.map((opt, index) => {
           return (
-            <option key={opt.value + crypto.randomUUID} value={opt.value}>
+            <option key={opt.value + crypto.randomUUID} value={opt.value} selected={index === 0}>
               {showContent ? opt.content : opt.value}
             </option>
           );

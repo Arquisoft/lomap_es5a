@@ -211,6 +211,7 @@ function CreatePointForm() {
 
         <div className="create-form-buttons">
           <BaseButton
+            data-testid="create-point-button"
             type="button-black"
             text="Publicar"
             disabled={isUploading}
