@@ -5,7 +5,7 @@ import { getAllFriends } from "../../api/friends.api";
 import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
-  addSharePoint,
+  sharePointWithFriend,
   sharePointsWithFriends
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
@@ -13,7 +13,7 @@ import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
 import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import { Point } from "../../shared/shareddtypes";
+import { Friend, Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
 import { createPortal } from 'react-dom';
@@ -34,8 +34,11 @@ function HomePage() {
   };
 
   const sharePoint = async () => {
-    const point:Point = await findAllPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
-    await sharePointsWithFriends(session.info.webId as string,"https://pruebasolid1.inrupt.net/profile/card#me");
+    await getAllFriends(session.info.webId as string);
+    
+    //const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
+    //console.log(point);
+    //await sharePointWithFriend(point,session, friend);
   }
 
   const loadUserFriends = async () => {

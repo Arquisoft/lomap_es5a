@@ -13,8 +13,9 @@ const PRIVATE_POINTS_PATH = "/private/points/points.json";
 
 // Fichero que contiene todos los puntos guardados del usuario
 const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
-// Fichero que contiene todos los puntos del usuario
-const SHARED_POINTS_PATH = "/private/sharedpoints/sharedPoints.json";
+// Folder que contiene todos los subfolders con los puntos que comparte con cada
+// amigo
+const SHARED_POINTS_PATH = "/private/sharedpoints/";
 
 // Información del perfil del usuario
 const PROFILE_PATH = "/profile/card";
@@ -63,7 +64,8 @@ const getUserPrivateSavePointsUrl = (myWedId?: string) => {
 };
 
 /**
- * Devuelve la URL de los puntos privados de un usuario.
+ * Devuelve la URL del folder en el que el user en sesion almacenara
+ * los distintos subfolder con los puntos a compartir con sus amigos
  * @param webId WebId del usuario.
  * @returns
  * @throws Error si no se proporciona una URL de perfil.
@@ -71,6 +73,8 @@ const getUserPrivateSavePointsUrl = (myWedId?: string) => {
 const getUserSharedPointsUrl = (myWedId?: string):string => {  
   return contructPodUrl(myWedId ?? webId, SHARED_POINTS_PATH);
 };
+
+
 
 /**
  * Devuelve la URL del perfil de un usuario.

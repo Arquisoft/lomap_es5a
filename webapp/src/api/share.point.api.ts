@@ -17,8 +17,9 @@ import { fetch } from "@inrupt/solid-client-authn-browser";
 import { 
     checkContainerExists,
     createNewContainer,
-    getUserPrivatePointsUrl,
-    getUserSharedPointsUrl
+    getWebIdFromUrl,
+    getUserSharedPointsUrl,
+    checkFileExists
 } from "../helpers/PodHelper";
 import { Friend, Point } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
@@ -118,103 +119,152 @@ const sharePointsWithFriends = async (
 
 
 /**
- * Añade el punto a compartir a la carpeta private/sharedpoints del usuario.
- * @param point Punto que se quiere compartir con los amigos
+ * Añade el punto a compartir a la carpeta private/sharedpoints/<username> del usuario.
+ * <username> es el nombre de usuario del amigo (junto con el proveedor donde se encuentra su pod)
+ * con el que se quiere compartir el punto.
+ * @param point Punto que se quiere compartir con el amigo
  * @param session 
- * @param friends Array con los amigos con los que se quiere compartir el punto
- * @param image Imagen que el usuario ha añadido al punto.
- * @param callback 
+ * @param friend Amigo con el que se quiere compartir el punto dado.
  * @returns 
  */
-const addSharePoint = async (
+const sharePointWithFriend = async (
   point: Point,
   session: any,
-  friends: Friend[]
+  friend: Friend
 ) => {
+  const friendUserName = getWebIdFromUrl(friend.webId);
   const existsFolder = await checkContainerExists(
     session,
     "private/sharedpoints/"
-  ).catch(async (err) => {
-    await createNewContainer(session, "private/sharedpoints/").then(async () => {
-      console.log("creada");
-      const points: Point[] = []; // creamos un array
-      points.push(point); // añadimos el punto
-
-      await saveFileInContainer(
-        getUserSharedPointsUrl(session.info.webId).replace(
-          "private/sharedpoints/sharedPoints.json",
-          "private/sharedpoints"
-        ),
-        new Blob([JSON.stringify({ points: points })], {
-          type: "application/json",
-        }),
-        { 
-          slug: "sharedPoints.json",
-          contentType: "application/json",
-          fetch: fetch
-        }
-      );
-      console.log("Punto añadido satisfactoriamente con id = " + point._id);
-      return false;
-    });
-    return false;
-  });
-
+  );
+  // Si no existe el folder principal, lo creamos junto con el subfolder y el fichero
   if (!existsFolder) {
-    console.log("no existe la carpeta, se ha creado");
-    return;
-  }
+    await createNewContainer(session, "private/sharedpoints/").then(async () => {
+     
+        await createNewContainer(session, `private/sharedpoints/${friendUserName}`).then(async () => {
+          const points: Point[] = []; // creamos un array
+          points.push(point); // añadimos el punto
 
-  console.log("La carpeta ya existe");
+          // Creamos el fichero con el punto a compartir
+          await saveFileInContainer(
+            getUserSharedPointsUrl(session.info.webId).replace(
+              "/private/sharedpoints/",
+              `private/sharedpoints/${friendUserName}`
+            ),
+            new Blob([JSON.stringify({ points: points })], {
+              type: "application/json",
+            }),
+            {
+              slug: "sharedPoints.json",
+              contentType: "application/json",
+              fetch: fetch,
+            }
+          );
+        });
+      });
+  } else { // Si existe el folder principal, comprobamos si existe el subfolder
+    const existsSubfolder = await checkContainerExists(
+      session,
+      `private/sharedpoints/${friendUserName}`
+    );    
+    if (!existsSubfolder){
+      
+      // Creamos el subfolder y el fichero
+      await createNewContainer(session, `private/sharedpoints/${friendUserName}`).then(async () => {
+        const points: Point[] = []; // creamos un array
+        points.push(point); // añadimos el punto
 
-  try {
+        // Creamos el fichero con el punto a compartir
+        await saveFileInContainer(
+          getUserSharedPointsUrl(session.info.webId).replace(
+            "/private/sharedpoints/",
+            `private/sharedpoints/${friendUserName}`
+          ),
+          new Blob([JSON.stringify({ points: points })], {
+            type: "application/json",
+          }),
+          {
+            slug: "sharedPoints.json",
+            contentType: "application/json",
+            fetch: fetch,
+          }
+        );
+      });
 
-    const sharedPointsURI = encodeURI(getUserSharedPointsUrl(session.info.webId));
+    }else{
+      const existsFile = await checkFileExists(
+        session,
+        `private/sharedpoints/${friendUserName}/sharedPoints.json`
+      );
+      // Si no existe el fichero
+      if (!existsFile) {
+        const points: Point[] = []; // creamos un array
+        points.push(point); // añadimos el punto
+        // Creamos el fichero con el punto a compartir
+        await saveFileInContainer(
+          getUserSharedPointsUrl(session.info.webId).replace(
+            "/private/sharedpoints/",
+            `private/sharedpoints/${friendUserName}`
+          ),
+          new Blob([JSON.stringify({ points: points })], {
+            type: "application/json",
+          }),
+          {
+            slug: "sharedPoints.json",
+            contentType: "application/json",
+            fetch: fetch,
+          }
+        );
+      } else { // Si existe el subfolder y el fichero
+        try {
+          const profileDocumentURI = encodeURI(
+            getUserSharedPointsUrl(session.info.webId) +
+            `${friendUserName}/sharedPoints.json`
+          );
+          const originalPoints = await fetch(profileDocumentURI, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
-    const originalPoints = await fetch(sharedPointsURI, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+          const totalPoints = parseJsonToPoint(await originalPoints.json());
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
+          totalPoints.push(point); // añadimos el punto
 
-    // Subir la imagen del punto y obtener la url
-    // await uploadImage(image as File, async (downloadUrl) => {
-    //   point.image = {
-    //     url: downloadUrl ?? "",
-    //     alt: point?.name ?? "",
-    //   };            
+          const blob = new Blob([JSON.stringify({ points: totalPoints })], {
+            type: "application/json",
+          });
 
-    totalPoints.push(point); // añadimos el punto
+          const fichero = new File([blob], "sharedPoints.json", {
+            type: blob.type,
+          });
 
-    const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-      type: "application/json",
-    });
-
-    const fichero = new File([blob], "sharedPoints.json", { type: blob.type });
-
-    // actualizamos el POD
-    await overwriteFile(
-      getUserSharedPointsUrl(session.info.webId),
-      fichero,
-      {
-        contentType: fichero.type,
-        fetch: fetch,
+          // actualizamos el POD
+          await overwriteFile(
+            getUserSharedPointsUrl(session.info.webId) +
+            `${friendUserName}/sharedPoints.json`,
+            fichero,
+            {
+              contentType: fichero.type,
+              fetch: fetch,
+            }
+          );
+        } catch (err) {
+          console.error("Error sharePoint: " + err);
+        }
       }
-    );
-    console.log("Punto añadido satisfactoriamente con id = " + point._id);
-
-  } catch (err) {
-    console.error("add point error: " + err);
+    }
   }
+    
+
+
 }
 
 
 
 
   export{
-    addSharePoint,
+    sharePointWithFriend,
     sharePointsWithFriends
   }
