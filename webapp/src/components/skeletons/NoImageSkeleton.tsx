@@ -17,6 +17,7 @@ function NoImageSkeleton({ isRound, onClick }: Props) {
         borderRadius: isRound ? "50%" : "8px",
       }}
       onClick={onClick}
+      role="figure"
     >
       <ImageRoundedIcon
         style={{
