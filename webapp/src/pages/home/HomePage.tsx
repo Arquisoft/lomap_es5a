@@ -34,11 +34,9 @@ function HomePage() {
   };
 
   const sharePoint = async () => {
-    await getAllFriends(session.info.webId as string);
-    
-    //const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});             
-    //console.log(point);
-    //await sharePointWithFriend(point,session, friend);
+    const friend: Friend = await getAllFriends(session.info.webId as string).then((friends) => {return friends[0]});
+    const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});          
+    await sharePointWithFriend(point,session, friend);
   }
 
   const loadUserFriends = async () => {
