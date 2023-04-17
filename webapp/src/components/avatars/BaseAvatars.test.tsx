@@ -1,7 +1,5 @@
 import { cleanup, render } from '@testing-library/react';
 import BaseAvatar from './BaseAvatar';
-import NoImageSkeleton from '../skeletons/NoImageSkeleton';
-
 
 {/**test('Comprobamos BaseAvatar',async () => {
     //La funcion a la que se llama se encuentra en components/Nav.tsx

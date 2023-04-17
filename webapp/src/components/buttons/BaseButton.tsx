@@ -14,7 +14,7 @@ type Props = {
 };
 
 function BaseButton({
-  type = "button-blue",
+  type,
   text,
   isLoading,
   loadingText,
@@ -25,7 +25,7 @@ function BaseButton({
   onClick,
 }: Props) {
   return (
-    <button className={`${isLoading ? 'button-disabled' : type}`} onClick={onClick} disabled={isLoading || disabled} style={styles} title={title}>
+    <button data-testid="button" className={`${isLoading ? 'button-disabled' : type}`} onClick={onClick} disabled={isLoading || disabled} style={styles} title={title}>
       {isLoading ? <p>{loadingText || "Cargando..."}</p> : (isFinished ? <p>Finalizado</p> : text)}
     </button>
   );
