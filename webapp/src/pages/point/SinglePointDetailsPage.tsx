@@ -15,7 +15,7 @@ function SinglePointDetailsPage() {
   return (
     <AuthenticatedLayout>
       <div className="single-point-details-container" id="point-details-page">
-        <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""} />
+        <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""} coords={pointToShow.location.coords} />
         <section className="single-point-details__details">
           <SingleDetail pointToShow={pointToShow} />
         </section>

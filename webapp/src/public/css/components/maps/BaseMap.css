@@ -9,8 +9,4 @@
 
 .leaflet-popup-tip, .leaflet-popup-close-button {
   display: none;
-}
-
-.leaflet-grab {
-  cursor: url("../../../images/icons/marker-add-point.png"), auto;
 }/*# sourceMappingURL=BaseMap.css.map */
