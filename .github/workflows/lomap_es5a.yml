@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 18
     - run: npm --prefix webapp ci --legacy-peer-deps
-    - run: CI=true npm --prefix webapp test -- --coverage --watchAll
+    - run: npm --prefix webapp test -- --coverage
 
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
