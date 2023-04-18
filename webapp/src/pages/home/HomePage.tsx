@@ -5,8 +5,8 @@ import { getAllFriends } from "../../api/friends.api";
 import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
-  sharePointWithFriend,
-  sharePointsWithFriends
+  addSharedPointForFriend,
+  setAllPermsToOwner
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -34,9 +34,14 @@ function HomePage() {
   };
 
   const sharePoint = async () => {
+    
     const friend: Friend = await getAllFriends(session.info.webId as string).then((friends) => {return friends[0]});
-    const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[1]});          
-    await sharePointWithFriend(point,session, friend);
+    //console.log(friend)
+    
+    const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});
+    
+    //await addSharedPointForFriend(point,session, friend);
+    //setAllPermsToOwner(session);
   }
 
   const loadUserFriends = async () => {

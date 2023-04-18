@@ -117,17 +117,69 @@ const sharePointsWithFriends = async (
   
 }
 
+/**
+ * Asigna todos los permisos al propietario del folder "private/sharedpoints" sobre
+ * dicho folder y todos sus hijos.
+ */
+const setAllPermsToOwner = async (session:any) => {
+  const webId = session.info.webId as string;
+  const resourceUrl = getUserSharedPointsUrl(webId);  
+  
+  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
+  
+  
+  let resourceAcl;
+  if (!hasResourceAcl(userDatasetWithAcl)){    
+    if (!hasAccessibleAcl(userDatasetWithAcl)){
+      console.error("El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso.");
+      throw new Error (
+        "El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso."
+      );
+            
+    }
+    if (!hasFallbackAcl(userDatasetWithAcl)){
+      console.error("El usuario actual no tiene permiso para cambiar los permisos de este recurso");
+      throw new Error(
+        "El usuario actual no tiene permiso para cambiar los permisos de este recurso"
+      );
+      
+    }
+    console.log("No tengo un acl");
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);    
+    console.log("Ya cree un acl");
+    
+  }else{    
+    console.log("Tengo un acl");
+    resourceAcl = getResourceAcl(userDatasetWithAcl); 
+    console.log(resourceAcl);   
+  }
+  // Damos todos los permisos al owner del folder (será el usuario en sesion)
+  const updatedFolderAcl = setAgentResourceAccess(
+    resourceAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );
+  // Damos todos los permisos al owner sobre todos los subfolders y ficheros de "private/sharedpoints"
+  const updatedPointsFileAcl = setAgentDefaultAccess(
+    updatedFolderAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );
+
+  // almacenamos el acl
+  await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
+  
+}
 
 /**
  * Añade el punto a compartir a la carpeta private/sharedpoints/<username> del usuario.
- * <username> es el nombre de usuario del amigo (junto con el proveedor donde se encuentra su pod)
- * con el que se quiere compartir el punto.
+ * <username> es el nombre de usuario del amigo con el que se quiere compartir el punto.
  * @param point Punto que se quiere compartir con el amigo
- * @param session 
+ * @param session Sesión del usuario logeado en la aplicación
  * @param friend Amigo con el que se quiere compartir el punto dado.
  * @returns 
  */
-const sharePointWithFriend = async (
+const addSharedPointForFriend = async (
   point: Point,
   session: any,
   friend: Friend
@@ -135,9 +187,9 @@ const sharePointWithFriend = async (
   const friendUserName = getWebIdFromUrl(friend.webId).split('.')[0];
   const existsFolder = await checkContainerExists(
     session,
-    "private/sharedpoints/"
+    `private/sharedpoints/${friendUserName}/`
   );
-  // Si no existe el folder principal, lo creamos junto con el subfolder y el fichero
+  // Si no existe el folder, lo creamos junto con el fichero
   if (!existsFolder) {
     await createNewContainer(session, `private/sharedpoints/${friendUserName}/`).then(async () => {
 
@@ -162,7 +214,7 @@ const sharePointWithFriend = async (
       );
     });
 
-  } else { // Si existe el folder principal, comprobamos si existe el fichero
+  } else { // Si existe el folder, comprobamos si existe el fichero
     const existsFile = await checkFileExists(
       session,
       `private/sharedpoints/${friendUserName}/sharedPoints.json`
@@ -235,6 +287,6 @@ const sharePointWithFriend = async (
 
 
   export{
-    sharePointWithFriend,
-    sharePointsWithFriends
+    addSharedPointForFriend,
+    setAllPermsToOwner
   }
