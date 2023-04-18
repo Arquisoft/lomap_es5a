@@ -172,6 +172,53 @@ const setAllPermsToOwner = async (session:any) => {
 }
 
 /**
+ * Funcion que dota de permisos de lectura al amigo indicado sobre el folder
+ * private/sharedpoints/<friendUsername>/ del usuario en sesion
+ * @param session Sesion perteneciente al usuario que se encuentra logeado.
+ * @param friendWebId webId del amigo al que se le quieren asignar permisos de
+ * lectura
+ * @returns 
+ */
+const giveReadPermsToFriend = async (session:any, friendWebId:string) => {
+  const friendUserName = getWebIdFromUrl(friendWebId).split('.')[0];
+  const resourceUrl = getUserSharedPointsUrl(session.info.webId).replace(
+    "/private/sharedpoints/",
+    `/private/sharedpoints/${friendUserName}/`
+  );   
+  
+  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
+  
+  let resourceAcl;
+  if (!hasResourceAcl(userDatasetWithAcl)){
+    console.log("Entro por aqui")
+    if (!hasAccessibleAcl(userDatasetWithAcl)){
+      console.error("No tiene un acl accesible para el usuario autenticado");
+      return;
+    }
+    if (!hasFallbackAcl(userDatasetWithAcl)){
+      console.error("No tiene un acl que haya heredado de su contenedor/contenedores padres");
+      return;
+    }
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);
+    // 
+    
+  }else{
+    console.log("Entro por esti otru lau");
+    resourceAcl = getResourceAcl(userDatasetWithAcl);
+    console.log(resourceAcl.internal_accessTo);
+  }
+  // Le damos permisos de lectura al amigo
+  const pointsFileFriendAcl = setAgentDefaultAccess(
+    resourceAcl,
+    friendWebId,
+    {read:true, append:false, write:false, control:false}
+  )
+
+  // almacenamos el acl
+  await saveAclFor(userDatasetWithAcl, pointsFileFriendAcl,{fetch :fetch});  
+}
+
+/**
  * Añade el punto a compartir a la carpeta private/sharedpoints/<username> del usuario.
  * <username> es el nombre de usuario del amigo con el que se quiere compartir el punto.
  * @param point Punto que se quiere compartir con el amigo
@@ -288,5 +335,6 @@ const addSharedPointForFriend = async (
 
   export{
     addSharedPointForFriend,
-    setAllPermsToOwner
+    setAllPermsToOwner,
+    giveReadPermsToFriend
   }

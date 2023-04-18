@@ -6,7 +6,8 @@ import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
   addSharedPointForFriend,
-  setAllPermsToOwner
+  setAllPermsToOwner,
+  giveReadPermsToFriend
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -39,7 +40,7 @@ function HomePage() {
     //console.log(friend)
     
     const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});
-    
+    //await giveReadPermsToFriend(session,friend.webId);
     //await addSharedPointForFriend(point,session, friend);
     //setAllPermsToOwner(session);
   }
