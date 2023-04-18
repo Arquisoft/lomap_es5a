@@ -59,6 +59,9 @@ function CreatePointForm() {
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
+      setTimeout(()=>{
+        setIsUploading(false);
+      },5000);
     }
 
     return hasNoErrors;
