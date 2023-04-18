@@ -159,6 +159,7 @@ const setAllPermsToOwner = async (session:any) => {
     webId,
     {read:true, append:true, write:true, control:true}
   );
+  console.log(updatedFolderAcl);
   // Damos todos los permisos al owner sobre todos los subfolders y ficheros de "private/sharedpoints"
   const updatedPointsFileAcl = setAgentDefaultAccess(
     updatedFolderAcl,
@@ -169,6 +170,31 @@ const setAllPermsToOwner = async (session:any) => {
   // almacenamos el acl
   await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
   
+}
+
+/**
+ * Devuelve todos los puntos compartidos por un amigo
+ * @param friendWebId
+ * @returns 
+ */
+const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
+  const userName = getWebIdFromUrl(session.info.webId).split('.')[0];
+  const friendDocumentURI = encodeURI(getUserSharedPointsUrl(friendWebId) +
+  `${userName}/sharedPoints.json`);
+  console.log("Uri documento",friendDocumentURI);
+  try {
+    const data = await fetch(friendDocumentURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return parseJsonToPoint(await data.json());
+  } catch (err) {
+    console.error("Error findSharedPointsByFriend: ", err);
+  }
+  return new Array<Point>();
 }
 
 /**
@@ -336,5 +362,6 @@ const addSharedPointForFriend = async (
   export{
     addSharedPointForFriend,
     setAllPermsToOwner,
-    giveReadPermsToFriend
+    giveReadPermsToFriend,
+    findSharedPointsByFriend
   }
