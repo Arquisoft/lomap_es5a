@@ -23,7 +23,7 @@ function PointSummaryCard({
 }: Props) {
   const {setPointToShow} = usePointDetailsStore();
   const navigate = useNavigate();
-
+  
   const handleRedirectToPointDetailsPage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if(pointInfo && pointName.length > 0){

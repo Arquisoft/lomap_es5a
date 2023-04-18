@@ -1,4 +1,4 @@
-import { useSession } from "@inrupt/solid-ui-react";
+// import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { addPoint } from "../../api/point.api";
@@ -20,6 +20,7 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { useSession } from "@inrupt/solid-ui-react";
 
 function CreatePointForm() {
   const {
