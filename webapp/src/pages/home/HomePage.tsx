@@ -5,9 +5,7 @@ import { getAllFriends } from "../../api/friends.api";
 import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
-  addSharedPointForFriend,
-  setAllPermsToOwner,
-  giveReadPermsToFriend,
+  sharePointWithFriend,
   findSharedPointsByFriend
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";

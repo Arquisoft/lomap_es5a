@@ -1,9 +1,7 @@
 import {
   overwriteFile,
-  saveFileInContainer,
-  getFile,
-  getSolidDatasetWithAcl,
-  getFallbackAcl,
+  saveFileInContainer,  
+  getSolidDatasetWithAcl,  
   hasResourceAcl,
   createAclFromFallbackAcl,
   hasAccessibleAcl,
@@ -27,155 +25,29 @@ import { uploadImage } from "../services/imageService";
 import { tr } from "date-fns/locale";
 
 
-
 /**
- * Comprueba si ya existe el punto en la carpeta sharedpoints.
- * De esta forma se evita que solid genere un nuevo fichero con el mismo
- * contenido que el existente con un nuevo nombre (generado por solid).
- * @param idPoint Identificador del punto de interes
- * @param webId webId del usuario en sesión
- * @returns true si existe el fichero, false en caso contrario
+ * Comparte un punto con un amigo del usuario en sesion.
+ * @param point Punto que se quiere compartir
+ * @param session Sesion del usuario logeado
+ * @param friend Amigo con el que se quiere compartir el punto
  */
-const existsPoint = async (
-  idPoint: string,
-  webId: string
-) :Promise<boolean> => {  
-  try {
-    const sharedPointUrl = getUserSharedPointsUrl(webId) + idPoint + '.json';    
-    await getFile(
-      sharedPointUrl,
-      {fetch:fetch}
-    );
-    return true;
-
-    //console.log(file);
-  } catch (err) {
-    return false;
-    //console.error("Error findPointById: ", err);
-  }    
-};
-
-
-
-/**
- * 
- * @param webId 
- * @param friendWebId 
- * @returns 
- */
-const sharePointsWithFriends = async (
-  webId: string,
-  friendWebId: string
-) => {    
-  const resourceUrl = getUserSharedPointsUrl(webId).replace(
-    "private/sharedpoints/sharedPoints.json",
-    "private/sharedpoints/"
-  );   
-  
-  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
-  
-  let resourceAcl;
-  if (!hasResourceAcl(userDatasetWithAcl)){
-    console.log("Entro por aqui")
-    if (!hasAccessibleAcl(userDatasetWithAcl)){
-      console.error("No tiene un acl accesible para el usuario autenticado");
-      return;
-    }
-    if (!hasFallbackAcl(userDatasetWithAcl)){
-      console.error("No tiene un acl que haya heredado de su contenedor/contenedores padres");
-      return;
-    }
-    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);
-    // 
-    
-  }else{
-    console.log("Entro por esti otru lau");
-    resourceAcl = getResourceAcl(userDatasetWithAcl);
-    console.log(resourceAcl.internal_accessTo);
-  }
-  // Nos damos control access del folder
-  const updatedFolderAcl = setAgentResourceAccess(
-    resourceAcl,
-    webId,
-    {read:true, append:true, write:true, control:true}
-  );
-  // Nos damos todos los permisos sobre el fichero de puntos
-  const updatedPointsFileAcl = setAgentDefaultAccess(
-    updatedFolderAcl,
-    webId,
-    {read:true, append:true, write:true, control:true}
-  );
-  // Le damos permisos de lectura al amigo
-  const pointsFileFriendAcl = setAgentDefaultAccess(
-    updatedPointsFileAcl,
-    friendWebId,
-    {read:true, append:false, write:false, control:false}
-  )
-
-  // almacenamos el acl
-  await saveAclFor(userDatasetWithAcl, pointsFileFriendAcl,{fetch :fetch});  
-  
-}
-
-/**
- * Asigna todos los permisos al propietario del folder "private/sharedpoints" sobre
- * dicho folder y todos sus hijos.
- */
-const setAllPermsToOwner = async (session:any) => {
-  const webId = session.info.webId as string;
-  const resourceUrl = getUserSharedPointsUrl(webId);  
-  
-  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
-  
-  
-  let resourceAcl;
-  if (!hasResourceAcl(userDatasetWithAcl)){    
-    if (!hasAccessibleAcl(userDatasetWithAcl)){
-      console.error("El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso.");
-      throw new Error (
-        "El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso."
-      );
-            
-    }
-    if (!hasFallbackAcl(userDatasetWithAcl)){
-      console.error("El usuario actual no tiene permiso para cambiar los permisos de este recurso");
-      throw new Error(
-        "El usuario actual no tiene permiso para cambiar los permisos de este recurso"
-      );
-      
-    }
-    console.log("No tengo un acl");
-    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);    
-    console.log("Ya cree un acl");
-    
-  }else{    
-    console.log("Tengo un acl");
-    resourceAcl = getResourceAcl(userDatasetWithAcl); 
-    console.log(resourceAcl);   
-  }
-  // Damos todos los permisos al owner del folder (será el usuario en sesion)
-  const updatedFolderAcl = setAgentResourceAccess(
-    resourceAcl,
-    webId,
-    {read:true, append:true, write:true, control:true}
-  );
-  console.log(updatedFolderAcl);
-  // Damos todos los permisos al owner sobre todos los subfolders y ficheros de "private/sharedpoints"
-  const updatedPointsFileAcl = setAgentDefaultAccess(
-    updatedFolderAcl,
-    webId,
-    {read:true, append:true, write:true, control:true}
-  );
-
-  // almacenamos el acl
-  await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
-  
+const sharePointWithFriend = async (
+  point:Point,
+  session:any,
+  friend:Friend
+) => {
+  // En primer lugar añadimos el punto al folder correspondiente "private/sharedpoints/<friendUsername>"
+  await addSharedPointForFriend(point,session,friend);
+  // Posteriormente, asignamos al propietario de dicho folder todos los permisos sobre éste
+  await giveAllPermsToOwner(session);
+  // Finalmente, dotamos de permisos de lectura sobre el folder al amigo indicado del usuario en sesion
+  await giveReadPermsToFriend(session,friend.webId);
 }
 
 /**
  * Devuelve todos los puntos compartidos por un amigo
  * @param friendWebId
- * @returns 
+ * @returns Array con los puntos compartidos por un amigo del usuario en sesion
  */
 const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
   const userName = getWebIdFromUrl(session.info.webId).split('.')[0];
@@ -192,10 +64,64 @@ const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    console.error("Error findSharedPointsByFriend: ", err);
+    console.error("Error findSharedPointsByFriend: ", err);   
   }
   return new Array<Point>();
 }
+
+
+
+
+
+/**
+ * Asigna todos los permisos al propietario del folder "private/sharedpoints" sobre
+ * dicho folder y todos sus hijos.
+ */
+const giveAllPermsToOwner = async (session:any) => {
+  const webId = session.info.webId as string;
+  const resourceUrl = getUserSharedPointsUrl(webId);  
+  
+  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
+  
+  
+  let resourceAcl;
+  if (!hasResourceAcl(userDatasetWithAcl)){    
+    if (!hasAccessibleAcl(userDatasetWithAcl)){      
+      throw new Error (
+        "El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso."
+      );
+            
+    }
+    if (!hasFallbackAcl(userDatasetWithAcl)){      
+      throw new Error(
+        "El usuario actual no tiene permiso para cambiar los permisos de este recurso"
+      );
+      
+    }    
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);        
+    
+  }else{        
+    resourceAcl = getResourceAcl(userDatasetWithAcl);     
+  }
+  // Damos todos los permisos al owner del folder (será el usuario en sesion)
+  const updatedFolderAcl = setAgentResourceAccess(
+    resourceAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );  
+  // Damos todos los permisos al owner sobre todos los subfolders y ficheros de "private/sharedpoints"
+  const updatedPointsFileAcl = setAgentDefaultAccess(
+    updatedFolderAcl,
+    webId,
+    {read:true, append:true, write:true, control:true}
+  );
+
+  // almacenamos el acl
+  await saveAclFor(userDatasetWithAcl, updatedPointsFileAcl,{fetch :fetch});  
+  
+}
+
+
 
 /**
  * Funcion que dota de permisos de lectura al amigo indicado sobre el folder
@@ -215,23 +141,21 @@ const giveReadPermsToFriend = async (session:any, friendWebId:string) => {
   const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
   
   let resourceAcl;
-  if (!hasResourceAcl(userDatasetWithAcl)){
-    console.log("Entro por aqui")
+  if (!hasResourceAcl(userDatasetWithAcl)){    
     if (!hasAccessibleAcl(userDatasetWithAcl)){
-      console.error("No tiene un acl accesible para el usuario autenticado");
-      return;
+      throw new Error (
+        "El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso."
+      );
     }
     if (!hasFallbackAcl(userDatasetWithAcl)){
-      console.error("No tiene un acl que haya heredado de su contenedor/contenedores padres");
-      return;
+      throw new Error(
+        "El usuario actual no tiene permiso para cambiar los permisos de este recurso"
+      );
     }
-    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);
-    // 
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);     
     
-  }else{
-    console.log("Entro por esti otru lau");
-    resourceAcl = getResourceAcl(userDatasetWithAcl);
-    console.log(resourceAcl.internal_accessTo);
+  }else{    
+    resourceAcl = getResourceAcl(userDatasetWithAcl);    
   }
   // Le damos permisos de lectura al amigo
   const pointsFileFriendAcl = setAgentDefaultAccess(
@@ -347,7 +271,9 @@ const addSharedPointForFriend = async (
           }
         );
       } catch (err) {
-        console.error("Error sharePoint: " + err);
+        throw new Error (
+          `Error addSharedPointForFriend: ${err}`
+        );       
       }
     }
   }
@@ -360,8 +286,6 @@ const addSharedPointForFriend = async (
 
 
   export{
-    addSharedPointForFriend,
-    setAllPermsToOwner,
-    giveReadPermsToFriend,
+    sharePointWithFriend,
     findSharedPointsByFriend
   }
