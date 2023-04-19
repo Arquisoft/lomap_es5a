@@ -2,37 +2,32 @@ import { ChangeEvent, useState } from "react";
 import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
 import { generateUUID } from "../../../utils/stringUtils";
 import BaseCheckboxInput from "../../inputs/BaseCheckboxInput";
-import { el } from "date-fns/locale";
+import {Friend} from "../../../shared/shareddtypes";
 
 
 
 
 function BottomAccountAside(){
 
-    type Amigo = {
-        id: string;
-        nombre: string;
-        imagen: string;
-    }
-    const amigo:Amigo = {
-        id: "",
-        nombre: "",
-        imagen: ""
+    const amigo:Friend = {
+        webId : "",
+        name : "",
+        imgUrl : ""
     }
 
     //cargar lista de amigos
     
     //contiene la lista de amigos que podran recogerse fuera de este componente
-    const [amigos,setAmigos] = useState<Amigo[]>([]);
+    const [amigos,setAmigos] = useState<Friend[]>([]);
     //Funciones para añadir o eliminar y comprobar la lista de amigos
-    const añadirAmigo = (amigo:Amigo) => {
+    const añadirAmigo = (amigo:Friend) => {
         setAmigos([...amigos,amigo]);
     };
-    const eliminarAmigo = (amigoAEliminar:Amigo) => {
-        setAmigos(amigos.filter(amigo => amigo.id !== amigoAEliminar.id));
+    const eliminarAmigo = (amigoAEliminar:Friend) => {
+        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
     };
-    const verificaAmigo = (amigoVerificar:Amigo) => {
-        return amigos.some(amigo => amigo.id === amigoVerificar.id);
+    const verificaAmigo = (amigoVerificar:Friend) => {
+        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
     };
 
     //amigos seleccionados
