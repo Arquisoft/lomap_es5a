@@ -26,11 +26,12 @@ function BaseSelect({
         id={selectId}
         className="base-select-item"
         style={styles as React.CSSProperties}
+        defaultValue={"no-opt"}
       >
         <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
         {options.map((opt, index) => {
           return (
-            <option key={opt.value + generateUUID()} value={opt.value} selected={index === 0}>
+            <option key={opt.value + generateUUID()} value={opt.value}>
               {showContent ? opt.content : opt.value}
             </option>
           );
