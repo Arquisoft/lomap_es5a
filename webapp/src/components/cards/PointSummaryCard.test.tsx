@@ -1,4 +1,10 @@
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 
 import PointSummaryCard from "./PointSummaryCard";
 
@@ -37,6 +43,14 @@ const pointInitilization: Point = {
 } as Point;
 
 describe("PointSummaryCard component", () => {
+  beforeAll(() => {
+    const mockedUsedNavigate = jest.fn();
+    jest.mock("react-router-dom", () => ({
+      ...jest.requireActual("react-router-dom"),
+      useNavigate: () => mockedUsedNavigate,
+    }));
+  });
+
   afterAll(cleanup);
 
   test("render name, user and date", () => {
@@ -111,7 +125,7 @@ describe("PointSummaryCard component", () => {
 
   it("click on point summary card", () => {
     const { container } = render(
-      <MemoryRouter>
+      <Router>
         <PointSummaryCard
           imgUrl="https://pruebasolid2.solidcommunity.net/profile/91.jpg"
           pointName="Point name"
@@ -119,7 +133,7 @@ describe("PointSummaryCard component", () => {
           pointCreatedAt="Point created at"
           pointInfo={pointInitilization}
         />
-      </MemoryRouter>
+      </Router>
     );
 
     const pointSummaryCard = container.querySelector(
@@ -128,17 +142,15 @@ describe("PointSummaryCard component", () => {
 
     expect(pointSummaryCard).not.toBeNull();
 
-    if(pointSummaryCard === null){
+    if (pointSummaryCard === null) {
       return;
     }
 
     fireEvent.click(pointSummaryCard);
-    
+
     waitFor(() => {
-      expect(window.location.pathname).toBe('/points/point-name');
+      expect(window.location.pathname).toBe("/points/point-name");
     });
-
-
   });
 
   test("click on point summary card without point info", () => {

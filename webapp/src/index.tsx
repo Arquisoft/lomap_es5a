@@ -7,11 +7,11 @@ import "./public/css/global.scss";
 import React from "react";
 
 const app = (
-  <BrowserRouter>
-    <SessionProvider sessionId="lomap-solid-ssid">
+  <SessionProvider sessionId="lomap-solid-ssid">
+    <BrowserRouter>
       <App />
-    </SessionProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </SessionProvider>
 );
 
 const container = document.getElementById("root");

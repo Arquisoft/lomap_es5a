@@ -32,19 +32,16 @@ function App() {
       .map((nav: any) => nav.type)
       .includes("reload");
 
-  // const isPageRefresh =
-  //   (window.performance.getEntriesByType("navigation")[0] as any).type ===
-  //   "reload";
-
   useEffect(() => {
-    console.log("isPageRefresh: ", isPageRefresh);
     sessionStorage.setItem("currentPath", window.location.href);
     const reload = async () => {
       if (isPageRefresh) {
+        sessionStorage.setItem("isReload", "true");
         await session.handleIncomingRedirect({
-          //restorePreviousSession: true,
-          url: window.location.href,
+          url: window.location.href
         });
+      }else{
+        sessionStorage.setItem("isReload", "false");
       }
     };
     reload();

@@ -21,7 +21,7 @@ type Props = {
               borderRadius: "20px",
             }}
           />
-        <img data-testid="single-point-detail-banner-img" src={pointImage || ""} alt=""/>
+        <img data-testid="single-point-detail-banner-img" src={pointImage} alt=""/>
     </div>
   )
 }
