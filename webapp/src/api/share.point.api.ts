@@ -19,6 +19,7 @@ import {
     getUserSharedPointsUrl,
     checkFileExists
 } from "../helpers/PodHelper";
+import {getAllFriends} from "../api/friends.api"
 import { Friend, Point } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
 import { uploadImage } from "../services/imageService";
@@ -42,6 +43,22 @@ const sharePointWithFriend = async (
   await giveAllPermsToOwner(session);
   // Finalmente, dotamos de permisos de lectura sobre el folder al amigo indicado del usuario en sesion
   await giveReadPermsToFriend(session,friend.webId);
+}
+
+/**
+ * Devuelve un array con todos los puntos que los amigos del usuario en sesión le han
+ * compartido
+ * @param session Sesion del usuario logeado.
+ * @returns Array con los puntos compartidos
+ */
+const findAllSharedPointsByFriends = async (session:any) => {
+  const userFriends = await getAllFriends(session.info.webId);
+  let totalPoints:Point[] = [];
+  for (let i = 0; i < userFriends.length; i++) {
+    const friend = userFriends[i];
+    totalPoints = totalPoints.concat(await findSharedPointsByFriend(session,friend.webId));
+  }
+  return totalPoints;
 }
 
 /**
@@ -287,5 +304,6 @@ const addSharedPointForFriend = async (
 
   export{
     sharePointWithFriend,
-    findSharedPointsByFriend
+    findSharedPointsByFriend,
+    findAllSharedPointsByFriends
   }

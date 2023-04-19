@@ -6,7 +6,8 @@ import { findAllUserPoints } from "../../api/point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import {
   sharePointWithFriend,
-  findSharedPointsByFriend
+  findSharedPointsByFriend,
+  findAllSharedPointsByFriends
 } from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -37,13 +38,20 @@ function HomePage() {
     
     const friend: Friend = await getAllFriends(session.info.webId as string).then((friends) => {return friends[0]});
     //console.log(friend)
+    //console.log("Friend webid: ", friend.webId);
+    //const point:Point = await findAllUserPoints("https://marcosvalin.inrupt.net/profile/card#me").then((foundPoints) => {return foundPoints[0]});
+    //console.log(point);
     
-    //const point:Point = await findAllUserPoints(session.info.webId as string).then((foundPoints) => {return foundPoints[0]});
-    //await addSharedPointForFriend(point,session, friend);
-    //await setAllPermsToOwner(session);
-    //await giveReadPermsToFriend(session,friend.webId);
-    console.log("Puntos del amigo: ", friend.webId);
-    const sharedPoints: Point[] = await findSharedPointsByFriend(session,friend.webId);
+    //await sharePointWithFriend(point,session,friend);
+    
+    
+    console.log("Puntos compartidos por todos los amigos:");
+    const sharedPoints: Point[] = await findAllSharedPointsByFriends(session).then((points) => {
+      return points;
+    }).catch((err) => {
+      console.error(err);
+      return [];
+    });
     console.log(sharedPoints);
   }
 
