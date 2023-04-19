@@ -1,7 +1,6 @@
 name: CI for LOMAP ES5A
 
 on:
-  release:
   pull_request:
     branches: ['**']
   push:
@@ -9,7 +8,7 @@ on:
 
 jobs:
   unit-tests:
-    timeout-minutes: 15
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -17,10 +16,11 @@ jobs:
         fetch-depth: 0
     - uses: actions/setup-node@v3
       with:
-        node-version: 18.x
-        cache: npm
+        node-version: 18
     - run: npm --prefix webapp ci --legacy-peer-deps
-    - run: npm --prefix webapp run test:maps
+    - run: npm --prefix webapp test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll
+      env:
+         CI: true
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
