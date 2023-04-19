@@ -1,6 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { SOLID_PROVIDERS } from "../../data/providers";
 import { signIn } from "../../helpers/AuthHelper";
 import useAuth from "../../hooks/useAuth";
@@ -10,7 +9,7 @@ import BaseSelect from "../inputs/BaseSelect";
 
 function LoginForm() {
   const { login } = useAuth();
-  const {session} = useSession();
+  const { session } = useSession();
   const [providerUrl, setProviderUrl] = useState(SOLID_PROVIDERS[0].value);
 
   const handleLogin = async (e: React.FormEvent<HTMLButtonElement>) => {

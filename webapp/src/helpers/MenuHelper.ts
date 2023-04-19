@@ -133,7 +133,6 @@ const ACCOUNT_SIDEBAR_ITEMS: string[] = [
   MENU_ITEMS_ALIAS.ADD_POINT,
   MENU_ITEMS_ALIAS.ACCOUNT,
   MENU_ITEMS_ALIAS.SAVED,
-  MENU_ITEMS_ALIAS.SETTINGS,
 ];
 
 // Menu Items que se muestran en el sidebar de account

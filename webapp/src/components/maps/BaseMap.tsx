@@ -26,10 +26,6 @@ function MapRedirect() {
         navigate(CREATE_POINT_PATH);
       }
     },
-
-    mousemove() {
-      //console.log(e.sourceTarget);
-    }
   });
   
   return null;

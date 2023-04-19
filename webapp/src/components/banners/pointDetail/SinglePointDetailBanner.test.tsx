@@ -1,6 +1,5 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import SinglePointDetailBanner from "./SinglePointDetailBanner";
-import { shallow } from "enzyme";
 
 describe("SinglePointDetailBanner component", () => {
   afterAll(cleanup);
@@ -9,9 +8,9 @@ describe("SinglePointDetailBanner component", () => {
     pointImage: "",
     coords: {
       lat: 0,
-      lng: 0
-    }
-  }
+      lng: 0,
+    },
+  };
 
   test("render banner image", () => {
     render(<SinglePointDetailBanner {...props} />);

@@ -8,13 +8,13 @@ describe("PointCategoryFilterPopup componente", () => {
   afterAll(cleanup);
 
   test("renderiza el componente", () => {
-    const { container } = render(
+    render(
       <Router>
         <PointCategoryFilterPopup />
       </Router>
     );
 
-    const popup = container.querySelector(
+    const popup = document.querySelector(
       ".point-category-filter-popup-container"
     );
     expect(popup).toBeInTheDocument();
@@ -29,13 +29,13 @@ describe("PointCategoryFilterPopup componente", () => {
       }),
     }));
 
-    const { container } = render(
+    render(
       <Router>
         <PointCategoryFilterPopup />
       </Router>
     );
 
-    const popup = container.querySelector(
+    const popup = document.querySelector(
       ".point-category-filter-popup-container"
     );
 
