@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/dom";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import { Category, Point } from "../../shared/shareddtypes";
 import AddNewReviewToPointPopup from "./AddNewReviewToPointPopup";
 import { shallow } from "enzyme";
 
@@ -41,9 +41,7 @@ describe("AddNewReviewToPointPopup componente", () => {
   test("renderiza el componente", () => {
     const { container } = render(
       <Router>
-        <AddNewReviewToPointPopup 
-          pointInfo={pointInitilization}
-        />
+        <AddNewReviewToPointPopup pointInfo={pointInitilization} />
       </Router>
     );
 

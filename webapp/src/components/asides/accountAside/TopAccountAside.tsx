@@ -4,7 +4,7 @@ import "../../../public/css/components/asides/accountAside/TopAccountAside.css";
 import TopAsideButton from "./topAccountAside/TopAsideButton";
 import { ArrowBackIosIcon } from "../../../helpers/IconContants";
 
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { ACCOUNT_MENU_ITEMS } from "../../../helpers/MenuHelper";
 import { BASE_PATH, LOGIN_PATH } from "../../../routes";
 

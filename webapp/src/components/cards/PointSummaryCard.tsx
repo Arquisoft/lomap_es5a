@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../../public/css/components/cards/point/PointSummaryCard.scss";
 import { Point } from "../../shared/shareddtypes";
 import { usePointDetailsStore } from "../../store/point.store";

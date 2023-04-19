@@ -6,7 +6,6 @@ import {
   LOGIN_PATH,
   SAVED_POINTS_PATH,
   SIGNUP_PATH,
-  SETTINGS_PATH,
   FAQ_PATH,
   CREATE_POINT_PATH,
 } from "../routes";
@@ -40,7 +39,6 @@ const MENU_ITEMS_ALIAS = {
   SIGN_UP: "signUp",
   ACCOUNT: "account",
   SHOW_PROFILE: "show_profile",
-  SETTINGS: "settings",
   FAQ: "faq",
   LOGOUT: "logout",
 };
@@ -100,14 +98,6 @@ const menuItems: MenuItem[] = [
     url: ACCOUNT_PATH,
     muiName: "person_rounded",
     order: 0,
-  },
-  {
-    alias: MENU_ITEMS_ALIAS.SETTINGS,
-    name: "Ajustes",
-    parent: "account",
-    url: SETTINGS_PATH,
-    muiName: "settings_rounded",
-    order: 1,
   },
   {
     alias: MENU_ITEMS_ALIAS.FAQ,

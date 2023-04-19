@@ -40,18 +40,44 @@ describe("SinglePopupFilter component", () => {
     expect(screen.getByText("Filtros")).toBeInTheDocument();
   });
 
-  test("is filter button clicked", async () => {
-    const { getByText } = render(
+  test("is filter button clicked - addFilter", async () => {
+    const { getByRole, container } = render(
       <SinglePopupFilter
         code={mockValidFilterObject.code}
         iconFilename="filter_alt"
-        text="Filtros"
+        text="Filtro"
         filterObject={mockValidFilterObject}
       />
     );
-    fireEvent.click(getByText("Filtros"));
+
+    fireEvent.click(getByRole("button"));
     await waitFor(() => {
-      expect(getByText("Filtros")).toBeInTheDocument();
+      expect(container.firstChild).toHaveClass(
+        "single-popup-filter-container--active"
+      );
+    });
+  });
+
+  test("is filter button clicked - removeFilter", async () => {
+    const { getByRole, container } = render(
+      <SinglePopupFilter
+        code={mockValidFilterObject.code}
+        iconFilename="filter_alt"
+        text="Filtro"
+        filterObject={mockValidFilterObject}
+      />
+    );
+
+    // add filter
+    fireEvent.click(getByRole("button"));
+
+    // click again to remove filter
+
+    await waitFor(() => {
+      fireEvent.click(getByRole("button"));
+      expect(container.firstChild).not.toHaveClass(
+        "single-popup-filter-container--active"
+      );
     });
   });
 });

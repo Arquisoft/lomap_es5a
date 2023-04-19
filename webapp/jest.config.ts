@@ -1,26 +1,23 @@
 //const esModules = ['@react-leaflet', 'react-leaflet'].join('|');
+// import NodePolyfillPlugin from "node-polyfill-webpack-plugin";
 
 export default {
-  testEnvironment: "jsdom",
-//   testEnvironmentOptions: {
-//     "browsers": [
-//       "chrome",
-//       "firefox",
-//       "safari"
-//     ]
-//   },
-  //testEnvironment: "node",
-  transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
-    "^.+\\.tsx?$": "ts-jest",
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.json",
+    },
   },
-
+  transform: {
+    "^.+\\.ts$": "ts-jest",
+  },
+  // plugins: [
+  //   new NodePolyfillPlugin(),
+  // ],
   testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
-  testPathIgnorePatterns: ["/node_modules/", "/dist/"],
-
-  preset: "ts-jest",
-
+  testEnvironment: "node",
+  moduleFileExtensions: ["ts", "js"],
   collectCoverage: true,
-
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  coverageReporters: ["text", "lcov"],
+  coveragePathIgnorePatterns: ["/dist/", "/node_modules/", "/test/"],
+  setupFiles: ["./jest.setup.ts"],
 };
