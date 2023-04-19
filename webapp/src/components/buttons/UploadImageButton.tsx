@@ -15,8 +15,8 @@ function UploadImageButton() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files?.length > 0) {
-      const file = e.target.files?.[0];
-      setPointImageFile(file);
+      // const file = e.target.files?.[0];
+      // setPointImageFile(file);
     }
   };
 
@@ -37,7 +37,7 @@ function UploadImageButton() {
         Subir imagen
       </label>
       {imageToUpload && (
-        <span>
+        <span data-testid="span">
           {imageToUpload.name.length > 10
             ? imageToUpload.name.substring(0, 10).concat("... ")
             : imageToUpload.name}

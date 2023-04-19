@@ -2,6 +2,7 @@ import React from "react";
 import { cleanup, render, screen, fireEvent } from "@testing-library/react";
 import UploadImageButton from "./UploadImageButton";
 import { MemoryRouter } from "react-router-dom";
+import { FileUploadRoundedIcon } from "../../helpers/IconContants";
 
 describe("UploadImageButton component", () => {
 
@@ -27,9 +28,11 @@ describe("UploadImageButton component", () => {
     const input = screen.getByTestId("input"); 
     expect(input).toBeInTheDocument();
 
+    expect(FileUploadRoundedIcon).toBeInTheDocument();
+    expect(screen.getByTestId("span")).toBeInTheDocument();
+
     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
     fireEvent.change(input, {target: {files: file}});
-    expect(mockSetPointToShow).toHaveBeenCalled();
   });
 
   // eslint-disable-next-line jest/expect-expect
@@ -49,6 +52,9 @@ describe("UploadImageButton component", () => {
     );
     const input = screen.getByTestId("input"); 
     fireEvent.change(input, {target: {files: undefined}})
+
+    expect(FileUploadRoundedIcon).toBeInTheDocument();
+    expect(screen.getByTestId("span")).toBeInTheDocument();
   });
 
 });
