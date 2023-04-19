@@ -72,23 +72,27 @@ const getAllFriends = async (webId:string) => {
   
   const profile = getThing(profileDataset, webId) as Thing;
 
-  const friends = getUrlAll(profile,FOAF.knows);
-    
+  const friends = getUrlAll(profile,FOAF.knows);  
+  
+  
   const myFriendsList : Friend[] = [];
 
   // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
-  friends.forEach(async (friend) => {        
-    const friendName = getStringNoLocale(await getUserProfile(friend), FOAF.name) as string;
-    const imgUrl = getUrl(await getUserProfile(friend), VCARD.hasPhoto) as string;
+
+  for (let i = 0; i < friends.length; i++) {
+    const friendName = getStringNoLocale(await getUserProfile(friends[i]), FOAF.name) as string;
+    const imgUrl = getUrl(await getUserProfile(friends[i]), VCARD.hasPhoto) as string;
     const user : Friend = {
-      webId : friend,
+      webId : friends[i],
       name : friendName,
       imgUrl : imgUrl
-    };
+    };    
     myFriendsList.push(user);
-  });
-
+    
+  }
+   
   return myFriendsList;
+  
 };
 
 
