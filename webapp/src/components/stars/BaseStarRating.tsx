@@ -14,7 +14,7 @@ function BaseStarRating({ rating, handleChangeRating }: BaseStarRatingProps) {
       value={rating}
       precision={0.5}
       size="large"
-      onChange={(e, value) => handleChangeRating&& handleChangeRating(e, value)}
+      onChange={(e, value) => handleChangeRating && handleChangeRating(e, value)}
       emptyIcon={
         <StarRoundedIcon style={{ opacity: 0.55 }} fontSize="inherit" />
       }

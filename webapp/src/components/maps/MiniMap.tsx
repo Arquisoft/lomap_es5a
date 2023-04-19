@@ -12,6 +12,7 @@ type Props = {
 function MiniMap({ position, styles }: Props) {
   return (
       <MapContainer
+        data-testid = "minimap"
         center={position}
         zoom={13}
         zoomControl={false}

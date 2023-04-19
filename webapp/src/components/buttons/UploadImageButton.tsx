@@ -21,8 +21,9 @@ function UploadImageButton() {
   };
 
   return (
-    <div className="base-input-file-container">
+    <div data-testid="uploadimage" className="base-input-file-container">
       <input
+        data-testid = "input"
         type="file"
         accept="image/png, image/jpeg, image/webp"
         onChange={handleFileChange}

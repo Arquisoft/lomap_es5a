@@ -1,8 +1,8 @@
 import * as DOMPurify from "dompurify";
-import { Coordinate } from "../shared/shareddtypes";
+import { Category, Coordinate } from "../shared/shareddtypes";
 import { LAT_REGEX, LNG_REGEX } from "./regex";
 
-const NO_OPTION_SELECTED = "no-opt"; // Valor por defecto si no se ha seleccionado una opcion diferente a "Selecciona una opcion" en un combobox
+const NO_OPTION_SELECTED = "not-opt"; // Valor por defecto si no se ha seleccionado una opcion diferente a "Selecciona una opcion" en un combobox
 
 const errorMessages = {
   required: (field: string) => `El campo ${field} es obligatorio`,
@@ -36,6 +36,12 @@ const checkAnyOptionIsSelected = (value: string, fieldName: string) => {
   }
 };
 
+const checkAnyCategoryIsSelected = (value: string, fieldName: string) => {
+  if (value === NO_OPTION_SELECTED || value === Category.NONE) {
+    throw new Error(errorMessages.empty(fieldName));
+  }
+};
+
 const checkIsValidGeoCoordinate = (value: number, coord: Coordinate) => {
   const sValue = sanitizeInput(value.toString());
   const regex = coord === Coordinate.LAT ? LAT_REGEX : LNG_REGEX;
@@ -45,5 +51,5 @@ const checkIsValidGeoCoordinate = (value: number, coord: Coordinate) => {
   }
 };
 
-export { checkIsNotEmpty, checkIsValidGeoCoordinate, checkAnyOptionIsSelected, NO_OPTION_SELECTED };
+export { checkIsNotEmpty, checkIsValidGeoCoordinate, checkAnyOptionIsSelected,checkAnyCategoryIsSelected, NO_OPTION_SELECTED };
 

@@ -2,6 +2,7 @@
   "name": "webapp",
   "description": "Web application of Lomap_es5a",
   "version": "0.1.1",
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -43,7 +44,7 @@
     "build": "CI=true react-scripts build",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "test": "react-scripts test --coverage --watchAll --verbose",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
     "test:no-cov": "react-scripts test",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
