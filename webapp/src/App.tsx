@@ -26,16 +26,24 @@ function App() {
   const { session } = useSession();
 
   const isPageRefresh =
-    (window.performance.getEntriesByType("navigation")[0] as any).type ===
-    "reload";
+    window.performance &&
+    window.performance
+      .getEntriesByType("navigation")
+      .map((nav: any) => nav.type)
+      .includes("reload");
+
+  // const isPageRefresh =
+  //   (window.performance.getEntriesByType("navigation")[0] as any).type ===
+  //   "reload";
 
   useEffect(() => {
+    console.log("isPageRefresh: ", isPageRefresh);
     sessionStorage.setItem("currentPath", window.location.href);
     const reload = async () => {
       if (isPageRefresh) {
         await session.handleIncomingRedirect({
           //restorePreviousSession: true,
-          url: sessionStorage.getItem("currentPath") as string,
+          url: window.location.href,
         });
       }
     };
@@ -44,14 +52,13 @@ function App() {
 
   if (!session.info.isLoggedIn) {
     sessionStorage.clear();
-    console.log("🤨 %cNo estás en sesión", "color: red");
     return <LoginPage />;
   }
 
-  return (   
+  return (
     <Routes>
       <Route path={LOGIN_PATH} element={<LoginPage />} />
-      <Route path={HOME_PATH} element={<HomePage />}/>
+      <Route path={HOME_PATH} element={<HomePage />} />
       <Route path={GENERAL_POINT_PATH}>
         <Route path={SINGLE_POINT_PATH} element={<SinglePointDetailsPage />} />
       </Route>
