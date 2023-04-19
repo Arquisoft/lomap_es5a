@@ -20,6 +20,7 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import BottomAccountAside from "../asides/accountAside/BottomAccountAside";
 
 function CreatePointForm() {
   const {
@@ -200,6 +201,9 @@ function CreatePointForm() {
               }
             }}
           />
+
+          <BottomAccountAside />
+
           <BaseTextArea
             label="Descripción"
             name="description"
