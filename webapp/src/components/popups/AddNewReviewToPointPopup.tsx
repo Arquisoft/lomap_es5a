@@ -1,6 +1,7 @@
+import { addReviewPoint } from "../../api/point.api";
+import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { useSession } from "@inrupt/solid-ui-react";
 import { SyntheticEvent } from "react";
-import { addReviewPoint } from "../../api/point.api";
 import { CheckRoundedIcon, CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/addNewReview/AddNewReviewToPointPopup.scss";
 import { Point } from "../../shared/shareddtypes";
@@ -9,7 +10,6 @@ import BaseButton from "../buttons/BaseButton";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseStarRating from "../stars/BaseStarRating";
-
 function SuccessReviewPopupSection() {
   const { setShowAddReviewPopup, setIsReviewPublished, setIsSendingReview } =
     usePointReviewStore();
@@ -51,7 +51,9 @@ function AddNewReviewToPointPopup({
     setShowAddReviewPopup,
     resetReview,
   } = usePointReviewStore();
-  const { session } = useSession();
+ const { session } = useSession();
+
+ getDefaultSession();
 
   const handleClosePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();

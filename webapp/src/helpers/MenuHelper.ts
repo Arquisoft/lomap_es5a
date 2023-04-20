@@ -6,7 +6,6 @@ import {
   LOGIN_PATH,
   SAVED_POINTS_PATH,
   SIGNUP_PATH,
-  SETTINGS_PATH,
   FAQ_PATH,
   CREATE_POINT_PATH,
 } from "../routes";
@@ -40,7 +39,6 @@ const MENU_ITEMS_ALIAS = {
   SIGN_UP: "signUp",
   ACCOUNT: "account",
   SHOW_PROFILE: "show_profile",
-  SETTINGS: "settings",
   FAQ: "faq",
   LOGOUT: "logout",
 };
@@ -102,14 +100,6 @@ const menuItems: MenuItem[] = [
     order: 0,
   },
   {
-    alias: MENU_ITEMS_ALIAS.SETTINGS,
-    name: "Ajustes",
-    parent: "account",
-    url: SETTINGS_PATH,
-    muiName: "settings_rounded",
-    order: 1,
-  },
-  {
     alias: MENU_ITEMS_ALIAS.FAQ,
     name: "Preguntas frecuentes",
     parent: "account",
@@ -133,7 +123,6 @@ const ACCOUNT_SIDEBAR_ITEMS: string[] = [
   MENU_ITEMS_ALIAS.ADD_POINT,
   MENU_ITEMS_ALIAS.ACCOUNT,
   MENU_ITEMS_ALIAS.SAVED,
-  MENU_ITEMS_ALIAS.SETTINGS,
 ];
 
 // Menu Items que se muestran en el sidebar de account

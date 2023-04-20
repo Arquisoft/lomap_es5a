@@ -10,7 +10,7 @@ type Props = {
 
 function AppLogo({ width, height, viewBox, fill, styles }: Props) {
   return (
-    <div style={styles}>
+    <div style={styles} data-testid="logo">
       <svg
         width={width || 85} 
         height={height || 36}

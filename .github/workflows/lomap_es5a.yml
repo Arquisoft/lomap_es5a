@@ -1,15 +1,11 @@
 name: CI for LOMAP ES5A
 
 on:
-  push:
-    branches:
-      - master
-      - develop
-      - Pruebas-test2
   pull_request:
-    branches:
-      - develop
-      - master
+    branches: ['**']
+  push:
+    branches: ['**']
+  
   workflow_dispatch:
     inputs:
       logLevel:
@@ -21,6 +17,7 @@ on:
 
 jobs:
   unit-tests:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

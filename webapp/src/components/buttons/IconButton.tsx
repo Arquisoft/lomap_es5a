@@ -13,7 +13,7 @@ type Props = {
 
 function IconButton({ type, mode, text, muaIconName, handleClick }: Props) {
   return (
-    <button className={`icon-button ${type} ${mode}`} onClick={handleClick}>
+    <button data-testid="icon" className={`icon-button ${type} ${mode}`} onClick={handleClick}>
       <Icon sx={{ fontSize: 18 }}>{muaIconName}</Icon>
       {text}
     </button>

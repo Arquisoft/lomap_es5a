@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../../public/css/components/cards/point/PointSummaryCard.scss";
 import { Point } from "../../shared/shareddtypes";
 import { usePointDetailsStore } from "../../store/point.store";
@@ -23,7 +23,7 @@ function PointSummaryCard({
 }: Props) {
   const {setPointToShow} = usePointDetailsStore();
   const navigate = useNavigate();
-
+  
   const handleRedirectToPointDetailsPage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if(pointInfo && pointName.length > 0){

@@ -1,7 +1,7 @@
-import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { Session, fetch } from "@inrupt/solid-client-authn-browser";
 import {
   checkContainerExists,
+  checkFileExists,
   createNewContainer,
   getUserPrivatePointsUrl,
   getWebIdFromUrl,
@@ -9,6 +9,7 @@ import {
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
+import { updateContent, writeContent } from "./util.api";
 
 /**
  * Obtener todos los puntos de interés.
@@ -16,7 +17,7 @@ import { parseJsonToPoint } from "../utils/parsers/pointParser";
  * @param webId webId del usuario en sesión
  * @returns points
  */
-const findAllPoints = async (webId: string): Promise<Point[]> => {
+const findAllUserPoints = async (webId: string): Promise<Point[]> => {
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
 
   try {
@@ -32,35 +33,6 @@ const findAllPoints = async (webId: string): Promise<Point[]> => {
     console.error("Error findAllPoints: ", err);
   }
   return new Array<Point>();
-};
-
-/**
- * Obtener todos los puntos públicos de interés, es decir con isPublic a true.
- *
- * @param webId webId del usuario en sesión
- * @returns points
- */
-const findAllPublicPoints = async (webId: string): Promise<Point[]> => {
-  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
-  try {
-    const data = await fetch(profileDocumentURI, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const totalPoints = parseJsonToPoint(await data.json());
-    const filtro = totalPoints.filter((item) => item.isPublic === true);
-
-    if (filtro.length === 0) {
-      console.log("No tiene ningún punto público almacenado");
-    } else {
-      return filtro;
-    }
-  } catch (err) {
-    console.error("Error findAllPublicPoints: ", err);
-  }
-  return [];
 };
 
 /**
@@ -145,100 +117,80 @@ const addPoint = async (
   callback?: (isSuccess: boolean) => void
 ) => {
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
-  // si no existe la carpeta, la crea y dentro el fichero
-  const existsFolder = await checkContainerExists(
-    session,
-    "private/points/"
-  ).catch(async () => {
-    await createNewContainer(session, "private/points/").then(async () => {
-      const points: Point[] = []; // creamos un array
-      points.push(point); // añadimos el punto
-
-      await saveFileInContainer(
-        getUserPrivatePointsUrl(session.info.webId).replace(
-          "/private/points/points.json",
-          "/private/points/"
-        ),
-        new Blob([JSON.stringify({ points: points })], {
-          type: "application/json",
-        }),
-        { slug: "points.json", contentType: "application/json", fetch: fetch }
-      );
-      console.log("Punto añadido satisfactoriamente con id = " + point._id);
-      return false;
-    });
-    return false;
-  });
+  const existsFolder = await checkContainerExists(session, "private/points/");
 
   if (!existsFolder) {
-    return;
-  }
+    // si no existe la carpeta, la crea y dentro el fichero
 
-  // si existe la carpeta pero no el fichero, crea dentro de la carpeta ese fichero
-  const existsFile = await checkContainerExists(
-    session,
-    "private/points/points.json"
-  ).catch(async () => {
-    const points: Point[] = []; // creamos un array
-    points.push(point); // añadimos el punto
-    await saveFileInContainer(
-      getUserPrivatePointsUrl(session.info.webId).replace(
-        "/private/points/points.json",
-        "/private/points/"
-      ),
-      new Blob([JSON.stringify({ points: points })], {
-        type: "application/json",
-      }),
-      { slug: "points.json", contentType: "application/json", fetch: fetch }
-    );
-    console.log("Punto añadido satisfactoriamente con id = " + point._id);
-  });
+    await createNewContainer(session, "private/points/").then(async () => {
+      const points: Point[] = []; // creamos un array
 
-  if (!existsFile) {
-    return;
-  }
+      await upImage(image, point);
 
-  try {
-    const profileDocumentURI = encodeURI(
-      getUserPrivatePointsUrl(session.info.webId)
-    );
-    const originalPoints = await fetch(profileDocumentURI, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      points.push(point); // añadimos el punto
+
+      await writeContent(points, 
+        getUserPrivatePointsUrl(session.info.webId).replace(
+          "/private/points/points.json",
+          "/private/points/"),
+        "points.json"
+      ).then(() => {
+        callback && callback(isSuccess);
+      });
+
     });
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
-
-    try{
-      const downloadUrl = await uploadImage(image);
-      point.image = {
-        url: downloadUrl ?? "",
-        alt: point?.name ?? "",
-      };
-    }catch(err){
-      console.log("Error al subir la imagen: " + err);
-    }
+  } else {
+    // si existe la carpeta, añadimos el punto al fichero
     
+    // Si no existe el fichero
+    const existsFile = await checkFileExists(
+      session,
+      "private/points/points.json"
+    );
 
-    totalPoints.push(point); // añadimos el punto
+    if (!existsFile) {
+      const points: Point[] = []; // creamos un array
 
-    const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-      type: "application/json",
-    });
+      await upImage(image, point);
 
-    const fichero = new File([blob], "points.json", { type: blob.type });
+      points.push(point); // añadimos el punto
 
-    // actualizamos el POD
-    await overwriteFile(getUserPrivatePointsUrl(session.info.webId), fichero, {
-      contentType: fichero.type,
-      fetch: fetch,
-    }).then(() => {
-      callback && callback(isSuccess);
-    });
-  } catch (err) {
-    console.error("Error addPoint: " + err);
+      await writeContent(points, 
+        getUserPrivatePointsUrl(session.info.webId).replace(
+          "/private/points/points.json",
+          "/private/points/"),
+        "points.json"
+      ).then(() => {
+        callback && callback(isSuccess);
+      });
+      
+    } else {
+      // Si existe la carpeta y el fichero
+      try {
+        const profileDocumentURI = encodeURI(
+          getUserPrivatePointsUrl(session.info.webId)
+        );
+        const originalPoints = await fetch(profileDocumentURI, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const totalPoints = parseJsonToPoint(await originalPoints.json());
+
+        await upImage(image, point);
+
+        totalPoints.push(point); // añadimos el punto
+
+        await updateContent(totalPoints, "points.json", getUserPrivatePointsUrl(session.info.webId)).then(() => {
+          callback && callback(isSuccess);
+        });
+      } catch (err) {
+        console.error("Error addPoint: " + err);
+      }
+    }
   }
 };
 
@@ -277,18 +229,7 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
           break;
         }
       }
-      const blob = new Blob([JSON.stringify({ points: totalPoints })], {
-        type: "application/json",
-      });
-
-      const fichero = new File([blob], "points.json", { type: blob.type });
-
-      // actualizamos el POD
-      await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
-        contentType: fichero.type,
-        fetch: fetch,
-      });
-      console.log("Punto editado satisfactoriamente con id = " + idPoint);
+      await updateContent(totalPoints, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
     console.error("Error editPointById: ", err);
@@ -319,18 +260,7 @@ const deletePoint = async (idPoint: string, webId: string) => {
     if (punto.length === 0) {
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
-      const blob = new Blob([JSON.stringify({ points: filtro })], {
-        type: "application/json",
-      });
-
-      const fichero = new File([blob], "points.json", { type: blob.type });
-
-      // actualizamos el POD
-      await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
-        contentType: fichero.type,
-        fetch: fetch,
-      });
-      console.log("Punto eliminado satisfactoriamente con id = " + idPoint);
+      await updateContent(filtro, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
     console.error("Error deletePoint: ", err);
@@ -371,18 +301,7 @@ const addReviewPoint = async (
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
       const result: Point[] = [...pointsOriginal, punto]; // obtenemos el array de puntos
-
-      const blob = new Blob([JSON.stringify({ points: result })], {
-        type: "application/json",
-      });
-
-      const fichero = new File([blob], "points.json", { type: blob.type });
-
-      // actualizamos el POD
-      await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
-        contentType: fichero.type,
-        fetch: fetch,
-      });
+      await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
     console.error("Error addReviewPoint: ", err);
@@ -431,19 +350,7 @@ const deleteReviewByPoint = async (
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
       const result: Point[] = [...pointsOriginal, punto]; // obtenemos el array de puntos
-      console.log(result);
-      const blob = new Blob([JSON.stringify({ points: result })], {
-        type: "application/json",
-      });
-
-      const fichero = new File([blob], "points.json", { type: blob.type });
-
-      // actualizamos el POD
-      await overwriteFile(getUserPrivatePointsUrl(webId), fichero, {
-        contentType: fichero.type,
-        fetch: fetch,
-      });
-      console.log("Review eliminada satisfactoriamente con id = " + idReview);
+      await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
     console.error("Error deleteReviewByPoint: ", err);
@@ -484,9 +391,22 @@ const findAllReviewByPoint = async (
   return [];
 };
 
+async function upImage(image: File | undefined, point: Point) {
+  if (image) {
+    try {
+      const downloadUrl = await uploadImage(image);
+      point.image = {
+        url: downloadUrl ?? "",
+        alt: point?.name ?? "",
+      };
+    } catch (err) {
+      console.log("Error al subir la imagen: " + err);
+    }
+  }
+}
+
 export {
-  findAllPoints,
-  findAllPublicPoints,
+  findAllUserPoints,
   findPointById,
   findPointsByCategory,
   addPoint,
@@ -496,3 +416,5 @@ export {
   deleteReviewByPoint,
   findAllReviewByPoint,
 };
+
+

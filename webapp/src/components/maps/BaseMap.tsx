@@ -5,7 +5,7 @@ import customMarkerIcon from "../../public/images/icons/marker_base.svg";
 import BaseMapPopup from "./popups/BaseMapPopup";
 
 import "leaflet/dist/leaflet.css";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../../public/css/components/maps/BaseMap.scss";
 import { CREATE_POINT_PATH } from "../../routes";
 import { Point } from "../../shared/shareddtypes";
@@ -18,7 +18,7 @@ function MapRedirect() {
   const navigate = useNavigate();
   
   useMapEvents({
-    click(e) {
+    dblclick(e) {
       const confirm = window.confirm("¿Quieres crear un punto aquí?");
       
       if (confirm) {
@@ -26,10 +26,6 @@ function MapRedirect() {
         navigate(CREATE_POINT_PATH);
       }
     },
-
-    mousemove() {
-      //console.log(e.sourceTarget);
-    }
   });
   
   return null;

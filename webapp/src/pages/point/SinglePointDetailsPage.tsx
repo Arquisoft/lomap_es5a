@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import SinglePointDetailBanner from "../../components/banners/pointDetail/SinglePointDetailBanner";
 import AddNewPointLink from "../../components/points/details/AddNewPointLink";
@@ -9,25 +10,28 @@ import "../../public/css/pages/points/SinglePointPage.scss";
 import { usePointDetailsStore } from "../../store/point.store";
 
 function SinglePointDetailsPage() {
-  const { pointToShow } = usePointDetailsStore();
+  const { getPointDetails, pointToShow } = usePointDetailsStore();
   const { session } = useSession();
 
   return (
     <AuthenticatedLayout>
       <div className="single-point-details-container" id="point-details-page">
-        <SinglePointDetailBanner pointImage={pointToShow?.image?.url || ""} />
+        <SinglePointDetailBanner
+          pointImage={getPointDetails()?.image?.url}
+          coords={getPointDetails().location.coords}
+        />
         <section className="single-point-details__details">
-          <SingleDetail pointToShow={pointToShow} />
+          <SingleDetail pointToShow={getPointDetails()} />
         </section>
         {pointToShow?.reviews && pointToShow?.reviews?.length > 0 && (
           <section className="single-point-details__reviews">
-            <PointReviewSection pointToShow={pointToShow} />
+            <PointReviewSection pointToShow={getPointDetails()} />
           </section>
         )}
 
-        {session.info.webId !== pointToShow?.owner?.webId && (
+        {session.info.webId !== getPointDetails()?.owner?.webId && (
           <section className="single-point-details__addReview">
-            <AddNewPointLink pointToShow={pointToShow} />
+            <AddNewPointLink pointToShow={getPointDetails()} />
           </section>
         )}
         <section className="single-point-details__reviewListing">

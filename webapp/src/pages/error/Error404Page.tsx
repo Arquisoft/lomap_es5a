@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import BaseButton from "../../components/buttons/BaseButton";
 import "../../public/css/pages/error404/error404Page.scss";
 import { HOME_PATH } from "../../routes";

@@ -2,8 +2,7 @@
 @use "../../../variables" as vars;
 
 .single-point-detail-banner{
-    //@include mixins.grid($columns: 35% auto, $gap: 10px);
-    @include mixins.grid($columns: 1fr, $gap: 10px);
+    @include mixins.grid($columns: 35% auto, $gap: 10px);
     width: 60%;
     margin: 0 auto;
     height: 350px;

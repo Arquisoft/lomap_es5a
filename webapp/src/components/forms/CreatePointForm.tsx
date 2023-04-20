@@ -1,27 +1,26 @@
-import { useSession } from "@inrupt/solid-ui-react";
+// import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
 import { HOME_PATH } from "../../routes";
-import { Coordinate } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
+import { generateUUID } from "../../utils/stringUtils";
 import {
   NO_OPTION_SELECTED,
+  checkAnyCategoryIsSelected,
   checkAnyOptionIsSelected,
-  checkIsNotEmpty,
-  checkIsValidGeoCoordinate,
+  checkIsNotEmpty
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import { generateUUID } from "../../utils/stringUtils";
-
+import { useSession } from "@inrupt/solid-ui-react";
 
 function CreatePointForm() {
   const {
@@ -37,9 +36,6 @@ function CreatePointForm() {
     imageToUpload,
   } = usePointDetailsStore();
 
-  // Mostrar errores después de 5 segundos
-  const [, setShowErrorTimeoutConsumed] =
-    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -52,31 +48,18 @@ function CreatePointForm() {
   const { name, imageUrl } = useUserStore();
 
   const validateForm = (): boolean => {
-    let hasErrors = false;
+    let hasNoErrors = true;
     setErrors([]);
     try {
-      if (info.description) {
-        checkIsNotEmpty(info.description, "descripción del punto");
-      }
-      checkAnyOptionIsSelected(info.category, "categoría del punto");
-      checkIsValidGeoCoordinate(info.location.coords.lat, Coordinate.LAT);
-      checkIsValidGeoCoordinate(info.location.coords.lng, Coordinate.LNG);
+      checkIsNotEmpty(info.name, "nombre del punto");
+      checkAnyCategoryIsSelected(info.category, "categoría del punto");
+
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
-      hasErrors = true;
-      showErrorMessagesWithTimeout();
+      hasNoErrors = false;
     }
 
-    return hasErrors;
-  };
-
-  const hasAnyRequiredFieldInvalid = (): boolean => {
-    return (
-      info.name.length >= 0 &&
-      requiredFormData.category !== NO_OPTION_SELECTED &&
-      !isNaN(info.location.coords.lat) &&
-      !isNaN(info.location.coords.lng)
-    );
+    return hasNoErrors;
   };
 
   const handleRequiredDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,18 +67,13 @@ function CreatePointForm() {
     setRequiredFormData({ ...requiredFormData, [name]: value });
   };
 
-  const refreshErrors = () => {
-    if (hasAnyRequiredFieldInvalid()) {
-      setErrors([]);
-    } else {
-      showErrorMessagesWithTimeout();
-    }
-  };
-
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    validateForm();
+    if(!validateForm()){
+      console.log("Formulario inválido", info);
+      return;
+    }
 
     setIsUploading(true);
     setIsFinished(false);
@@ -133,16 +111,6 @@ function CreatePointForm() {
     });
   };
 
-  /**
-   * Muestra el mensaje durante 5 segundos.
-   */
-  const showErrorMessagesWithTimeout = () => {
-    setShowErrorTimeoutConsumed(true);
-    setTimeout(() => {
-      setShowErrorTimeoutConsumed(false);
-    }, 5000);
-  };
-
   useEffect(() => {
     useMarkerStore.subscribe((position: any) => {
       const { lat, lng } = position.position;
@@ -156,7 +124,7 @@ function CreatePointForm() {
       <div className="create-form-info">
         Los campos con (*) son obligatorios.
       </div>
-      <form>
+      <form id="">
         <div className="create-form-form">
           <BaseTextInput
             id="nombre"
@@ -213,7 +181,7 @@ function CreatePointForm() {
             }}
             handleChange={(e) => {
               try {
-                if (e.currentTarget.value === "not-opt") {
+                if (e.target.value === "not-opt") {
                   throw new Error("Debes seleccionar una categoría");
                 }
                 setRequiredFormData({
@@ -225,7 +193,6 @@ function CreatePointForm() {
               } catch (error) {
                 setErrors([...errors, (error as Error).message]);
               }
-              refreshErrors();
             }}
           />
           <BaseTextArea
@@ -242,6 +209,7 @@ function CreatePointForm() {
 
         <div className="create-form-buttons">
           <BaseButton
+            data-testid="create-point-button"
             type="button-black"
             text="Publicar"
             disabled={isUploading}

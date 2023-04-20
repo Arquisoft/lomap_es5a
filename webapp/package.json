@@ -1,18 +1,19 @@
 {
   "name": "webapp",
+  "author": "Lomap_es5a",
   "description": "Web application of Lomap_es5a",
-  "version": "0.1.1",
+  "version": "2.1.0",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@inrupt/jest-jsdom-polyfills": "^1.5.4",
     "@inrupt/lit-generated-vocab-common": "^0.3.11",
-    "@inrupt/solid-client": "^1.25.2",
-    "@inrupt/solid-client-authn-browser": "^1.14.0",
+    "@inrupt/solid-client": "^1.25.1",
+    "@inrupt/solid-client-authn-browser": "^1.13.0",
     "@inrupt/solid-ui-react": "^2.8.2",
     "@inrupt/vocab-common-rdf": "^1.0.5",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.11.11",
-    "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.3",
     "compressorjs": "^1.2.1",
@@ -20,37 +21,35 @@
     "dompurify": "^3.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "fast-text-encoding": "^1.0.6",
     "firebase": "^9.19.1",
     "leaflet": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
     "react-loading-skeleton": "^3.2.0",
-    "react-router": "^6.8.2",
+    "react-router": "^6.10.0",
     "react-router-dom": "^6.8.2",
     "react-svg": "^16.1.5",
     "sass": "^1.58.3",
     "sass-loader": "^13.2.0",
-    "text-encoder": "^0.0.4",
-    "typescript": "^4.9.4",
+    "undici": "^5.21.2",
+    "util": "^0.12.5",
     "uuid": "^9.0.0",
+    "weak-napi": "^2.0.2",
     "web-vitals": "^2.1.2",
     "zustand": "^4.3.6"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=true react-scripts build",
+    "build": "react scripts build",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "test": "react-scripts test --coverage",
+    "test:alt": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
+    "test": "react-scripts test --color --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --useStderr --coverage",
+    "test:jest": "jest --coverage",
+    "test:run": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
   },
   "browserslist": {
     "production": [
@@ -64,8 +63,8 @@
       "last 1 safari version"
     ]
   },
-  "browser": {
-    "crypto": false
+  "engines": {
+    "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -77,17 +76,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/babel__core": "^7.20.0",
     "@types/dompurify": "^3.0.1",
     "@types/enzyme": "^3.10.12",
     "@types/expect-puppeteer": "^4.4.7",
     "@types/express": "^4.17.15",
-    "@types/fast-text-encoding": "^1.0.1",
     "@types/jest": "^29.2.5",
-    "@types/jsonld": "^1.5.8",
     "@types/leaflet": "^1.9.1",
     "@types/node": "^18.15.11",
     "@types/puppeteer": "^5.4.4",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
@@ -103,8 +101,9 @@
     "react-scripts": "5.0.0",
     "react-test-renderer": "^18.2.0",
     "start-server-and-test": "^1.14.0",
-    "text-encoding": "^0.7.0",
     "ts-jest": "^29.0.4",
-    "ts-node-dev": "^2.0.0"
+    "ts-loader": "^9.4.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
   }
 }

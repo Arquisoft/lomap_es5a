@@ -1,8 +1,10 @@
-import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect } from "react";
+
 import { createPortal } from "react-dom";
 import { getAllFriends } from "../../api/friends.api";
-import { findAllPoints } from "../../api/point.api";
+import { findAllUserPoints } from "../../api/point.api";
+import { findAllSharedPointsByFriends } from "../../api/share.point.api";
 import { getUserProfileInfo } from "../../api/user.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
@@ -10,7 +12,7 @@ import BaseMap from "../../components/maps/BaseMap";
 import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import { Point } from "../../shared/shareddtypes";
+import { Friend, Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
 
@@ -21,14 +23,30 @@ function HomePage() {
   const { session } = useSession();
 
   const loadAllPoints = async () => {
-    const data: Point[] = await findAllPoints(session.info.webId as string);
+    const data: Point[] = await findAllUserPoints(session.info.webId as string);
     setAllPoints(data);
+  };
+
+  const sharePoint = async () => {
+    const friend: Friend = await getAllFriends(
+      session.info.webId as string
+    ).then((friends) => {
+      return friends[0];
+    });
+
+    console.log("Puntos compartidos por todos los amigos:");
+    const sharedPoints: Point[] = await findAllSharedPointsByFriends(session)
+      .then((points) => {
+        return points;
+      })
+      .catch(() => {
+        return [];
+      });
   };
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn) {
       const friends = await getAllFriends(session.info.webId as string);
-      console.log(friends);
     }
   };
 
@@ -47,7 +65,9 @@ function HomePage() {
   };
 
   useEffect(() => {
-    loadUserFriends();
+    loadAllPoints();
+    // sharePoint();
+    // loadUserFriends();
     loadUserInfo();
     loadAllPoints();
   }, []);

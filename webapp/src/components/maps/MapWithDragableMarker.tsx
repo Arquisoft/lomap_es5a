@@ -34,7 +34,7 @@ function MapWithDragableMarker({ position, styles }: Props) {
   return (
     <div className="map-with-dragable-marker-container">
       <div className="map-with-dragable-marker-container__info-msg">
-        <InfoOutlined />
+        <InfoOutlined data-testid="info-outlined"/>
         <p>Mueve el marcador para obtener las coordenadas</p>
       </div>
       <MapContainer
