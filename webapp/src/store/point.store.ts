@@ -16,6 +16,7 @@ interface PointDetailsStore {
   setIsFinished: (isFinished: boolean) => void;
   setPointToShow: (point: Point) => void;
   resetPointInfo: () => void;
+  getPointDetails: () => Point;
 }
 
 const pointInitilization: Point = {
@@ -126,7 +127,7 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
 /**
  * Store para el detalle de un punto de interés seleccionado.
  */
-const usePointDetailsStore = create<PointDetailsStore>((set) => ({
+const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   info: pointInitilization,
   pointToShow: pointInitilization,
   imageToUpload: undefined as File | undefined,
@@ -153,11 +154,14 @@ const usePointDetailsStore = create<PointDetailsStore>((set) => ({
   setPointImageFile: (imageToUpload: File) => set({ imageToUpload }),
 
   setIsUploading: (isUploading: boolean) => set({ isUploading }),
+  
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
 
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 
   resetPointInfo: () => set({ info: pointInitilization }),
+
+  getPointDetails: () => get().pointToShow,
 
 }));
 

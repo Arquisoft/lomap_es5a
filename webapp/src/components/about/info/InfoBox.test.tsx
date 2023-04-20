@@ -4,7 +4,6 @@ import FingerprintRoundedIcon from '@mui/icons-material/FingerprintRounded';
 
 
 describe("Componente InfoBox",()=>{
-    afterEach(cleanup);
     afterAll(cleanup);
 
     it("Comprobamos renderizado", ()=>{

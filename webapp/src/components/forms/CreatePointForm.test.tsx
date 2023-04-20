@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import CreatePointForm from "./CreatePointForm";
@@ -36,25 +36,27 @@ describe("Create Point Form component", () => {
     expect(screen.getByText("Tiendas")).toBeInTheDocument();
   });
 
-  // test("no select any category", () => {
-  //   render(
-  //     <Router>
-  //       <CreatePointForm />
-  //     </Router>
-  //   );
+  test("no select any category", () => {
+    render(
+      <Router>
+        <CreatePointForm />
+      </Router>
+    );
 
-  //     // Rellenar el campo nombre
-  //   fireEvent.change(screen.getByLabelText("Nombre (*)"), {
-  //     target: { value: "Punto de prueba" },
-  //   });
+      // Rellenar el campo nombre
+    fireEvent.change(screen.getByLabelText("Nombre (*)"), {
+      target: { value: "Punto de prueba" },
+    });
 
-  //   expect(screen.getByLabelText("Nombre (*)")).toHaveValue("Punto de prueba");
+    expect(screen.getByLabelText("Nombre (*)")).toHaveValue("Punto de prueba");
 
-  //   fireEvent.click(screen.getByText("Publicar"));
+    fireEvent.click(screen.getByText("Publicar"));
 
-  //   // Comprobar que se muestra el error
-  //   expect(
-  //     screen.getByText("El campo categoría del punto es obligatorio")
-  //   ).toBeInTheDocument();
-  // });
+    waitFor(() => {
+      // Comprobar que se muestra el error
+      expect(
+        screen.getByText("El campo categoría del punto es obligatorio")
+      ).toBeInTheDocument();
+    });
+  });
 });

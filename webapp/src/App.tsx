@@ -1,6 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import AboutPage from "./pages/about/AboutPage";
 import UserAccountPage from "./pages/account/UserAccountPage";
 import Error404Page from "./pages/error/Error404Page";
@@ -26,17 +26,22 @@ function App() {
   const { session } = useSession();
 
   const isPageRefresh =
-    (window.performance.getEntriesByType("navigation")[0] as any).type ===
-    "reload";
+    window.performance &&
+    window.performance
+      .getEntriesByType("navigation")
+      .map((nav: any) => nav.type)
+      .includes("reload");
 
   useEffect(() => {
     sessionStorage.setItem("currentPath", window.location.href);
     const reload = async () => {
       if (isPageRefresh) {
+        sessionStorage.setItem("isReload", "true");
         await session.handleIncomingRedirect({
-          //restorePreviousSession: true,
-          url: sessionStorage.getItem("currentPath") as string,
+          url: window.location.href
         });
+      }else{
+        sessionStorage.setItem("isReload", "false");
       }
     };
     reload();
@@ -44,14 +49,13 @@ function App() {
 
   if (!session.info.isLoggedIn) {
     sessionStorage.clear();
-    console.log("🤨 %cNo estás en sesión", "color: red");
     return <LoginPage />;
   }
 
-  return (   
+  return (
     <Routes>
       <Route path={LOGIN_PATH} element={<LoginPage />} />
-      <Route path={HOME_PATH} element={<HomePage />}/>
+      <Route path={HOME_PATH} element={<HomePage />} />
       <Route path={GENERAL_POINT_PATH}>
         <Route path={SINGLE_POINT_PATH} element={<SinglePointDetailsPage />} />
       </Route>
