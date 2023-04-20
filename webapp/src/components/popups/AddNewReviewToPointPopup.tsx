@@ -1,7 +1,6 @@
-import { addReviewPoint } from "../../api/point.api";
-import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
 import { useSession } from "@inrupt/solid-ui-react";
 import { SyntheticEvent } from "react";
+import { addReviewPoint } from "../../api/point.api";
 import { CheckRoundedIcon, CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/addNewReview/AddNewReviewToPointPopup.scss";
 import { Point } from "../../shared/shareddtypes";
@@ -10,16 +9,14 @@ import BaseButton from "../buttons/BaseButton";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseStarRating from "../stars/BaseStarRating";
-function SuccessReviewPopupSection() {
-  const { setShowAddReviewPopup, setIsReviewPublished, setIsSendingReview } =
-    usePointReviewStore();
-  const handleHidePopup = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    setIsReviewPublished(false);
-    setIsSendingReview(false);
-    setShowAddReviewPopup(false);
-  };
 
+type SuccessReviewPopupSectionProps = {
+  handleOnClick: (e: React.MouseEvent<HTMLElement>) => void;
+};
+
+function SuccessReviewPopupSection({
+  handleOnClick,
+}: SuccessReviewPopupSectionProps) {
   return (
     <div className="add-new-review-point-popup__success-review">
       <CheckRoundedIcon className="add-new-review-point-popup-success__icon" />
@@ -28,7 +25,7 @@ function SuccessReviewPopupSection() {
       <BaseButton
         type="button-black"
         text="Continuar"
-        onClick={(e) => handleHidePopup(e)}
+        onClick={(e) => handleOnClick(e)}
       />
     </div>
   );
@@ -51,9 +48,8 @@ function AddNewReviewToPointPopup({
     setShowAddReviewPopup,
     resetReview,
   } = usePointReviewStore();
- const { session } = useSession();
 
- getDefaultSession();
+  const { session } = useSession();
 
   const handleClosePopup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -81,7 +77,7 @@ function AddNewReviewToPointPopup({
     if (session.info.isLoggedIn && pointInfo) {
       setIsReviewPublished(false);
       setIsSendingReview(true);
-      
+
       addReviewPoint(pointInfo._id, review, session.info.webId as string).then(
         (err: any) => {
           if (!err) {
@@ -114,7 +110,9 @@ function AddNewReviewToPointPopup({
       </div>
       <div className="add-new-review-point-popup__body">
         {isReviewPublished ? (
-          <SuccessReviewPopupSection />
+          <SuccessReviewPopupSection
+            handleOnClick={(e: any) => handleClosePopup(e)}
+          />
         ) : (
           <>
             <h2>Añadir una valoración</h2>

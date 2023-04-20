@@ -6,12 +6,6 @@ import SingleReview from "./review/single/SingleReview";
 function ReviewListing() {
   const { pointToShow } = usePointDetailsStore();
 
-  // useEffect(() => {
-  //   usePointDetailsStore.subscribe((point: any) => {
-  //     pointToShow.reviews = point.reviews;
-  //   });
-  // }, [pointToShow.reviews]);
-
   return (
     <div className="review-listing-container">
       <h2> Valoraciones de los usuarios</h2>

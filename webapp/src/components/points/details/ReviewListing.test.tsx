@@ -1,6 +1,5 @@
+import { cleanup, render } from "@testing-library/react";
 import ReviewListing from "./ReviewListing";
-import { shallow } from "enzyme";
-import { cleanup, render, screen } from "@testing-library/react";
 
 describe("ReviewListing", () => {
   afterAll(cleanup);
