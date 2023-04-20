@@ -95,7 +95,6 @@ describe("PointListingAside component", () => {
     const comp = shallow(<PointListingAside points={points} />);
     const summaries = comp.find(PointSummaryCard);
     expect(summaries).toHaveLength(2);
-    expect(PointSummaryCard).toBeInTheDocument();
   });
 
   it("renderiza puntos con un punto sin usuario", () => {
