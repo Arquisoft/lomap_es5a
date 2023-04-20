@@ -1,8 +1,7 @@
-import {cleanup, render} from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import ComercialInfo from "./ComercialInfo";
 import ComercialBox from './comercial/ComercialBox';
-import BaseButton from '../buttons/BaseButton';
-import { shallow } from 'enzyme';
 
 
 describe('Comprobamos el componente de comercial box', () => {
