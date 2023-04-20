@@ -2,7 +2,7 @@
 
 [![CI for LOMAP ES5A](https://github.com/Arquisoft/lomap_es5a/actions/workflows/lomap_es5a.yml/badge.svg)](https://github.com/Arquisoft/lomap_es5a/actions/workflows/lomap_es5a.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es5a)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es5a&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es5a)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es5a&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es5a) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 
 Lomap es una aplicación web descentralizada que permite compartir puntos de interés con tus amigos y conocidos. 
