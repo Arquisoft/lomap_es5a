@@ -1,5 +1,6 @@
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { Point } from "../shared/shareddtypes";
+import { fetch } from "@inrupt/solid-client-authn-browser";
 
 /**
  * Escribe (crea) el contenido en la carpeta del POD correspondiente
@@ -8,7 +9,7 @@ import { Point } from "../shared/shareddtypes";
  * @param url enlace 
  * @returns
  */
-const writeContent = async (points: Point[], folder: string, url: string) => {
+const writeContent = async (points: Point[], url: string, folder: string) => {
     await saveFileInContainer(
         url,
         new Blob([JSON.stringify({ points: points })], {

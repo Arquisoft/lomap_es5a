@@ -95,6 +95,8 @@ const savePoint = async (point: Point, session: Session) => {
 
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
+        console.log(point)
+
         totalPoints.push(point); // añadimos el punto
 
         await updateContent(totalPoints, "savedPoints.json", getUserPrivateSavePointsUrl(session.info.webId));

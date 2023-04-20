@@ -134,13 +134,15 @@ const addPoint = async (
           "/private/points/points.json",
           "/private/points/"),
         "points.json"
-      )
+      ).then(() => {
+        callback && callback(isSuccess);
+      });
 
     });
 
   } else {
     // si existe la carpeta, añadimos el punto al fichero
-
+    
     // Si no existe el fichero
     const existsFile = await checkFileExists(
       session,
@@ -159,11 +161,12 @@ const addPoint = async (
           "/private/points/points.json",
           "/private/points/"),
         "points.json"
-      )
+      ).then(() => {
+        callback && callback(isSuccess);
+      });
       
     } else {
       // Si existe la carpeta y el fichero
-      
       try {
         const profileDocumentURI = encodeURI(
           getUserPrivatePointsUrl(session.info.webId)

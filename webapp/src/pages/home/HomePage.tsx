@@ -76,7 +76,8 @@ function HomePage() {
   };
 
   useEffect(() => {
-    sharePoint();
+    loadAllPoints();
+    // sharePoint();
     // loadUserFriends();
     // loadUserInfo();
     // loadAllPoints();
