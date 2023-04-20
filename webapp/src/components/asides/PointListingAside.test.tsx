@@ -83,18 +83,7 @@ describe("PointListingAside component", () => {
     const labelName = screen.getByText("Puntos de interés recientes");
     expect(labelName).toBeInTheDocument();
   });
-
-  it("renderiza correctamente con puntos", () => {
-    const points: Point[] = [pointDemo1, pointDemo2];
-
-    const {container} = render(
-      <Router>
-        <PointListingAside points={points} />
-      </Router>
-    );
-
-    const summaries = container.children[0].classList.contains("point-listing-aside-container");
-  });
+  
 
   it("renderiza puntos con un punto sin imagen", () => {
     const points: Point[] = [pointDemo1, pointDemo2];
@@ -106,6 +95,7 @@ describe("PointListingAside component", () => {
     const comp = shallow(<PointListingAside points={points} />);
     const summaries = comp.find(PointSummaryCard);
     expect(summaries).toHaveLength(2);
+    expect(PointSummaryCard).toBeInTheDocument();
   });
 
   it("renderiza puntos con un punto sin usuario", () => {
