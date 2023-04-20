@@ -45,16 +45,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test:alt": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
-    "test": "react-scripts test --color --detectLeaks --useStderr -u --verbose --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
+    "test": "react-scripts test --color --detectLeaks --useStderr -u --verbose --runInBand -maxWorkers=4 --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.tsx",
-      "src/components/*.tsx",
-      "!**/node_modules/**"
-    ]
   },
   "browserslist": {
     "production": [

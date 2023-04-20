@@ -14,8 +14,6 @@ export default {
 
   testEnvironment: "jsdom",
 
-  testPathIgnorePatterns: ["/node_modules/", "/build/"],
-
   collectCoverageFrom: ["<rootDir>/src/components/*.{js,jsx,ts,tsx}"],
 
   setupFiles: ["<rootDir>/jest.setup.ts"],
