@@ -1,11 +1,11 @@
 const esModules = ['@react-leaflet', 'react-leaflet'].join('|');
 
 export default {
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
-    },
-  },
+  // globals: {
+  //   "ts-jest": {
+  //     tsconfig: "tsconfig.json",
+  //   },
+  // },
 
   transform: {
     "^.+\\.ts$": "ts-jest"
