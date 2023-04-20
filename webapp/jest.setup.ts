@@ -8,3 +8,5 @@ if (
   (globalThis as any).TextDecoder = TextDecoder;
   globalThis.Uint8Array = Uint8Array;
 }
+
+console.error("hello")

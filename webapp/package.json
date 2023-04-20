@@ -64,6 +64,11 @@
   "engines": {
     "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/plugin-proposal-class-properties": "^7.18.6",

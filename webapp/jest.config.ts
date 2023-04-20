@@ -10,11 +10,11 @@ export default {
     "@babel/preset-typescript",
   ],
 
-  testMatch: ["<rootDir>/src/components/*.test.(ts|js)?(x)"],
+  testMatch: ["<rootDir>/src/components/*.testnvbgcjh.(ts|js)?(x)],
 
   testEnvironment: "jsdom",
 
   collectCoverageFrom: ["<rootDir>/src/components/*.{js,jsx,ts,tsx}"],
 
-  setupFiles: ["<rootDir>/jest.setup.ts"],
+  setupFiles: ["<rootDir>/jest.setup.ts, <rootDir>/jest.setup.js"],
 };
