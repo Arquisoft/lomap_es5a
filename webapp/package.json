@@ -45,7 +45,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test:alt": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
-    "test": "react-scripts test --color --detectLeaks --useStderr -u --verbose --forceExit --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
+    "test": "react-scripts test --color --detectLeaks --detectOpenHandles --forceExit --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --useStderr --coverage --watchAll",
     "test:jest": "jest --coverage",
     "test:run": "react-scripts test --coverage",
     "eject": "react-scripts eject",

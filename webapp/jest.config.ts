@@ -1,3 +1,5 @@
+const esModules = ['@react-leaflet', 'react-leaflet'].join('|');
+
 export default {
   globals: {
     "ts-jest": {
@@ -6,10 +8,14 @@ export default {
   },
 
   transform: {
-    "^.+\\.ts$": "ts-jest",
+    "^.+\\.ts$": "ts-jest"
   },
 
-  testMatch: ["<rootDir>src/components/**/?(*.)+(spec|test).[tj]s?(x)"],
+  transformIgnorePatterns: [`/node_modules/(?!(react-leaflet))`],
+
+  testPathIgnorePatterns: ["/node_modules/"],
+
+  testMatch: ["<rootDir>/src/components/**/?(*.)+(spec|test).[tj]s?(x)"],
 
   testEnvironment: "node",
 

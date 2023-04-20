@@ -1,11 +1,10 @@
-import React from "react";
-import { shallow } from "enzyme";
-import PointReviewSummary from "./PointReviewSummary";
-import { ceilNumber } from "../../../../utils/numberUtils";
 import { cleanup } from "@testing-library/react";
+import { shallow } from "enzyme";
+import { ceilNumber } from "../../../../utils/numberUtils";
+import PointReviewSummary from "./PointReviewSummary";
 
 describe("PointReviewSummary", () => {
-    afterAll(cleanup);
+  afterAll(cleanup);
   it("render", () => {
     const props = {
       media: 3.75,
@@ -16,10 +15,12 @@ describe("PointReviewSummary", () => {
 
   it("comprobaciones extra", () => {
     const props = {
-      media:3.75,
+      media: 3.75,
     };
     const wrapper = shallow(<PointReviewSummary {...props} />);
-    const mediaContainer = wrapper.find(".point-review-summary-container-media");
+    const mediaContainer = wrapper.find(
+      ".point-review-summary-container-media"
+    );
     const expectedMedia = ceilNumber(props.media, 1);
     expect(mediaContainer.text()).toEqual(expectedMedia.toString());
   });
