@@ -19,13 +19,5 @@ export default {
 
   testEnvironment: "node",
 
-  moduleFileExtensions: ["ts", "js", "tsx", "jsx"],
-
-  collectCoverage: true,
-
-  coverageReporters: ["text", "lcov"],
-
-  coveragePathIgnorePatterns: ["/dist/", "/node_modules/", "/test/", "/src/pages/", "/src/api/"],
-
   setupFiles: ["<rootDir>/src/setupTests.ts"],
 };
