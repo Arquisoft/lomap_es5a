@@ -3,6 +3,7 @@ import ComercialBox from "./ComercialBox";
 
 
 describe("Componente ComercialBox",()=>{
+
     afterAll(cleanup);
 
     it("Comprobamos renderizado", ()=>{
