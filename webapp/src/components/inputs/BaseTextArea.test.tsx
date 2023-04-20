@@ -4,7 +4,7 @@ import BaseTextArea from './BaseTextArea';
 
 describe('BaseTextArea component', () => {
 
-    afterAll(cleanup);
+  afterAll(cleanup);
     
   test('renders textarea', () => {
     const label = 'Description';

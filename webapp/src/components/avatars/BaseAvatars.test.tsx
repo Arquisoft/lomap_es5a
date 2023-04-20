@@ -11,7 +11,6 @@ import BaseAvatar from './BaseAvatar';
 }); */}
 
 describe("Comprobacion de componente baseavatar",()=>{
-    afterEach(cleanup);
     afterAll(cleanup);
 
     it("Renderizado",()=>{

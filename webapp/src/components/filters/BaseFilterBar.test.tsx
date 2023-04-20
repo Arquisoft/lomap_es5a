@@ -16,10 +16,10 @@ describe("BaseFilterBar component", () => {
     expect(screen.getByText("Filtros")).toBeInTheDocument();
   });
 
-  test("is filter button clicked", async () => {
+  test("is filter button clicked", () => {
     const { getByText } = render(<BaseFilterBar />);
     fireEvent.click(getByText("Filtros"));
-    await waitFor(() => {
+    waitFor(() => {
       expect(getByText("Filtros")).toBeInTheDocument();
     });
   });

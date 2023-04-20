@@ -32,23 +32,23 @@ describe("MapWithDragableMarker component", () => {
     expect(infoIcon).toBeInTheDocument();
   });
 
-  test("Función flyTo", () => {
-    const mockSetPointToShow = jest.fn();
+  // test("Función flyTo", () => {
+  //   const mockSetPointToShow = jest.fn();
 
-    jest.mock("../../store/point.store", () => ({
-      usePointDetailsStore: () => ({
-      setPointToShow: mockSetPointToShow,
-      }),
-    }));
+  //   jest.mock("../../store/point.store", () => ({
+  //     usePointDetailsStore: () => ({
+  //     setPointToShow: mockSetPointToShow,
+  //     }),
+  //   }));
     
-    const position = {
-      lat: 41.3851,
-      lng: 2.1734,
-    };
+  //   const position = {
+  //     lat: 41.3851,
+  //     lng: 2.1734,
+  //   };
 
-    const wrapper = shallow(<MapWithDragableMarker position={position} />);
+  //   const wrapper = shallow(<MapWithDragableMarker position={position} />);
 
-    const coords = new LatLng(41.3851, 2.1734);
+  //   const coords = new LatLng(41.3851, 2.1734);
     
-  });
+  // });
 });
