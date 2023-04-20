@@ -1,11 +1,9 @@
-import { screen } from "@testing-library/dom";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Category, Point } from "../../shared/shareddtypes";
 import AddNewReviewToPointPopup from "./AddNewReviewToPointPopup";
-import { shallow } from "enzyme";
 
-const pointInitilization: Point = {
+const pointDemo1: Point = {
   _id: "a",
   name: "a",
   description: "a",
@@ -41,7 +39,7 @@ describe("AddNewReviewToPointPopup componente", () => {
   test("renderiza el componente", () => {
     const { container } = render(
       <Router>
-        <AddNewReviewToPointPopup pointInfo={pointInitilization} />
+        <AddNewReviewToPointPopup pointInfo={pointDemo1} />
       </Router>
     );
 
@@ -50,74 +48,4 @@ describe("AddNewReviewToPointPopup componente", () => {
     );
     expect(popup).toBeInTheDocument();
   });
-
-  // test("cerrar el popup", () => {
-  //   const mockClosePopup = jest.fn();
-
-  //   jest.mock("../../store/point.store", () => ({
-  //     usePointDetailsStore: () => ({
-  //       setPointToShow: mockClosePopup,
-  //     }),
-  //   }));
-
-  //   const { container } = render(
-  //     <Router>
-  //       <PointCategoryFilterPopup />
-  //     </Router>
-  //   );
-
-  //   const popup = container.querySelector(
-  //     ".add-new-review-point-popup-container"
-  //   );
-
-  //   expect(popup).toBeInTheDocument();
-
-  //   const closeIconComp = document.querySelector(
-  //     ".point-category-filter-popup__close-icon"
-  //   );
-
-  //   expect(closeIconComp).toBeInTheDocument();
-
-  //   if (closeIconComp === null) {
-  //     return;
-  //   }
-
-  //   fireEvent.click(closeIconComp);
-  // });
-
-  // test("Renderizar componente al añadir una nueva review", () => {
-  //   const comp = shallow(
-  //     <Router>
-  //       <PointCategoryFilterPopup />
-  //     </Router>
-  //   );
-
-  //   const popup = document.querySelector(
-  //     ".add-new-review-point-popup-container"
-  //   );
-
-  //   expect(popup).toBeInTheDocument();
-
-  //   const addNewReviewButton = document.querySelector(
-  //     ".point-category-filter-popup__add-new-review-button"
-  //   );
-
-  //   if (addNewReviewButton === null) {
-  //     return;
-  //   }
-
-  //   fireEvent.click(addNewReviewButton);
-
-  //   const successDialog = document.querySelector(
-  //     "add-new-review-point-popup__success-review"
-  //   );
-
-  //   if (successDialog === null) {
-  //     return;
-  //   }
-
-  //   expect(comp.find(successDialog)).toBeInTheDocument();
-
-  //   expect(popup).toBeInTheDocument();
-  // });
 });

@@ -1,8 +1,7 @@
-import { cleanup, screen, render } from "@testing-library/react";
-import MiniMap from "./MiniMap";
-import {MemoryRouter} from "react-router-dom";
+import { cleanup } from "@testing-library/react";
 import { shallow } from "enzyme";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
+import MiniMap from "./MiniMap";
 
 describe("MiniMap component", () => {
   afterAll(cleanup);

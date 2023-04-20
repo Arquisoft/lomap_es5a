@@ -3,10 +3,6 @@ import ComercialInfo from "./ComercialInfo";
 import ComercialBox from './comercial/ComercialBox';
 import BaseButton from '../buttons/BaseButton';
 import { shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
-import Enzyme from 'enzyme';
-
-Enzyme.configure({adapter: new Adapter()});
 
 
 describe('Comprobamos el componente de comercial box', () => {

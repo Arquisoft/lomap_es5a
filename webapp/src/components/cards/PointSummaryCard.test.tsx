@@ -8,7 +8,6 @@ import {
 
 import PointSummaryCard from "./PointSummaryCard";
 
-import { MemoryRouter } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Category, Point } from "../../shared/shareddtypes";
 

@@ -50,9 +50,5 @@ describe("PointCategoryFilterPopup componente", () => {
     }
 
     fireEvent.click(closeIconComp);
-
-    // expect(mockClosePopup).toBeCalledTimes(1);
-
-    // expect(popup).not.toBeInTheDocument();
   });
 });

@@ -36,9 +36,6 @@ function CreatePointForm() {
     imageToUpload,
   } = usePointDetailsStore();
 
-  // Mostrar errores después de 5 segundos
-  const [, setShowErrorTimeoutConsumed] =
-    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
