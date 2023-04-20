@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
 import { generateUUID } from "../../../utils/stringUtils";
 import BaseCheckboxInput from "../../inputs/BaseCheckboxInput";
@@ -6,6 +6,7 @@ import {Friend} from "../../../shared/shareddtypes";
 import {getAllFriends} from "../../../api/friends.api";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useUserStore } from "../../../store/user.store";
+import FriendAvatar from "../../avatars/FriendAvatar";
 
 
 
@@ -13,19 +14,17 @@ function BottomAccountAside(){
     const { session } = useSession();
     const {setFriends, friends} = useUserStore();
 
-    const amigo:Friend = {
-        webId : "",
-        name : "",
-        imgUrl : ""
-    }
-
     //cargar lista de amigos
     const loadAllFriends = async () => {
-        const allfriends = getAllFriends(session.info.webId as string);
-
+        const allfriends = await getAllFriends(session.info.webId as string);
+        setFriends(allfriends);
     };
     
-    //contiene la lista de amigos que podran recogerse fuera de este componente
+    useEffect(() => {
+        loadAllFriends();
+    }, []);
+
+    //contiene la lista de amigos seleccionados por el usuario
     const [amigos,setAmigos] = useState<Friend[]>([]);
     //Funciones para añadir o eliminar y comprobar la lista de amigos
     const añadirAmigo = (amigo:Friend) => {
@@ -39,19 +38,11 @@ function BottomAccountAside(){
     };
 
     //amigos seleccionados
-    const handleCheckbox = (isChecked:boolean) => {
-        //TODO: añadir a la lista de amigos si se selecciona o eliminarlo si no esta seleccionado
-        console.log(isChecked)
+    const handleCheckbox = (isChecked:boolean , friend:Friend) => {
         if(isChecked){
-            //añadirlo
-
-            //limpiar el valor de amigo
-            
+            añadirAmigo(friend);
         }else{
-            //borrar
-
-            //limpiar el valor de amigo
-
+            eliminarAmigo(friend);
         }
     };
 
@@ -60,12 +51,32 @@ function BottomAccountAside(){
             <div className="base-textarea-container">
                 <label htmlFor={generateUUID()}>{"Compartido con"}</label>
                 <div className="friend-list">
-                    {friends?.map((friend)=>{});}
-                    <BaseCheckboxInput onCheckboxChange={handleCheckbox}/>
+                    {friends ? 
+                            friends.map((friend) =>{ //realizar la construccion del amigo
+                                return(
+                                    <div className="friend-component" key={friend.webId}>
+                                    <FriendAvatar 
+                                        key={friend.webId}
+                                        name={friend.name}
+                                        imgUrl={friend.imgUrl} 
+                                    />
+                                    <label htmlFor="checkbox"/>
+                                    <input
+                                    type="checkbox"
+                                    onChange={ e => {handleCheckbox(e.target.checked, friend)}}
+                                    id="checkbox"
+                                    />
+                                    </div>
+                                )
+                            }) 
+                         : (
+                            <p>Sin amigos disponibles</p>
+                        )}
+                    {/* <BaseCheckboxInput onCheckboxChange={handleCheckbox}/> */}
                 </div>
             </div>
         </div>
     )
 }
 
-export default BottomAccountAside
+export default BottomAccountAside;
