@@ -3,11 +3,15 @@ import "../../../public/css/components/asides/accountAside/BottomAccountAside.cs
 import { generateUUID } from "../../../utils/stringUtils";
 import BaseCheckboxInput from "../../inputs/BaseCheckboxInput";
 import {Friend} from "../../../shared/shareddtypes";
-
+import {getAllFriends} from "../../../api/friends.api";
+import { useSession } from "@inrupt/solid-ui-react";
+import { useUserStore } from "../../../store/user.store";
 
 
 
 function BottomAccountAside(){
+    const { session } = useSession();
+    const {setFriends, friends} = useUserStore();
 
     const amigo:Friend = {
         webId : "",
@@ -16,6 +20,10 @@ function BottomAccountAside(){
     }
 
     //cargar lista de amigos
+    const loadAllFriends = async () => {
+        const allfriends = getAllFriends(session.info.webId as string);
+
+    };
     
     //contiene la lista de amigos que podran recogerse fuera de este componente
     const [amigos,setAmigos] = useState<Friend[]>([]);
@@ -52,15 +60,7 @@ function BottomAccountAside(){
             <div className="base-textarea-container">
                 <label htmlFor={generateUUID()}>{"Compartido con"}</label>
                 <div className="friend-list">
-                    {/*{friends.map((friend)=>{
-                        //const amigo:Amigo = {} vamos creando el amigo
-                        //añadir el amigo con sus datos en el cuadro
-                        //imagen
-                        //nombre
-                        //checkbox //añadir una funcion para cuando este seleccionado se almacene en amigos seleccionados
-                        //<BaseCheckboxInput ...añadir funcionescallback si estan pulsados y añadir el amigo en caso de q lo este.../>
-                    })}
-                    */}
+                    {friends?.map((friend)=>{});}
                     <BaseCheckboxInput onCheckboxChange={handleCheckbox}/>
                 </div>
             </div>
