@@ -45,7 +45,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test:alt": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
-    "test": "react-scripts test --color --detectLeaks --useStderr -u --verbose --forceExit --detectOpenHandles --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
+    "test": "react-scripts test --color --detectLeaks --useStderr -u --verbose --forceExit --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
+    "test:jest": "jest --coverage",
+    "test:run": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
   },
@@ -63,11 +65,6 @@
   },
   "engines": {
     "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    }
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

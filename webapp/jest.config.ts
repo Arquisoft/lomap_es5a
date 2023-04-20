@@ -1,20 +1,25 @@
 export default {
-  clearMocks: true,
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.json",
+    },
+  },
 
   transform: {
     "^.+\\.ts$": "ts-jest",
   },
 
-  presets: [
-    ["@babel/preset-env", { targets: { node: "current" } }],
-    "@babel/preset-typescript",
-  ],
+  testMatch: ["<rootDir>src/components/**/?(*.)+(spec|test).[tj]s?(x)"],
 
-  testMatch: ["<rootDir>/src/components/*.testnvbgcjh.(ts|js)?(x)],
+  testEnvironment: "node",
 
-  testEnvironment: "jsdom",
+  moduleFileExtensions: ["ts", "js", "tsx", "jsx"],
 
-  collectCoverageFrom: ["<rootDir>/src/components/*.{js,jsx,ts,tsx}"],
+  collectCoverage: true,
 
-  setupFiles: ["<rootDir>/jest.setup.ts, <rootDir>/jest.setup.js"],
+  coverageReporters: ["text", "lcov"],
+
+  coveragePathIgnorePatterns: ["/dist/", "/node_modules/", "/test/", "/src/pages/", "/src/api/"],
+
+  setupFiles: ["<rootDir>/src/setupTests.ts"],
 };

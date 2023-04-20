@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "types": ["jest", "node"],
-    "baseUrl": ".",
-    "outDir": "./build/",
-
-    "target": "ES5",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,27 +8,25 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "module": "CommonJS",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
+  "include": [
+    "src","e2e"
+  ],
   "exclude": [
     "**/node_modules",
     "build",
     "**/__mocks__/**",
     "**/__snapshots__/**"
   ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "jest.config.ts",
-    "jest.setup.ts",
-  ]
 }

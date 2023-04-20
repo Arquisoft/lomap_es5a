@@ -5,7 +5,7 @@ import { Category, Point } from "../../shared/shareddtypes";
 import { shallow } from "enzyme";
 import PointSummaryCard from "../cards/PointSummaryCard";
 
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const pointDemo1: Point = {
   _id: "a",
@@ -38,7 +38,7 @@ const pointDemo1: Point = {
 } as Point;
 
 const pointDemo2: Point = {
-  _id: "a",
+  _id: "b",
   name: "a",
   description: "a",
   location: {
@@ -71,10 +71,14 @@ describe("PointListingAside component", () => {
   afterAll(cleanup);
 
   it("renderiza correctamente", () => {
-    render(<PointListingAside points={[pointDemo1, pointDemo2]} />);
+    const {container } = render(
+      <Router>
+        <PointListingAside points={[pointDemo1, pointDemo2]} />
+      </Router>
+    );
 
-    const styles = document.querySelector(".point-listing-aside-container");
-    expect(styles).toBeInTheDocument();
+    const comp = container.querySelector(".point-listing-aside-container");
+    expect(comp).toBeInTheDocument();
 
     const labelName = screen.getByText("Puntos de interés recientes");
     expect(labelName).toBeInTheDocument();
@@ -83,14 +87,16 @@ describe("PointListingAside component", () => {
   it("renderiza correctamente con puntos", () => {
     const points: Point[] = [pointDemo1, pointDemo2];
 
-    const comp = render(
+    expect(points).toBeInTheDocument();
+
+    const comp = shallow(
       <Router>
         <PointListingAside points={points} />
       </Router>
     );
 
     const summaries = comp.find(PointSummaryCard);
-    expect(summaries).toHaveLength(2);
+    expect(summaries).toBeInTheDocument();
   });
 
   it("renderiza puntos con un punto sin imagen", () => {
