@@ -5,6 +5,15 @@ on:
     branches: ['**']
   push:
     branches: ['**']
+  
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
 
 jobs:
   unit-tests:
@@ -19,8 +28,6 @@ jobs:
         node-version: 18
     - run: npm --prefix webapp ci --legacy-peer-deps
     - run: npm --prefix webapp test --coverage --watchAll
-      env:
-         CI: true
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:

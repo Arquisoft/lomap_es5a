@@ -29,7 +29,7 @@ function BaseSelect({
         defaultValue={"no-opt"}
       >
         <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
-        {options.map((opt, index) => {
+        {options.map((opt) => {
           return (
             <option key={opt.value + generateUUID()} value={opt.value}>
               {showContent ? opt.content : opt.value}

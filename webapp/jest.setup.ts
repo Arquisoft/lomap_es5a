@@ -1,9 +1,10 @@
-import util from "util";
+import { TextEncoder, TextDecoder } from "util";
 
-// if (
-//   typeof globalThis.TextEncoder === "undefined" ||
-//   typeof globalThis.TextDecoder === "undefined"
-// ) {
-//   globalThis.TextEncoder = new util.TextEncoder('utf-8');
-//   globalThis.TextDecoder = new util.TextDecoder('utf-8');
-// }
+if (
+  typeof globalThis.TextEncoder === "undefined" ||
+  typeof globalThis.TextDecoder === "undefined"
+) {
+  (globalThis as any).TextEncoder = TextEncoder;
+  (globalThis as any).TextDecoder = TextDecoder;
+  globalThis.Uint8Array = Uint8Array;
+}
