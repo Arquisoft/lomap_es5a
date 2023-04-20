@@ -89,7 +89,7 @@ describe("PointListingAside component", () => {
   it("renderiza puntos con un punto sin imagen", () => {
     const points: Point[] = [];
 
-    if (points[0].image) {
+    if (points.length > 0 && points[0].image && points[0].image.url) {
       points[0].image.url = "";
     }
 
