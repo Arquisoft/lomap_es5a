@@ -44,9 +44,7 @@ describe("PointReviewSection", () => {
     expect(wrapper.find(".point-review-section-review-summary").exists()).toBe(
       true
     );
-    //expect(wrapper.find(PointReviewSummary).prop('media')).toEqual(0);
     expect(wrapper.find("p").text()).toEqual(" 0 valoraciones");
-    //expect(wrapper.find(BaseStarRating).prop('rating')).toEqual(0);
   });
 
   it("comprobaciones reviews", () => {

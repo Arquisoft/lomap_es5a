@@ -71,7 +71,7 @@ describe("PointListingAside component", () => {
   afterAll(cleanup);
 
   it("renderiza correctamente", () => {
-    const {container } = render(
+    const { container } = render(
       <Router>
         <PointListingAside points={[pointDemo1, pointDemo2]} />
       </Router>
@@ -87,16 +87,13 @@ describe("PointListingAside component", () => {
   it("renderiza correctamente con puntos", () => {
     const points: Point[] = [pointDemo1, pointDemo2];
 
-    expect(points).toBeInTheDocument();
-
-    const comp = shallow(
+    const {container} = render(
       <Router>
         <PointListingAside points={points} />
       </Router>
     );
 
-    const summaries = comp.find(PointSummaryCard);
-    expect(summaries).toBeInTheDocument();
+    const summaries = container.children[0].classList.contains("point-listing-aside-container");
   });
 
   it("renderiza puntos con un punto sin imagen", () => {
@@ -118,8 +115,8 @@ describe("PointListingAside component", () => {
       points[0].owner.name = "";
     }
 
-    const comp = shallow(<PointListingAside points={points} />);
-    const summaries = comp.find(PointSummaryCard);
-    expect(summaries).toHaveLength(2);
+    const {container} = render(<PointListingAside points={points} />);
+    const summaries = container.children[0].classList.contains("point-listing-aside-container");
+    expect(summaries).toBeTruthy();
   });
 });

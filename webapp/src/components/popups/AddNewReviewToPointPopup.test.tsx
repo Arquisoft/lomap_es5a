@@ -44,7 +44,7 @@ describe("AddNewReviewToPointPopup componente", () => {
     );
 
     const popup = container.querySelector(
-      ".point-category-filter-popup-container"
+      ".add-new-review-point-popup-container"
     );
     expect(popup).toBeInTheDocument();
   });

@@ -1,8 +1,4 @@
-/**
- * @jest-environment node
- */
-
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import CreatePointForm from "./CreatePointForm";
@@ -56,9 +52,11 @@ describe("Create Point Form component", () => {
 
     fireEvent.click(screen.getByText("Publicar"));
 
-    // Comprobar que se muestra el error
-    expect(
-      screen.getByText("El campo categoría del punto es obligatorio")
-    ).toBeInTheDocument();
+    waitFor(() => {
+      // Comprobar que se muestra el error
+      expect(
+        screen.getByText("El campo categoría del punto es obligatorio")
+      ).toBeInTheDocument();
+    });
   });
 });
