@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react';
 import PageInfo from "./PageInfo";
 
-test('Comprobamos pageinfo',async () => {
+test('Comprobamos pageinfo', () => {
     
     const message1 = "Tu decides que puntos compartir. La información se almacena de forma distribuida.";
     const message2 = "Si eres un negocio local, compártelo con tus amigo y el resto de usuarios.";
