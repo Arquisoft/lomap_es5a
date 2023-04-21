@@ -28,7 +28,7 @@ const findAllSavePoints = async (webId: string): Promise<Point[]> => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    console.error("Error findAllSavePoints: ", err);
+    // no hay puntos guardados
   }
   return new Array<Point>();
 };
@@ -101,7 +101,7 @@ const savePoint = async (point: Point, session: Session) => {
 
         await updateContent(totalPoints, "savedPoints.json", getUserPrivateSavePointsUrl(session.info.webId));
       } catch (err) {
-        console.error("Error savePoint: " + err);
+        throw new Error("Ha ocurrido un error al agregar el punto a guardados")
       }
     }
   }
@@ -134,7 +134,7 @@ const unsavePoint = async (idPoint: string, webId: string) => {
       await updateContent(filtro, "savedPoints.json", getUserPrivateSavePointsUrl(webId));
     }
   } catch (err) {
-    console.error("Error unsavePoint: ", err);
+    throw new Error("Ha ocurrido un error al eliminar el punto de guardados")
   }
 };
 
