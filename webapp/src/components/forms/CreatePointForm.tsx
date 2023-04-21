@@ -221,7 +221,7 @@ function CreatePointForm() {
             }}
           />
 
-          //ACABAR FUNCIONALIDAD
+          {/*ACABAR FUNCIONALIDAD*/}
           <FriendsCard 
             amigos={amigos}
             añadirAmigo={añadirAmigo}

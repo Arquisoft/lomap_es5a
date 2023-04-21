@@ -50,8 +50,7 @@ function FriendsCard({
     };
 
     return(
-        <div>
-            <div className="base-textarea-container">
+            <div className="friends-container">
                 <label htmlFor={generateUUID()}>{"Compartido con"}</label>
                 <div className="friend-list">
                     {friends ? 
@@ -78,7 +77,6 @@ function FriendsCard({
                     {/* <BaseCheckboxInput onCheckboxChange={handleCheckbox}/> */}
                 </div>
             </div>
-        </div>
     )
 }
 
