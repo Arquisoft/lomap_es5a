@@ -21,6 +21,8 @@ import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
 import BottomAccountAside from "../asides/accountAside/BottomAccountAside";
+import { Friend } from "../../shared/shareddtypes";
+import FriendsCard from "../cards/FriendsCard";
 
 function CreatePointForm() {
   const {
@@ -124,6 +126,23 @@ function CreatePointForm() {
     });
   }, []);
 
+
+    //contiene la lista de amigos seleccionados por el usuario
+    const [amigos,setAmigos] = useState<Friend[]>([]);
+    //Funciones para añadir o eliminar y comprobar la lista de amigos
+    const añadirAmigo = (amigo:Friend) => {
+        setAmigos([...amigos,amigo]);
+        console.log("añadiendo" +amigos);
+    };
+    const eliminarAmigo = (amigoAEliminar:Friend) => {
+        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
+        console.log("eliminando" + amigos);
+    };
+    const verificaAmigo = (amigoVerificar:Friend) => {
+        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
+    };
+
+
   return (
     <div className="create-form-main">
       <div className="create-form-title">Crear un punto</div>
@@ -202,7 +221,13 @@ function CreatePointForm() {
             }}
           />
 
-          <BottomAccountAside />
+          //ACABAR FUNCIONALIDAD
+          <FriendsCard 
+            amigos={amigos}
+            añadirAmigo={añadirAmigo}
+            eliminarAmigo={eliminarAmigo}
+            verificaAmigo={verificaAmigo}
+            />
 
           <BaseTextArea
             label="Descripción"
