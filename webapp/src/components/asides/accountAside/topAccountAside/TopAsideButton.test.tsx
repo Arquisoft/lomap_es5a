@@ -7,7 +7,7 @@ let icon: React.ReactNode;
 describe('Comprobamos el componente de TopAsideButton', () => {
 
     beforeAll ( () => {
-        icon = "home_rounded";
+        icon = "home_rounded";       
     })
 
     //tras ejecutar los test limpia
@@ -30,11 +30,14 @@ describe('Comprobamos el componente de TopAsideButton', () => {
                  icon = {icon} 
                  text='Inicio'
                  isActive = {true}
+
             />
         )
         expect(getByRole("container")).toBeInTheDocument();
         expect(getByText("Inicio")).toBeInTheDocument();
     })
+
+
 
 
 });
