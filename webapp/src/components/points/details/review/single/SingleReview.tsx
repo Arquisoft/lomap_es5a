@@ -19,16 +19,11 @@ function SingleReview(review:Props){
 
     const nombre =review.reviewer.name ? review.reviewer.name : review.reviewer.webId.split("/")[2]
 
-
-    useEffect(() => {
-        console.log(review.reviewer);
-    }, []);
-
     return(
-        <div className="single-review-container">
-            <div className="single-review-top">
+        <div className="single-review-container" role="container">
+            <div className="single-review-top" role="data">
     
-                <div className="single-review-user">
+                <div className="single-review-user" role="user-data">
                     {
                         review.reviewer.imageUrl ? 
                         <img src= {review.reviewer.imageUrl} />

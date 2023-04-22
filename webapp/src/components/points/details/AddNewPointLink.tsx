@@ -25,11 +25,11 @@ function AddNewPointLink(point:Props){
                 e.preventDefault();
                 setShowAddReviewPopup(true);
             }}>
-                <div className="add-new-point-link-button">
-                    <div className="add-new-point-link-button-text">
+                <div className="add-new-point-link-button" role="container">
+                    <div className="add-new-point-link-button-text" role="text">
                         <AddIcon /> <p>Añadir valoración</p>
                     </div>
-                    <div className="add-new-point-link-button-arrow" >
+                    <div className="add-new-point-link-button-arrow" role="arrow-icon" >
                         <ArrowForwardIosIcon />
                     </div>
                 </div>

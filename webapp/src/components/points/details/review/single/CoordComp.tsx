@@ -6,7 +6,7 @@ type Props = {
 
 function CoordComp( coord : Props){
     return(
-        <div className="coord-comp-containter">
+        <div className="coord-comp-containter" role="container">
             {coord.coord}
         </div>
     )
