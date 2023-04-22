@@ -30,7 +30,7 @@ const findAllUserPoints = async (webId: string): Promise<Point[]> => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    console.error("Error findAllPoints: ", err);
+    // no hay ningún punto
   }
   return new Array<Point>();
 };
@@ -63,7 +63,7 @@ const findPointById = async (
       return filtro[0]; // devolvemos el punto con ese id
     }
   } catch (err) {
-    console.error("Error findPointById: ", err);
+    throw new Error("Ha ocurrido un error al buscar el punto con ese id")
   }
   return {} as Point;
 };
@@ -98,7 +98,7 @@ const findPointsByCategory = async (
       return filtro; // devolvemos los puntos con esa categoría
     }
   } catch (err) {
-    console.error("Error findPointsByCategory: ", err);
+    // no existe ningún punto con esa categoría
   }
   return [];
 };
@@ -188,7 +188,7 @@ const addPoint = async (
           callback && callback(isSuccess);
         });
       } catch (err) {
-        console.error("Error addPoint: " + err);
+        throw new Error("Ha ocurrido un error al agregar el punto")
       }
     }
   }
@@ -232,7 +232,7 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
       await updateContent(totalPoints, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
-    console.error("Error editPointById: ", err);
+    throw new Error("Ha ocurrido un error al editar el punto con ese id")
   }
 };
 
@@ -263,7 +263,7 @@ const deletePoint = async (idPoint: string, webId: string) => {
       await updateContent(filtro, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
-    console.error("Error deletePoint: ", err);
+    throw new Error("Ha ocurrido un error al eliminar el punto con ese id")
   }
 };
 
@@ -304,7 +304,7 @@ const addReviewPoint = async (
       await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
-    console.error("Error addReviewPoint: ", err);
+    throw new Error("Ha ocurrido un error al añadir la review")
   }
 };
 
@@ -353,7 +353,7 @@ const deleteReviewByPoint = async (
       await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
-    console.error("Error deleteReviewByPoint: ", err);
+    throw new Error("Ha ocurrido un error al eliminar la review")
   }
 };
 
@@ -386,7 +386,7 @@ const findAllReviewByPoint = async (
       return filtro[0].reviews; // devolvemos las reviews
     }
   } catch (err) {
-    console.error("Error findAllReviewByPoint: ", err);
+    // no tiene reviews
   }
   return [];
 };
@@ -400,7 +400,7 @@ async function upImage(image: File | undefined, point: Point) {
         alt: point?.name ?? "",
       };
     } catch (err) {
-      console.log("Error al subir la imagen: " + err);
+      throw new Error("Ha ocurrido un error al subir la imagen")
     }
   }
 }

@@ -38,14 +38,15 @@ function TopAccountAside() {
   };
 
   return (
-    <div className="top-acc-aside-main">
-      <button className="top-acc-aside-back" onClick={(e) => handleGoToThePreviousPage(e)}>
+    
+    <div className="top-acc-aside-main" >
+      <button className="top-acc-aside-back" onClick={(e) => handleGoToThePreviousPage(e)} role="back">
         <ArrowBackIosIcon aria-hidden="true"/>
       </button>
       <div className="top-acc-aside-title">Mi cuenta</div>
       <div className="top-acc-aside-buttons">
         {ACCOUNT_MENU_ITEMS.map((item) => {
-          return (
+          return (     
             <TopAsideButton
               key={item.alias}
               icon={item.muiName}
