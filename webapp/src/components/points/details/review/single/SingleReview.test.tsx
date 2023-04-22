@@ -7,7 +7,7 @@ let reviewerWithoutName : Reviewer;
 let reviewerNoImage: Reviewer;
 let date : Date;
 
-describe('Comprobamos el componente de user comp', () => {
+describe('Comprobamos el componente de SingleReview', () => {
 
     beforeAll( () => {
         reviewerWithName = ({
