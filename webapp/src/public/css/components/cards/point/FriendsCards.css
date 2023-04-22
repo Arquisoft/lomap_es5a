@@ -1,15 +1,13 @@
-.friends-container-aside{
-    width: max-content;
+.friend-list{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 0px;
     gap: 10px;
-    padding: 10px 20px;
-    border-radius: 10px;
+    
 }
-.friend-component-aside{
-    width: 100%;    
+.friend-list-comp{
     display: flex;
     flex-direction: row;
     align-items: center;

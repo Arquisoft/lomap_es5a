@@ -22,13 +22,13 @@ function BottomAccountAside(){
     }, []);
     
     return(
-        <div className="friends-container">
+        <div className="friends-container-aside">
                 <label htmlFor={generateUUID()}></label>
-                <div className="friend-list">
+                <div className="friend-list-aside">
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
-                                    <div className="friend-component" key={friend.webId}>
+                                    <div className="friend-component-aside" key={friend.webId}>
                                     <FriendAvatar 
                                         key={friend.webId}
                                         name={friend.name}

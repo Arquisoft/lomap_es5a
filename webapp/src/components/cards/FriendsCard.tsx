@@ -1,7 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
-//
-//REALIZAR EL CSS
-//
+import "../../../src/public/css/components/cards/point/FriendsCards.css"
 import { generateUUID } from "../../utils/stringUtils";
 import BaseCheckboxInput from "../inputs/BaseCheckboxInput";
 import {Friend} from "../../shared/shareddtypes";
@@ -56,7 +54,7 @@ function FriendsCard({
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
-                                    <div className="friend-component" key={friend.webId}>
+                                    <div className="friend-list-comp" key={friend.webId}>
                                     <FriendAvatar 
                                         key={friend.webId}
                                         name={friend.name}
