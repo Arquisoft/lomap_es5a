@@ -7,7 +7,7 @@ type Props = {
 
 function UserComp(user:Props){
     return(
-        <div className="user-comp-container">
+        <div className="user-comp-container" role="container">
             <img src={user.urlImage} width={32} height={32}/> {user.name}
         </div>
     )
