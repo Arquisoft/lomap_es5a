@@ -20,9 +20,9 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import BottomAccountAside from "../asides/accountAside/BottomAccountAside";
 import { Friend } from "../../shared/shareddtypes";
 import FriendsCard from "../cards/FriendsCard";
+import { sharePointWithFriend } from "../../api/share.point.api";
 
 function CreatePointForm() {
   const {
@@ -117,6 +117,12 @@ function CreatePointForm() {
         setErrors([...errors, "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde"]);
       }
     });
+
+    //AÑADIR PUNTO COMPARTIDO A AMIGOS
+    amigos.forEach(async amigo => {
+      await sharePointWithFriend(info,session,amigo);
+    });
+
   };
 
   useEffect(() => {
@@ -221,7 +227,7 @@ function CreatePointForm() {
             }}
           />
 
-          {/*ACABAR FUNCIONALIDAD*/}
+          
           <FriendsCard 
             amigos={amigos}
             añadirAmigo={añadirAmigo}

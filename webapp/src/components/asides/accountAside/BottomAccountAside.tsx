@@ -23,7 +23,7 @@ function BottomAccountAside(){
     
     return(
         <div className="friends-container">
-                <label htmlFor={generateUUID()}>{"Compartido con"}</label>
+                <label htmlFor={generateUUID()}></label>
                 <div className="friend-list">
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
@@ -41,7 +41,6 @@ function BottomAccountAside(){
                          : (
                             <p>Sin amigos disponibles</p>
                         )}
-                    {/* <BaseCheckboxInput onCheckboxChange={handleCheckbox}/> */}
                 </div>
             </div>
     )
