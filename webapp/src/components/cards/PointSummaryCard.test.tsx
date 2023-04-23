@@ -35,10 +35,11 @@ const pointInitilization: Point = {
     url: "a",
     alt: "a",
   },
-  isPublic: false,
+  isOwner: false,
   category: Category.NONE,
   createdAt: new Date(),
   updatedAt: new Date(),
+  friends: []
 } as Point;
 
 describe("PointSummaryCard component", () => {

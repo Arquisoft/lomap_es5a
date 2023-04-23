@@ -37,6 +37,8 @@ const sharePointWithFriend = async (
   session:any,
   friend:Friend
 ) => {
+  //Al ser compartido, no es un el dueño del punto
+  point.isOwner = false;
   // En primer lugar añadimos el punto al folder correspondiente "private/sharedpoints/<friendUsername>"
   await addSharedPointForFriend(point,session,friend);
   // Posteriormente, asignamos al propietario de dicho folder todos los permisos sobre éste

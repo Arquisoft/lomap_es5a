@@ -31,10 +31,11 @@ const addPoints = () => {
         url: "c",
         alt: "c",
       },
-      isPublic: false,
+      isOwner: false,
       category: Category.NONE,
       createdAt: new Date(),
       updatedAt: new Date(),
+      friends : []
     } as Point);
   }
 };

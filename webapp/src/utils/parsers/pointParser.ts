@@ -1,5 +1,6 @@
 import type {
   BaseLocation,
+  Friend,
   Point,
   PointSummary,
   Review,
@@ -44,12 +45,13 @@ const parseJsonToPointItem = (inData: any): Point => {
     description,
     category,
     image,
-    isPublic,
+    isOwner,
     reviews,
     owner,
     location,
     createdAt,
     updatedAt,
+    friends,
   } = inData;
 
   const newPoint: Point = {
@@ -61,9 +63,10 @@ const parseJsonToPointItem = (inData: any): Point => {
     location: parseLocation(location),
     reviews: parseReviews(reviews),
     owner,
-    isPublic,
+    isOwner,
     createdAt: new Date(createdAt),
     updatedAt: new Date(updatedAt),
+    friends: parseFriends(friends)
   };
 
   return newPoint;
@@ -105,6 +108,25 @@ const checkCategory = (newCategory: string) =>
 const parseCategory = (newCategory: string): Category => {
   return checkCategory(newCategory) ? (newCategory as Category) : Category.NONE;
 };
+
+const parseFriends = (newFriends : any): Friend[] => {
+  return newFriends.map((friend: Friend) => {
+
+    const {webId, name, imgUrl} = friend;
+    if(!webId){
+      throw new Error("Must have webId");
+    }
+    if(!name){
+      throw new Error("Must have name");
+    }
+
+    return{
+      webId,
+      name,
+      imgUrl
+    }
+  })
+} 
 
 /**
  * Transforma la localización de un punto de interés en un objeto de tipo BaseLocation.
@@ -166,12 +188,12 @@ const parseReviews = (reviews: any) => {
  * @returns
  */
 const parsePointToJson = (point: Point) => {
-  const { name, description, category, isPublic, location, owner } = point;
+  const { name, description, category, isOwner, location, owner } = point;
   return {
     name,
     description,
     category,
-    isPublic,
+    isOwner,
     location,
     owner,
   };

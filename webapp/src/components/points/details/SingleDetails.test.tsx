@@ -33,10 +33,11 @@ describe('Comprobamos el componente de SingleDetail', () => {
               url: "a",
               alt: "a",
             },
-            isPublic: false,
+            isOwner: false,
             category: Category.NONE,
             createdAt: new Date(),
             updatedAt: new Date(),
+            friends : []
         } as Point)
     }) 
 
