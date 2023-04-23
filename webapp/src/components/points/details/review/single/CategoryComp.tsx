@@ -8,7 +8,7 @@ type Props = {
 
 function CategoryComp(category : Props){
     return(
-        <div className="categoryComp-contiainer">
+        <div className="categoryComp-contiainer" role="container">
             <p>{category.category}</p>
         </div>
     )

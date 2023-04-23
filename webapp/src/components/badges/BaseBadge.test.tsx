@@ -2,8 +2,6 @@ import {cleanup, render} from '@testing-library/react';
 import BaseBadge from './BaseBadge';
 
 describe("Comprobacion del componente BaseBadge",()=>{
-    
-    afterEach(cleanup);
     afterAll(cleanup);
 
     it("Se renderiza correctamente",()=>{

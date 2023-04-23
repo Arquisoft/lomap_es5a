@@ -1,6 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
@@ -13,7 +13,7 @@ import {
   NO_OPTION_SELECTED,
   checkAnyCategoryIsSelected,
   checkAnyOptionIsSelected,
-  checkIsNotEmpty
+  checkIsNotEmpty,
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
@@ -38,9 +38,6 @@ function CreatePointForm() {
     imageToUpload,
   } = usePointDetailsStore();
 
-  // Mostrar errores después de 5 segundos
-  const [, setShowErrorTimeoutConsumed] =
-    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -58,7 +55,6 @@ function CreatePointForm() {
     try {
       checkIsNotEmpty(info.name, "nombre del punto");
       checkAnyCategoryIsSelected(info.category, "categoría del punto");
-
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
@@ -78,7 +74,7 @@ function CreatePointForm() {
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    if(!validateForm()){
+    if (!validateForm()) {
       console.log("Formulario inválido", info);
       return;
     }
@@ -109,12 +105,14 @@ function CreatePointForm() {
       navigate(HOME_PATH);
       setErrors([]);
       resetPointInfo();
-
-    }).catch(err => {
-      if(err){
+    }).catch((err) => {
+      if (err) {
         setIsUploading(false);
         setIsFinished(false);
-        setErrors([...errors, "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde"]);
+        setErrors([
+          ...errors,
+          "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde",
+        ]);
       }
     });
 

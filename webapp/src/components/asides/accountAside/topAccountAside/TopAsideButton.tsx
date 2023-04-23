@@ -11,7 +11,8 @@ type Props = {
 
 function TopAsideButton({ icon, text, isActive, onClick }: Props) {
   return (
-    <div className={`aside-button-container ${isActive ? 'aside-button-container--active' : ''}`} onClick={onClick}>
+    
+    <div className={`aside-button-container ${isActive ? 'aside-button-container--active' : ''}`} onClick={onClick} role="container">
       <Icon sx={{ fontSize: 24 }}>{icon}</Icon>
       <p>{text}</p>
     </div>

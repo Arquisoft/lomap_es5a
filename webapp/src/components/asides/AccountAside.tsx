@@ -11,10 +11,10 @@ function AccountAside({_className}: ComponentClassName){
 
         <div className={`account-aside-main ${_className}`}>
 
-            <div className="account-aside-top">
+            <div className="account-aside-top" role="top">
                 <TopAccountAside />
             </div>
-            <div className="account-aside-bottom">
+            <div className="account-aside-bottom" role="bottom">
                 <BottomAccountAside />
             </div>
 

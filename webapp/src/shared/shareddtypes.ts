@@ -323,7 +323,7 @@ type PointListingAsideProps = {
 };
 
 interface SingleFilterProps {
-  code: string; // Código de la categoria
+  code: string;
   iconFilename?: string;
   iconAlt?: string;
   text: string;

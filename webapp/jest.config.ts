@@ -1,29 +1,11 @@
-//const esModules = ['@react-leaflet', 'react-leaflet'].join('|');
-
 export default {
-    testEnvironment: "node",
-    transform: {
-        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
-        "^.+\\.tsx?$": "ts-jest",
-        
-    },
-
-    testMatch: [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[tj]s?(x)"
-    ],
-    testPathIgnorePatterns: [
-        "/node_modules/",
-        "/dist/"
-    ],
-
-
-    // plugins: [
-    //     new NodePolyfillPlugin({
-	// 		includeAliases: ['console']
-	// 	})
-    // ],
-
-    // setupFilesAfterEnv: ['<rootDir>/setup-test.ts'],
-
-}
+  transform: {
+    "^.+\\.ts$": "ts-jest",
+  },
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  coverageDirectory: 'coverage',
+  testMatch: ["<rootDir>/src/components/**/?(*.)+(spec|test).[tj]s?(x)"],
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+};
