@@ -29,7 +29,8 @@ const parseJsonToPoint = (inData: any): Point[] => {
  *    <li>owner: string</li>
  *    <li>reviews?: Review[]</li>
  *    <li>image?: Image</li>
- *    <li>isPublic: boolean</li>
+ *    <li>isOwner: boolean</li>
+ *    <li>friends: Friend[]</li>
  *    <li>category: Category | Category.NONE</li>
  *    <li>createdAt: Date</li>
  *    <li>updatedAt: Date</li>
@@ -110,6 +111,10 @@ const parseCategory = (newCategory: string): Category => {
 };
 
 const parseFriends = (newFriends : any): Friend[] => {
+  if(!newFriends){
+    return [] as Friend[];
+  }
+
   return newFriends.map((friend: Friend) => {
 
     const {webId, name, imgUrl} = friend;

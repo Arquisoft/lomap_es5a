@@ -1,26 +1,67 @@
+@charset "UTF-8";
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * -----------------------
+ * -- PALETA DE COLORES --
+ * -----------------------
+ * 
+ * - base. Color del elemento en su estado normal.
+ * - hightlight. Color del elemento cuando se dispara una acción u evento asociado a éste.
+ * - dark. Color de contraste, alternativo al color base.
+ */
+/**
+ * Obtiene el color de la paleta de colores definida en el fichero variables.scss.
+ * La paleta de colores se define como un mapa.
+ * 
+ * - $base hace referencia al tipo de color en la paleta: primary, secondary, tertiary...
+ * - $tint hace referencia al tinte a aplicar. Ejemplo: hightligh si el componente se encuentra 
+ * en modo hover o similar.
+ */
+/**
+ * Obtiene el tamaño de la variable $sizes del fichero variables.scss
+ * 
+ * - $type: Por ejemplo, profileImage.
+ * - $size: Si se especifican varios tamaños, es el tamaño a seleccionar. 
+ */
+/**
+ * Contenedor flex personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Contenedor grid personalizado. Por defecto, se asignará un gap de 20px.
+ */
+/**
+ * Establece una imagen de fondo.
+ * @param {string} $image - Ruta de la imagen.
+ */
+/**
+ * En función del tipo de botón, establece el color de fondo y el borde.
+ * @param {string} $color - Color del botón.
+ * @param {string} $type - Tipo de botón. Por defecto, solid.
+ */
+/**
+ * Estilos comunies para inputs (input, select).
+ */
 .account-layout-container {
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 25% auto;
-  grid-template-rows: repeat(6, 1fr);
-  grid-template-areas: "aside banner" "aside content" "aside content";
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
+  width: 100%;
+  gap: 40px;
 }
-.account-layout-container > .account-layout__aside {
-  grid-area: aside;
-  grid-row: 1/8;
-  height: 100%;
-}
-.account-layout-container > .account-layout__banner, .account-layout-container > .account-layout__body {
+.account-layout-container > .account-layout__body {
   width: 100%;
   height: 100%;
 }
-.account-layout-container > .account-layout__banner {
-  grid-area: banner;
-  grid-row: 1/3;
-  background-color: lightgrey;
-}
-.account-layout-container > .account-layout__body {
-  grid-area: content;
-  grid-row: 3/8;
+.account-layout-container > .account-layout__body > .account-layout__banner {
+  height: 400px;
 }/*# sourceMappingURL=AccountLayout.css.map */

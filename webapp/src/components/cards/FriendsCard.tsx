@@ -53,7 +53,7 @@ function FriendsCard({
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
-                                    <div className="friend-list-comp" key={friend.webId}>
+                                    <div className="friend-list-comp" key={generateUUID()}>
                                     <FriendAvatar 
                                         key={friend.webId}
                                         name={friend.name}

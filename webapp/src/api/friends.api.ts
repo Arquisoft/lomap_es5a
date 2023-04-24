@@ -89,14 +89,13 @@ const checkIfExistsFriend = (
  */
 const getAllFriends = async (webId: string) => {
   const myFriendsList: Friend[] = [];
-  
+
   try {
     const profileDataset = await getSolidDataset(webId, { fetch: fetch });
 
     const profile = getThing(profileDataset, webId) as Thing;
 
     const friends = getUrlAll(profile, FOAF.knows);
-
 
     // Recorremos las relaciones obtenidas almacenando los datos de cada amigo
 
