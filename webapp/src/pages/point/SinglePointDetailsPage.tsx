@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { deletePoint } from "../../api/point.api";
 import { HOME_PATH } from "../../routes";
 import IconButton from "../../components/buttons/IconButton";
+import { deleteSharedPointForFriend } from "../../api/share.point.api";
 
 function SinglePointDetailsPage() {
   const { getPointDetails, pointToShow } = usePointDetailsStore();
@@ -27,7 +28,7 @@ function SinglePointDetailsPage() {
       //Eliminamos el punto nuestro
       await deletePoint(idPoint,webId);
       //Eliminamos el punto con los amigos
-      pointToShow.friends.forEach( e => deletePoint(idPoint,e.webId)); 
+      pointToShow.friends.forEach( e => deleteSharedPointForFriend(session,e.webId,idPoint)); 
       //Vamos a la vista Home
       navigate(HOME_PATH);
     }
