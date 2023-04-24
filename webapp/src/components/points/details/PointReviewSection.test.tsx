@@ -33,10 +33,11 @@ describe("PointReviewSection", () => {
           url: "",
           alt: "",
         },
-        isPublic: false,
+        isOwner: false,
         category: Category.NONE,
         createdAt: new Date(),
         updatedAt: new Date(),
+        friends : []
       },
     };
     const wrapper = shallow(<PointReviewSection {...point} />);
@@ -87,10 +88,11 @@ describe("PointReviewSection", () => {
           url: "",
           alt: "",
         },
-        isPublic: false,
+        isOwner: false,
         category: Category.NONE,
         createdAt: new Date(),
         updatedAt: new Date(),
+        friends : []
       },
     };
 
