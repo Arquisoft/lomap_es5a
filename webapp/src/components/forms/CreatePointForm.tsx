@@ -103,7 +103,6 @@ function CreatePointForm() {
         alt: "",
       };
     }
-    console.log(info);
     //Añado el punto mi POD
     await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
       setIsUploading(false);
