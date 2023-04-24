@@ -65,6 +65,10 @@ function HomePage() {
   };
 
   useEffect(() => {
+
+    sharePoint();
+    loadUserFriends();
+
     loadAllPoints();
     // sharePoint();
     // loadUserFriends();

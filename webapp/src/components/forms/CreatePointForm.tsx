@@ -20,6 +20,9 @@ import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { Friend } from "../../shared/shareddtypes";
+import FriendsCard from "../cards/FriendsCard";
+import { sharePointWithFriend } from "../../api/share.point.api";
 
 function CreatePointForm() {
   const {
@@ -55,6 +58,9 @@ function CreatePointForm() {
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
+      setTimeout(()=>{
+        setIsUploading(false);
+      },5000);
     }
 
     return hasNoErrors;
@@ -109,6 +115,12 @@ function CreatePointForm() {
         ]);
       }
     });
+
+    //AÑADIR PUNTO COMPARTIDO A AMIGOS
+    amigos.forEach(async amigo => {
+      await sharePointWithFriend(info,session,amigo);
+    });
+
   };
 
   useEffect(() => {
@@ -117,6 +129,23 @@ function CreatePointForm() {
       setPosition({ lat, lng });
     });
   }, []);
+
+
+    //contiene la lista de amigos seleccionados por el usuario
+    const [amigos,setAmigos] = useState<Friend[]>([]);
+    //Funciones para añadir o eliminar y comprobar la lista de amigos
+    const añadirAmigo = (amigo:Friend) => {
+        setAmigos([...amigos,amigo]);
+        console.log("añadiendo" +amigos);
+    };
+    const eliminarAmigo = (amigoAEliminar:Friend) => {
+        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
+        console.log("eliminando" + amigos);
+    };
+    const verificaAmigo = (amigoVerificar:Friend) => {
+        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
+    };
+
 
   return (
     <div className="create-form-main">
@@ -195,6 +224,15 @@ function CreatePointForm() {
               }
             }}
           />
+
+          
+          <FriendsCard 
+            amigos={amigos}
+            añadirAmigo={añadirAmigo}
+            eliminarAmigo={eliminarAmigo}
+            verificaAmigo={verificaAmigo}
+            />
+
           <BaseTextArea
             label="Descripción"
             name="description"
