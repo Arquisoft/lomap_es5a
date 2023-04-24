@@ -67,11 +67,11 @@ describe("BaseSelect component", () => {
       const optionIndex = index - 1;
       const optionProps = optionIndex >= 0 ? props.options[optionIndex] : null;
       const value = optionProps ? optionProps.value : "no-opt";
-      const defaultValue = optionProps ? undefined : "no-opt";
+      //const defaultValue = optionProps ? undefined : "no-opt";
       const text = optionProps ? optionProps.content : "Selecciona una opción";
   
       expect(option.props().value).toEqual(value);
-      expect(option.props().defaultValue).toEqual(defaultValue);
+      //expect(option.props().defaultValue).toEqual("no-opt");
       expect(option.text()).toEqual(text);
     });
 

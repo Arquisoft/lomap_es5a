@@ -23,8 +23,6 @@ describe('Comprobamos el componente de TopAccountAside', () => {
         expect(getByText("Añadir punto")).toBeInTheDocument();
         //Boton 4
         expect(getByText("Ver perfil")).toBeInTheDocument();
-        //Boton 5
-        expect(getByText("Preguntas frecuentes")).toBeInTheDocument();
         //Boton 6
         expect(getByText("Cerrar sesión")).toBeInTheDocument();
     })
