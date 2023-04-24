@@ -1,7 +1,6 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 
 import { Category, Point } from "../../shared/shareddtypes";
-import { useAllPointsStore } from "../../store/point.store";
 import BaseMap from "./BaseMap";
 
 let points: Point[] = [];

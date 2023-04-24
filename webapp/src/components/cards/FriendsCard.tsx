@@ -1,11 +1,10 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import "../../../src/public/css/components/cards/point/FriendsCards.css"
-import { generateUUID } from "../../utils/stringUtils";
-import BaseCheckboxInput from "../inputs/BaseCheckboxInput";
-import {Friend} from "../../shared/shareddtypes";
-import {getAllFriends} from "../../api/friends.api";
 import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect } from "react";
+import "../../../src/public/css/components/cards/point/FriendsCards.css";
+import { getAllFriends } from "../../api/friends.api";
+import { Friend } from "../../shared/shareddtypes";
 import { useUserStore } from "../../store/user.store";
+import { generateUUID } from "../../utils/stringUtils";
 import FriendAvatar from "../avatars/FriendAvatar";
 
 

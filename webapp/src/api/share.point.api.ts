@@ -135,7 +135,7 @@ const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    console.error("Error findSharedPointsByFriend: ", err);   
+    console.log("Error findSharedPointsByFriend: ", err);   
   }
   return new Array<Point>();
 }

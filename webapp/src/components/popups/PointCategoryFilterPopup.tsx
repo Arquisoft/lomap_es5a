@@ -1,8 +1,12 @@
+import { useSession } from "@inrupt/solid-ui-react";
 import React from "react";
+import { getAllFriends } from "../../api/friends.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import { CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/pointCategoryFilter/PointCategoryFilterPopup.scss";
 import { useAllPointsStore } from "../../store/point.store";
+import { useUserStore } from "../../store/user.store";
+import FriendAvatar from "../avatars/FriendAvatar";
 import BaseButton from "../buttons/BaseButton";
 import SinglePopupFilter from "../filters/SinglePopupFilter";
 
@@ -14,6 +18,16 @@ function PointCategoryFilterPopup() {
     resetFilters,
     filterPointsBySelectedFilters,
   } = useAllPointsStore();
+
+  const { session } = useSession();
+
+  const { setFriends, friends } = useUserStore();
+
+  //cargar lista de amigos
+  const loadAllFriends = async () => {
+    const allfriends = await getAllFriends(session.info.webId as string);
+    setFriends(allfriends);
+  };
 
   /**
    * Número de resultados a mostrar en el botón de "Aplicar filtros"
@@ -57,7 +71,12 @@ function PointCategoryFilterPopup() {
   return (
     <div className="point-category-filter-popup-container" role="alertdialog">
       <div className="point-category-filter-popup__body">
-        <CloseIcon className="point-category-filter-popup__close-icon" onClick={(e: any) => handleClosePopup(e)} role="button" data-testid="close-popup-button"/>
+        <CloseIcon
+          className="point-category-filter-popup__close-icon"
+          onClick={(e: any) => handleClosePopup(e)}
+          role="button"
+          data-testid="close-popup-button"
+        />
         <h3>Categorías</h3>
         <h4>Selecciona las categorías a mostrar</h4>
         <div className="point-category-filter-popup-body__category-listing">
@@ -74,9 +93,37 @@ function PointCategoryFilterPopup() {
             );
           })}
         </div>
-        {/* <h3>Amigos</h3>
-        <h4>Mostrar los puntos de tus amigos</h4> */}
       </div>
+      {friends && friends?.length > 0 && (
+        <>
+          <h3>Amigos</h3>
+          <h4>Mostrar los puntos de tus amigos</h4>
+          <div className="point-category-filter-popup-body__category-listing">
+            {friends &&
+              friends.map((friend) => {
+                //realizar la construccion del amigo
+                return (
+                  <div className="friend-list-comp" key={friend.webId}>
+                    <FriendAvatar
+                      key={friend.webId}
+                      name={friend.name}
+                      imgUrl={friend.imgUrl}
+                    />
+                    <label htmlFor="checkbox" />
+                    <input
+                      type="checkbox"
+                      onChange={(e) => {
+                        console.log(e.target.checked);
+                        //handleCheckbox(e.target.checked, friend);
+                      }}
+                      id="checkbox"
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </>
+      )}
       <div className="point-category-filter-popup__footer">
         <BaseButton
           type={filters.length === 0 ? "button-disabled" : "button-primary"}
@@ -84,6 +131,7 @@ function PointCategoryFilterPopup() {
           disabled={filters.length === 0}
           onClick={(e) => handleFilterReset(e)}
         />
+
         <BaseButton
           type="button-black"
           text={`Mostrar ${getNumberOfResults()}`}
