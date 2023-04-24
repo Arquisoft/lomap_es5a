@@ -4,7 +4,6 @@ import "../../../public/css/components/points/details/AddNewPointLink.css";
 import { Point } from "../../../shared/shareddtypes";
 import { usePointReviewStore } from "../../../store/review.store";
 import AddNewReviewToPointPopup from "../../popups/AddNewReviewToPointPopup";
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,10 +14,9 @@ type Props = {
 function AddNewPointLink(point:Props){
 
 
-    const navigate = useNavigate();
     const { showAddReviewPopup, setShowAddReviewPopup } = usePointReviewStore();
 
-    return(
+    return( 
         <div className="add-new-point-link-container">
             {showAddReviewPopup &&
                 createPortal(
