@@ -6,7 +6,6 @@ import {
   LOGIN_PATH,
   SAVED_POINTS_PATH,
   SIGNUP_PATH,
-  FAQ_PATH,
   CREATE_POINT_PATH,
 } from "../routes";
 
@@ -98,14 +97,6 @@ const menuItems: MenuItem[] = [
     url: ACCOUNT_PATH,
     muiName: "person_rounded",
     order: 0,
-  },
-  {
-    alias: MENU_ITEMS_ALIAS.FAQ,
-    name: "Preguntas frecuentes",
-    parent: "account",
-    url: FAQ_PATH,
-    muiName: "help_outline_rounded",
-    order: 2,
   },
   {
     alias: MENU_ITEMS_ALIAS.LOGOUT,

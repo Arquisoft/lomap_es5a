@@ -31,6 +31,7 @@ const findAllUserPoints = async (webId: string): Promise<Point[]> => {
     return parseJsonToPoint(await data.json());
   } catch (err) {
     // no hay ningún punto
+    console.log(err);
   }
   return new Array<Point>();
 };

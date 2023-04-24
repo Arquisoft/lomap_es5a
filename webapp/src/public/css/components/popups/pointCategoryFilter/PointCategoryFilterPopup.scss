@@ -2,39 +2,57 @@
 @use "../../../mixins" as mixins;
 @use "../../../variables" as vars;
 
-.point-category-filter-popup-container{
+.point-category-filter-popup-container {
     @include mixins.commonPopupStyles();
 
-    & > .point-category-filter-popup__body{
-        @include mixins.flex(column, flex-start, flex-start, 20px);
-        max-height: 400px;
-        position: relative;
+    & > .point-category-filter-popup__close-icon {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: 10px;
+        right: 10px;
+        padding: 7px;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
 
-        & > .point-category-filter-popup__close-icon{
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            top: 0;
-            right: 0;
-            padding: 7px;
-            border-radius: 100px;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-
-            &:hover{
-                background-color: funcs.color("light_gray", "high_light");
-            }
-        }
-
-        & > .point-category-filter-popup-body__category-listing{
-            @include mixins.grid(auto, repeat(5, 1fr), 10px);
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            scrollbar-color: #DADADA #FFFFFF;
+        &:hover {
+            background-color: funcs.color("light_gray", "high_light");
         }
     }
 
-    & > .point-category-filter-popup__footer{
+    & > .point-category-filter-popup__body {
+        @include mixins.flex(column, flex-start, flex-start, 20px);
+        max-height: 400px;
+        height: 400px;
+        position: relative;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        scrollbar-color: #dadada #ffffff;
+        margin-top: 20px;
+
+        // Seccion filtros de categorias
+        & > .point-category-filter-popup-body__category-listing {
+            @include mixins.flex(column, flex-start, flex-start, 10px);
+
+            & > .point-category-filter-popup-body-category-listing__wrapper {
+                @include mixins.grid(auto, repeat(5, 1fr), 10px);
+                overflow-y: auto;
+                scroll-behavior: smooth;
+            }
+        }
+
+        // Seccion filtros de amigos
+        & > .point-category-filter-popup-body__friends-listing {
+            @include mixins.flex(column, flex-start, flex-start, 10px);
+
+            & > .point-category-filter-popup-body-friends-listing__wrapper {
+                @include mixins.flex(row, flex-start, flex-start, 10px);
+            }
+        }
+    }
+
+    & > .point-category-filter-popup__footer {
         @include mixins.flex(row, flex-end, center, 20px);
         align-self: flex-end;
     }
