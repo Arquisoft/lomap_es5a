@@ -285,7 +285,6 @@ const addReviewPoint = async (
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   const userInSessionName = getWebIdFromUrl(webId);
   review.reviewer.name = userInSessionName.split(".")[0];
-
   try {
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",
