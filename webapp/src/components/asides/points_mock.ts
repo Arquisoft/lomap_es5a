@@ -23,11 +23,12 @@ const getPoints = (): Point[] => {
         imageUrl: "c",
       },
       reviews: [],
+      friends: [],
+      isOwner: false,
       image: {
         url: "c",
         alt: "c",
       },
-      isPublic: false,
       category: "none" as Category,
       createdAt: new Date(),
       updatedAt: new Date(),
