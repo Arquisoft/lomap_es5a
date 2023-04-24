@@ -5,8 +5,7 @@ import { Point } from "../../../shared/shareddtypes";
 import CategoryComp from "./review/single/CategoryComp";
 import CoordComp from "./review/single/CoordComp";
 import UserComp from "./review/single/UserComp";
-import { isPointSaved } from "../../../api/save.point.api";
-import { useSession } from "@inrupt/solid-ui-react";
+
 
 
 type Props = {
@@ -14,13 +13,8 @@ type Props = {
 };
 
 function SingleDetail(point: Props) {
-  let webId = '';
-  const {session} = useSession();
-  if(session.info.webId){
-     webId = session.info.webId
-  }
 
-  const isSaved =isPointSaved(point.pointToShow._id,webId);
+
 
   return (
     <div className="single-details-containter" role="container">

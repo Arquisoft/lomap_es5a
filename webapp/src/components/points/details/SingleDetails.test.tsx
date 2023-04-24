@@ -33,7 +33,7 @@ describe('Comprobamos el componente de SingleDetail', () => {
               url: "a",
               alt: "a",
             },
-            isOwner: false,
+            isOwner: true,
             category: Category.NONE,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -50,7 +50,7 @@ describe('Comprobamos el componente de SingleDetail', () => {
         expect(getByRole("details")).toBeInTheDocument();
         expect(getByRole("details-name")).toBeInTheDocument();
         expect(getByRole("name")).toBeInTheDocument();
-        expect(getByText("Nombre:")).toBeInTheDocument();
+        expect(getByText("Nombre:")).toBeInTheDocument(); 
         expect(getByText("La Pixueta")).toBeInTheDocument();
         //Compruebo la fila 2
         expect(getByRole("container-coords")).toBeInTheDocument();
