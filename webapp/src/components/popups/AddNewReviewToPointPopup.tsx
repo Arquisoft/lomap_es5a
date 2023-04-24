@@ -9,6 +9,9 @@ import BaseButton from "../buttons/BaseButton";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseStarRating from "../stars/BaseStarRating";
+import { useNavigate } from "react-router-dom";
+import { HOME_PATH} from "../../routes";
+import { canonizeUrl } from "../../utils/stringUtils";
 
 type SuccessReviewPopupSectionProps = {
   handleOnClick: (e: React.MouseEvent<HTMLElement>) => void;
@@ -56,6 +59,8 @@ function AddNewReviewToPointPopup({
     setIsReviewPublished(false);
     setIsSendingReview(false);
     setShowAddReviewPopup(false);
+    navigate(HOME_PATH);
+
   };
 
   const handleChangeReview = (
@@ -88,6 +93,7 @@ function AddNewReviewToPointPopup({
         }
       );
     }
+    
   };
 
   /**
@@ -99,6 +105,8 @@ function AddNewReviewToPointPopup({
   ) => {
     setReviewProperty("rating", value);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="add-new-review-point-popup-container" role="alertdialog">

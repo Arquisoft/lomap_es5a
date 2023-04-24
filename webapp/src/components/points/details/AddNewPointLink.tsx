@@ -4,6 +4,9 @@ import "../../../public/css/components/points/details/AddNewPointLink.css";
 import { Point } from "../../../shared/shareddtypes";
 import { usePointReviewStore } from "../../../store/review.store";
 import AddNewReviewToPointPopup from "../../popups/AddNewReviewToPointPopup";
+import { useNavigate } from "react-router-dom";
+
+
 
 type Props = {
     pointToShow : Point
@@ -11,6 +14,8 @@ type Props = {
 
 function AddNewPointLink(point:Props){
 
+
+    const navigate = useNavigate();
     const { showAddReviewPopup, setShowAddReviewPopup } = usePointReviewStore();
 
     return(
@@ -24,6 +29,7 @@ function AddNewPointLink(point:Props){
             <button onClick={(e) => {
                 e.preventDefault();
                 setShowAddReviewPopup(true);
+                
             }}>
                 <div className="add-new-point-link-button" role="container">
                     <div className="add-new-point-link-button-text" role="text">
