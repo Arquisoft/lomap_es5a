@@ -17,7 +17,8 @@ import {
     createNewContainer,
     getWebIdFromUrl,
     getUserSharedPointsUrl,
-    checkFileExists
+    checkFileExists,
+    getUserPrivatePointsUrl
 } from "../helpers/PodHelper";
 import {getAllFriends} from "../api/friends.api"
 import { Friend, Point } from "../shared/shareddtypes";
@@ -43,6 +44,57 @@ const sharePointWithFriend = async (
   await giveAllPermsToOwner(session);
   // Finalmente, dotamos de permisos de lectura sobre el folder al amigo indicado del usuario en sesion
   await giveReadPermsToFriend(session,friend.webId);
+}
+
+
+
+/**
+ * Elimina el punto con el id recibido del folder "private/sharedpoints/friendUsername" del 
+ * usuario en sesion.
+ * @param session Sesion del usuario logeado
+ * @param friendWebId webId del amigo con el que se quiere dejar de compartir el punto. 
+ * @param pointId id del punto que se quiere dejar de compartir. 
+ */
+const deleteSharedPointForFriend = async (session:any,friendWebId:string, pointId:string) => {
+  const friendUsername = getWebIdFromUrl(friendWebId).split('.')[0];
+  const profileDocumentURI = encodeURI(getUserSharedPointsUrl(session.info.webId)
+  +`${friendUsername}/sharedPoints.json`);
+  try {
+    const originalPoints = await fetch(profileDocumentURI, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const totalPoints = parseJsonToPoint(await originalPoints.json());
+    const filtro = totalPoints.filter((item) => item._id !== pointId);
+    const punto = totalPoints.filter((item) => item._id === pointId);
+
+    if (punto.length === 0) {
+      throw new Error(
+        `No existe ningún punto compartido con id = ${pointId}`
+      );
+    } else {
+      const blob = new Blob([JSON.stringify({ points: filtro })], {
+        type: "application/json",
+      });
+
+      const fichero = new File([blob], "sharedPoints.json", { type: blob.type });
+
+      // actualizamos el POD
+      await overwriteFile(getUserSharedPointsUrl(session.info.webId) + `${friendUsername}/sharedPoints.json`, fichero, {
+        contentType: fichero.type,
+        fetch: fetch,
+      });
+
+    }
+  } catch (err) {
+    throw new Error(
+      `Error deleteSharedPointForFriend: ${err}`
+    );
+    
+  }
 }
 
 /**
@@ -303,6 +355,7 @@ const addSharedPointForFriend = async (
 
 
   export{
+    deleteSharedPointForFriend,
     sharePointWithFriend,
     findSharedPointsByFriend,
     findAllSharedPointsByFriends
