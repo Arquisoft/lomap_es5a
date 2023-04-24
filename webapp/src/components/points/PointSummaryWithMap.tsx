@@ -93,7 +93,7 @@ function PointSummaryWithMap({
           text="Ver punto"
           onClick={(e) => handleRedirectToPointDetail(e)}
         />
-        <IconButton type="button-disabled" text="Eliminar" muaIconName="delete" handleClick={handleDeleteSavedPoint} />
+        <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeleteSavedPoint} />
       </div>
     </div>
   );

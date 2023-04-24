@@ -11,6 +11,7 @@ import { usePointDetailsStore } from "../../store/point.store";
 import { useNavigate } from "react-router-dom";
 import { deletePoint } from "../../api/point.api";
 import { HOME_PATH } from "../../routes";
+import IconButton from "../../components/buttons/IconButton";
 
 function SinglePointDetailsPage() {
   const { getPointDetails, pointToShow } = usePointDetailsStore();
@@ -18,6 +19,7 @@ function SinglePointDetailsPage() {
   const navigate = useNavigate();
 
   const handleDeletePoint = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     //Comprobamos si somos el Owner
     if(pointToShow.isOwner == true){
       const webId = pointToShow.owner.webId;
@@ -46,15 +48,9 @@ function SinglePointDetailsPage() {
           <SingleDetail pointToShow={getPointDetails()} />
         </section>
 
-        <section className="single-point-details__dekete">
-          <button onClick={ (e) => {
-            e.preventDefault();
-            handleDeletePoint(e);
-           }}>
-            Eliminar            
-          </button>
+        <section className="single-point-details__delete">
+          <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeletePoint} />
         </section>
-
 
         {pointToShow?.reviews && pointToShow?.reviews?.length > 0 && (
           <section className="single-point-details__reviews">
