@@ -295,6 +295,15 @@ interface BaseTextAreaProps {
 }
 
 /**
+ * Propiedades para los componentes input type checkbox
+ * 
+ */
+interface BaseCheckboxInputProps{
+  onCheckboxChange: (isChecked: boolean) => void;
+}
+
+
+/**
  * Propiedades para el componente de información de perfil con botón de seguir.
  * @param name Nombre del usuario.
  * @param imageUrl Imagen de perfil del usuario.
@@ -314,7 +323,7 @@ type PointListingAsideProps = {
 };
 
 interface SingleFilterProps {
-  code: string; // Código de la categoria
+  code: string;
   iconFilename?: string;
   iconAlt?: string;
   text: string;
@@ -332,6 +341,7 @@ type FirebaseConfig = {
 };
 
 export type {
+  BaseCheckboxInputProps,
   JSONValue,
   AuthContextValue,
   AuthUser,

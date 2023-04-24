@@ -2,7 +2,7 @@ import Icon from "@mui/material/Icon";
 import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 import { useSession } from "@inrupt/solid-ui-react";
 import { LOGIN_PATH } from "../../routes";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 /**
  * @param name: Nombre del elemento de menu.

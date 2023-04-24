@@ -2,7 +2,6 @@ import {
   handleIncomingRedirect,
   login,
 } from "@inrupt/solid-client-authn-browser";
-import useAuth from "../hooks/useAuth";
 
 async function signIn(session: any, providerUrl: string) {
   if (!session.info.isLoggedIn) {
@@ -14,8 +13,9 @@ async function signIn(session: any, providerUrl: string) {
   }
 
   await handleIncomingRedirect().then(() => {
-    useAuth().login();
+    // useAuth().login();
   });
 }
 
 export { signIn };
+

@@ -1,6 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { addPoint } from "../../api/point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
@@ -13,13 +13,16 @@ import {
   NO_OPTION_SELECTED,
   checkAnyCategoryIsSelected,
   checkAnyOptionIsSelected,
-  checkIsNotEmpty
+  checkIsNotEmpty,
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
+import { Friend } from "../../shared/shareddtypes";
+import FriendsCard from "../cards/FriendsCard";
+import { sharePointWithFriend } from "../../api/share.point.api";
 
 function CreatePointForm() {
   const {
@@ -35,9 +38,6 @@ function CreatePointForm() {
     imageToUpload,
   } = usePointDetailsStore();
 
-  // Mostrar errores después de 5 segundos
-  const [, setShowErrorTimeoutConsumed] =
-    useState(false);
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -55,10 +55,12 @@ function CreatePointForm() {
     try {
       checkIsNotEmpty(info.name, "nombre del punto");
       checkAnyCategoryIsSelected(info.category, "categoría del punto");
-
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
+      setTimeout(()=>{
+        setIsUploading(false);
+      },5000);
     }
 
     return hasNoErrors;
@@ -72,7 +74,7 @@ function CreatePointForm() {
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    if(!validateForm()){
+    if (!validateForm()) {
       console.log("Formulario inválido", info);
       return;
     }
@@ -103,14 +105,22 @@ function CreatePointForm() {
       navigate(HOME_PATH);
       setErrors([]);
       resetPointInfo();
-
-    }).catch(err => {
-      if(err){
+    }).catch((err) => {
+      if (err) {
         setIsUploading(false);
         setIsFinished(false);
-        setErrors([...errors, "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde"]);
+        setErrors([
+          ...errors,
+          "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde",
+        ]);
       }
     });
+
+    //AÑADIR PUNTO COMPARTIDO A AMIGOS
+    amigos.forEach(async amigo => {
+      await sharePointWithFriend(info,session,amigo);
+    });
+
   };
 
   useEffect(() => {
@@ -119,6 +129,23 @@ function CreatePointForm() {
       setPosition({ lat, lng });
     });
   }, []);
+
+
+    //contiene la lista de amigos seleccionados por el usuario
+    const [amigos,setAmigos] = useState<Friend[]>([]);
+    //Funciones para añadir o eliminar y comprobar la lista de amigos
+    const añadirAmigo = (amigo:Friend) => {
+        setAmigos([...amigos,amigo]);
+        console.log("añadiendo" +amigos);
+    };
+    const eliminarAmigo = (amigoAEliminar:Friend) => {
+        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
+        console.log("eliminando" + amigos);
+    };
+    const verificaAmigo = (amigoVerificar:Friend) => {
+        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
+    };
+
 
   return (
     <div className="create-form-main">
@@ -197,6 +224,15 @@ function CreatePointForm() {
               }
             }}
           />
+
+          
+          <FriendsCard 
+            amigos={amigos}
+            añadirAmigo={añadirAmigo}
+            eliminarAmigo={eliminarAmigo}
+            verificaAmigo={verificaAmigo}
+            />
+
           <BaseTextArea
             label="Descripción"
             name="description"

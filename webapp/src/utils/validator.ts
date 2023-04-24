@@ -2,7 +2,7 @@ import * as DOMPurify from "dompurify";
 import { Category, Coordinate } from "../shared/shareddtypes";
 import { LAT_REGEX, LNG_REGEX } from "./regex";
 
-const NO_OPTION_SELECTED = "not-opt"; // Valor por defecto si no se ha seleccionado una opcion diferente a "Selecciona una opcion" en un combobox
+const NO_OPTION_SELECTED = "no-opt"; // Valor por defecto si no se ha seleccionado una opcion diferente a "Selecciona una opcion" en un combobox
 
 const errorMessages = {
   required: (field: string) => `El campo ${field} es obligatorio`,

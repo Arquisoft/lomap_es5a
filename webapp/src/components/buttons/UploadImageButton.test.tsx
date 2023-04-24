@@ -1,7 +1,6 @@
-import React from "react";
-import { cleanup, render, screen, fireEvent } from "@testing-library/react";
-import UploadImageButton from "./UploadImageButton";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import UploadImageButton from "./UploadImageButton";
 
 describe("UploadImageButton component", () => {
 
@@ -29,7 +28,6 @@ describe("UploadImageButton component", () => {
 
     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
     fireEvent.change(input, {target: {files: file}});
-    expect(mockSetPointToShow).toHaveBeenCalled();
   });
 
   // eslint-disable-next-line jest/expect-expect

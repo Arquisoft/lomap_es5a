@@ -20,7 +20,6 @@ function SinglePopupFilter({
   const handleToogleAddFilter = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    
     if (filterObject && !filters?.includes(filterObject)) {
         addFilter(filterObject);
         
@@ -39,6 +38,7 @@ function SinglePopupFilter({
         "single-popup-filter-container--active"
       }`}
       onClick={(e) => handleToogleAddFilter(e)}
+      role="button"
     >
       <Icon>{iconFilename}</Icon>
       <span>{text}</span>

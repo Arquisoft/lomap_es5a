@@ -1,27 +1,20 @@
-import { useEffect } from "react";
 import { useSession } from "@inrupt/solid-ui-react";
+import { useEffect } from "react";
 
+import { createPortal } from "react-dom";
 import { getAllFriends } from "../../api/friends.api";
 import { findAllUserPoints } from "../../api/point.api";
+import { findAllSharedPointsByFriends } from "../../api/share.point.api";
 import { getUserProfileInfo } from "../../api/user.api";
-import {
-  sharePointWithFriend,
-  findSharedPointsByFriend,
-  findAllSharedPointsByFriends
-} from "../../api/share.point.api";
 import PointListingAside from "../../components/asides/PointListingAside";
 import BaseFilterBar from "../../components/filters/BaseFilterBar";
 import BaseMap from "../../components/maps/BaseMap";
+import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 import { Friend, Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
-import { createPortal } from 'react-dom';
-import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
-import { getStringNoLocale, Thing } from "@inrupt/solid-client";
-import { FOAF } from "@inrupt/vocab-common-rdf";
-
 
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } =
@@ -35,25 +28,21 @@ function HomePage() {
   };
 
   const sharePoint = async () => {
-    
-    const friend: Friend = await getAllFriends(session.info.webId as string).then((friends) => {return friends[0]});
-    //console.log(friend)
-    //console.log("Friend webid: ", friend.webId);
-    //const point:Point = await findAllUserPoints("https://marcosvalin.inrupt.net/profile/card#me").then((foundPoints) => {return foundPoints[0]});
-    //console.log(point);
-    
-    //await sharePointWithFriend(point,session,friend);
-    
-    
-    console.log("Puntos compartidos por todos los amigos:");
-    const sharedPoints: Point[] = await findAllSharedPointsByFriends(session).then((points) => {
-      return points;
-    }).catch((err) => {
-      console.error(err);
-      return [];
+    const friend: Friend = await getAllFriends(
+      session.info.webId as string
+    ).then((friends) => {
+      return friends[0];
     });
-    console.log(sharedPoints);
-  }
+
+    console.log("Puntos compartidos por todos los amigos:");
+    const sharedPoints: Point[] = await findAllSharedPointsByFriends(session)
+      .then((points) => {
+        return points;
+      })
+      .catch(() => {
+        return [];
+      });
+  };
 
   const loadUserFriends = async () => {
     if (session.info.isLoggedIn) {
@@ -76,10 +65,15 @@ function HomePage() {
   };
 
   useEffect(() => {
+
     sharePoint();
+    loadUserFriends();
+
+    loadAllPoints();
+    // sharePoint();
     // loadUserFriends();
-    // loadUserInfo();
-    // loadAllPoints();
+    loadUserInfo();
+    loadAllPoints();
   }, []);
 
   return (

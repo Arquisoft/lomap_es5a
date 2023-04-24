@@ -57,7 +57,7 @@ function PointCategoryFilterPopup() {
   return (
     <div className="point-category-filter-popup-container" role="alertdialog">
       <div className="point-category-filter-popup__body">
-        <CloseIcon className="point-category-filter-popup__close-icon" onClick={(e: any) => handleClosePopup(e)}/>
+        <CloseIcon className="point-category-filter-popup__close-icon" onClick={(e: any) => handleClosePopup(e)} role="button" data-testid="close-popup-button"/>
         <h3>Categorías</h3>
         <h4>Selecciona las categorías a mostrar</h4>
         <div className="point-category-filter-popup-body__category-listing">

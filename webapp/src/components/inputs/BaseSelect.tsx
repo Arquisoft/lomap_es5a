@@ -1,7 +1,6 @@
 import React from "react";
 import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
 import "../../public/css/components/inputs/baseSelect/BaseSelect.scss";
-import crypto from 'crypto';
 import { generateUUID } from "../../utils/stringUtils";
 
 
@@ -27,11 +26,12 @@ function BaseSelect({
         id={selectId}
         className="base-select-item"
         style={styles as React.CSSProperties}
+        defaultValue={"no-opt"}
       >
         <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
-        {options.map((opt, index) => {
+        {options.map((opt) => {
           return (
-            <option key={opt.value + crypto.randomUUID} value={opt.value} selected={index === 0}>
+            <option key={opt.value + generateUUID()} value={opt.value}>
               {showContent ? opt.content : opt.value}
             </option>
           );
