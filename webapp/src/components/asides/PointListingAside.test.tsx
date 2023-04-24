@@ -22,13 +22,13 @@ describe("PointListingAside component", () => {
   });
 
   it("renderiza puntos con un punto sin imagen", () => {
-    if (getPoints().length > 0 && getPoints()[0].image) {
-      getPoints()[0].image.url = "";
-    }
+    // if (getPoints().length > 0 && getPoints()[0].image) {
+    //   getPoints()[0].image.url = "";
+    // }
 
     const { container } = render(
       <Router>
-        <PointListingAside points={points} />
+        <PointListingAside points={getPoints()} />
       </Router>
     );
 
@@ -39,13 +39,13 @@ describe("PointListingAside component", () => {
   });
 
   it("renderiza puntos con un punto sin usuario", () => {
-    if (points[0].owner) {
-      points[0].owner.name = "";
+    if (getPoints()[0].owner) {
+      getPoints()[0].owner.name = "";
     }
 
     const { container } = render(
       <Router>
-        <PointListingAside points={points} />
+        <PointListingAside points={getPoints()} />
       </Router>
     );
     const summaries = container.children[0].classList.contains(

@@ -34,7 +34,6 @@ function HomePage() {
       return friends[0];
     });
 
-    console.log("Puntos compartidos por todos los amigos:");
     const sharedPoints: Point[] = await findAllSharedPointsByFriends(session)
       .then((points) => {
         return points;
