@@ -43,10 +43,11 @@ const pointInitilization: Point = {
     url: "",
     alt: "",
   },
-  isPublic: false,
+  isOwner: false,
   category: Category.NONE,
   createdAt: new Date(),
   updatedAt: new Date(),
+  friends: []
 } as Point;
 
 interface AllPointsStore {

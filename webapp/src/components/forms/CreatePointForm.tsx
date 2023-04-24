@@ -38,6 +38,7 @@ function CreatePointForm() {
     imageToUpload,
   } = usePointDetailsStore();
 
+
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
     name: "",
@@ -73,7 +74,7 @@ function CreatePointForm() {
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-
+ 
     if (!validateForm()) {
       console.log("Formulario inválido", info);
       return;
@@ -88,13 +89,21 @@ function CreatePointForm() {
     info.location.country = "";
     info.owner.name = name;
     info.owner.imageUrl = imageUrl;
+    //Se añade la webId del creado
+    if(session.info.webId){
+      info.owner.webId = session.info.webId;
+    }
+    //Digo que la persona que lo esta creado en es el Owner
+    info.isOwner = true;
+    // Añado los amigos con los que va a ser compartido
+    info.friends = amigos;
     if (!info.image) {
       info.image = {
         url: "",
         alt: "",
       };
     }
-
+    //Añado el punto mi POD
     await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
       setIsUploading(false);
       setIsFinished(isSuccess);
@@ -115,9 +124,8 @@ function CreatePointForm() {
         ]);
       }
     });
-
-    //AÑADIR PUNTO COMPARTIDO A AMIGOS
-    amigos.forEach(async amigo => {
+    
+    amigos.forEach(async amigo => {    
       await sharePointWithFriend(info,session,amigo);
     });
 

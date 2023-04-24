@@ -169,10 +169,11 @@ type Point = {
   owner: PointOwner;
   reviews?: Review[];
   image?: Image;
-  isPublic: boolean;
+  isOwner: boolean;
   category: Category;
   createdAt: Date;
   updatedAt: Date;
+  friends: Friend[]
 };
 
 type PointSummary = {

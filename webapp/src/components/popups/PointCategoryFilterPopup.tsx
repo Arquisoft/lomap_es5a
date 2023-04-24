@@ -1,14 +1,14 @@
+import { useSession } from "@inrupt/solid-ui-react";
 import React from "react";
+import { getAllFriends } from "../../api/friends.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import { CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/pointCategoryFilter/PointCategoryFilterPopup.scss";
 import { useAllPointsStore } from "../../store/point.store";
+import { useUserStore } from "../../store/user.store";
+import FriendAvatar from "../avatars/FriendAvatar";
 import BaseButton from "../buttons/BaseButton";
 import SinglePopupFilter from "../filters/SinglePopupFilter";
-import { getAllFriends } from "../../api/friends.api";
-import { useUserStore } from "../../store/user.store";
-import { useSession } from "@inrupt/solid-ui-react";
-import FriendAvatar from "../avatars/FriendAvatar";
 
 function PointCategoryFilterPopup() {
   const {
@@ -93,12 +93,11 @@ function PointCategoryFilterPopup() {
             );
           })}
         </div>
-        {/* <h3>Amigos</h3>
-        <h4>Mostrar los puntos de tus amigos</h4> */}
       </div>
       {friends && friends?.length > 0 && (
         <>
-          <h4>Selecciona las categorías a mostrar</h4>
+          <h3>Amigos</h3>
+          <h4>Mostrar los puntos de tus amigos</h4>
           <div className="point-category-filter-popup-body__category-listing">
             {friends &&
               friends.map((friend) => {

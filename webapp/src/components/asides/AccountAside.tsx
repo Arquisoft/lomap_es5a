@@ -14,10 +14,6 @@ function AccountAside({_className}: ComponentClassName){
             <div className="account-aside-top" role="top">
                 <TopAccountAside />
             </div>
-            <div className="account-aside-bottom" role="bottom">
-                <BottomAccountAside />
-            </div>
-
         </div>
     )
         
