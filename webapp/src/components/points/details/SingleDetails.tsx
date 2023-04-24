@@ -5,12 +5,23 @@ import { Point } from "../../../shared/shareddtypes";
 import CategoryComp from "./review/single/CategoryComp";
 import CoordComp from "./review/single/CoordComp";
 import UserComp from "./review/single/UserComp";
+import { isPointSaved } from "../../../api/save.point.api";
+import { useSession } from "@inrupt/solid-ui-react";
+
 
 type Props = {
   pointToShow: Point;
 };
 
 function SingleDetail(point: Props) {
+  let webId = '';
+  const {session} = useSession();
+  if(session.info.webId){
+     webId = session.info.webId
+  }
+
+  const isSaved =isPointSaved(point.pointToShow._id,webId);
+
   return (
     <div className="single-details-containter" role="container">
       <h2>Detalles</h2>
@@ -46,8 +57,10 @@ function SingleDetail(point: Props) {
               />
             </div>
           </div>
+          
           <div className="single-details-details-user-saved" role="saved">
             <div>Guardado: </div>{" "}
+              
             <div>
               <FavoriteIcon style={{ color: red[500] }} aria-hidden="true" />{" "}
             </div>
