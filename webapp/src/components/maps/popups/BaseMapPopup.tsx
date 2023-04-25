@@ -125,31 +125,31 @@ function BaseMapPopup({
       <div className="base-popup-modal__body">
         <ProfileInfoWithFollowButton
           name={owner?.name || ""}
-          imageUrl={owner.imageUrl}
-          webId={owner.webId}
+          imageUrl={owner?.imageUrl}
+          webId={owner?.webId}
         />
 
-        {/* {!isUserInSessionTheOwner && ( */}
-        <div className="popup-modal-social-icons">
-          {isSaved ? (
-            <FavoriteIcon
-              data-testid="unsave-point-button"
-              sx={{
-                color: "#ef233c",
-              }}
-              onClick={(e: any) => handleUnSavePoint(e)}
-            />
-          ) : (
-            <FavoriteBorderIcon
-              data-testid="save-point-button"
-              sx={{
-                color: "#ef233c",
-              }}
-              onClick={(e: any) => handleSavePoint(e)}
-            />
-          )}
-        </div>
-        {/* )} */}
+        {owner?.webId && owner.webId !== session.info.webId && (
+          <div className="popup-modal-social-icons">
+            {isSaved ? (
+              <FavoriteIcon
+                data-testid="unsave-point-button"
+                sx={{
+                  color: "#ef233c",
+                }}
+                onClick={(e: any) => handleUnSavePoint(e)}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                data-testid="save-point-button"
+                sx={{
+                  color: "#ef233c",
+                }}
+                onClick={(e: any) => handleSavePoint(e)}
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className="base-popup-modal__footer">
         <div className="popup-model-footer__contact-info">
