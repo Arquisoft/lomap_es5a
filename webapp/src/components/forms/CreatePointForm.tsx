@@ -180,7 +180,6 @@ function CreatePointForm() {
                 setCurrentPointProperty("name", "");
                 setErrors([...errors, (error as Error).message]);
               }
-              //refreshErrors();
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{

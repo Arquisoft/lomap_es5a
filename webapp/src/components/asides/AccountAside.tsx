@@ -1,6 +1,5 @@
-import TopAccountAside from "./accountAside/TopAccountAside"
-import BottomAccountAside from "./accountAside/BottomAccountAside"
-import "../../public/css/components/asides/AccountAside.css"
+import "../../public/css/components/asides/AccountAside.css";
+import TopAccountAside from "./accountAside/TopAccountAside";
 
 
 import { ComponentClassName } from "../../shared/shareddtypes";
