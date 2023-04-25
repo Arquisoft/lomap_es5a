@@ -2,7 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import PointListingAside from "./PointListingAside";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import getPoints from "./points_mock";
+import getPoints from "../../mocks/points.mock";
 
 describe("PointListingAside component", () => {
   afterAll(cleanup);

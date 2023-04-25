@@ -1,4 +1,4 @@
-import { Category, Point } from "../../shared/shareddtypes";
+import { Category, Point } from "../shared/shareddtypes";
 
 const points: Point[] = [];
 const getPoints = (): Point[] => {
