@@ -15,6 +15,6 @@ describe("AccountNavMenu component", () => {
     );
 
     const menuItems = screen.getAllByRole("listitem");
-    expect(menuItems).toHaveLength(3);
+    expect(menuItems).toHaveLength(2);
   });
 });

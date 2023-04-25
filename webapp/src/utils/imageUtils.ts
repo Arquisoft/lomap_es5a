@@ -35,12 +35,12 @@ const compressImage = (
         resolve(result as File);
       },
       error(err) {
-        console.error(err.message);
+        console.log(err.message);
         reject(err);
       },
     });
   }).catch((err) => {
-    console.error(err);
+    console.log(err);
     return Promise.reject(err);
   });
 };

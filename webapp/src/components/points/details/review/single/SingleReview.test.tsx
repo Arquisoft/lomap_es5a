@@ -1,6 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
 import SingleReview from './SingleReview';
 import { Reviewer } from '../../../../../shared/shareddtypes';
+import { BrowserRouter as Router } from "react-router-dom";
 
 let reviewerWithName : Reviewer;
 let reviewerWithoutName : Reviewer;
@@ -32,28 +33,37 @@ describe('Comprobamos el componente de SingleReview', () => {
 
     it('Comprobamos pasandole todas las propiedades',()=>{
         const { getByRole, getByText } = render(
-            <SingleReview 
-                comment={'No me ha gustado mucho'} 
-                rating = {5}
-                createdAt={date}
-                reviewer={reviewerWithName}
-            />
+            <Router>
+                <SingleReview 
+                    comment={'No me ha gustado mucho'} 
+                    rating = {5}
+                    createdAt={date}
+                    reviewer={reviewerWithName}
+                    pointId= ''
+                    reviewId=''
+                />
+            </Router>
         );
         expect(getByRole("container")).toBeInTheDocument();
         expect(getByRole("data")).toBeInTheDocument();
         expect(getByRole("user-data")).toBeInTheDocument();
         expect(getByText("Richard")).toBeInTheDocument();  
         expect(getByText("No me ha gustado mucho")).toBeInTheDocument(); 
+        expect(getByRole("delete")).toBeInTheDocument();
     });
 
     it('Comprobamos pasandole reviewer sin nombre', () => {
         const { getByRole, getByText } = render(
-            <SingleReview 
-                comment={'No me ha gustado mucho'} 
-                rating = {5}
-                createdAt={date}
-                reviewer={reviewerWithoutName}
-            />
+            <Router>
+                <SingleReview 
+                    comment={'No me ha gustado mucho'} 
+                    rating = {5}
+                    createdAt={date}
+                    reviewer={reviewerWithoutName}
+                    pointId= ''
+                    reviewId=''
+                />
+            </Router>
         );
         expect(getByRole("container")).toBeInTheDocument();
         expect(getByRole("data")).toBeInTheDocument();
@@ -63,12 +73,16 @@ describe('Comprobamos el componente de SingleReview', () => {
 
     it('Comprobamos pasandole reviewer con incorrecta imagen' , () =>{
         const { getByRole,} = render(
-            <SingleReview 
-                comment={'No me ha gustado mucho'} 
-                rating = {5}
-                createdAt={date}
-                reviewer={reviewerNoImage}
-            />
+            <Router>
+                <SingleReview 
+                    comment={'No me ha gustado mucho'} 
+                    rating = {5}
+                    createdAt={date}
+                    reviewer={reviewerNoImage}
+                    pointId= ''
+                    reviewId=''
+                />
+            </Router>
         );
         expect(getByRole("container")).toBeInTheDocument();
         expect(getByRole("data")).toBeInTheDocument();

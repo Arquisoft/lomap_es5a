@@ -127,23 +127,25 @@ function BaseMapPopup({
         />
 
         {/* {!isUserInSessionTheOwner && ( */}
-          <div className="popup-modal-social-icons">
-            {isSaved ? (
-              <FavoriteIcon
-                sx={{
-                  color: "#ef233c",
-                }}
-                onClick={(e: any) => handleUnSavePoint(e)}
-              />
-            ) : (
-              <FavoriteBorderIcon
-                sx={{
-                  color: "#ef233c",
-                }}
-                onClick={(e: any) => handleSavePoint(e)}
-              />
-            )}
-          </div>
+        <div className="popup-modal-social-icons">
+          {isSaved ? (
+            <FavoriteIcon
+              data-testid="unsave-point-button"
+              sx={{
+                color: "#ef233c",
+              }}
+              onClick={(e: any) => handleUnSavePoint(e)}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              data-testid="save-point-button"
+              sx={{
+                color: "#ef233c",
+              }}
+              onClick={(e: any) => handleSavePoint(e)}
+            />
+          )}
+        </div>
         {/* )} */}
       </div>
       <div className="base-popup-modal__footer">

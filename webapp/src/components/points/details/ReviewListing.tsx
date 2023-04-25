@@ -5,7 +5,7 @@ import SingleReview from "./review/single/SingleReview";
 
 function ReviewListing() {
   const { pointToShow } = usePointDetailsStore();
-
+  console.log(pointToShow.reviews)
   return (
     <div className="review-listing-container">
       <h2> Valoraciones de los usuarios</h2>
@@ -14,12 +14,15 @@ function ReviewListing() {
       )}
       <div className="review-listing-listReviews">
         {pointToShow.reviews?.map((review) => (
+          
           <SingleReview
             key={review.title}
             comment={review.comment}
             rating={review.rating}
             reviewer={review.reviewer}
             createdAt={review.createdAt}
+            pointId= {pointToShow._id}
+            reviewId = {review._id}
           />
         ))}
       </div>

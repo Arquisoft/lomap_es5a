@@ -4,7 +4,9 @@ type Props = {
   name : string;
   imgUrl? : string;
   webId? : string;
-}
+};
+
+
 
 function FriendAvatar({name,imgUrl,webId}:Props){
 
@@ -17,4 +19,4 @@ function FriendAvatar({name,imgUrl,webId}:Props){
     );
 }
 
-export default FriendAvatar
+export default FriendAvatar;

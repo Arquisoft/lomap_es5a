@@ -1,7 +1,5 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-
 import { Category, Point } from "../../shared/shareddtypes";
-import { useAllPointsStore } from "../../store/point.store";
 import BaseMap from "./BaseMap";
 
 let points: Point[] = [];
@@ -32,10 +30,11 @@ const addPoints = () => {
         url: "a",
         alt: "a",
       },
-      isPublic: false,
+      isOwner: false,
       category: Category.NONE,
       createdAt: new Date(),
       updatedAt: new Date(),
+      friends: []
     } as Point);
   }
 };

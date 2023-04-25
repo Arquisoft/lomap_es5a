@@ -25,6 +25,7 @@ function HomePage() {
   const loadAllPoints = async () => {
     const data: Point[] = await findAllUserPoints(session.info.webId as string);
     setAllPoints(data);
+    //const friendsPoints: Point[] = await findAllSharedPointsByFriends(session)
   };
 
   const sharePoint = async () => {
@@ -34,7 +35,6 @@ function HomePage() {
       return friends[0];
     });
 
-    console.log("Puntos compartidos por todos los amigos:");
     const sharedPoints: Point[] = await findAllSharedPointsByFriends(session)
       .then((points) => {
         return points;
@@ -42,6 +42,10 @@ function HomePage() {
       .catch(() => {
         return [];
       });
+
+      console.log("amigos: ", sharedPoints);
+
+      setAllPoints([...points, ...sharedPoints]);
   };
 
   const loadUserFriends = async () => {
@@ -66,12 +70,9 @@ function HomePage() {
 
   useEffect(() => {
 
-    sharePoint();
-    loadUserFriends();
-
-    loadAllPoints();
+    //sharePoint();
     // sharePoint();
-    // loadUserFriends();
+    loadUserFriends();
     loadUserInfo();
     loadAllPoints();
   }, []);

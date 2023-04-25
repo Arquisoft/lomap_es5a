@@ -1,5 +1,10 @@
 import { create } from "zustand";
-import { Category, Point, SingleCategory } from "../shared/shareddtypes";
+import {
+  Category,
+  Friend,
+  Point,
+  SingleCategory,
+} from "../shared/shareddtypes";
 
 interface PointDetailsStore {
   info: Point;
@@ -43,25 +48,29 @@ const pointInitilization: Point = {
     url: "",
     alt: "",
   },
-  isPublic: false,
+  isOwner: false,
   category: Category.NONE,
   createdAt: new Date(),
   updatedAt: new Date(),
+  friends: [],
 } as Point;
 
 interface AllPointsStore {
   points: Point[];
+  userPoints: Point[];
   filteredPoints: Point[];
   filteredPointsPreview: Point[];
-  filters: SingleCategory[];
+  filters: (SingleCategory | Friend)[]; // categorias y/o amigos
   isFiltering: boolean;
   showFilterPopup: boolean;
   setAllPoints: (points: Point[]) => void;
   getAllPoints: () => Point[];
+  setUserPoints: (points: Point[]) => void;
+  getUserPoints: () => Point[];
   setFilteredPoints: (pointsToFilter: Point[]) => void;
   setIsFiltering: (isFiltering: boolean) => void;
-  addFilter: (category: SingleCategory) => void;
-  removeFilter: (category: SingleCategory) => void;
+  addFilter: (filter: SingleCategory | Friend) => void;
+  removeFilter: (filter: SingleCategory | Friend) => void;
   makeFilteredPointsPreview: () => void;
   filterPointsBySelectedFilters: () => void;
   resetFilters: () => void;
@@ -75,6 +84,7 @@ interface AllSavedPointsStore {
 
 const useAllPointsStore = create<AllPointsStore>((set, get) => ({
   points: [],
+  userPoints: [],
   filteredPoints: [],
   filteredPointsPreview: [],
   filters: [],
@@ -82,24 +92,30 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
   isFiltering: false,
   setAllPoints: (points: Point[]) => set({ points }),
   getAllPoints: () => get().points,
+  setUserPoints: (points: Point[]) => set({ userPoints: points }),
+  getUserPoints: () => get().userPoints,
   setFilteredPoints: (pointsToFilter: Point[]) =>
     set({ filteredPoints: pointsToFilter }),
   setIsFiltering: (isFiltering: boolean) => set({ isFiltering }),
-  addFilter: (category: SingleCategory) =>
+  addFilter: (filter: SingleCategory | Friend) =>
     set((state: any) => ({
-      filters: [...state.filters, category],
+      filters: [...state.filters, filter],
     })),
-  removeFilter: (category: SingleCategory) =>
+  removeFilter: (filter: SingleCategory | Friend) =>
     set((state: any) => ({
       filters: state.filters.filter(
-        (filter: SingleCategory) => filter !== category
+        (filter: SingleCategory) => filter !== filter
       ),
     })),
   makeFilteredPointsPreview: () => {
     set({ isFiltering: false });
     set((state: any) => ({
       filteredPointsPreview: state.points.filter((point: Point) =>
-        state.filters.map((filter: any) => filter.code).includes(point.category)
+        state.filters
+          .map((filter: any) => {
+            filter?.code, filter?.webId
+          })
+          .filter((point: any) => point.category || point.webId)
       ),
     }));
   },
@@ -154,7 +170,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   setPointImageFile: (imageToUpload: File) => set({ imageToUpload }),
 
   setIsUploading: (isUploading: boolean) => set({ isUploading }),
-  
+
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
 
   setPointToShow: (point: Point) => set({ pointToShow: point }),
@@ -162,7 +178,6 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   resetPointInfo: () => set({ info: pointInitilization }),
 
   getPointDetails: () => get().pointToShow,
-
 }));
 
 /**
