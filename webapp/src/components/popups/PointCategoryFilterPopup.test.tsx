@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import PointCategoryFilterPopup from "./PointCategoryFilterPopup";
+import * as userStore from "../../store/user.store";
 
 describe("PointCategoryFilterPopup componente", () => {
   afterAll(cleanup);
@@ -18,6 +19,8 @@ describe("PointCategoryFilterPopup componente", () => {
       ".point-category-filter-popup-container"
     );
     expect(popup).toBeInTheDocument();
+
+    expect(screen.getByText("Restaurantes")).toBeInTheDocument();
   });
 
   test("cerrar el popup", () => {
