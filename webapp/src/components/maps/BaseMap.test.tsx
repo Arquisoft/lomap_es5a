@@ -1,5 +1,4 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { Category, Point } from "../../shared/shareddtypes";
 import BaseMap from "./BaseMap";
 
 import getPoints from "./baseMapPoint_mock";

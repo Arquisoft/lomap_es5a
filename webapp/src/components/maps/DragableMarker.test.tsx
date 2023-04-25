@@ -1,7 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MapContainer } from "react-leaflet";
 import DraggableMarker from "./DragableMarker";
-import { useRef } from "react";
 
 describe("Component Dragable Marker", () => {
   test("render dragable marker", () => {

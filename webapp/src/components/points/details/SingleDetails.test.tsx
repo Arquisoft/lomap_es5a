@@ -1,7 +1,6 @@
-import { cleanup, render} from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
+import { Category, Point } from '../../../shared/shareddtypes';
 import SingleDetail from "./SingleDetails";
-import { Point } from '../../../shared/shareddtypes';
-import { Category } from '../../../shared/shareddtypes';
 
 
 let point: Point;

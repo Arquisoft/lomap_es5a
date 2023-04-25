@@ -1,7 +1,6 @@
-import React from "react";
-import { render, fireEvent, cleanup } from "@testing-library/react";
-import BaseSelect from "./BaseSelect";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { shallow } from "enzyme";
+import BaseSelect from "./BaseSelect";
 
 describe("BaseSelect component", () => {
 
