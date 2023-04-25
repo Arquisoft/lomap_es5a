@@ -9,7 +9,7 @@ import {
 import PointSummaryCard from "./PointSummaryCard";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { Category, Point } from "../../shared/shareddtypes";
+import { Point } from "../../shared/shareddtypes";
 
 import getPoint from "../../mocks/point.mock";
 
