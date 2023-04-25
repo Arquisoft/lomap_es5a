@@ -51,7 +51,9 @@ function BaseMapPopup({
   const handleSavePoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (point) {
-      await savePoint(point, session);
+      await savePoint(point, session).then(() => {
+        setIsSaved(true);
+      });
     }
   };
 
@@ -61,7 +63,9 @@ function BaseMapPopup({
   const handleUnSavePoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (point) {
-      await unsavePoint(point?._id, session?.info.webId as string);
+      await unsavePoint(point?._id, session?.info.webId as string).then(() => {
+        setIsSaved(false);
+      });
     }
   };
 
@@ -96,10 +100,9 @@ function BaseMapPopup({
    * En caso de serlo, no se le permite guardar el punto.
    * @returns
    */
-
   useEffect(() => {
     checkIfPointIsSaved();
-  }, [isSaved]);
+  }, []);
 
   return (
     <div className="base-popup-modal">

@@ -1,96 +1,94 @@
-## La webapp
-Utilizaremos React con Typescript para la webapp. Vamos a crear la app en el directorio webapp con los siguientes comandos (asegurate que npm está instalado en tu sistema:)
+## The webapp
+In this case we are using React with Typescript for the webapp. Lets create the app in the directory webapp with the following command (make sure you have npm installed in your system):
 ```console
 npx create-react-app my-app --template typescript
 ```
-En este punto ya podemos correr la app con:
+At this point we can already run the app with:
 ```console
 cd webapp
 npm start
 ```
-La app se lanzará y escuchará en el puerto 3000. Ahora mismo la app es un "Hola Mundo" en React.
-Vamos a hacer algunas modificaciones en la app, crearemos una app que pida el nombre y el email al usuario y lo envíe a una api rest.Además la webapp listará todos los usuarios registrados.
+The app will launch and it will be listening in port 3000. At this point this app is a Hello World app in React.
 
-Basicamente la app debería ser capaz de coger el nombre y el email del usuario, enviarlo a la api y refrescar la lista de los usuarios desde la api. Puedes revisar el código relevante en los componentes
-[EmailForm.tsx](src/components/EmailForm.tsx) y [UserList.tsx](src/components/UserList.tsx). El componente [App.tsx](src/App.tsx) funciona como coordinador de los otros componentes.
+Lets make some modifications to the app, we will create an app that asks the name and email to the user and send it to an api rest. The webapp will list all the register users in the site.
 
-### Testeando la webapp
+Basically the app should be able to get the name and email of a user, send it to the api, and then refresh the list of the users from the api. You can check the relevant code in the components [EmailForm.tsx](src/components/EmailForm.tsx) and [UserList.tsx](src/components/UserList.tsx). The [App.tsx](src/App.tsx) component acts as the coordinator for the other components.
 
-#### Tests unitarios
-Basicamente estos tests se aseguran que cada componente trabaja de manera aislada. Esto es importante para comprobar que se renderizan correctamente. Estos tests se realizan utilizando jest y pueden ejercutarse con `npm run test`. Cada vez que se ejecutan los tests se realiza un analisis de covertura de código. Si se configura apropiadamente este analisis puede ser explotado por herramientas como [SonarCloud](https://sonarcloud.io/) para crear informes de covertura de código.
+### Testing the webapp
 
-Algunos tests necesitan simular algunas partes de la aplicación. Por ejemplo el componente `EmailForm.tsx` utiliza la api para añadir un usuario. En los tests unitarios debemos simular estas llamadas para obtener resultados más robustos. Puedes revisar el archivo [EmailForm.test.tsx](src/components/EmailForm.test.tsx) para aprender como se hace esto.
-Por ejemplo:
+#### Unit tests
+Basically these tests make sure that each component work isolated. It is important to check that they render properly. These tests are done using jest and you can execute them with `npm run test`. A code coverage analysis is generated every time we run the tests. If properly configured, this can be exploited by tools like [SonarCloud](https://sonarcloud.io/) to create reports of code coverage.
+Some tests needs to mock some parts of the application. For instance, the `EmailForm.tsx` component uses the api for adding a user. In the unitary tests we should mock these calls to make more robusts tests. You can check the file [EmailForm.test.tsx](src/components/EmailForm.test.tsx) to learn how this is done.
+For instance:
 ```javascript
 jest.spyOn(api,'addUser').mockImplementation((user:User):Promise<boolean> => Promise.resolve(false))
 ```
-Simularemos la función addUser. En lugar de llamar a la API, simulamos que el servicio web ha fallado al tratar de añadir un usuario.
+will mock the implementation of the addUser function. Instead of calling the API, we just return false simulating that the webservice has failed to add a new user.
 
-### Imagen Docker para la aplicación web
-El `Dockerfile` para la aplicación web es bastante simple. Solo copia la aplicación, instala las dependencias, crea la versión de producción y corre un servidor web básico para lanzarla.
+### Docker image for the web app
+The `Dockerfile` for the webapp is pretty simple. Just copy the app, install the dependencies, build the production version an then run a basic webserver to launch it. 
 
-Necesitamos un servidor para poder correr la aplicación. No es recomendable ejecutar `npm start` en un entorno de producción por lo que utilizaremos [Express](https://expressjs.com/es/). Revisa [server.js](webapp/server.ts) en el directotio webapp para entender la configuración. Mientras corramos el servicio en el puerto 3000 (en localhost) tendremos que conectar este puerto con el puerto de nuestra máquina local.
+In order to run the app, we need a server. `npm start` is not good for production so we are going to use [Express](https://expressjs.com/es/). Check [server.js](webapp/server.ts) in the webapp to understand the configuration. As we will run it in port 3000 (in localhost), we have to bind this port with the port in our local machine.
 
-### Lanzar todo al mismo tiempo (docker-compose)
-docker compose permite lanzar todos los contenedores en el orden adecuado. Revisa el archivo [docker-compose.yaml](docker-compose.yaml) para ver la definición de los contenedores y sus procesos de lanzamiento. Aquí tienes los comandos para lanzar el sistema y apagarlo:
+
+### Launching everything at the same time (docker-compose)
+All the containers will be launched in order using docker compose. Check the file [docker-compose.yaml](docker-compose.yaml) to see the definition of the containers and their launch process. Here are the commands to launch the system and to turn it down:
 ```
 docker-compose up
 ```
 ```
 docker-compose down
 ```
-<mark>Nota: Si cambias algo en el código deberás reconstruir las imágenes utilizando la bandera `--build`.</mark>
+<mark>Note: if you change something in the code you should rebuild the images using the `--build` flag</mark>
 
-### Integración continua (CI)/Entrega continua (CD)
+### Continuous integration/Continuous Delivery
+In this step we are going to setup GitHub Actions in order to have CI in our system. The idea is that, every time we create a new release, build the system (restapi and webapp), run the tests, and if everything is ok, build the docker images and upload them to Github packages. Then we can deploy the application using these images.
 
-En esta etapa vamos a configurar GitHub Actions para tener CI en nuestro sistema. La idea es que cada vez que creemos una nuevo entregable (release) se construya el sistema (restapi y webapi), se ejecuten los tests y si todo funciona correctamente se construirán las imágenes de docker y se subirán a GiHub packages. Entonces podremos desplegar nuestra nuestra aplicación utilizando estas imágenes.
+The workflow for this is in [lomap_0.yml](.github/workflow/lomap_0.yml). In this file you can see that there are two jobs, one for the restapi, one for the webapp. Jobs are executed in paralel so this will speed up our build.
 
-El flujo de trabajo se encuentra en el archivo [lomap_0.yml](.github/workflows/lomap_0.yml).  Si lo revisas podrás ver que existen dos trabajos, uno para la restapi(**unit-test-restapi**) y otro para la webapp(**unit-test-webapp**). Estos trabajos se ejecutan de forma paralela por lo que aceleran la construcción de las imágenes. 
+So, the first to jobs in this file build the webapp and the restapi (in parallel). If everything goes well, check the e2e tests (later in this document) and if these acceptance tests pass ok, create the docker images and deploy them.
 
-Si todo va bien revisarán los tests e2e (end to end) y si estos test de aceptación pasan se crearán las imágenes de docker y se desplegarán.
 
-### Testting E2E
-Los tests de integración es la parte más difícil de integrar en nuestro sistema. tenemos que testear nuestro sistema como un todo. la idea es desplegar nuestro sistema y hacer tests utilizando [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer) (automatización del navegador) and [jest-cucumber](https://www.npmjs.com/package/jest-cucumber) (historias de usuario). También utilizaremos [expect-puppeteer](https://www.npmjs.com/package/expect-puppeteer) para facilitar la escritura de los tests. Todo lo necesario para vertebrar esta estructura se encuentra en el directorio `webapp/e2e`. Estos tests pueden ejecutarse de manera local utilizando el comando `npm run test:e2e` y en GitHub Actions justo después de los tests unitarios.
+### E2E testing
+Integration tests is maybe the most difficult part to integrate in our system. We have to test the system as a whole. The idea here is to deploy the system and make the tests using [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer) (browser automatization) and [jest-cucumber](https://www.npmjs.com/package/jest-cucumber) (user stories). We will also be using [expect-puppeteer](https://www.npmjs.com/package/expect-puppeteer) to make easier the test writing. All the structure needed is under the `webapp/e2e` directory. These tests can be run locally using `npm run test:e2e` and they will be run also in GitHub Actions, just after the unitary tests. 
 
-En este proyecto las historias de usuario utilizadas por los tests E2E se definen utilizando Cucumber. Cucumber utiliza un lenguaje llamado Gherkin para poder crear estas historias. Puedes encontrar un ejemplo en el directorio `webapp/e2e/features` y los tests reales se encuentran en este directorio `webapp/e2e/steps` (revisa el archivo `jest.config.ts`). 
+In this project the E2E testing user stories are defined using Cucumber. Cucumber uses a language called Gherkin to define the user stories. You can find the example in the `features` directory. Then, the actual tests are in the folder `steps`. We are going to configure jest to execute only the tests of this directory (check the `jest.config.ts` file). 
 
-Los tests E2E tienes dos dificultades añadidas. 
-- La primera es que necesitamos un navegador que ejecute los tests simulando el comportamiento del usuario utilizando la aplicación. Esa es la razón por la que utilizamos `jest-peppeteer` que lanzará una instancia [Chromium](https://es.wikipedia.org/wiki/Chromium_(navegador)) para correr los tests. El navegador comienza en la función `beforeAll`. Ten en cuenta que el navegador se lanza en "headless mode" (modo sin cabeza: Sin interfaz gráfica)
-Esto es necesario para correr los tests el entorno de integración continua (CI). Si quieres depurar siempre puedes deshabilitar esta característica.
-- El segundo problema es que para poder correr estos tests es imprescindible que se estén ejecutando la restapi y la webapp. El paquete `start-server-and-test` nos va a ayudar a lograrlo ya que nos permite lanzar varios servidores a la vez y puede configurarse directamente en el archivo `package.json`:
+The E2E tests have two extra difficulties. The first one, we need a browser to perform the tests as if the user was using the application. For this matter, we use `jest-peppeteer` that will launch a Chromium instance for running the tests. The browser is started in the `beforeAll` function. Note that the browser is launched in a headless mode. This is neccesary for the tests to run in the CI environment. If you want to debug the tests you can always turn this feature off. The second problem is that we need to run the restapi and the webapp at the same time to be able to run the tests. For achieving this, we are going to use the package `start-server-and-test`. This package, allows us to launch multiple servers and then run the tests. No need for any configuration. We can configure it straight in the `package.json` file:
 
 ```json
 "test:e2e": "start-server-and-test 'npm --prefix ../restapi start' http://localhost:5000/api/users/list prod 3000 'cd e2e && jest'"
 ```
-El `package.json` acepta pares de parámetros (lanza un servidor y una URl para comprobar que está ejecutándose). Además acepta comandos npm ( para una instancia de la webapp en producción, con `npm run prod`) y el último parámetro lanzará jest para que ejecute los tests E2E.
 
-### Tests de carga (Gatling)
-Esta parte se llevará a cabo utilizando [Gatling](https://gatling.io/). Gatling simulará la carga de datos en nuestro sistema haciendo peticiones a la webapp.
+The package accepts pairs of parameters (launch a server and an URL to check if it is running. It also accepts npm commands (for instance prod, for the webapp, that will run `npm run prod`). The last parameter of the task will be launching jest to run the E2E tests.
 
-Para utilizara Gatling para hacer los tests de carga en nuestra aplicación necesitamos [descargarlo](https://gatling.io/open-source/start-testing/). Básicamente el programa tiene dos partes. Una [grabadora](https://gatling.io/docs/current/http/recorder) que capturará las acciones que queramos testear y un programa que ejecute estas acciones y que recoja los resultados. Gatling se encargará de capturar todos los tiempos de respuesta de nuestras peticiones de nuestras peticiones y las presentará gráficamente en unos gráficos para un análisis posterior.
+### Load testing (Gatling)
+This part will be carried out using [Gatling](https://gatling.io/). Gatling will simulate load in our system making petitions to the webapp.
 
-Una vez descargado Gatling necesitamos inicializar la [grabadora](https://gatling.io/docs/current/http/recorder). No es más que un proxy que intercepta todas las acciones que se llevan a cabo en nuestro navegador. Eso significa que tenemos que configurar nuestro navegador para que utilize ese proxy siguiendo los siguientes pasos:
+In order to use Gatling for doing the load tests in our application we need to [download](https://gatling.io/open-source/start-testing/) it. Basically, the program has two parts, a [recorder](https://gatling.io/docs/current/http/recorder) to capture the actions that we want to test and a program to run this actions and get the results. Gatling will take care of capture all the response times in our requests and presenting them in quite useful graphics for its posterior analysis.
 
-1. Configurar la grabadora en **HTTP proxy mode**.
-2. Configurar el **modo HTTPs** para "Certificate Authority".
-3. Generar un **certificado CA** y una key. Para esto hay que hacer click en el botón "Generate CA" . Tendrás que escoger el directorio para generar los certificados. Se crearán 2 archivos pem.
-4. Configurar Firefox para utilizar estos **certificados CA** (Preferences>Certificates, import the generated certificate).
-5. Configurar FireFox para utilizar un **proxy** (Preferences>Network configuration). El proxy estará en localhost:8000.
-6. Configurar Firefox para que utilice el proxy incluso si la llamada se produce desde una dirección local. Para esto necesitamos configurar la propiedad `network.proxy.allow_hijacking_localhost` a `true` en `about:config`. 
+Once we have downloaded Gatling we need to start the [recorder](https://gatling.io/docs/current/http/recorder). This works as a proxy that intercepts all the actions that we make in our browser. That means that we have to configure our browser to use a proxy. We have to follow this steps:
 
-Una vez tengamos la grabadora configurada y la aplicación corriendo (en Heroku por ejemplo), podemos comenzar nuestro primer test. Necesitamos especificar un paquete y un nombre de clase para organizar los tests. El paquete será un directorio y el nombre de clase el nombre del test. En mi caso he utilizado `GetUserList`sin nombre de paquete. Después de presionar "inicio" la grabadora comenzará a capturar las acciones que hagamos en el navegador. En este momento debes llevar a cabo todas las acciones que quieras grabar. En este caso he navegado hasta la página principal de la webapp y he añadido un usuario. Una vez dejemos de grabar, la simulación se almacenará en el directorio `user-files/simulations`. Escrito en lenguaje [Scala](https://www.scala-lang.org/). Si quieres ver el resultado de un test hecho con gatling puedes verlo en `webapp/loadtestexample`. Ten en cuenta que en esta simulación hay una petición post a la restapi. Los datos que se envían en una petición post, son almacenados por gattling en el directorio `user-files/resources`. 
+1. Configure the recorder in **HTTP proxy mode**.
+2. Configure the **HTTPs mode** to Certificate Authority.
+3. Generate a **CA certificate** and key. For this, press the Generate CA button. You will have to choose a folder to generate the certificates. Two pem files will be generated.
+4. Configure Firefox to use this **CA certificate** (Preferences>Certificates, import the generated certificate).
+5. Configure Firefox to use a **proxy** (Preferences>Network configuration). The proxy will be localhost:8000.
+6. Configure Firefox so it uses this proxy even if the call is to a local address. In order to do this, we need to set the property `network.proxy.allow_hijacking_localhost` to `true` in `about:config`. 
 
+Once we have the recorder configured, and the application running (in Heroku for instance), we can start recording our first test. We must specify a package and class name. This is just for test organization. Package will be a folder and Class name the name of the test. In my case I have used `GetUsersList` without package name. After pressing start the recorder will start capturing our actions in the browser. So here you should perform all the the actions that you want to record. In my case, I opened the main website and added one user. Once we stop recording the simulation will be stored under the `user-files/simulations` directory, written in [Scala](https://www.scala-lang.org/) language. I have copied the generated file under `webapp/loadtestexample` just in case you want to see how a test file in gatling looks like. Note that this simulation included a post petition to the restapi. Post data is stored under a different directory in the gattling installation directory (`user-files/resources`). 
 
-Podemos modificar nuestro test de carga ,por ejemplo, inyectando 20 usuarios al mismo tiempo:
-```
+We can modify our load test for instance to inject 20 users at the same time:
+```scala
 setUp(scn.inject(constantUsersPerSec(3).during(15))).protocols(httpProtocol)
 ```
-cambiarlo en el archivo scala. Revisa [esta página](https://gatling.io/docs/gatling/reference/current/core/injection/) para tener más información sobre como inyectar carga en nuestros tests de carga.
+changing it in the scala file. Check [here](https://gatling.io/docs/gatling/reference/current/core/injection/) to see more options about generating load.
+In order to execute the test we have to execute:
 
-Para correr los tests necesitamos ejecutar:
+```bash
+gatling.sh -s GetUsersList
 ```
-gatling.sh -s GetUserList
-```
-Se mostrará una vista general de los resultados en la consola, además podremos ver un informe completo en formato wen en el directorio de los resultados.
 
-Es importante saber que podemos dockerizar estos tests de carga utilizando esta [imagen](https://hub.docker.com/r/denvazh/gatling). Tan solo es cuestión de decirle al archivo docker donde se encuentra tu configuración de gatlin y los archivos scala. La imagen hará el resto.
+In the console, we will get an overview of the results and in the results directory we will have the full report in web format.
+
+It is important to note that we could also dockerize this load tests using this [image](https://hub.docker.com/r/denvazh/gatling). It is just a matter of telling the docker file where your gatling configuration and scala files are and the image will do the rest.

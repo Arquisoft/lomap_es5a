@@ -76,7 +76,7 @@ function CreatePointForm() {
     e.preventDefault();
  
     if (!validateForm()) {
-      console.log("Formulario inválido", info);
+      console.log("Formulario inválido");
       return;
     }
 
@@ -144,16 +144,13 @@ function CreatePointForm() {
     //Funciones para añadir o eliminar y comprobar la lista de amigos
     const añadirAmigo = (amigo:Friend) => {
         setAmigos([...amigos,amigo]);
-        console.log("añadiendo" +amigos);
     };
     const eliminarAmigo = (amigoAEliminar:Friend) => {
         setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
-        console.log("eliminando" + amigos);
     };
     const verificaAmigo = (amigoVerificar:Friend) => {
         return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
     };
-
 
   return (
     <div className="create-form-main">

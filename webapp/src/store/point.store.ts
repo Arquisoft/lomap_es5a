@@ -9,6 +9,7 @@ import {
 interface PointDetailsStore {
   info: Point;
   pointToShow: Point; // Point to show in the details page
+  isSaved: boolean; // Flag que indica si el punto está guardado en la lista de favoritos
   imageToUpload?: File;
   isUploading: boolean; // Flag que indica si el proceso de subida del punto está en curso
   isFinished: boolean; // Flag que indica si el proceso de subida del punto ha finalizado
@@ -20,6 +21,8 @@ interface PointDetailsStore {
   setIsUploading: (isUploading: boolean) => void;
   setIsFinished: (isFinished: boolean) => void;
   setPointToShow: (point: Point) => void;
+  setIsSaved: (isSaved: boolean) => void;
+  getIsPointSaved: () => boolean;
   resetPointInfo: () => void;
   getPointDetails: () => Point;
 }
@@ -113,7 +116,7 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
       filteredPointsPreview: state.points.filter((point: Point) =>
         state.filters
           .map((filter: any) => {
-            filter?.code, filter?.webId
+            filter?.code, filter?.webId;
           })
           .filter((point: any) => point.category || point.webId)
       ),
@@ -149,6 +152,7 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   imageToUpload: undefined as File | undefined,
   isUploading: false,
   isFinished: false,
+  isSaved: false,
   // Update some property of the current point
   setCurrentPointProperty: (property: string, value: any) =>
     set((state: any) => ({ info: { ...state.info, [property]: value } })),
@@ -172,6 +176,10 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   setIsUploading: (isUploading: boolean) => set({ isUploading }),
 
   setIsFinished: (isFinished: boolean) => set({ isFinished }),
+
+  setIsSaved: (isSaved: boolean) => set({ isSaved }),
+
+  getIsPointSaved: () => get().isSaved,
 
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 
