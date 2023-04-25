@@ -2,7 +2,7 @@ import { cleanup, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AddNewReviewToPointPopup from "./AddNewReviewToPointPopup";
 
-import getPoint from "./point_mock";
+import getPoint from "../../mocks/point.mock";
 
 describe("AddNewReviewToPointPopup componente", () => {
   afterAll(cleanup);

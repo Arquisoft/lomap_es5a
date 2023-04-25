@@ -1,10 +1,10 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import "../../../public/css/components/asides/accountAside/BottomAccountAside.css"
-import { generateUUID } from "../../../utils/stringUtils"
-import FriendAvatar from "../../avatars/FriendAvatar"
-import { useUserStore } from "../../../store/user.store";
-import { getAllFriends } from "../../../api/friends.api";
 import { useEffect } from "react";
+import { getAllFriends } from "../../../api/friends.api";
+import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
+import { useUserStore } from "../../../store/user.store";
+import { generateUUID } from "../../../utils/stringUtils";
+import FriendAvatar from "../../avatars/FriendAvatar";
 
 function BottomAccountAside(){
 

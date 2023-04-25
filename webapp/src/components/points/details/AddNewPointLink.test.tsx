@@ -1,8 +1,7 @@
-import { cleanup, render, fireEvent } from '@testing-library/react';
-import AddNewPointLink from './AddNewPointLink';
-import { Point } from '../../../shared/shareddtypes';
-import { Category } from '../../../shared/shareddtypes';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { BrowserRouter as Router } from "react-router-dom";
+import { Category, Point } from '../../../shared/shareddtypes';
+import AddNewPointLink from './AddNewPointLink';
 let point: Point;
 
 describe('Comprobamos el componente de AddNewPointLink', () => {

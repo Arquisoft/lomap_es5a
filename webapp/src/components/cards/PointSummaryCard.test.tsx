@@ -9,38 +9,9 @@ import {
 import PointSummaryCard from "./PointSummaryCard";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { Category, Point } from "../../shared/shareddtypes";
+import { Point } from "../../shared/shareddtypes";
 
-const pointInitilization: Point = {
-  _id: "a",
-  name: "a",
-  description: "a",
-  location: {
-    address: "a",
-    postalCode: 0,
-    city: "a",
-    country: "a",
-    coords: {
-      lat: 43.362503991605806,
-      lng: -5.8507845362433235,
-    },
-  },
-  owner: {
-    webId: "a",
-    name: "a",
-    imageUrl: "a",
-  },
-  reviews: [],
-  image: {
-    url: "a",
-    alt: "a",
-  },
-  isOwner: false,
-  category: Category.NONE,
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  friends: []
-} as Point;
+import getPoint from "../../mocks/point.mock";
 
 describe("PointSummaryCard component", () => {
   beforeAll(() => {
@@ -61,7 +32,7 @@ describe("PointSummaryCard component", () => {
           pointName="Point name"
           pointUser="Point user"
           pointCreatedAt="01:40"
-          pointInfo={pointInitilization}
+          pointInfo={getPoint()}
         />
       </Router>
     );
@@ -78,7 +49,7 @@ describe("PointSummaryCard component", () => {
           pointName="Point name"
           pointUser="Point user"
           pointCreatedAt="Point created at"
-          pointInfo={pointInitilization}
+          pointInfo={getPoint()}
         />
       </Router>
     );
@@ -94,7 +65,7 @@ describe("PointSummaryCard component", () => {
           pointName="Point name"
           pointUser="Point user"
           pointCreatedAt="12/12/2022"
-          pointInfo={pointInitilization}
+          pointInfo={getPoint()}
         />
       </Router>
     );
@@ -112,7 +83,7 @@ describe("PointSummaryCard component", () => {
           pointName="Point name"
           pointUser="Point user"
           pointCreatedAt="Point created at"
-          pointInfo={pointInitilization}
+          pointInfo={getPoint()}
         />
       </Router>
     );
@@ -131,7 +102,7 @@ describe("PointSummaryCard component", () => {
           pointName="Point name"
           pointUser="Point user"
           pointCreatedAt="Point created at"
-          pointInfo={pointInitilization}
+          pointInfo={getPoint()}
         />
       </Router>
     );

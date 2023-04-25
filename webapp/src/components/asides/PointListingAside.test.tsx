@@ -2,7 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import PointListingAside from "./PointListingAside";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import getPoints from "./points_mock";
+import getPoints from "../../mocks/points.mock";
 
 describe("PointListingAside component", () => {
   afterAll(cleanup);
@@ -22,10 +22,6 @@ describe("PointListingAside component", () => {
   });
 
   it("renderiza puntos con un punto sin imagen", () => {
-    // if (getPoints().length > 0 && getPoints()[0].image) {
-    //   getPoints()[0].image.url = "";
-    // }
-
     const { container } = render(
       <Router>
         <PointListingAside points={getPoints()} />

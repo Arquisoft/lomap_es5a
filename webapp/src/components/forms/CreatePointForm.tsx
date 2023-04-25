@@ -2,9 +2,11 @@ import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPoint } from "../../api/point.api";
+import { sharePointWithFriend } from "../../api/share.point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
 import { HOME_PATH } from "../../routes";
+import { Friend } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
@@ -16,13 +18,11 @@ import {
   checkIsNotEmpty,
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
+import FriendsCard from "../cards/FriendsCard";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseMessage from "../messages/BaseMessage";
-import { Friend } from "../../shared/shareddtypes";
-import FriendsCard from "../cards/FriendsCard";
-import { sharePointWithFriend } from "../../api/share.point.api";
 
 function CreatePointForm() {
   const {
@@ -180,7 +180,6 @@ function CreatePointForm() {
                 setCurrentPointProperty("name", "");
                 setErrors([...errors, (error as Error).message]);
               }
-              //refreshErrors();
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{
