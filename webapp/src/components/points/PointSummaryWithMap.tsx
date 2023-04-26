@@ -51,25 +51,6 @@ function PointSummaryWithMap({
   };
 
 
-  const handleDeleteSavedPoint = (
-    e: React.MouseEvent<HTMLElement>
-    ) => {
-      e.preventDefault();
-      let idPoint = '';
-      let webId = '';
-      if(pointInfo?._id){
-        idPoint = pointInfo?._id;
-      }
-      if(session.info.webId){
-        webId = session.info.webId;
-      }
-
-      unsavePoint(idPoint,webId);
-
-      navigate(HOME_PATH)
-    }
-
-
   return (
     <div className="point-summary-with-map-container">
       {hasMap && (
