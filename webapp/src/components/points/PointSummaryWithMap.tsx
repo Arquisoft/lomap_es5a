@@ -24,6 +24,7 @@ type Props = {
   lng: number;
   hasMap?: boolean;
   pointInfo?: Point;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 function PointSummaryWithMap({
@@ -32,7 +33,8 @@ function PointSummaryWithMap({
   lat,
   lng,
   hasMap = false,
-  pointInfo
+  pointInfo,
+  onClick
 }: Props) {
   const navigate = useNavigate();
   const {setPointToShow} = usePointDetailsStore();
@@ -93,7 +95,7 @@ function PointSummaryWithMap({
           text="Ver punto"
           onClick={(e) => handleRedirectToPointDetail(e)}
         />
-        <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeleteSavedPoint} />
+        <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={onClick} />
       </div>
     </div>
   );
