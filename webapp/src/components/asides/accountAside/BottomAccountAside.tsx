@@ -30,13 +30,14 @@ function BottomAccountAside(){
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
-                                    <div className="friend-component-aside" key={friend.webId}>
+                                    <>    
                                     <FriendAvatar
                                         key={friend.webId}
+                                        webId={friend.webId}
                                         name={friend.name}
                                         imgUrl={friend.imgUrl} 
                                     />
-                                    </div>
+                                    </>
                                 )
                             }) 
                          : (
