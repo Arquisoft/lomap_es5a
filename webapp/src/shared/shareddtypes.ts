@@ -295,13 +295,7 @@ interface BaseTextAreaProps {
   maxLength?: number;
 }
 
-/**
- * Propiedades para los componentes input type checkbox
- * 
- */
-interface BaseCheckboxInputProps{
-  onCheckboxChange: (isChecked: boolean) => void;
-}
+
 
 
 /**
@@ -342,7 +336,6 @@ type FirebaseConfig = {
 };
 
 export type {
-  BaseCheckboxInputProps,
   JSONValue,
   AuthContextValue,
   AuthUser,

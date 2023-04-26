@@ -58,6 +58,7 @@ function FriendsCard({
                                         key={friend.webId}
                                         name={friend.name}
                                         imgUrl={friend.imgUrl} 
+                                        vista="vista-add-point"
                                     />
                                     <label htmlFor="checkbox"/>
                                     <input

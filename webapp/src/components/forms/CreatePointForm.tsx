@@ -143,7 +143,9 @@ function CreatePointForm() {
     const [amigos,setAmigos] = useState<Friend[]>([]);
     //Funciones para añadir o eliminar y comprobar la lista de amigos
     const añadirAmigo = (amigo:Friend) => {
-        setAmigos([...amigos,amigo]);
+        if(!verificaAmigo(amigo)){
+          setAmigos([...amigos,amigo]);
+        }
         console.log("añadiendo" +amigos);
     };
     const eliminarAmigo = (amigoAEliminar:Friend) => {

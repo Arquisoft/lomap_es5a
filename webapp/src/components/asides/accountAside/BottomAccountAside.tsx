@@ -21,6 +21,8 @@ function BottomAccountAside(){
         loadAllFriends();
     }, []);
     
+    
+
     return(
         <div className="friends-container-aside">
                 <label htmlFor={generateUUID()}></label>
@@ -29,12 +31,11 @@ function BottomAccountAside(){
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
                                     <div className="friend-component-aside" key={friend.webId}>
-                                    <FriendAvatar 
+                                    <FriendAvatar
                                         key={friend.webId}
                                         name={friend.name}
                                         imgUrl={friend.imgUrl} 
                                     />
-                                    <label htmlFor="checkbox"/>
                                     </div>
                                 )
                             }) 
