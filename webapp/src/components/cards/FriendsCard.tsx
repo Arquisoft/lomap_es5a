@@ -23,6 +23,8 @@ function FriendsCard({
     verificaAmigo
 } :Props){
 
+    console.log(amigos);
+
     const { session } = useSession();
     const {setFriends, friends} = useUserStore();
 
