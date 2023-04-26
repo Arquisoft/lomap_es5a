@@ -5,38 +5,94 @@ import { LOGIN_PATH } from "../../routes";
 import { shallow } from "enzyme";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 
+
+
+// 1- Mocking the hook using jest.fn
+const mockedUsedNavigate = jest.fn();
+
+// const mockedUsedSession = {
+//   logout: jest.fn()
+// }
+
+
+// jest.mock("@inrupt/solid-ui-react", () => ({
+//   // 3- Import non-mocked library and use other functionalities and hooks
+//   ...(jest.requireActual("@inrupt/solid-ui-react") as any),
+//   useSession: () => mockedUsedSession
+// }));
+
+// 2- Mock the library
+jest.mock("react-router-dom", () => ({
+  // 3- Import non-mocked library and use other functionalities and hooks
+  ...(jest.requireActual("react-router-dom") as any),
+  // 4- Mock the required hook
+  useNavigate: () => mockedUsedNavigate
+}));
+
+
+
 describe("Testing para el componente IconMenuItem", () => {
-    const mockUseSession = jest.fn();
-    const mockUseNavigate = jest.fn();
-    const mockedSession = {
-        logout: jest.fn(),
+ 
+
+  it("Comprobamos que se renderiza el componente", () => {
+    render(
+      <Router>
+        <IconMenuItem name="Example" iconName="example" url="/example" />
+      </Router>
+    );
+
+    //fireEvent.click(screen.getByText("Example"));
+
+    //expect(mockUseNavigate).toHaveBeenCalledWith(url);
+    expect(screen.getByRole('listitem')).toBeInTheDocument();
+
+  });
+
+  it("Comprobamos que se redirige a la url indicada cuando se hace click sobre el componente", () => {
+    
+    const props = {
+      name: "Home",
+      iconName: "home",
+      url: "/home",
     };
     
-      beforeEach(() => {
-        mockUseSession.mockReturnValue({session : mockedSession});
-        mockUseNavigate.mockReturnValue(jest.fn());
-      });
+    const { getByRole } = render(
+      <Router>
+        <IconMenuItem {...props} />
+      </Router>
+    ); 
+    fireEvent.click(getByRole("listitem"));
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(props.url);
+
+  });
+
+  it("Comprobamos que si el nombre es Cerrar sesión, se limpia el storage", () => {
     
-      afterEach(() => {
-        jest.resetAllMocks();
-      });
+    const props = {
+      name: "Cerrar sesión",
+      iconName: "example",
+      url: "",
+    };
     
-      it("should navigate to the provided url when the menu item is clicked", () => {
-        const url = "/example";
-        render(
-        <Router>
-            <IconMenuItem name="Example" iconName="example" url={url} />
-        </Router>,
-        {
-            wrapper: ({children}) => (
-                <div>{children}</div>
-            )
-        });
     
-        fireEvent.click(screen.getByText("Example"));
     
-        expect(mockUseNavigate).toHaveBeenCalledWith(url);
-      });
+    const { getByRole } = render(
+      <Router>
+        <IconMenuItem {...props} />
+      </Router>
+    ); 
+    // Añadimos algo al sessionStorage
+    sessionStorage.setItem("testing", "testing");
+    fireEvent.click(getByRole("listitem"));
+    // Comprobamos que tras hacer click el sessionStorage no tiene ese elemento
+    expect(sessionStorage.getItem("testing")).toBeNull();
+    // Comprobamos que se invoca el logout
+
+    //expect(mockedUsedSession.logout).toHaveBeenCalled();
+
+  });
+
+
     
     //   it("should clear sessionStorage and call session.logout when 'Cerrar sesión' is clicked", async () => {
     //     const clearSpy = jest.spyOn(window.sessionStorage, "clear");
