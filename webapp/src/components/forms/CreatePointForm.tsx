@@ -2,9 +2,11 @@ import { useSession } from "@inrupt/solid-ui-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPoint } from "../../api/point.api";
+import { sharePointWithFriend } from "../../api/share.point.api";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import "../../public/css/components/forms/CreatePointForm.css";
 import { HOME_PATH } from "../../routes";
+import { Friend } from "../../shared/shareddtypes";
 import { useMarkerStore } from "../../store/map.store";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
@@ -16,6 +18,7 @@ import {
   checkIsNotEmpty,
 } from "../../utils/validator";
 import BaseButton from "../buttons/BaseButton";
+import FriendsCard from "../cards/FriendsCard";
 import BaseSelect from "../inputs/BaseSelect";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
@@ -34,6 +37,7 @@ function CreatePointForm() {
     resetPointInfo,
     imageToUpload,
   } = usePointDetailsStore();
+
 
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
@@ -55,6 +59,9 @@ function CreatePointForm() {
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
+      setTimeout(()=>{
+        setIsUploading(false);
+      },5000);
     }
 
     return hasNoErrors;
@@ -67,7 +74,7 @@ function CreatePointForm() {
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-
+ 
     if (!validateForm()) {
       console.log("Formulario inválido", info);
       return;
@@ -82,13 +89,21 @@ function CreatePointForm() {
     info.location.country = "";
     info.owner.name = name;
     info.owner.imageUrl = imageUrl;
+    //Se añade la webId del creado
+    if(session.info.webId){
+      info.owner.webId = session.info.webId;
+    }
+    //Digo que la persona que lo esta creado en es el Owner
+    info.isOwner = true;
+    // Añado los amigos con los que va a ser compartido
+    info.friends = amigos;
     if (!info.image) {
       info.image = {
         url: "",
         alt: "",
       };
     }
-
+    //Añado el punto mi POD
     await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
       setIsUploading(false);
       setIsFinished(isSuccess);
@@ -109,6 +124,11 @@ function CreatePointForm() {
         ]);
       }
     });
+    
+    amigos.forEach(async amigo => {    
+      await sharePointWithFriend(info,session,amigo);
+    });
+
   };
 
   useEffect(() => {
@@ -117,6 +137,25 @@ function CreatePointForm() {
       setPosition({ lat, lng });
     });
   }, []);
+
+
+    //contiene la lista de amigos seleccionados por el usuario
+    const [amigos,setAmigos] = useState<Friend[]>([]);
+    //Funciones para añadir o eliminar y comprobar la lista de amigos
+    const añadirAmigo = (amigo:Friend) => {
+        if(!verificaAmigo(amigo)){
+          setAmigos([...amigos,amigo]);
+        }
+        console.log("añadiendo" +amigos);
+    };
+    const eliminarAmigo = (amigoAEliminar:Friend) => {
+        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
+        console.log("eliminando" + amigos);
+    };
+    const verificaAmigo = (amigoVerificar:Friend) => {
+        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
+    };
+
 
   return (
     <div className="create-form-main">
@@ -143,7 +182,6 @@ function CreatePointForm() {
                 setCurrentPointProperty("name", "");
                 setErrors([...errors, (error as Error).message]);
               }
-              //refreshErrors();
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{
@@ -195,6 +233,15 @@ function CreatePointForm() {
               }
             }}
           />
+
+          
+          <FriendsCard 
+            amigos={amigos}
+            añadirAmigo={añadirAmigo}
+            eliminarAmigo={eliminarAmigo}
+            verificaAmigo={verificaAmigo}
+            />
+
           <BaseTextArea
             label="Descripción"
             name="description"

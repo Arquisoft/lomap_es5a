@@ -5,15 +5,18 @@ import { Point } from "../../../shared/shareddtypes";
 import { usePointReviewStore } from "../../../store/review.store";
 import AddNewReviewToPointPopup from "../../popups/AddNewReviewToPointPopup";
 
+
+
 type Props = {
     pointToShow : Point
 }
 
 function AddNewPointLink(point:Props){
 
+
     const { showAddReviewPopup, setShowAddReviewPopup } = usePointReviewStore();
 
-    return(
+    return( 
         <div className="add-new-point-link-container">
             {showAddReviewPopup &&
                 createPortal(
@@ -24,6 +27,7 @@ function AddNewPointLink(point:Props){
             <button onClick={(e) => {
                 e.preventDefault();
                 setShowAddReviewPopup(true);
+                
             }}>
                 <div className="add-new-point-link-button" role="container">
                     <div className="add-new-point-link-button-text" role="text">

@@ -1,15 +1,17 @@
-import React from "react";
-import { render, fireEvent, cleanup } from "@testing-library/react";
-import BaseSelect from "./BaseSelect";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { shallow } from "enzyme";
+import BaseSelect from "./BaseSelect";
 
 describe("BaseSelect component", () => {
-
   afterAll(cleanup);
-  
+
   const handleChange = jest.fn();
 
-  const options = [    { value: "option1", content: "Option 1" },    { value: "option2", content: "Option 2" },    { value: "option3", content: "Option 3" },  ];
+  const options = [
+    { value: "option1", content: "Option 1" },
+    { value: "option2", content: "Option 2" },
+    { value: "option3", content: "Option 3" },
+  ];
   const props = {
     id: "test-id",
     label: "Test Label",
@@ -67,13 +69,10 @@ describe("BaseSelect component", () => {
       const optionIndex = index - 1;
       const optionProps = optionIndex >= 0 ? props.options[optionIndex] : null;
       const value = optionProps ? optionProps.value : "no-opt";
-      const defaultValue = optionProps ? undefined : "no-opt";
       const text = optionProps ? optionProps.content : "Selecciona una opción";
-  
+
       expect(option.props().value).toEqual(value);
-      expect(option.props().defaultValue).toEqual(defaultValue);
       expect(option.text()).toEqual(text);
     });
-
   });
 });

@@ -6,11 +6,16 @@ import CategoryComp from "./review/single/CategoryComp";
 import CoordComp from "./review/single/CoordComp";
 import UserComp from "./review/single/UserComp";
 
+
+
 type Props = {
   pointToShow: Point;
 };
 
 function SingleDetail(point: Props) {
+
+
+
   return (
     <div className="single-details-containter" role="container">
       <h2>Detalles</h2>
@@ -46,8 +51,10 @@ function SingleDetail(point: Props) {
               />
             </div>
           </div>
+          
           <div className="single-details-details-user-saved" role="saved">
             <div>Guardado: </div>{" "}
+              
             <div>
               <FavoriteIcon style={{ color: red[500] }} aria-hidden="true" />{" "}
             </div>

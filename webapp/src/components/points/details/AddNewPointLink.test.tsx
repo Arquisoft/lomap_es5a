@@ -1,7 +1,7 @@
-import { cleanup, render, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { BrowserRouter as Router } from "react-router-dom";
+import { Category, Point } from '../../../shared/shareddtypes';
 import AddNewPointLink from './AddNewPointLink';
-import { Point } from '../../../shared/shareddtypes';
-import { Category } from '../../../shared/shareddtypes';
 let point: Point;
 
 describe('Comprobamos el componente de AddNewPointLink', () => {
@@ -31,10 +31,11 @@ describe('Comprobamos el componente de AddNewPointLink', () => {
               url: "a",
               alt: "a",
             },
-            isPublic: false,
+            isOwner: false,
             category: Category.NONE,
             createdAt: new Date(),
             updatedAt: new Date(),
+            friends:[]
         } as Point)
     }) 
 
@@ -50,11 +51,11 @@ describe('Comprobamos el componente de AddNewPointLink', () => {
     });
 
     it('Comprobamos que funciona el boton', () =>{
-        const {getByText } = render( <AddNewPointLink pointToShow={point} />)
+        const {getByText } = render( <Router><AddNewPointLink pointToShow={point} /> </Router>)
         const handleClick = jest.fn();
         fireEvent.click(getByText("Añadir valoración"));
         expect(handleClick).toHaveBeenCalledTimes(0);
     })
 
       
-});
+}); 

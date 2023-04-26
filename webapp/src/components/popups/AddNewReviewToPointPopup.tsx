@@ -9,6 +9,9 @@ import BaseButton from "../buttons/BaseButton";
 import BaseTextArea from "../inputs/BaseTextArea";
 import BaseTextInput from "../inputs/BaseTextInput";
 import BaseStarRating from "../stars/BaseStarRating";
+import { generateUUID } from "../../utils/stringUtils";
+import { useNavigate } from "react-router-dom";
+import { HOME_PATH } from "../../routes";
 
 type SuccessReviewPopupSectionProps = {
   handleOnClick: (e: React.MouseEvent<HTMLElement>) => void;
@@ -58,6 +61,16 @@ function AddNewReviewToPointPopup({
     setShowAddReviewPopup(false);
   };
 
+  const navigate = useNavigate();
+
+  const handleClosePopupAfterSave = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setIsReviewPublished(false);
+    setIsSendingReview(false);
+    setShowAddReviewPopup(false);
+    navigate(HOME_PATH)
+  };
+
   const handleChangeReview = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -75,6 +88,10 @@ function AddNewReviewToPointPopup({
   ) => {
     e.preventDefault();
     if (session.info.isLoggedIn && pointInfo) {
+      review._id = generateUUID();
+      if(session.info.webId){
+        review.reviewer.webId = session.info.webId;
+      }
       setIsReviewPublished(false);
       setIsSendingReview(true);
 
@@ -88,6 +105,7 @@ function AddNewReviewToPointPopup({
         }
       );
     }
+    
   };
 
   /**
@@ -100,6 +118,8 @@ function AddNewReviewToPointPopup({
     setReviewProperty("rating", value);
   };
 
+
+
   return (
     <div className="add-new-review-point-popup-container" role="alertdialog">
       <div className="add-new-review-point-popup__header">
@@ -111,7 +131,7 @@ function AddNewReviewToPointPopup({
       <div className="add-new-review-point-popup__body">
         {isReviewPublished ? (
           <SuccessReviewPopupSection
-            handleOnClick={(e: any) => handleClosePopup(e)}
+            handleOnClick={(e: any) => handleClosePopupAfterSave(e)}
           />
         ) : (
           <>

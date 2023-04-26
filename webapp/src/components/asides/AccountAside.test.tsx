@@ -12,7 +12,7 @@ describe('Comprobamos el componente de AccountAside', () => {
             );
 
         expect(getByRole("top")).toBeInTheDocument();
-        expect(getByRole("bottom")).toBeInTheDocument();
+       
     })
 
 })

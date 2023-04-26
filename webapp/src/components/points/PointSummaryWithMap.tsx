@@ -7,6 +7,10 @@ import { canonizeUrl } from "../../utils/stringUtils";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
 import MiniMap from "../maps/MiniMap";
+import { HOME_PATH } from "../../routes";
+import { unsavePoint } from "../../api/save.point.api";
+import { useSession } from "@inrupt/solid-ui-react";
+
 /**
  * name: Nombre del punto de interes.
  * address: Dirección postal del punto.
@@ -32,7 +36,7 @@ function PointSummaryWithMap({
 }: Props) {
   const navigate = useNavigate();
   const {setPointToShow} = usePointDetailsStore();
-
+  const {session} = useSession();
   const handleRedirectToPointDetail = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -41,7 +45,29 @@ function PointSummaryWithMap({
       setPointToShow(pointInfo);
       navigate(canonizeUrl("/points", name));
     }
+    
   };
+
+
+  const handleDeleteSavedPoint = (
+    e: React.MouseEvent<HTMLElement>
+    ) => {
+      e.preventDefault();
+      let idPoint = '';
+      let webId = '';
+      if(pointInfo?._id){
+        idPoint = pointInfo?._id;
+      }
+      if(session.info.webId){
+        webId = session.info.webId;
+      }
+
+      unsavePoint(idPoint,webId);
+
+      navigate(HOME_PATH)
+    }
+
+
   return (
     <div className="point-summary-with-map-container">
       {hasMap && (
@@ -67,7 +93,7 @@ function PointSummaryWithMap({
           text="Ver punto"
           onClick={(e) => handleRedirectToPointDetail(e)}
         />
-        <IconButton type="button-disabled" text="Editar" muaIconName="adjust" />
+        <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeleteSavedPoint} />
       </div>
     </div>
   );

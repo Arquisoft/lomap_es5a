@@ -31,6 +31,7 @@ const findAllUserPoints = async (webId: string): Promise<Point[]> => {
     return parseJsonToPoint(await data.json());
   } catch (err) {
     // no hay ningún punto
+    console.log(err);
   }
   return new Array<Point>();
 };
@@ -244,7 +245,8 @@ const editPointById = async (idPoint: string, point: Point, webId: string) => {
  * @returns
  */
 const deletePoint = async (idPoint: string, webId: string) => {
-  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
+  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId)); 
+  
   try {
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",
@@ -256,10 +258,11 @@ const deletePoint = async (idPoint: string, webId: string) => {
     const totalPoints = parseJsonToPoint(await originalPoints.json());
     const filtro = totalPoints.filter((item) => item._id !== idPoint);
     const punto = totalPoints.filter((item) => item._id === idPoint);
-
+  
     if (punto.length === 0) {
       console.log("No existe ningún punto con id = " + idPoint);
     } else {
+      
       await updateContent(filtro, "points.json", getUserPrivatePointsUrl(webId));
     }
   } catch (err) {
@@ -283,7 +286,6 @@ const addReviewPoint = async (
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   const userInSessionName = getWebIdFromUrl(webId);
   review.reviewer.name = userInSessionName.split(".")[0];
-
   try {
     const originalPoints = await fetch(profileDocumentURI, {
       method: "GET",

@@ -23,6 +23,7 @@ function DraggableMarker() {
 
   return (
     <Marker
+      data-testid="marker"
       draggable={true}
       eventHandlers={eventHandlers}
       position={info.location.coords}
