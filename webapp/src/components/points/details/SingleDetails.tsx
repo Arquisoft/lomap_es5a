@@ -23,28 +23,11 @@ type Props = {
 };
 
 function SingleDetail({ pointToShow }: Props) {
-  const [isSaved, setIsSaved] = useState(false);
+
 
   const { session } = useSession();
 
-  const checkIfPointIsSaved = async () => {
-    if (!pointToShow) {
-      setIsSaved(false);
-
-      return;
-    }
-
-    await isPointSaved(pointToShow?._id, session.info.webId as string).then(
-      (result: boolean) => {
-        setIsSaved(result);
-      }
-    );
-  };
-
-  useEffect(() => {
-    checkIfPointIsSaved();
-  }, []);
-
+  
   return (
     <div className="single-details-containter" role="container">
        <h2>Detalles</h2>{" "}
@@ -93,19 +76,6 @@ function SingleDetail({ pointToShow }: Props) {
             </div>
             {" "}
           </div>
-          {" "}
-          {isSaved && (
-            <div className="single-details-details-user-saved" role="saved">
-               <div>Guardado: </div> {" "}
-              <div>
-                {" "}
-                <FavoriteIcon style={{ color: red[500] }} aria-hidden="true" />{" "}
-               {" "}
-              </div>
-              {" "}
-            </div>
-          )}
-          {" "}
         </div>
       )}
       {" "}
