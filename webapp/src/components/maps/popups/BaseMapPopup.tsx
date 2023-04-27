@@ -173,7 +173,7 @@ function BaseMapPopup({
           webId={owner?.webId}
         />
 
-        {/* {owner?.webId && owner.webId !== session.info.webId && ( */}
+        {owner?.webId && owner.webId !== session.info.webId && (
           <div className="popup-modal-social-icons">
             {isSaved ? (
               <FavoriteIcon
@@ -193,7 +193,7 @@ function BaseMapPopup({
               />
             )}
           </div>
-        {/* )} */}
+        )}
       </div>
 
       <div className="base-popup-modal__footer">
