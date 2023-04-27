@@ -26,6 +26,7 @@ function IconMenuItem({ name, iconName, url }: Props) {
         window.location.href = LOGIN_PATH;
       });
     }
+    
     navigate(url ?? "#");
   };
 

@@ -25,7 +25,7 @@ function UserAccountBanner({ _className, imgBackground }: Props) {
         }
       </div>
       <div className="user-account-banner__overlay"></div>
-      <div className="user-account-profile-item__wrapper">
+      <div data-testid="test-user-account-profile-item" className="user-account-profile-item__wrapper">
         <BaseProfileItem
           profileImage={imageUrl}
           name={name}
