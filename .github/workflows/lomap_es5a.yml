@@ -42,5 +42,4 @@ jobs:
       with:
         node-version: 18
     - run: npm --prefix webapp install --legacy-peer-deps
-    - run: npm --prefix webapp run build
     - run: npm --prefix webapp run test:e2e --coverage --watchAll
