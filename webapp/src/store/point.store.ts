@@ -126,8 +126,8 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
         state.filters.length > 0
           ? state.points.filter((point: Point) =>
               state.filters
-                .map((filter: any) => filter.code)
-                .includes(point.category)
+                .map((filter: any) => {filter.code, filter.webId})
+                .filter((point: any) => point.category || point.webId)
             )
           : state.points,
     }));

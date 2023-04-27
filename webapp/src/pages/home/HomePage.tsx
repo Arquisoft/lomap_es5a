@@ -25,8 +25,9 @@ function HomePage() {
 
   const loadAllPoints = async () => {
     const data: Point[] = await findAllUserPoints(session.info.webId as string);
-    setAllPoints(data);
-    //const friendsPoints: Point[] = await findAllSharedPointsByFriends(session)
+    
+    const friendsPoints: Point[] = await findAllSharedPointsByFriends(session)
+    setAllPoints([...data,...friendsPoints]);
   };
 
   const sharePoint = async () => {
