@@ -17,6 +17,10 @@
     border-radius: 12px;
 }
 
+.friend-list-comp > div{
+    border: 0px solid #909090;
+}
+
 img{
     width: 100px;
     height: 100px;
