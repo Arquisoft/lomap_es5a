@@ -34,7 +34,6 @@ jobs:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   e2e-tests:
-    needs: [unit-tests]
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:

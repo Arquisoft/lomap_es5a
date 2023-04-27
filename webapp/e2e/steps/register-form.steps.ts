@@ -83,32 +83,57 @@ defineFeature(feature, test => {
   })
 
   // eslint-disable-next-line jest/no-done-callback
-  // test('The user is not logged and introduces wrong data', ({given,when,then}) => {
+  test('The user is not logged and introduces wrong data', ({given,when,then}) => {
 
-  //   let username:string;
-  //   let password:string;
+    let username:string;
+    let password:string;
 
-  //   given('A not logged user', () => {
-  //     username = "wronguser"
-  //     password = "wrongpassword"
-  //   });
+    given('A not logged user', () => {
+      username = "wronguser"
+      password = "wrongpassword"
+    });
 
-  //   when('I fill wrong data in the form and press submit', async () => {
-  //     await expect(page).toClick('Button', { text: 'Login' })
-  //     await wait(4000)
-  //     await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
-  //       username: username,
-  //       password: password,
-  //     })
-  //     await expect(page).toClick('button', { text: 'Log In' })
-  //     await wait(2000)
-  //   });
+    when('I fill wrong data in the form and press submit', async () => {
+      const combo = await page.$('#provider');
+  
+      // hacemos click en el combobox
+      await combo?.click();
 
-  //   then('An error message is shown in the screen', async () => {
-  //     const text = await page.evaluate(() => document.body.textContent);
-  //     expect(text).toMatch("No user found for that username");
-  //   });
-  // })
+      await wait(200)
+
+      // seleccionamos el proveedor (Solid Community)
+      await expect(page).toClick('option', { text: 'Solid Community' })
+
+      await wait(200)
+
+      // hacemos click en el botón de Log In
+      await expect(page).toClick('button', { text: 'Log In' })
+
+      // en la página de solid: introducimos los datos en el formulario y seleccionamos el botón de login de inrupt para que nos redirija a la web
+
+      // Seleccionar el campo del username
+      const inputUser = await page.$('#username');
+        
+      // Escribir texto en el campo del username
+      await inputUser?.type(username);
+
+      // Seleccionar el campo del password
+      const inputPassword = await page.$('#password');
+        
+      // Escribir texto en el campo del password
+      await inputPassword?.type(password);
+
+      // seleccionamos el botón del login
+      await expect(page).toClick('button', { text: 'Log In' })
+
+      await wait(5000)
+    });
+
+    then('An error message is shown in the screen', async () => {
+      const text = await page.evaluate(() => document.body.textContent);
+      expect(text).toMatch("No user found for that username");
+    });
+  })
   
   afterAll(async ()=>{
     browser.close()
