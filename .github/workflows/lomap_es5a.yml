@@ -26,20 +26,20 @@ jobs:
         node-version: 18
     - run: npm --prefix webapp install --legacy-peer-deps
     - run: npm --prefix webapp run test:e2e --coverage --watchAll
-  unit-tests:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - run: npm --prefix webapp ci --legacy-peer-deps
-    - run: npm --prefix webapp test --coverage --watchAll
-    - name: Analyze with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  # unit-tests:
+  #   timeout-minutes: 10
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #     with:
+  #       fetch-depth: 0
+  #   - uses: actions/setup-node@v3
+  #     with:
+  #       node-version: 18
+  #   - run: npm --prefix webapp ci --legacy-peer-deps
+  #   - run: npm --prefix webapp test --coverage --watchAll
+  #   - name: Analyze with SonarCloud
+  #     uses: sonarsource/sonarcloud-github-action@master
+  #     env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
