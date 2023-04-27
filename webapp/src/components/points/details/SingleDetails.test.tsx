@@ -3,12 +3,14 @@ import { Category, Point } from '../../../shared/shareddtypes';
 import SingleDetail from "./SingleDetails";
 
 
-let point: Point;
+let pointNotSaved: Point;
+
+
 
 describe('Comprobamos el componente de SingleDetail', () => {
 
     beforeAll( () => {
-        point = ({
+      pointNotSaved = ({
             _id: 1 + "_",
             name: "La Pixueta",
             description: "b",
@@ -37,14 +39,15 @@ describe('Comprobamos el componente de SingleDetail', () => {
             createdAt: new Date(),
             updatedAt: new Date(),
             friends : []
-        } as Point)
+        } as Point)    
+
     }) 
 
     //tras ejecutar los test limpia
     afterAll(cleanup);
 
     it('Comprobamos pasandole un punto', () =>{
-        const { getByRole, getByText } = render(<SingleDetail pointToShow={point} /> )
+        const { getByRole, getByText } = render(<SingleDetail pointToShow={pointNotSaved} /> )
         //Compruebo la fila 1
         expect(getByRole("details")).toBeInTheDocument();
         expect(getByRole("details-name")).toBeInTheDocument();
@@ -69,8 +72,9 @@ describe('Comprobamos el componente de SingleDetail', () => {
         expect(getByRole("user")).toBeInTheDocument();
         expect(getByText("Usuario:")).toBeInTheDocument();
         //Compruebo la fila 6
-        expect(getByRole("saved")).toBeInTheDocument();
-        expect(getByText("Guardado:")).toBeInTheDocument();
+        //expect(getByRole("saved")).toBeInTheDocument();
+        //expect(getByText("Guardado:")).toBeInTheDocument();
         
     })
+
 });

@@ -27,7 +27,7 @@ function BaseSelect({
         id={selectId}
         className="base-select-item"
         style={styles as React.CSSProperties}
-        value={selectedOption}
+        defaultValue={selectedOption}
       >
         <option value="no-opt">Selecciona una opción</option>
         {options.map((opt) => {
