@@ -1,8 +1,7 @@
-import React from "react";
-import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
+import React, { useState } from "react";
 import "../../public/css/components/inputs/baseSelect/BaseSelect.scss";
+import type { BaseSelect as BaseSelectType } from "../../shared/shareddtypes";
 import { generateUUID } from "../../utils/stringUtils";
-
 
 function BaseSelect({
   id,
@@ -11,27 +10,29 @@ function BaseSelect({
   options,
   showContent,
   handleChange,
-  styles
+  styles,
 }: BaseSelectType) {
-
+  const [selectedOption, setSelectedOption] = useState<string>("no-opt");
   const selectId = id || generateUUID();
 
   return (
     <div className="base-select-container">
       <label htmlFor={selectId}>{label}</label>
       <select
-        //onChange={handleChange}
-        onChange={handleChange}
+        onChange={(e) => {
+          setSelectedOption(e.target.value);
+          handleChange(e);
+        }}
         name={name}
         id={selectId}
         className="base-select-item"
         style={styles as React.CSSProperties}
-        // defaultValue={"no-opt"}
+        defaultValue={selectedOption}
       >
         <option value="no-opt">Selecciona una opción</option>
         {options.map((opt) => {
           return (
-            <option key={opt.value + generateUUID()} value={opt.value}>
+           <option key={opt.value + generateUUID()} value={opt.value}>
               {showContent ? opt.content : opt.value}
             </option>
           );

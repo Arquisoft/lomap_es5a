@@ -28,17 +28,4 @@ describe("MapWithDragableMarker component", () => {
     const infoIcon = screen.getByTestId("info-outlined");
     expect(infoIcon).toBeInTheDocument();
   });
-
-  test("recenter map when marker is dragged", () => {
-    const position = {
-      lat: 41.3851,
-      lng: 2.1734,
-    };
-
-    render(<MapWithDragableMarker position={position} />);
-
-    const mapElement = document.querySelector(
-      ".map-with-dragable-marker-container"
-    );
-  });
 });

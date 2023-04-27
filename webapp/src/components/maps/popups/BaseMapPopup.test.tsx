@@ -90,24 +90,24 @@ describe("Base map popup component", () => {
     render(
       <Router>
         <BaseMapPopup
-          name="a"
+          name="b"
           location={{
             coords: {
               lat: 0,
               lng: 0,
             },
-            address: "a",
-            postalCode: 1000,
-            city: "a",
-            country: "a",
+            address: "b",
+            postalCode: 2000,
+            city: "b",
+            country: "b",
           }}
-          image={"a"}
+          image={"b"}
           owner={{
-            webId: "a",
-            name: "a",
-            imageUrl: "a",
+            webId: "b",
+            name: "b",
+            imageUrl: "b",
           }}
-          category={Category.NONE}
+          category={Category.BAR}
           point={undefined}
         />
       </Router>
@@ -128,24 +128,24 @@ describe("Base map popup component", () => {
     render(
       <Router>
         <BaseMapPopup
-          name="a"
+          name="c"
           location={{
             coords: {
               lat: 0,
               lng: 0,
             },
-            address: "a",
-            postalCode: 1000,
-            city: "a",
-            country: "a",
+            address: "c",
+            postalCode: 3000,
+            city: "c",
+            country: "c",
           }}
-          image={"a"}
+          image={"c"}
           owner={{
-            webId: "a",
-            name: "a",
-            imageUrl: "a",
+            webId: "c",
+            name: "c",
+            imageUrl: "c",
           }}
-          category={Category.NONE}
+          category={Category.PARK}
           point={undefined}
         />
       </Router>
@@ -175,16 +175,16 @@ describe("Base map popup component", () => {
               lat: 0,
               lng: 0,
             },
-            address: "c",
-            postalCode: 2000,
-            city: "c",
-            country: "c",
+            address: "d",
+            postalCode: 4000,
+            city: "d",
+            country: "d",
           }}
-          image={"c"}
+          image={"d"}
           owner={{
-            webId: "c",
-            name: "c",
-            imageUrl: "c",
+            webId: "d",
+            name: "d",
+            imageUrl: "d",
           }}
           category={Category.NONE}
           point={undefined}
@@ -210,24 +210,24 @@ describe("Base map popup component", () => {
     render(
       <Router>
         <BaseMapPopup
-          name="d"
+          name="e"
           location={{
             coords: {
               lat: 0,
               lng: 0,
             },
-            address: "d",
-            postalCode: 2000,
-            city: "d",
-            country: "d",
+            address: "e",
+            postalCode: 3345,
+            city: "e",
+            country: "e",
           }}
-          image={"d"}
+          image={"e"}
           owner={{
-            webId: "d",
-            name: "d",
-            imageUrl: "d",
+            webId: "e",
+            name: "e",
+            imageUrl: "e",
           }}
-          category={Category.BAR}
+          category={Category.CINEMA}
           point={undefined}
         />
       </Router>

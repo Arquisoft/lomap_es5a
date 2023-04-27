@@ -23,6 +23,8 @@ function FriendsCard({
     verificaAmigo
 } :Props){
 
+    console.log(amigos);
+
     const { session } = useSession();
     const {setFriends, friends} = useUserStore();
 
@@ -58,6 +60,7 @@ function FriendsCard({
                                         key={friend.webId}
                                         name={friend.name}
                                         imgUrl={friend.imgUrl} 
+                                        vista="vista-add-point"
                                     />
                                     <label htmlFor="checkbox"/>
                                     <input

@@ -1,9 +1,9 @@
-import TopAccountAside from "./accountAside/TopAccountAside"
-import BottomAccountAside from "./accountAside/BottomAccountAside"
-import "../../public/css/components/asides/AccountAside.css"
+import "../../public/css/components/asides/AccountAside.css";
+import TopAccountAside from "./accountAside/TopAccountAside";
 
 
 import { ComponentClassName } from "../../shared/shareddtypes";
+import BottomAccountAside from "./accountAside/BottomAccountAside";
 
 
 function AccountAside({_className}: ComponentClassName){
@@ -13,6 +13,7 @@ function AccountAside({_className}: ComponentClassName){
 
             <div className="account-aside-top" role="top">
                 <TopAccountAside />
+                <BottomAccountAside/>
             </div>
         </div>
     )
