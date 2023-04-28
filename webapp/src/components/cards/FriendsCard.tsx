@@ -50,19 +50,19 @@ function FriendsCard({
 
     return(
             <div className="friends-container">
-                <label htmlFor={generateUUID()}>{"Compartido con"}</label>
-                <div className="friend-list">
+                <label data-testid="label-test"  htmlFor={generateUUID()}>{"Compartido con"}</label>
+                <div role="friend-list" className="friend-list">
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
-                                    <div className="friend-list-comp" key={generateUUID()}>
+                                    <div role="friend-list-item" className="friend-list-comp" key={generateUUID()}>
                                     <FriendAvatar 
                                         key={friend.webId}
                                         name={friend.name}
                                         imgUrl={friend.imgUrl} 
                                         vista="vista-add-point"
                                     />
-                                    <label htmlFor="checkbox"/>
+                                    <label role="checkbox-label" htmlFor="checkbox"/>
                                     <input
                                     type="checkbox"
                                     onChange={ e => {handleCheckbox(e.target.checked, friend)}}
