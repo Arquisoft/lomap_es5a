@@ -84,7 +84,7 @@ defineFeature(feature, test => {
       // seleccionamos el botón del login
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(4000)
+      await wait(5000)
    });
 
     then('The page of the map is shown in the screen', async () => {
