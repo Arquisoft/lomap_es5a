@@ -6,7 +6,8 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "CommonJS",
+    "module" : "ES2020",
+    "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,12 +23,7 @@
   },
   "include": [
     "src",
-    "e2e"
-  ],
-  "exclude": [
-    "**/node_modules",
-    "build",
-    "**/__mocks__/**",
-    "**/__snapshots__/**"
-  ],
+    "e2e",
+    "webapp"
+  ]
 }
