@@ -27,7 +27,7 @@ jobs:
       with:
         node-version: 18
     - run: npm --prefix webapp ci --legacy-peer-deps
-    - run: CI=false && npm --prefix webapp run build
+    - run: npm --prefix webapp run start
     - run: npm --prefix webapp run test:e2e
     - run: npm --prefix webapp test --coverage --watchAll
     - name: Analyze with SonarCloud
