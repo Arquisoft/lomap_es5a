@@ -80,7 +80,7 @@
     "test:run": "react-scripts test --coverage",
     "test:e2e": "start-server-and-test prod 3000 \"cd e2e && jest --runInBand --coverage \" ",
     "eject": "react-scripts eject",
-    "prod": "tsc-node server.ts"
+    "prod": "ts-node --esm server.ts"
   },
   "browserslist": {
     "production": [

@@ -24,7 +24,6 @@ defineFeature(feature, test => {
 
   // eslint-disable-next-line jest/no-done-callback
   test('The user is not logged and introduces wrong data', ({given,when,then}) => {
-
     let username:string;
     let password:string;
 
@@ -37,7 +36,7 @@ defineFeature(feature, test => {
       // hacemos click en el botón de Log In
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(4000)
+      await wait(5000)
 
       // en la página de solid: introducimos los datos en el formulario y seleccionamos el botón de login de inrupt para que nos redirija a la web
 
@@ -84,7 +83,7 @@ defineFeature(feature, test => {
       // seleccionamos el botón del login
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(7000)
+      await wait(9000)
    });
 
     then('The page of the map is shown in the screen', async () => {
