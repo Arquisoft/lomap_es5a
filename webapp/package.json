@@ -3,6 +3,34 @@
   "author": "Lomap_es5a",
   "description": "Web application of Lomap_es5a",
   "version": "2.1.0",
+  "type": "module",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
+    "plugins": [
+      {
+        "transform": "ts-node-esm",
+        "exclude": [
+          "*.test.ts",
+          "*.spec.ts"
+        ]
+      }
+    ]
+  },
+  "module": "commonjs",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -20,9 +48,11 @@
     "date-fns": "^2.29.3",
     "dompurify": "^3.0.1",
     "dotenv": "^16.0.3",
+    "esm": "^3.2.25",
     "express": "^4.18.2",
     "firebase": "^9.19.1",
     "leaflet": "^1.9.3",
+    "node-fetch": "^2.6.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
@@ -41,15 +71,16 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react scripts build",
+    "build": "react-scripts build",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test:alt": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --coverage --watchAll",
     "test": "react-scripts test --color --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --useStderr --coverage",
     "test:jest": "jest --coverage",
     "test:run": "react-scripts test --coverage",
+    "test:e2e": "start-server-and-test prod 3000 \"cd e2e && jest --runInBand --coverage \" ",
     "eject": "react-scripts eject",
-    "prod": "ts-node-dev ./server.ts"
+    "prod": "ts-node --esm server.ts"
   },
   "browserslist": {
     "production": [
@@ -68,6 +99,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "@babel/preset-env": "^7.21.4",
@@ -103,7 +135,9 @@
     "start-server-and-test": "^1.14.0",
     "ts-jest": "^29.0.4",
     "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
+    "ts-node-esm": "^0.0.6",
     "typescript": "^5.0.4"
   }
 }
