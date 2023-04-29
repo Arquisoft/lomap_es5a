@@ -38,9 +38,10 @@ function BaseNav() {
               </li>
             ))}
 
-          <li>
+          <li>            
             {session.info.isLoggedIn ? (
               <BaseAvatar
+                data-test-id = "base-avatar"
                 img={imageUrl}
                 imgAlt={name}
                 onClick={(e) => handleShowAccountNavMenu(e)}
