@@ -25,17 +25,15 @@ function FriendAvatar({ name, imgUrl, webId ,vista}: Props) {
     
 
     if(webId && session.info.webId){
-      console.log("Entramos");
-      await deleteFriend(session.info.webId, webId);      
-      setExist(false);
-      console.log(exists);
+      
+      await deleteFriend(session.info.webId, webId);              
+      setExist(false);      
       navigate(ACCOUNT_PATH);
     }
     
   };
 
-  if(!exists){
-    console.log("Problemas aqui");
+  if(!exists){    
     return null;
   }
   return (
