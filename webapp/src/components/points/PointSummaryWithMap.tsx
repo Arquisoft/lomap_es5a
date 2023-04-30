@@ -48,9 +48,9 @@ function PointSummaryWithMap({
 
 
   return (
-    <div className="point-summary-with-map-container">
+    <div className="point-summary-with-map-container" role="point-summary">
       {hasMap && (
-        <div className="point-summary-with-map__map">
+        <div className="point-summary-with-map__map" role="point-summary-with-map">
           <MiniMap
             position={[lat, lng]}
             styles={{
@@ -60,14 +60,15 @@ function PointSummaryWithMap({
           />
         </div>
       )}
-      <div className="point-summary-with-map__body">
-        <div className="point-summary-with-map-body__details">
+      <div className="point-summary-with-map__body" role="point-summary-body">
+        <div className="point-summary-with-map-body__details" role="point-summary-details">
           <p>{name}</p>
           <span>{address}</span>
         </div>
       </div>
-      <div className="point-summary-with-map__buttons">
+      <div className="point-summary-with-map__buttons" role="point-summary-buttons">
         <BaseButton
+          data-testid="button"
           type="button-blue-rounded"
           text="Ver punto"
           onClick={(e) => handleRedirectToPointDetail(e)}
