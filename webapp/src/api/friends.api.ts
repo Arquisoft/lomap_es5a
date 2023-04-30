@@ -41,33 +41,59 @@ const deleteFriend = async (webId: string, friendWebId: string) => {
   }
 };
 
+const checkExistsUser = async (friendUsername:string) => {
+  const friendProfileUrl:string = friendUsername + "/profile/card";
+  try{
+    await getSolidDataset(friendProfileUrl, {fetch:fetch});
+    return true;
+  } catch (error){
+    return false;
+  }
+  
+
+}
+
 /**
  * Añade un amigo en caso de no existir ya.
  * @param webId webId del usuario en sesión que quiere añadir un amigo
  * @param friendUsername username del amigo que se quiere añadir (formato: '<username>.<provider>')
  */
 const addFriend = async (webId: string, friendUsername: string) => {
-  // Validar uqe las url llegan bien (pendiente de hacer)
-  // Añadir un try/catch para propagar el error en caso de producirse alguno
-  const userInSesionProfileUrl: string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
-
-  let userDataset = await getSolidDataset(userInSesionProfileUrl, {
-    fetch: fetch,
-  });
-  const userInSesionProfile = getThing(userDataset, webId) as Thing;
-  if (checkIfExistsFriend(userInSesionProfile, friendUsername)) {
-    console.log("Ya sois amigoss!!!");
-  } else {
-    const newFriend = addUrl(
-      userInSesionProfile,
-      FOAF.knows,
-      constructWebIdFromUsername(friendUsername)
+  // Validar que existe el usuario a agregar
+  if (!await checkExistsUser(friendUsername)) {
+    throw new Error(
+      `No existe el usuario = ${friendUsername}`
     );
-    userDataset = setThing(userDataset, newFriend);
-    await saveSolidDatasetAt(userInSesionProfileUrl, userDataset, {
+  }
+
+  // Añadir un try/catch para propagar el error en caso de producirse alguno
+
+  try {
+    const userInSesionProfileUrl: string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
+
+    let userDataset = await getSolidDataset(userInSesionProfileUrl, {
       fetch: fetch,
     });
+    const userInSesionProfile = getThing(userDataset, webId) as Thing;
+    if (checkIfExistsFriend(userInSesionProfile, friendUsername)) {
+      console.log("Ya sois amigoss!!!");
+    } else {
+      const newFriend = addUrl(
+        userInSesionProfile,
+        FOAF.knows,
+        constructWebIdFromUsername(friendUsername)
+      );
+      userDataset = setThing(userDataset, newFriend);
+      await saveSolidDatasetAt(userInSesionProfileUrl, userDataset, {
+        fetch: fetch,
+      });
+    }
+  } catch (error) {
+    throw new Error(
+      `Error al añadir al amigo, (${error})`
+    );
   }
+
 };
 
 const checkIfExistsFriend = (
