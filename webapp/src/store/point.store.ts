@@ -22,6 +22,7 @@ interface PointDetailsStore {
   setPointToShow: (point: Point) => void;
   resetPointInfo: () => void;
   getPointDetails: () => Point;
+  resetPointImage: () => void;
 }
 
 const pointInitilization: Point = {
@@ -179,6 +180,8 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 
   resetPointInfo: () => set({ info: pointInitilization }),
+
+  resetPointImage: () => set({ imageToUpload: undefined }),
 
   getPointDetails: () => get().pointToShow,
 }));

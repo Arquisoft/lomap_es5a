@@ -36,8 +36,8 @@ function CreatePointForm() {
     setIsFinished,
     resetPointInfo,
     imageToUpload,
+    resetPointImage,
   } = usePointDetailsStore();
-
 
   const [errors, setErrors] = useState([] as string[]);
   const [requiredFormData, setRequiredFormData] = useState({
@@ -59,9 +59,10 @@ function CreatePointForm() {
     } catch (err) {
       setErrors([...errors, (err as Error).message]);
       hasNoErrors = false;
-      setTimeout(()=>{
+      setTimeout(() => {
         setIsUploading(false);
-      },5000);
+        setErrors([]);
+      }, 5000);
     }
 
     return hasNoErrors;
@@ -74,9 +75,11 @@ function CreatePointForm() {
 
   const handleAddPoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
- 
+
     if (!validateForm()) {
       console.log("Formulario inválido", info);
+      resetPointInfo();
+
       return;
     }
 
@@ -90,7 +93,7 @@ function CreatePointForm() {
     info.owner.name = name;
     info.owner.imageUrl = imageUrl;
     //Se añade la webId del creado
-    if(session.info.webId){
+    if (session.info.webId) {
       info.owner.webId = session.info.webId;
     }
     //Digo que la persona que lo esta creado en es el Owner
@@ -103,32 +106,40 @@ function CreatePointForm() {
         alt: "",
       };
     }
-    //Añado el punto mi POD
-    await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
-      setIsUploading(false);
-      setIsFinished(isSuccess);
-      console.log(
-        "%c 📍 Punto creado correctamente! ",
-        "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
-      );
-      navigate(HOME_PATH);
-      setErrors([]);
-      resetPointInfo();
-    }).catch((err) => {
-      if (err) {
-        setIsUploading(false);
-        setIsFinished(false);
-        setErrors([
-          ...errors,
-          "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde",
-        ]);
-      }
-    });
-    
-    amigos.forEach(async amigo => {    
-      await sharePointWithFriend(info,session,amigo);
-    });
 
+    //Añado el punto mi POD
+    try {
+      await addPoint(info, session, imageToUpload, (isSuccess: boolean) => {
+        setIsUploading(false);
+        setIsFinished(isSuccess);
+        console.log(
+          "%c 📍 Punto creado correctamente! ",
+          "background: #222; color: #bada55; font-size: 20px; width: 100%; text-align: left;"
+        );
+        navigate(HOME_PATH);
+        setErrors([]);
+        resetPointInfo();
+      });
+
+      amigos.forEach(async (amigo) => {
+        await sharePointWithFriend(info, session, amigo);
+      });
+    } catch (error) {
+      resetPointInfo();
+      resetPointImage();
+      setIsUploading(false);
+      setIsFinished(false);
+
+      setErrors([
+        ...errors,
+        (error as Error).message ||
+          "Se produjo un error al crear el punto. Por favor, inténtelo de nuevo más tarde",
+      ]);
+
+      setTimeout(() => {
+        setErrors([]);
+      }, 5000);
+    }
   };
 
   useEffect(() => {
@@ -138,24 +149,22 @@ function CreatePointForm() {
     });
   }, []);
 
-
-    //contiene la lista de amigos seleccionados por el usuario
-    const [amigos,setAmigos] = useState<Friend[]>([]);
-    //Funciones para añadir o eliminar y comprobar la lista de amigos
-    const añadirAmigo = (amigo:Friend) => {
-        if(!verificaAmigo(amigo)){
-          setAmigos([...amigos,amigo]);
-        }
-        console.log("añadiendo" +amigos);
-    };
-    const eliminarAmigo = (amigoAEliminar:Friend) => {
-        setAmigos(amigos.filter(amigo => amigo.webId !== amigoAEliminar.webId));
-        console.log("eliminando" + amigos);
-    };
-    const verificaAmigo = (amigoVerificar:Friend) => {
-        return amigos.some(amigo => amigo.webId === amigoVerificar.webId);
-    };
-
+  //contiene la lista de amigos seleccionados por el usuario
+  const [amigos, setAmigos] = useState<Friend[]>([]);
+  //Funciones para añadir o eliminar y comprobar la lista de amigos
+  const añadirAmigo = (amigo: Friend) => {
+    if (!verificaAmigo(amigo)) {
+      setAmigos([...amigos, amigo]);
+    }
+    console.log("añadiendo" + amigos);
+  };
+  const eliminarAmigo = (amigoAEliminar: Friend) => {
+    setAmigos(amigos.filter((amigo) => amigo.webId !== amigoAEliminar.webId));
+    console.log("eliminando" + amigos);
+  };
+  const verificaAmigo = (amigoVerificar: Friend) => {
+    return amigos.some((amigo) => amigo.webId === amigoVerificar.webId);
+  };
 
   return (
     <div className="create-form-main">
@@ -174,14 +183,7 @@ function CreatePointForm() {
             showClearButton={true}
             value={info.name}
             onChange={(e) => {
-              try {
-                checkIsNotEmpty(e.target.value, "Nombre del punto");
-                setCurrentPointProperty("name", e.target.value);
-                handleRequiredDataChange(e);
-              } catch (error) {
-                setCurrentPointProperty("name", "");
-                setErrors([...errors, (error as Error).message]);
-              }
+              setCurrentPointProperty("name", e.target.value);
             }}
             placeholder="Sidreria Tierra Astur"
             styles={{
@@ -218,29 +220,21 @@ function CreatePointForm() {
               height: "62px",
             }}
             handleChange={(e) => {
-              try {
-                if (e.target.value === "not-opt") {
-                  throw new Error("Debes seleccionar una categoría");
-                }
-                setRequiredFormData({
-                  ...requiredFormData,
-                  category: e.currentTarget.value,
-                });
-                checkAnyOptionIsSelected(e.target.value, "categoría del punto");
-                setCurrentPointProperty("category", e.target.value);
-              } catch (error) {
-                setErrors([...errors, (error as Error).message]);
-              }
+              setRequiredFormData({
+                ...requiredFormData,
+                category: e.currentTarget.value,
+              });
+
+              setCurrentPointProperty("category", e.target.value);
             }}
           />
 
-          
-          <FriendsCard 
+          <FriendsCard
             amigos={amigos}
             añadirAmigo={añadirAmigo}
             eliminarAmigo={eliminarAmigo}
             verificaAmigo={verificaAmigo}
-            />
+          />
 
           <BaseTextArea
             label="Descripción"

@@ -13,12 +13,13 @@ import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilte
 import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
 import { Point } from "../../shared/shareddtypes";
-import { useAllPointsStore } from "../../store/point.store";
+import { useAllPointsStore, usePointDetailsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
 
 function HomePage() {
   const { setAllPoints, points, isFiltering, filteredPoints, showFilterPopup } =
     useAllPointsStore();
+    const {resetPointImage, resetPointInfo} = usePointDetailsStore();
   const { setName, setImageUrl, setFriends } = useUserStore();
   const { session } = useSession();
 
@@ -48,6 +49,10 @@ function HomePage() {
   useEffect(() => {
     loadUserInfo();
     loadAllPoints();
+
+    // Restablecemos el estado de la imagen y el punto
+    resetPointImage();
+    resetPointInfo();
   }, []);
 
   return (
