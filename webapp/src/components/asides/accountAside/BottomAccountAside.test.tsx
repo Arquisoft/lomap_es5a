@@ -1,7 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import BottomAccountAside from './BottomAccountAside';
 import { BrowserRouter as Router } from "react-router-dom";
-import BaseTextInput from '../../inputs/BaseTextInput';
 describe('Comprobamos el componente de BottomAccountAside', () => {
     afterAll(cleanup);
 

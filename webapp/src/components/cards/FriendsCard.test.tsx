@@ -1,7 +1,6 @@
 import FriendsCard from "./FriendsCard";
 
 import {getByText, render} from "@testing-library/react"
-import getFriends from "./friends_mock";
 
 
 
