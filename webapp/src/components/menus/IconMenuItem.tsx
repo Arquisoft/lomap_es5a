@@ -1,7 +1,7 @@
 import Icon from "@mui/material/Icon";
 import "../../public/css/components/menus/menuItems/IconMenuItem.scss";
 import { useSession } from "@inrupt/solid-ui-react";
-import { LOGIN_PATH } from "../../routes";
+import { HOME_PATH } from "../../routes";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -23,9 +23,10 @@ function IconMenuItem({ name, iconName, url }: Props) {
       e.preventDefault();
       sessionStorage.clear();
       await session.logout().then(() => {
-        window.location.href = LOGIN_PATH;
+        window.location.href = HOME_PATH;
       });
     }
+    
     navigate(url ?? "#");
   };
 

@@ -22,10 +22,12 @@ function HomePage() {
   const { setName, setImageUrl, setFriends } = useUserStore();
   const { session } = useSession();
 
+
   const loadAllPoints = async () => {
     const data: Point[] = await findAllUserPoints(session.info.webId as string);
-    setAllPoints(data);
-    //const friendsPoints: Point[] = await findAllSharedPointsByFriends(session)
+    
+    const friendsPoints: Point[] = await findAllSharedPointsByFriends(session)
+    setAllPoints([...data,...friendsPoints]);
   };
 
   const sharePoint = async () => {
@@ -48,11 +50,7 @@ function HomePage() {
       setAllPoints([...points, ...sharedPoints]);
   };
 
-  const loadUserFriends = async () => {
-    if (session.info.isLoggedIn) {
-      const friends = await getAllFriends(session.info.webId as string);
-    }
-  };
+
 
   const loadUserInfo = async () => {
     const userInfo: any = await getUserProfileInfo(
@@ -63,16 +61,17 @@ function HomePage() {
       return;
     }
 
+    const friends = await getAllFriends(session.info.webId as string);      
     setName(userInfo?.name ?? session.info.webId?.split("/")[2]);
     setImageUrl(userInfo.imageUrl ?? "");
-    setFriends(userInfo.friends ?? []);
+    setFriends(friends);
   };
 
   useEffect(() => {
 
     //sharePoint();
     // sharePoint();
-    loadUserFriends();
+
     loadUserInfo();
     loadAllPoints();
   }, []);

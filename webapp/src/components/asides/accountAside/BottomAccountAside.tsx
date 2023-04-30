@@ -29,7 +29,7 @@ function BottomAccountAside(){
     };
 
     return(
-        <div className="friends-container-aside">
+        <div className="friends-container-aside" role="friends-aside">
             <div className="top-acc-aside-title">Amigos</div>
             <BaseTextInput
                 label={""} 

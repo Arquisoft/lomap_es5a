@@ -12,7 +12,6 @@ interface UserStore {
     setFriends: (friends: Friend[]) => void;
 }
 
-
 const useUserStore = create<UserStore>((set) => ({
     webId: "",
     name: "",
