@@ -12,7 +12,7 @@ function BaseSelect({
   handleChange,
   styles,
 }: BaseSelectType) {
-  const [selectedOption, setSelectedOption] = useState<string>("no-opt");
+  const [selectedOption, setSelectedOption] = useState("no-opt");
   const selectId = id || generateUUID();
 
   return (
@@ -20,19 +20,19 @@ function BaseSelect({
       <label htmlFor={selectId}>{label}</label>
       <select
         onChange={(e) => {
-          setSelectedOption(e.target.value);
+          setSelectedOption(e.currentTarget.value);
           handleChange(e);
         }}
         name={name}
         id={selectId}
+        value={selectedOption}
         className="base-select-item"
         style={styles as React.CSSProperties}
-        defaultValue={selectedOption}
       >
-        <option value="no-opt">Selecciona una opción</option>
+        <option value="no-opt" defaultValue={"no-opt"}>Selecciona una opción</option>
         {options.map((opt) => {
           return (
-           <option key={opt.value + generateUUID()} value={opt.value}>
+            <option key={opt.value + generateUUID()} value={opt.value}>
               {showContent ? opt.content : opt.value}
             </option>
           );

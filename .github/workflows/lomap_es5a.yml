@@ -16,7 +16,7 @@ on:
         description: 'Test scenario tags' 
 
 jobs:
-  unit-tests:
+  unit-e2e-tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -28,8 +28,10 @@ jobs:
         node-version: 18
     - run: npm --prefix webapp ci --legacy-peer-deps
     - run: npm --prefix webapp test --coverage --watchAll
+    - run: CI=false && npm --prefix webapp run build
+    - run: npm --prefix webapp run test:e2e --coverage --watchAll
     - name: Analyze with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
+      uses: sonarsource/sonarcloud-github-action@v1.8
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
