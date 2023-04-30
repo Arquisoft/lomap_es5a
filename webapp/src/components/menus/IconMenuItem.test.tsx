@@ -1,30 +1,20 @@
-import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
+
 import IconMenuItem from "./IconMenuItem";
-import { cleanup, fireEvent, render, screen} from "@testing-library/react";
-import { LOGIN_PATH } from "../../routes";
-import { shallow } from "enzyme";
-import { BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { fireEvent, render, screen} from "@testing-library/react";
+
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 
 // 1- Mocking the hook using jest.fn
 const mockedUsedNavigate = jest.fn();
 
-// const mockedUsedSession = {
-//   logout: jest.fn()
-// }
 
-
-// jest.mock("@inrupt/solid-ui-react", () => ({
-//   // 3- Import non-mocked library and use other functionalities and hooks
-//   ...(jest.requireActual("@inrupt/solid-ui-react") as any),
-//   useSession: () => mockedUsedSession
-// }));
 
 // 2- Mock the library
 jest.mock("react-router-dom", () => ({
   // 3- Import non-mocked library and use other functionalities and hooks
-  ...(jest.requireActual("react-router-dom") as any),
+  ...(jest.requireActual("react-router-dom") ),
   // 4- Mock the required hook
   useNavigate: () => mockedUsedNavigate
 }));
@@ -41,9 +31,7 @@ describe("Testing para el componente IconMenuItem", () => {
       </Router>
     );
 
-    //fireEvent.click(screen.getByText("Example"));
-
-    //expect(mockUseNavigate).toHaveBeenCalledWith(url);
+    
     expect(screen.getByRole('listitem')).toBeInTheDocument();
 
   });
@@ -88,20 +76,10 @@ describe("Testing para el componente IconMenuItem", () => {
     expect(sessionStorage.getItem("testing")).toBeNull();
     // Comprobamos que se invoca el logout
 
-    //expect(mockedUsedSession.logout).toHaveBeenCalled();
+    
 
   });
 
 
-    
-    //   it("should clear sessionStorage and call session.logout when 'Cerrar sesión' is clicked", async () => {
-    //     const clearSpy = jest.spyOn(window.sessionStorage, "clear");
-    //     render(<IconMenuItem name="Cerrar sesión" iconName="logout" />);
-    
-    //     fireEvent.click(screen.getByText("Cerrar sesión"));
-    
-    //     expect(clearSpy).toHaveBeenCalled();
-    //     expect(mockedSession.logout).toHaveBeenCalled();
-    //     expect(window.location.href).toEqual(LOGIN_PATH);
-    //   });
+  
 });

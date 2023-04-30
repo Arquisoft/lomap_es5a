@@ -1,13 +1,3 @@
-import { useSession } from "@inrupt/solid-ui-react";
-
-import red from "@mui/material/colors/red";
-
-import { useEffect, useState } from "react";
-
-import { isPointSaved } from "../../../api/save.point.api";
-
-import { FavoriteIcon } from "../../../helpers/IconContants";
-
 import "../../../public/css/components/points/details/SingleDetails.css";
 
 import { Point } from "../../../shared/shareddtypes";
@@ -23,10 +13,6 @@ type Props = {
 };
 
 function SingleDetail({ pointToShow }: Props) {
-
-
-  const { session } = useSession();
-
   
   return (
     <div className="single-details-containter" role="container">

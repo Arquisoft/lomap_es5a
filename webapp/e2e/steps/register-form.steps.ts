@@ -36,7 +36,7 @@ defineFeature(feature, test => {
       // hacemos click en el botón de Log In
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(5000)
+      await wait(10000)
 
       // en la página de solid: introducimos los datos en el formulario y seleccionamos el botón de login de inrupt para que nos redirija a la web
 
@@ -45,12 +45,12 @@ defineFeature(feature, test => {
         password: password,
       })
 
-      await wait(1000)
+      await wait(1500)
 
       // seleccionamos el botón del login
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(3000)
+      await wait(7000)
     });
 
     then('An error message is shown in the screen', async () => {
@@ -83,7 +83,7 @@ defineFeature(feature, test => {
       // seleccionamos el botón del login
       await expect(page).toClick('button', { text: 'Log In' })
 
-      await wait(9000)
+      await wait(15000)
    });
 
     then('The page of the map is shown in the screen', async () => {

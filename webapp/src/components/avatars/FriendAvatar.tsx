@@ -22,27 +22,28 @@ function FriendAvatar({ name, imgUrl, webId ,vista}: Props) {
   const handleDeleteFriend = async ( e: React.MouseEvent<HTMLElement> ) => {
     e.preventDefault();
 
-    console.log(webId,session.info.webId)
+    
 
     if(webId && session.info.webId){
-      await deleteFriend(session.info.webId, webId);
-      setExist(false);
+      
+      await deleteFriend(session.info.webId, webId);              
+      setExist(false);      
       navigate(ACCOUNT_PATH);
     }
     
   };
 
-  if(!exists){
+  if(!exists){    
     return null;
   }
   return (
     <div className="friend-component-aside">
-    <div className="friend-comp">
-      <img src={imgUrl} />
-      <p>{name}</p>
+    <div role="friend-comp" className="friend-comp">
+      <img role="friend-imagen" src={imgUrl} />
+      <p role="friend-name">{name}</p>
       {
       vista !== "vista-add-point" ? 
-        <IconButton type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeleteFriend} /> 
+        <IconButton  type="button-red-form" text="Eliminar" muaIconName="delete" handleClick={handleDeleteFriend} /> 
         : <div/>
       }
     </div>
