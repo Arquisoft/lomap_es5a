@@ -21,8 +21,8 @@ function PointCategoryFilterPopup() {
     filterPointsBySelectedFilters,
   } = useAllPointsStore();
 
-  const { friends,imageUrl,name,webId } = useUserStore();
-  
+  const { friends } = useUserStore();
+
   /**
    * Número de resultados a mostrar en el botón de "Aplicar filtros"
    * @returns
@@ -66,7 +66,7 @@ function PointCategoryFilterPopup() {
   const handleSelectFriendCheckBox = (isChecked: boolean, friend: Friend) => {
     isChecked ? addFilter(friend) : removeFilter(friend);
   };
-  console.log(friends,imageUrl,name,webId);
+
   return (
     <div className="point-category-filter-popup-container" role="alertdialog">
       <CloseIcon

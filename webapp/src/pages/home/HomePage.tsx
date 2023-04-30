@@ -30,28 +30,6 @@ function HomePage() {
     setAllPoints([...data,...friendsPoints]);
   };
 
-  const sharePoint = async () => {
-    const friend: Friend = await getAllFriends(
-      session.info.webId as string
-    ).then((friends) => {
-      return friends[0];
-    });
-
-    const sharedPoints: Point[] = await findAllSharedPointsByFriends(session)
-      .then((points) => {
-        return points;
-      })
-      .catch(() => {
-        return [];
-      });
-
-      console.log("amigos: ", sharedPoints);
-
-      setAllPoints([...points, ...sharedPoints]);
-  };
-
-
-
   const loadUserInfo = async () => {
     const userInfo: any = await getUserProfileInfo(
       session.info.webId as string
@@ -68,10 +46,6 @@ function HomePage() {
   };
 
   useEffect(() => {
-
-    //sharePoint();
-    // sharePoint();
-
     loadUserInfo();
     loadAllPoints();
   }, []);
