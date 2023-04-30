@@ -16,7 +16,7 @@ function LoginForm() {
   };
 
   const handleSelectProvider = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
+    e.preventDefault();
     setProviderUrl(e.target.value);
   };
 
@@ -26,7 +26,6 @@ function LoginForm() {
         label="Proveedor de POD"
         id="provider"
         name="provider"
-        category=""
         showContent={true}
         options={SOLID_PROVIDERS}
         handleChange={handleSelectProvider}
