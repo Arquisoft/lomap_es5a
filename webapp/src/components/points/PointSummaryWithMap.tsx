@@ -7,9 +7,6 @@ import { canonizeUrl } from "../../utils/stringUtils";
 import BaseButton from "../buttons/BaseButton";
 import IconButton from "../buttons/IconButton";
 import MiniMap from "../maps/MiniMap";
-import { HOME_PATH } from "../../routes";
-import { unsavePoint } from "../../api/save.point.api";
-import { useSession } from "@inrupt/solid-ui-react";
 
 /**
  * name: Nombre del punto de interes.
@@ -38,7 +35,6 @@ function PointSummaryWithMap({
 }: Props) {
   const navigate = useNavigate();
   const {setPointToShow} = usePointDetailsStore();
-  const {session} = useSession();
   const handleRedirectToPointDetail = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
