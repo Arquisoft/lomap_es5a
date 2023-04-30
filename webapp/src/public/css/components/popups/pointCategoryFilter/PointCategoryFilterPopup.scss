@@ -4,6 +4,7 @@
 
 .point-category-filter-popup-container {
     @include mixins.commonPopupStyles();
+    position: fixed;
 
     & > .point-category-filter-popup__close-icon {
         position: absolute;

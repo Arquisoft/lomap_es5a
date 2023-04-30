@@ -12,7 +12,7 @@ import BaseMap from "../../components/maps/BaseMap";
 import PointCategoryFilterPopup from "../../components/popups/PointCategoryFilterPopup";
 import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/home/HomePage.scss";
-import { Friend, Point } from "../../shared/shareddtypes";
+import { Point } from "../../shared/shareddtypes";
 import { useAllPointsStore } from "../../store/point.store";
 import { useUserStore } from "../../store/user.store";
 
