@@ -2,11 +2,7 @@ import "../../public/css/components/profiles/ProfileInfoWithFollowButton.scss";
 import { ProfileInfoWithFollowButtonProps } from "../../shared/shareddtypes";
 import NoImageSkeleton from "../skeletons/NoImageSkeleton";
 
- function ProfileInfoWithFollowButton({name, imageUrl, webId}: ProfileInfoWithFollowButtonProps) {
-  
-  const handleFollow = () => {
-    console.log('Followed', webId);
-  }
+ function ProfileInfoWithFollowButton({name, imageUrl}: ProfileInfoWithFollowButtonProps) {
   
   return (
     <div className='profile-image-with-follow-container'>
@@ -17,7 +13,6 @@ import NoImageSkeleton from "../skeletons/NoImageSkeleton";
         </div>
         <div className='profile-image-with-follow-container__details'>
             <p>{name || "Anónimo"}</p>
-            <button onClick={handleFollow}>Seguir</button>
         </div>
     </div>
   )

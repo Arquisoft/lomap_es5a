@@ -19,6 +19,14 @@
     border-radius: 12px;
 }
 
+.friend-list-aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
 img{
     width: 100px;
     height: 100px;
