@@ -11,7 +11,7 @@ function LoginForm() {
   const [providerUrl, setProviderUrl] = useState(SOLID_PROVIDERS[0].value);
 
   const handleLogin = async (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    e.preventDefault();    
     signIn(session, providerUrl);
   };
 
@@ -22,7 +22,7 @@ function LoginForm() {
 
   return (
     <div className="login-form-container">
-      <BaseSelect
+      <BaseSelect       
         label="Proveedor de POD"
         id="provider"
         name="provider"
@@ -31,7 +31,7 @@ function LoginForm() {
         handleChange={handleSelectProvider}
       />
       <div className="login-form__button-container">
-        <BaseButton
+        <BaseButton          
           type="button-blue-outlined"
           text="Log In"
           onClick={(e) => {
