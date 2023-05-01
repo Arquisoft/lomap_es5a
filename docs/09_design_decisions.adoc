@@ -43,9 +43,9 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 |Se depende del mantenimiento de y licencia de uso de esta libreria.
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components[ADR 07]
 
-|Azure
-|Nos aseguramos tener una base de otras asignaturas y disponemos de credito
-|A veces da bastantes problemas
+|Github pages
+|Es la tecnología utilizada para el control de versiones, y es posible integrarlo de una forma relativamente fácil
+|Solo admite una instancia por repositorio, y actualmente la documentación técnica de la aplicación está desplegada en este servicio
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D[ADR 06]
 
 |Firebase Cloud Storage
@@ -68,6 +68,7 @@ https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR 11]
 |Ofrece mayor rendimiento por la sencillez de su implementación
 |No sigue un patrón, la estructura es libre para el desarrollador
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Gesti%C3%B3n-de-estados-(Front-End)[ADR 17]
+
 |===
 
 
