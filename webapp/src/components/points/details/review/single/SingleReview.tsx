@@ -29,14 +29,14 @@ function SingleReview(review: Props) {
 
         //Comprobamos que el que va a borrar la review, sea el creador
 
-        const pointId = review.pointId;
+        // const pointId = review.pointId;
         const webIdCreator = review.reviewer.webId;
         const reviewId = review.reviewId;
         const webIdOwnerPoint = review.ownerId;
 
         if (webIdCreator == session.info.webId) {
             //La eliminamos
-            await deleteReviewByPoint(pointId, reviewId, webIdCreator, webIdOwnerPoint);
+            await deleteReviewByPoint(reviewId, webIdOwnerPoint);
             //Reddireccion a home
             navigate(HOME_PATH);
         }

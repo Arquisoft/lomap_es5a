@@ -12,7 +12,6 @@ import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint, parseReviews } from "../utils/parsers/pointParser";
 import { updateContent, writeContent } from "./util.api";
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
-import { url } from "inspector";
 
 /**
  * Obtener todos los puntos de interés.
@@ -196,7 +195,7 @@ const addPoint = async (
 
         const existsReviews = await checkFileExists(
           session,
-          "public/reviews.json"
+          "/public/reviews.json"
         );
       
         if (!existsReviews) {
@@ -212,7 +211,7 @@ const addPoint = async (
             }
           );
         }
-        
+
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
         await upImage(image, point);
@@ -353,12 +352,12 @@ const addReviewPoint = async (
 /**
  * Eliminar una valoración de un punto por el id de la review
  *
- * @param idPoint Identificador del punto de interes
+ * @param idReview Identificador de la review
  * @param ownerWebId webId del dueño del punto
  * @returns
  */
 const deleteReviewByPoint = async (
-  idPoint: string,
+  idReview: string,
   ownerWebId: string
 ) => {
   const profileDocumentURI = encodeURI(getPublicReviewsPointsUrl(ownerWebId));
@@ -374,7 +373,7 @@ const deleteReviewByPoint = async (
 
     const totalReviews: Review[] = parseReviews(await originalReviews.json());
     
-    const reviewsOriginal = totalReviews.filter((review) => review.pointId !== idPoint);
+    const reviewsOriginal = totalReviews.filter((review) => review._id !== idReview);
 
     const blob = new Blob([JSON.stringify({ reviews: reviewsOriginal })], {
       type: "application/json",
