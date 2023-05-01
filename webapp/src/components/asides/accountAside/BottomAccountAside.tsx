@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
 import { useUserStore } from "../../../store/user.store";
 import { generateUUID } from "../../../utils/stringUtils";
@@ -24,13 +24,13 @@ function BottomAccountAside(){
     
     useEffect(() => {
         loadAllFriends();
-    }, [friends]);
+    }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-          setError("");
-        }, 4000);
-      }, [error]);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //       setError("");
+    //     }, 4000);
+    //   }, [error]);
 
     const handleAddFriend = async () => {
         try{

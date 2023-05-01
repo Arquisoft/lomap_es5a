@@ -35,7 +35,6 @@ function SinglePointDetailsPage() {
     return;
   };
   
-  console.log(pointToShow);
   return (
 
     
