@@ -7,7 +7,6 @@ import FriendAvatar from "../../avatars/FriendAvatar";
 import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
-import { colors } from "@mui/material";
 
 function BottomAccountAside(){
 
@@ -22,15 +21,20 @@ function BottomAccountAside(){
         setFriends(allfriends);
     };
     
-    useEffect(() => {
-        loadAllFriends();
-    }, []);
+    //useEffect(() => {
+    //    loadAllFriends();
+    //}, [friends]);
+    
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //       setError("");
-    //     }, 4000);
-    //   }, [error]);
+    useEffect(() => {
+         setTimeout(() => {
+           setError("");
+         }, 4000);
+       }, [error]);
+
+      const handleRefreshFriends = async () => {
+        loadAllFriends();
+      }
 
     const handleAddFriend = async () => {
         try{
@@ -46,6 +50,12 @@ function BottomAccountAside(){
     return(
         <div className="friends-container-aside" role="friends-aside">
             <div className="top-acc-aside-title">Amigos</div>
+            <BaseButton
+                data-testid="create-point-button"
+                type="button-blue"
+                text="Recargar amigos"
+                onClick={handleRefreshFriends}
+            />
             <BaseTextInput
                 label={""} 
                 type={"text"} 
