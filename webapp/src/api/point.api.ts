@@ -295,11 +295,14 @@ const deletePoint = async (idPoint: string, webId: string) => {
 const addReviewPoint = async (
   idPoint: string,
   review: Review,
-  webId: string,
+  session : Session,
   ownerWebId: string
 ) => {
+  let userInSessionName = '';
   const profileDocumentURI = encodeURI(getPublicReviewsPointsUrl(ownerWebId));
-  const userInSessionName = getWebIdFromUrl(webId);
+  if(session.info.webId){
+    userInSessionName = getWebIdFromUrl(session.info.webId);
+  }
   review.reviewer.name = userInSessionName.split(".")[0];
   try {
     
