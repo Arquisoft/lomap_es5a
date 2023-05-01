@@ -58,7 +58,7 @@ const sharePointWithFriend = async (
 const giveAllPermsOfReviewsToFriend = async (session:any, friendWebId:string) => {
   
   const resourceUrl = getUserReviewsUrl(session.info.webId);
-  
+  console.log(resourceUrl);
   const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
   
   let resourceAcl;
