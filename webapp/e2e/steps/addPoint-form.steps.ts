@@ -62,7 +62,7 @@ defineFeature (feature, test => {
             //Clicko el boton publicar
             await expect(page).toClick('button', { text: 'Publicar' });
 
-            await wait(3000);
+            await wait(5000);
         });
 
         then('An error message is shown in the screen', async () => {
