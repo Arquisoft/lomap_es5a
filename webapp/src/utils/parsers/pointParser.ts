@@ -162,9 +162,7 @@ const parseJsonToReview = (newReviews: any): Review[] => {
   
   const retNewReviews: Review[] = [];
   const { reviews } = newReviews;
-  console.log(reviews);
   reviews.forEach((review: any) => { 
-    console.log("llega");
     retNewReviews.push(parseUniqueJsonToReview(review));
   });
 

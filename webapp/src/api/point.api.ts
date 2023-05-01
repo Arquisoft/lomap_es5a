@@ -124,9 +124,9 @@ const addPoint = async (
   // Si hay imagen, comprobar que el tipo mime del fichero es una imagen
   if (image) {
     if (!image.type.includes("image") 
-    || image.type.includes("jpg") 
-    || image.type.includes("jpeg")
-    || image.type.includes("png")) {
+    && !image.type.includes("jpg") 
+    && !image.type.includes("jpeg")
+    && !image.type.includes("png")) {
       throw new Error("El fichero subido no es una imagen");
     }
   }
