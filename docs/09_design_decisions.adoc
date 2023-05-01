@@ -58,11 +58,20 @@ Estas son las decisiones que en grupo hemos tomado para nuestra aplicación:
 | Necesidad de instalar muchos pluggins.
 |https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE[ADR 09]
 
-|JEST 
+|Test unitarios 
 |Buena documentación y recursos, paralización de test y facil configuración.
 |No tenemos conocimiento con esta libreria
-|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End[ADR 10]
-https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End[ADR 11]
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Unitarios[ADR 10]
+
+|Cucumber
+|Lenguaje natural, Reutilización de código, Inntegración
+|Puede ser difícil de aprender, requiere conocimientos  de programación y una comprensión de los conceptos de pruebas.
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-e2e[ADR 11]
+
+|Puppeter
+|Control completo del navegador Chrome, fácil de usar, integración con otras herramientas
+|Consumo de recursos del sistema, dependencia de la versión del navegador
+|https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-e2e[ADR 11]
 
 |Zustand
 |Ofrece mayor rendimiento por la sencillez de su implementación
