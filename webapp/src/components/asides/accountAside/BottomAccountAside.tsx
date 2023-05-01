@@ -7,7 +7,7 @@ import FriendAvatar from "../../avatars/FriendAvatar";
 import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
-import { colors } from "@mui/material";
+
 
 function BottomAccountAside(){
 

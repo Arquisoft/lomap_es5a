@@ -2,11 +2,10 @@ import { fireEvent, render } from "@testing-library/react";
 import LoginForm from "./LoginForm";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as helper from "../../helpers/AuthHelper"
-import React from "react";
+
 
 const mockedSignIn = jest.fn();
-const mockedHandleLogin = jest.fn();
-const mockedHandleSelectProvider = jest.fn();
+
 
 
 
