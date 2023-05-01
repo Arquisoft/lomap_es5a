@@ -9,16 +9,16 @@ import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import "../../public/css/pages/points/SinglePointPage.scss";
 import { usePointDetailsStore } from "../../store/point.store";
 import { useNavigate } from "react-router-dom";
-import { deletePoint } from "../../api/point.api";
+import { deletePoint, findAllReviewByPoint } from "../../api/point.api";
 import { HOME_PATH } from "../../routes";
 import IconButton from "../../components/buttons/IconButton";
 import { deleteSharedPointForFriend } from "../../api/share.point.api";
+import { useEffect } from "react";
 
 function SinglePointDetailsPage() {
-  const { getPointDetails, pointToShow } = usePointDetailsStore();
+  const { getPointDetails, pointToShow, setCurrentPointProperty } = usePointDetailsStore();
   const { session } = useSession();
   const navigate = useNavigate();
-
   const handleDeletePoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     //Comprobamos si somos el Owner
@@ -34,8 +34,17 @@ function SinglePointDetailsPage() {
     }
     return;
   };
+
+  const loadAllReviews = async () => {
+    const reviews = await findAllReviewByPoint(pointToShow._id, pointToShow.owner.webId);
+    pointToShow.reviews = reviews;
+    setCurrentPointProperty('reviews', reviews)
+  }
   
-  console.log(pointToShow);
+  useEffect(() => {
+    loadAllReviews()
+  }, [])
+
   return (
 
     

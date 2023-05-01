@@ -17,7 +17,9 @@ import {
     createNewContainer,
     getWebIdFromUrl,
     getUserSharedPointsUrl,
-    checkFileExists    
+    checkFileExists,
+    getUserPrivatePointsUrl,
+    getUserReviewsUrl
 } from "../helpers/PodHelper";
 import {getAllFriends} from "../api/friends.api"
 import { Friend, Point } from "../shared/shareddtypes";
@@ -42,11 +44,49 @@ const sharePointWithFriend = async (
   await addSharedPointForFriend(point,session,friend);
   // Posteriormente, asignamos al propietario de dicho folder todos los permisos sobre éste
   await giveAllPermsToOwner(session);
-  // Finalmente, dotamos de permisos de lectura sobre el folder al amigo indicado del usuario en sesion
+  // Dotamos de permisos de lectura sobre el folder al amigo indicado del usuario en sesion
   await giveReadPermsToFriend(session,friend.webId);
+  // Damos todos los permisos en la carpeta public/reviews.json
+  await giveAllPermsOfReviewsToFriend(session, friend.webId);
 }
 
+/**
+ * Asigna todos los permisos al amigo del folder "public/reviews.json" sobre
+ * dicho folder y todos sus hijos.
+ */
+const giveAllPermsOfReviewsToFriend = async (session:any, friendWebId:string) => {
+  
+  const resourceUrl = getUserReviewsUrl(session.info.webId);
+  const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
+  
+  let resourceAcl;
+  if (!hasResourceAcl(userDatasetWithAcl)){    
+    if (!hasAccessibleAcl(userDatasetWithAcl)){
+      throw new Error (
+        "El usuario actual no tiene permisos para cambiar los derechos de acceso a este recurso."
+      );
+    }
+    if (!hasFallbackAcl(userDatasetWithAcl)){
+      throw new Error(
+        "El usuario actual no tiene permiso para cambiar los permisos de este recurso"
+      );
+    }
+    resourceAcl = createAclFromFallbackAcl(userDatasetWithAcl);     
+    
+  }else{    
+    resourceAcl = getResourceAcl(userDatasetWithAcl);    
+  }
+  // Le damos permisos de lectura al amigo
+  const pointsFileFriendAcl = setAgentDefaultAccess(
+    resourceAcl,
+    friendWebId,
+    {read:true, append:true, write:true, control:true}
+  )
 
+  // almacenamos el acl
+  await saveAclFor(userDatasetWithAcl, pointsFileFriendAcl,{fetch :fetch});    
+  
+}
 
 /**
  * Elimina el punto con el id recibido del folder "private/sharedpoints/friendUsername" del 
@@ -357,5 +397,6 @@ const addSharedPointForFriend = async (
     deleteSharedPointForFriend,
     sharePointWithFriend,
     findSharedPointsByFriend,
-    findAllSharedPointsByFriends
+    findAllSharedPointsByFriends,
+    giveAllPermsOfReviewsToFriend
   }

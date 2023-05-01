@@ -41,6 +41,7 @@ describe('Comprobamos el componente de SingleReview', () => {
                     reviewer={reviewerWithName}
                     pointId= ''
                     reviewId=''
+                    ownerId=''
                 />
             </Router>
         );
@@ -62,6 +63,7 @@ describe('Comprobamos el componente de SingleReview', () => {
                     reviewer={reviewerWithoutName}
                     pointId= ''
                     reviewId=''
+                    ownerId=''
                 />
             </Router>
         );
@@ -81,6 +83,7 @@ describe('Comprobamos el componente de SingleReview', () => {
                     reviewer={reviewerNoImage}
                     pointId= ''
                     reviewId=''
+                    ownerId=''
                 />
             </Router>
         );

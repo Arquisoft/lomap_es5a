@@ -82,6 +82,7 @@ describe("PointReviewSection", () => {
             },
             rating: 1,
             createdAt: new Date(),
+            pointId: ""
           },
         ],
         image: {

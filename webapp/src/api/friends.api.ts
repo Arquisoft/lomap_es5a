@@ -41,11 +41,12 @@ const deleteFriend = async (webId: string, friendWebId: string) => {
 };
 
 const checkExistsUser = async (friendUsername:string) => {
-  const friendProfileUrl:string = friendUsername + "/profile/card";
+  const friendProfileUrl:string = "https://" + friendUsername + "/profile/card";
   try{
     await getSolidDataset(friendProfileUrl, {fetch:fetch});
     return true;
   } catch (error){
+    console.log("No existe el usuario. " + error);
     return false;
   }
   
