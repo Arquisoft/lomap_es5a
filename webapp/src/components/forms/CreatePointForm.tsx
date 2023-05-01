@@ -172,7 +172,7 @@ function CreatePointForm() {
       <div className="create-form-info">
         Los campos con (*) son obligatorios.
       </div>
-      <form id="">
+      <form id="" className="createPoint-form">
         <div className="create-form-form">
           <BaseTextInput
             id="nombre"
