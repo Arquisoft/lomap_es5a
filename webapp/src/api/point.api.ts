@@ -9,7 +9,7 @@ import {
 } from "../helpers/PodHelper";
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
-import { parseJsonToPoint, parseReviews } from "../utils/parsers/pointParser";
+import { parseJsonToPoint, parseReviews,parseJsonToReview } from "../utils/parsers/pointParser";
 import { updateContent, writeContent } from "./util.api";
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { giveAllPermsOfReviewsToFriend } from "./share.point.api";
@@ -335,7 +335,7 @@ const addReviewPoint = async (
       },
     });
     
-    const totalReviews: Review[] = parseReviews(await originalReviews.json());
+    const totalReviews: Review[] = parseJsonToReview(await originalReviews.json());
     
     totalReviews.push(review)
     

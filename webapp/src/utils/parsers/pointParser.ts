@@ -158,6 +158,44 @@ const parseLocation = (location: any): BaseLocation => {
   };
 };
 
+const parseJsonToReview = (newReviews: any): Review[] => {
+  const retNewReviews: Review[] = [];
+  const { reviews } = newReviews;
+
+  reviews.forEach((review: any) => {
+    retNewReviews.push(parseUniqueJsonToReview(review));
+  });
+
+  return retNewReviews;
+};
+
+const parseUniqueJsonToReview = (reviews: any) : Review => {
+  return reviews.map((review: Review) => {
+    const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
+    if (!reviewer) {
+      
+      throw new Error("Review must have a reviewer");
+    }
+    
+    const { webId, imageUrl, name } = reviewer;
+    return {
+      _id,
+      title,
+      comment,
+      rating,
+      reviewer: {
+        webId,
+        name,
+        imageUrl,
+      },
+      createdAt: new Date(createdAt),
+      pointId
+    }
+  
+  });
+  
+}
+
 /**
  * Transforma las valoraciones de un punto de interés en un array de objetos de tipo Review.
  * @param reviews
@@ -211,5 +249,5 @@ const parsePointToJson = (point: Point) => {
   };
 };
 
-export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary, parseReviews };
+export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary, parseReviews, parseJsonToReview };
 
