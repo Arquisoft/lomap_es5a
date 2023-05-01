@@ -159,18 +159,21 @@ const parseLocation = (location: any): BaseLocation => {
 };
 
 const parseJsonToReview = (newReviews: any): Review[] => {
+  
   const retNewReviews: Review[] = [];
   const { reviews } = newReviews;
-  reviews.forEach((review: any) => {
-    
+  console.log(reviews);
+  reviews.forEach((review: any) => { 
+    console.log("llega");
     retNewReviews.push(parseUniqueJsonToReview(review));
   });
- 
+
+  
   return retNewReviews;
 };
 
 const parseUniqueJsonToReview = (review: any) : Review => {
-
+  
     const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
     if (!reviewer) {
       
