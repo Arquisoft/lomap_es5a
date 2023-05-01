@@ -14,6 +14,7 @@ function BottomAccountAside(){
     const {setFriends, friends} = useUserStore();
     const [friendWebId, setFriendWebId] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     //cargar lista de amigos
     const loadAllFriends = async () => {
@@ -33,7 +34,9 @@ function BottomAccountAside(){
        }, [error]);
 
       const handleRefreshFriends = async () => {
-        loadAllFriends();
+        setLoading(true);
+        await loadAllFriends();
+        setLoading(false);
       }
 
     const handleAddFriend = async () => {
@@ -54,6 +57,7 @@ function BottomAccountAside(){
                 data-testid="create-point-button"
                 type="button-blue"
                 text="Recargar amigos"
+                isLoading={isLoading}
                 onClick={handleRefreshFriends}
             />
             <BaseTextInput
