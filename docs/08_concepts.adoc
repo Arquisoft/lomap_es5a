@@ -16,10 +16,11 @@ object Point{
     owner: User
     reviews: Review[]
     image: String
-    isPublic: Boolean
+    isOwner: Boolean
     category: Category
     createdAt: Date
     updatedAt: Date
+    friends: Friend[]
 }
 
 object Map{
@@ -29,10 +30,12 @@ object Map{
 
 object Review{
     id: String
+    title: String
     reviewer: User
     rating: Number
     comment: String
     createdAt: Date
+    idPoint: String
 }
 
 object User{
@@ -49,6 +52,12 @@ object BaseLocation{
     postalCode: number
     city: string
     country : string
+}
+
+object Friend{
+    ebId : String;
+    name : String;
+    imgUrl : String;
 }
 
 enum Category{
@@ -75,6 +84,7 @@ Point--->User
 Review--->User
 Point--->BaseLocation
 Point--->Category
+Point*-->Friend
 
 ----
 === Usability

@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
 import { useUserStore } from "../../../store/user.store";
 import { generateUUID } from "../../../utils/stringUtils";
@@ -7,7 +7,6 @@ import FriendAvatar from "../../avatars/FriendAvatar";
 import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
-import { colors } from "@mui/material";
 
 function BottomAccountAside(){
 
@@ -15,6 +14,7 @@ function BottomAccountAside(){
     const {setFriends, friends} = useUserStore();
     const [friendWebId, setFriendWebId] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     //cargar lista de amigos
     const loadAllFriends = async () => {
@@ -22,15 +22,22 @@ function BottomAccountAside(){
         setFriends(allfriends);
     };
     
-    useEffect(() => {
-        loadAllFriends();
-    }, [friends]);
+    //useEffect(() => {
+    //    loadAllFriends();
+    //}, [friends]);
+    
 
     useEffect(() => {
-        setTimeout(() => {
-          setError("");
-        }, 4000);
-      }, [error]);
+         setTimeout(() => {
+           setError("");
+         }, 4000);
+       }, [error]);
+
+      const handleRefreshFriends = async () => {
+        setLoading(true);
+        await loadAllFriends();
+        setLoading(false);
+      }
 
     const handleAddFriend = async () => {
         try{
@@ -46,6 +53,13 @@ function BottomAccountAside(){
     return(
         <div className="friends-container-aside" role="friends-aside">
             <div className="top-acc-aside-title">Amigos</div>
+            <BaseButton
+                data-testid="create-point-button"
+                type="button-blue"
+                text="Recargar amigos"
+                isLoading={isLoading}
+                onClick={handleRefreshFriends}
+            />
             <BaseTextInput
                 label={""} 
                 type={"text"} 
