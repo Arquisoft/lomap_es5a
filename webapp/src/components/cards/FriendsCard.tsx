@@ -17,10 +17,8 @@ type Props = {
 
 
 function FriendsCard({
-    amigos,
     añadirAmigo,
-    eliminarAmigo,
-    verificaAmigo
+    eliminarAmigo
 } :Props){
 
     const { session } = useSession();
