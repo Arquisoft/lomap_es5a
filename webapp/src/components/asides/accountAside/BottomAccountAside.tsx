@@ -8,6 +8,7 @@ import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
 
+
 function BottomAccountAside(){
 
     const { session } = useSession();

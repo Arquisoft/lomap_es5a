@@ -24,8 +24,7 @@ import {
 import {getAllFriends} from "../api/friends.api"
 import { Friend, Point } from "../shared/shareddtypes";
 import { parseJsonToPoint } from "../utils/parsers/pointParser";
-import { uploadImage } from "../services/imageService";
-import { tr } from "date-fns/locale";
+
 
 
 /**
@@ -162,8 +161,7 @@ const findAllSharedPointsByFriends = async (session:any) => {
 const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
   const userName = getWebIdFromUrl(session.info.webId).split('.')[0];
   const friendDocumentURI = encodeURI(getUserSharedPointsUrl(friendWebId) +
-  `${userName}/sharedPoints.json`);
-  console.log("Uri documento",friendDocumentURI);
+  `${userName}/sharedPoints.json`);  
   try {
     const data = await fetch(friendDocumentURI, {
       method: "GET",
@@ -174,7 +172,7 @@ const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    console.log("Error findSharedPointsByFriend: ", err);   
+    
   }
   return new Array<Point>();
 }
