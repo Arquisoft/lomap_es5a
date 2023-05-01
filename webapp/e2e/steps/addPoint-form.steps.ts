@@ -1,5 +1,6 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
+import { Category } from '../../src/shared/shareddtypes';
 
 const feature = loadFeature('./features/addPoint-form.feature');
 
@@ -69,28 +70,36 @@ defineFeature (feature, test => {
     })
 
 //TEST 2
-    test('The user is registered and no introduce category' , ({given,when,then}) => {
+    test('The user is logged and have data' , ({given,when,then}) => {
         let name: string;
-
-        given ('A registered user and no category', () => {
+        
+        given ('A logged user and a name', () => {
             name = "Cudillero"
         });
 
-        when('I navigate to the page and i press publish' , async () =>{
-            //Relleno el formData
-            await expect(page).toFillForm('form[class="createPoint-form"]', {
-                //Utilizo la cuenta que creo miguel para los test
-                nommre : name
-            });
+        when('i fill the form and i presh publish' , async () =>{
+            //Relleno la categoria
+            const select = await page.$('select[name="category"]');
+            await select?.select("2");
+
+            const input = await page.$('#nombre');
+            //Relleno el nombre
+            await input?.type(name);
 
             await wait(1000);
             //Clicko el boton publicar
             await expect(page).toClick('button', { text: 'Publicar' });
         });
 
-        then('An error message is shown in the screen', async () => {
+        then('I go to home page', async () => {
             const text = await page.evaluate(() => document.body.textContent);
-            expect(text).toMatch("El campo nombre del punto es obligatorio");
+            expect(text).toMatch("Lomap");
+            expect(text).toMatch("Guardados");
+            expect(text).toMatch("Añadir punto");
+            expect(text).toMatch("Acerca de");
+            expect(text).toMatch("Filtro");
+            expect(text).toMatch("Puntos de interés recientes");
+            expect(text).toMatch("© 2023 Lomap. Todos los Derechos Reservados.")
           });
     })
 
