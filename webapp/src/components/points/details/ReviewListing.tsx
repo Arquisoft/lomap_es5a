@@ -23,6 +23,7 @@ function ReviewListing() {
             createdAt={review.createdAt}
             pointId= {pointToShow._id}
             reviewId = {review._id}
+            ownerId= {pointToShow.owner.webId}
           />
         ))}
       </div>

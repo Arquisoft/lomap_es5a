@@ -16,6 +16,7 @@ type Props = {
     createdAt: Date;
     pointId: string;
     reviewId: string;
+    ownerId: string;
 };
 
 function SingleReview(review: Props) {
@@ -31,10 +32,11 @@ function SingleReview(review: Props) {
         const pointId = review.pointId;
         const webIdCreator = review.reviewer.webId;
         const reviewId = review.reviewId;
+        const webIdOwnerPoint = review.ownerId;
 
         if (webIdCreator == session.info.webId) {
             //La eliminamos
-            await deleteReviewByPoint(pointId, reviewId, webIdCreator);
+            await deleteReviewByPoint(pointId, reviewId, webIdCreator, webIdOwnerPoint);
             //Reddireccion a home
             navigate(HOME_PATH);
         }

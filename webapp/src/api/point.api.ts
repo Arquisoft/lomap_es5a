@@ -287,13 +287,16 @@ const deletePoint = async (idPoint: string, webId: string) => {
  *
  * @param idPoint Identificador del punto de interes
  * @param review Review del punto de interés
- * @param webId webId del usuario en sesión
+ * @param webId webId del usuario en sesión(reviewer)
+ * @param ownerWebId webId del dueño del pùnto
  * @returns
  */
 const addReviewPoint = async (
   idPoint: string,
   review: Review,
-  webId: string
+  webId: string,
+  ownerWebId: string
+
 ) => {
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   const userInSessionName = getWebIdFromUrl(webId);
@@ -327,13 +330,15 @@ const addReviewPoint = async (
  *
  * @param idPoint Identificador del punto de interes
  * @param idReview Identificador de la review
- * @param webId webId del usuario en sesión
+ * @param webId webId del usuario en sesión(reviewer)
+ * @param ownerWebId webId del dueño del punto
  * @returns
  */
 const deleteReviewByPoint = async (
   idPoint: string,
   idReview: string,
-  webId: string
+  webId: string,
+  ownerWebId: string
 ) => {
   const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
   try {

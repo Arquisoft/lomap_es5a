@@ -94,8 +94,8 @@ function AddNewReviewToPointPopup({
       }
       setIsReviewPublished(false);
       setIsSendingReview(true);
-
-      addReviewPoint(pointInfo._id, review, session.info.webId as string).then(
+      const reviewOwnerWebId = pointInfo.owner.webId;
+      addReviewPoint(pointInfo._id, review, session.info.webId as string,reviewOwnerWebId).then(
         (err: any) => {
           if (!err) {
             setIsSendingReview(false);
