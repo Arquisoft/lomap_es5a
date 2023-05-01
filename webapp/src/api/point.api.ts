@@ -130,7 +130,7 @@ const addPoint = async (
       throw new Error("El fichero subido no es una imagen");
     }
   }
-
+  
 
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   const existsFolder = await checkContainerExists(session, "private/points/");
@@ -194,6 +194,25 @@ const addPoint = async (
           },
         });
 
+        const existsReviews = await checkFileExists(
+          session,
+          "public/reviews.json"
+        );
+      
+        if (!existsReviews) {
+          await saveFileInContainer(
+            getPublicReviewsPointsUrl(session.info.webId),
+            new Blob([JSON.stringify({ reviews: [] })], {
+              type: "application/json",
+            }),
+            {
+              slug: "reviews.json",
+              contentType: "application/json",
+              fetch: fetch,
+            }
+          );
+        }
+        
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
         await upImage(image, point);
@@ -288,14 +307,12 @@ const deletePoint = async (idPoint: string, webId: string) => {
 /**
  * Añadir una review sobre un punto de interés.
  *
- * @param idPoint Identificador del punto de interes
  * @param review Review del punto de interés
- * @param webId webId del usuario en sesión(reviewer)
+ * @param session session del usuario en sesión
  * @param ownerWebId webId del dueño del pùnto
  * @returns
  */
 const addReviewPoint = async (
-  idPoint: string,
   review: Review,
   session : Session,
   ownerWebId: string
@@ -306,9 +323,7 @@ const addReviewPoint = async (
     userInSessionName = getWebIdFromUrl(session.info.webId);
   }
   review.reviewer.name = userInSessionName.split(".")[0];
-  try {
-    
-    getPublicReviewsPointsUrl(ownerWebId)
+  try {    
     const originalReviews= await fetch(profileDocumentURI, {
       method: "GET",
       headers: {
@@ -319,38 +334,17 @@ const addReviewPoint = async (
     const totalReviews: Review[] = parseReviews(await originalReviews.json());
     
     totalReviews.push(review)
-
-    const existsFile = await checkFileExists(
-      session,
-      "public/reviews.json"
-    );
-  
-    if (!existsFile) {
-      await saveFileInContainer(
-        getPublicReviewsPointsUrl(ownerWebId),
-        new Blob([JSON.stringify({ reviews: totalReviews })], {
-          type: "application/json",
-        }),
-        {
-          slug: "reviews.json",
-          contentType: "application/json",
-          fetch: fetch,
-        }
-      );
-
-    } else {
-
-      const blob = new Blob([JSON.stringify({ reviews: totalReviews })], {
-        type: "application/json",
-      });
     
-      const fichero = new File([blob], "reviews.json", { type: blob.type });
+    const blob = new Blob([JSON.stringify({ reviews: totalReviews })], {
+      type: "application/json",
+    });
+    
+    const fichero = new File([blob], "reviews.json", { type: blob.type });
       
-      await overwriteFile(getPublicReviewsPointsUrl(ownerWebId), fichero, {
-          contentType: fichero.type,
-          fetch: fetch,
-      });    
-    }
+    await overwriteFile(getPublicReviewsPointsUrl(ownerWebId), fichero, {
+      contentType: fichero.type,
+      fetch: fetch,
+    });    
   } catch (err) {
     throw new Error("Ha ocurrido un error al añadir la review")
   }
@@ -360,48 +354,38 @@ const addReviewPoint = async (
  * Eliminar una valoración de un punto por el id de la review
  *
  * @param idPoint Identificador del punto de interes
- * @param idReview Identificador de la review
- * @param webId webId del usuario en sesión(reviewer)
  * @param ownerWebId webId del dueño del punto
  * @returns
  */
 const deleteReviewByPoint = async (
   idPoint: string,
-  idReview: string,
-  webId: string,
   ownerWebId: string
 ) => {
-  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
+  const profileDocumentURI = encodeURI(getPublicReviewsPointsUrl(ownerWebId));
+    
   try {
-    const originalPoints = await fetch(profileDocumentURI, {
+
+    const originalReviews= await fetch(profileDocumentURI, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
-    const pointsOriginal = totalPoints.filter((point) => point._id !== idPoint);
-    const punto = totalPoints.find((point) => point._id === idPoint);
+    const totalReviews: Review[] = parseReviews(await originalReviews.json());
+    
+    const reviewsOriginal = totalReviews.filter((review) => review.pointId !== idPoint);
 
-    // eliminamos la review del punto
-    const reviews: Review[] | undefined = punto?.reviews?.filter(
-      (review) => review._id !== idReview
-    ); // obtenemos las reviews que no queremos borrar
-    if (
-      punto !== undefined &&
-      reviews !== undefined &&
-      punto?.reviews !== undefined
-    ) {
-      punto.reviews = reviews; // añadimos las reviews
-    }
-
-    if (!punto) {
-      console.log("No existe ningún punto con id = " + idPoint);
-    } else {
-      const result: Point[] = [...pointsOriginal, punto]; // obtenemos el array de puntos
-      await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
-    }
+    const blob = new Blob([JSON.stringify({ reviews: reviewsOriginal })], {
+      type: "application/json",
+    });
+    
+    const fichero = new File([blob], "reviews.json", { type: blob.type });
+      
+    await overwriteFile(getPublicReviewsPointsUrl(ownerWebId), fichero, {
+      contentType: fichero.type,
+      fetch: fetch,
+    });    
   } catch (err) {
     throw new Error("Ha ocurrido un error al eliminar la review")
   }
@@ -411,30 +395,29 @@ const deleteReviewByPoint = async (
  * Obtener todos los review del punto.
  *
  * @param idPoint Identificador del punto de interes
- * @param webId webId del usuario en sesión
+ * @param ownerWebId webId del usuario en sesión
  * @returns reviews del punto
  */
 const findAllReviewByPoint = async (
   idPoint: string,
-  webId: string
+  ownerWebId: string
 ): Promise<Review[] | undefined> => {
-  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
+  const profileDocumentURI = encodeURI(getPublicReviewsPointsUrl(ownerWebId));
+    
   try {
-    const originalPoints = await fetch(profileDocumentURI, {
+
+    const originalReviews= await fetch(profileDocumentURI, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
-    const filtro = totalPoints.filter((item) => item._id === idPoint);
+    const totalReviews: Review[] = parseReviews(await originalReviews.json());
+    
+    const reviewsOriginal = totalReviews.filter((review) => review.pointId === idPoint);
 
-    if (filtro.length === 0) {
-      console.log("No existe el punto con id = " + idPoint);
-    } else {
-      return filtro[0].reviews; // devolvemos las reviews
-    }
+    return reviewsOriginal
   } catch (err) {
     // no tiene reviews
   }
