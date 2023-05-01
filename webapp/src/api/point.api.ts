@@ -196,15 +196,15 @@ const addPoint = async (
 
         const existsReviews = await checkFileExists(
           session,
-          "public/reviews.json"
+          "private/reviews.json"
         );
 
       
         if (!existsReviews) {
           await saveFileInContainer(
             getPublicReviewsPointsUrl(session.info.webId).replace(
-              "/public/reviews.json",
-              "/public/"),
+              "/private/reviews.json",
+              "/private/"),
             new Blob([JSON.stringify({ reviews: [] })], {
               type: "application/json",
             }),
