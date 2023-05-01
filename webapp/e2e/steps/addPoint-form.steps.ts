@@ -25,9 +25,6 @@ defineFeature (feature, test => {
 
     // eslint-disable-next-line jest/no-done-callback
     test('The user is registered and no introduce data' , ({given,when,then}) => {
-        let name : string;
-        let address : string;
-        let description : string;
         let username: string;
         let password : string;
 
@@ -70,47 +67,19 @@ defineFeature (feature, test => {
             expect(text).toMatch("El campo nombre del punto es obligatorio");
           });
     })
+
 //TEST 2
     test('The user is registered and no introduce category' , ({given,when,then}) => {
-        let username: string;
-        let password : string;
         let name: string;
 
         given ('A registered user and no category', () => {
-            username = "miguelglez";
-            password = "Qwertyuiop1?";   
+            name = "Cudillero"
         });
 
         when('I navigate to the page and i press publish' , async () =>{
-
-
-            //Solo la primera vez para ir a la pagina de SOLID
-            await expect(page).toClick('button', { text: 'Log In' });
-
-            await wait(10000);
-
-            await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
-                //Utilizo la cuenta que creo miguel para los test
-                username: username,
-                password: password,
-            });
-        
-            await wait(1000);
-        
-            // seleccionamos el botón del login
-            await expect(page).toClick('button', { text: 'Log In' });
-        
-            await wait(10000);
-            //Navego a la pagina de la creacion de punto
-            await expect(page).toClick('a', {text: 'Añadir punto'});
-
-            await wait(2000);
-
             //Relleno el formData
             await expect(page).toFillForm('form[class="createPoint-form"]', {
                 //Utilizo la cuenta que creo miguel para los test
-                username: username,
-                password: password,
                 nommre : name
             });
 
