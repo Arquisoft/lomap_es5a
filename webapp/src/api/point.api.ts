@@ -12,6 +12,7 @@ import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint, parseReviews } from "../utils/parsers/pointParser";
 import { updateContent, writeContent } from "./util.api";
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { giveAllPermsOfReviewsToFriend } from "./share.point.api";
 
 /**
  * Obtener todos los puntos de interés.
@@ -198,7 +199,6 @@ const addPoint = async (
           "public/reviews.json"
         );
 
-        console.log(existsReviews)
       
         if (!existsReviews) {
           await saveFileInContainer(
@@ -214,6 +214,7 @@ const addPoint = async (
               fetch: fetch,
             }
           );
+          
         }
 
         const totalPoints = parseJsonToPoint(await originalPoints.json());
@@ -333,9 +334,9 @@ const addReviewPoint = async (
         "Content-Type": "application/json",
       },
     });
-
-    const totalReviews: Review[] = parseReviews(await originalReviews.json());
     
+    const totalReviews: Review[] = parseReviews(await originalReviews.json());
+
     totalReviews.push(review)
     
     const blob = new Blob([JSON.stringify({ reviews: totalReviews })], {
@@ -343,11 +344,12 @@ const addReviewPoint = async (
     });
     
     const fichero = new File([blob], "reviews.json", { type: blob.type });
-      
+    
     await overwriteFile(getPublicReviewsPointsUrl(ownerWebId), fichero, {
       contentType: fichero.type,
       fetch: fetch,
-    });    
+    });   
+    
   } catch (err) {
     throw new Error("Ha ocurrido un error al añadir la review")
   }
