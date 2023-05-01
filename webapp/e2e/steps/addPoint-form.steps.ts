@@ -25,7 +25,7 @@ defineFeature (feature, test => {
     test('The user is registered and no introduce data' , ({given,when,then}) => {
         let name : string;
         let address : string;
-        let descripcion : string;
+        let description : string;
         let username: string;
         let password : string;
 
@@ -55,17 +55,13 @@ defineFeature (feature, test => {
         
             await wait(15000);
             //Navego a la pagina de la creacion de punto
-            await page
-                .goto("http://localhost:3000", {
-                    waitUntil: "networkidle0",
-                })
-                .catch(() => {});
+            await expect(page).toClick('button', {text: 'Añadir punto'});
 
             //Relleno el formulario
             await expect(page).toFillForm('form[class="createPoint-form"]', {
                 nombre : name,
                 direccion: address,
-                description: descripcion
+                description: description
             });
             await wait(1000);
             //Clicko el boton publicar
