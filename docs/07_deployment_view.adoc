@@ -39,8 +39,11 @@ Mapping of Building Blocks to Infrastructure::
 |===
 |Nodo  |Descripción
 
-| Contenedor Docker
-| Utilidad que encapsula un entorno de ejecución de software, incluyendo todas las herramientas de compilación y despliegue necesarias.
+| GitHub
+| Servicio de control de versiones, donde se almacena el código fuente de la aplicación.
+
+| GitHub Pages
+| Servicio de hosting de GitHub, donde se almacena el código compilado de la aplicación.
 
 |Leaftlet
 |API Open Source para integración de mapas en el lado del cliente. Proporciona componentes para React. 
