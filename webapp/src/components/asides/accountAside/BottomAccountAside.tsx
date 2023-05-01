@@ -7,12 +7,14 @@ import FriendAvatar from "../../avatars/FriendAvatar";
 import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
+import { colors } from "@mui/material";
 
 function BottomAccountAside(){
 
     const { session } = useSession();
     const {setFriends, friends} = useUserStore();
     const [friendWebId, setFriendWebId] = useState("");
+    const [error, setError] = useState("");
 
     //cargar lista de amigos
     const loadAllFriends = async () => {
@@ -23,9 +25,22 @@ function BottomAccountAside(){
     useEffect(() => {
         loadAllFriends();
     }, [friends]);
-    
-    const handleAddFriend = () => {
-        addFriend(session.info.webId as string, friendWebId);
+
+    useEffect(() => {
+        setTimeout(() => {
+          setError("");
+        }, 4000);
+      }, [error]);
+
+    const handleAddFriend = async () => {
+        try{
+            await addFriend(session.info.webId as string, friendWebId);
+        }catch(error){
+            if(error instanceof Error)
+                setError(error.message);
+            else
+            setError("Se ha producido un error desconocido");
+        }
     };
 
     return(
@@ -39,6 +54,16 @@ function BottomAccountAside(){
                     {setFriendWebId(e.target.value)}
                 }
             />
+            { error ? 
+                <p style={{
+                    color: "#FF000B",
+                    backgroundColor: "#FFA7A0",
+                    borderRadius: '5px',
+                    padding: '5px',
+                    border: "1px solid #FF000B"
+                  }}>{error}</p> :
+                <></>
+            }
             <BaseButton
                 data-testid="create-point-button"
                 type="button-blue"
