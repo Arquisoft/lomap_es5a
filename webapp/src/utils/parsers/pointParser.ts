@@ -161,16 +161,17 @@ const parseLocation = (location: any): BaseLocation => {
 const parseJsonToReview = (newReviews: any): Review[] => {
   const retNewReviews: Review[] = [];
   const { reviews } = newReviews;
-
+  console.log(reviews);
   reviews.forEach((review: any) => {
+    
     retNewReviews.push(parseUniqueJsonToReview(review));
   });
 
   return retNewReviews;
 };
 
-const parseUniqueJsonToReview = (reviews: any) : Review => {
-  return reviews.map((review: Review) => {
+const parseUniqueJsonToReview = (review: any) : Review => {
+
     const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
     if (!reviewer) {
       
@@ -191,10 +192,10 @@ const parseUniqueJsonToReview = (reviews: any) : Review => {
       createdAt: new Date(createdAt),
       pointId
     }
+ 
+  };
   
-  });
-  
-}
+
 
 /**
  * Transforma las valoraciones de un punto de interés en un array de objetos de tipo Review.
@@ -204,7 +205,7 @@ const parseReviews = (reviews: any) :Review[] => {
   if(!reviews){   
     return [] as Review [];
   }
-  console.log(reviews);
+ 
   return reviews.map((review: Review) => {
     console.log("A veces llega??")
     const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
