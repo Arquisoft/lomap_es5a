@@ -19,7 +19,6 @@ function SinglePointDetailsPage() {
   const { getPointDetails, pointToShow, setCurrentPointProperty } = usePointDetailsStore();
   const { session } = useSession();
   const navigate = useNavigate();
-
   const handleDeletePoint = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     //Comprobamos si somos el Owner
@@ -37,7 +36,8 @@ function SinglePointDetailsPage() {
   };
 
   const loadAllReviews = async () => {
-    const reviews = await findAllReviewByPoint(pointToShow._id, pointToShow.owner.webId)
+    const reviews = await findAllReviewByPoint(pointToShow._id, pointToShow.owner.webId);
+    pointToShow.reviews = reviews;
     setCurrentPointProperty('reviews', reviews)
   }
   

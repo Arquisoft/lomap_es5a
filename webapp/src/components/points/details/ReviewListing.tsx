@@ -5,7 +5,9 @@ import SingleReview from "./review/single/SingleReview";
 
 function ReviewListing() {
   const { pointToShow } = usePointDetailsStore();
+  console.log(pointToShow);
   return (
+    
     <div className="review-listing-container">
       <h2> Valoraciones de los usuarios</h2>
       {pointToShow?.reviews && pointToShow?.reviews?.length == 0 && (

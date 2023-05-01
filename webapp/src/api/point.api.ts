@@ -417,10 +417,8 @@ const findAllReviewByPoint = async (
         "Content-Type": "application/json",
       },
     });
-    const totalReviews: Review[] = parseReviews(await originalReviews.json());
-
+    const totalReviews: Review[] = parseJsonToReview(await originalReviews.json());
     const reviewsOriginal = totalReviews.filter((review) => review.pointId === idPoint);
-
     return reviewsOriginal
   } catch (err) {
     // no tiene reviews
