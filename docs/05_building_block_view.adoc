@@ -62,26 +62,30 @@ Contained Building Blocks::
 [plantuml, "level-2", png]
 
 ----
+left to right direction
+
 actor user as "Usuario"
 
-Component LoMap{
-  Component web as "WebApp" {
-    Component lo as "Log in"
-    Component ini as "Inicio"
-    Component ed as "Editar punto"
-    Component det as "Detalle punto"
-    Component am as "Amigos"
-    Component gua as "Puntos guardados"    
-    Component mi as "Mis puntos"
-  } 
-  Component api as "RestApi "
-}
+Component web as "WebApp" {  
+  Component login as "LoginPage"
+  Component home as "HomePage"
+  Component about as "AboutPage"
+  Component create as "CreatePointPage"
+  Component single as "SinglePointDetailsPage"
+  Component saved as "SavedPointsPage"      
+}   
 
-Database pod as "Solid pod"
 
-web <-left- user: interactua
-user -up-> pod: tiene
-web -down-> pod: obtiene/almacena datos
+Database pod as "POD"
+
+
+login <-left- user: se logea
+login -down-> home: se redirige a
+home -left-> saved: accede a
+home -down-> single: accede a
+home -right-> about: accede a
+home -down-> create: accede a
+user -down-> pod: almacena/recupera datos
 ----
 
 Motivation::
@@ -92,13 +96,12 @@ Contained Building Blocks::
 [cols="1,2" options="header"]
 |===
 | **Nombre** | **Responsabildad**
-| Log in | Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.
-| Inicio | Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría. 
-| Editar punto | Permite al usuario en sesión editar sus puntos.
-| Detalle punto | Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado.
-| Amigos | Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).
-| Puntos guardados | Permite al usuario interactuar con los puntos que ha decidido guardar.
-| Mis puntos | Permite al usuario interactuar con los puntos que él/ella ha creado.
+| LoginPage | Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.
+| HomePage | Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría. Además, permite acceder a cualquier parte de la aplicación.
+| CreatePointPage | Permite al usuario en sesión crear un nuevo punto y compartirlo con sus amigos, si así lo desea.
+| AboutPage | Muestra al usuario de la aplicación información acerca de ésta.
+| SavedPointsPage | Permite al usuario interactuar con los puntos que ha decidido guardar.
+| SinglePointDetailsPage | Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado. También permite ver en detalle toda la información de puntos que les han compartido sus amigos.
 |===
 
 
