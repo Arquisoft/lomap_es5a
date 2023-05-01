@@ -377,7 +377,7 @@ const deleteReviewByPoint = async (
       },
     });
 
-    const totalReviews: Review[] = parseReviews(await originalReviews.json());
+    const totalReviews: Review[] = parseJsonToReview(await originalReviews.json());
     
     const reviewsOriginal = totalReviews.filter((review) => review._id !== idReview);
 

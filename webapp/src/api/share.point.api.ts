@@ -58,7 +58,6 @@ const sharePointWithFriend = async (
 const giveAllPermsOfReviewsToFriend = async (session:any, friendWebId:string) => {
   
   const resourceUrl = getUserReviewsUrl(session.info.webId);
-  console.log(resourceUrl);
   const userDatasetWithAcl = await getSolidDatasetWithAcl(resourceUrl, {fetch: fetch});  
   
   let resourceAcl;
@@ -82,7 +81,7 @@ const giveAllPermsOfReviewsToFriend = async (session:any, friendWebId:string) =>
   const pointsFileFriendAcl = setAgentDefaultAccess(
     resourceAcl,
     friendWebId,
-    {read:true, append:true, write:true, control:true}
+    {read:true, append:true, write:true, control:false}
   )
 
   // almacenamos el acl
