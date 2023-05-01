@@ -114,7 +114,6 @@ const parseFriends = (newFriends : any): Friend[] => {
   if(!newFriends){
     return [] as Friend[];
   }
-
   return newFriends.map((friend: Friend) => {
 
     const {webId, name, imgUrl} = friend;
@@ -162,11 +161,11 @@ const parseLocation = (location: any): BaseLocation => {
  * Transforma las valoraciones de un punto de interés en un array de objetos de tipo Review.
  * @param reviews
  */
-const parseReviews = (reviews: any) => {
-  if(reviews.length == undefined){
-    
-    return [];
+const parseReviews = (reviews: any) :Review[] => {
+  if(!reviews){
+    return [] as Review [];
   }
+    
   return reviews.map((review: Review) => {
     
     const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
@@ -182,12 +181,12 @@ const parseReviews = (reviews: any) => {
       _id,
       title,
       comment,
+      rating,
       reviewer: {
         webId,
         name,
         imageUrl,
       },
-      rating,
       createdAt: new Date(createdAt),
       pointId
     };  
