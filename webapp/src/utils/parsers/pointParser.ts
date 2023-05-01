@@ -158,32 +158,77 @@ const parseLocation = (location: any): BaseLocation => {
   };
 };
 
-/**
- * Transforma las valoraciones de un punto de interés en un array de objetos de tipo Review.
- * @param reviews
- */
-const parseReviews = (reviews: any) => {
-  return reviews.map((review: Review) => {
-    const { _id, reviewer, rating, title, comment, createdAt } = review;
+const parseJsonToReview = (newReviews: any): Review[] => {
+  
+  const retNewReviews: Review[] = [];
+  const { reviews } = newReviews;
+  reviews.forEach((review: any) => { 
+    retNewReviews.push(parseUniqueJsonToReview(review));
+  });
 
+  
+  return retNewReviews;
+};
+
+const parseUniqueJsonToReview = (review: any) : Review => {
+  
+    const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
     if (!reviewer) {
+      
       throw new Error("Review must have a reviewer");
     }
-
+    
     const { webId, imageUrl, name } = reviewer;
-
     return {
       _id,
       title,
       comment,
+      rating,
       reviewer: {
         webId,
         name,
         imageUrl,
       },
-      rating,
       createdAt: new Date(createdAt),
-    };
+      pointId
+    }
+ 
+  };
+  
+
+
+/**
+ * Transforma las valoraciones de un punto de interés en un array de objetos de tipo Review.
+ * @param reviews
+ */
+const parseReviews = (reviews: any) :Review[] => {
+  if(!reviews){   
+    return [] as Review [];
+  }
+ 
+  return reviews.map((review: Review) => {
+    const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
+    
+    if (!reviewer) {
+      
+      throw new Error("Review must have a reviewer");
+    }
+    
+    const { webId, imageUrl, name } = reviewer;
+    
+    return {
+      _id,
+      title,
+      comment,
+      rating,
+      reviewer: {
+        webId,
+        name,
+        imageUrl,
+      },
+      createdAt: new Date(createdAt),
+      pointId
+    };  
   });
 };
 
@@ -204,5 +249,5 @@ const parsePointToJson = (point: Point) => {
   };
 };
 
-export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary };
+export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary, parseReviews, parseJsonToReview };
 

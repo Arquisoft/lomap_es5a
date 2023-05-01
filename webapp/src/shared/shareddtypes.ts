@@ -115,6 +115,7 @@ type Review = {
   rating: number;
   reviewer: Reviewer;
   createdAt: Date;
+  pointId: string;
 };
 
 /**
