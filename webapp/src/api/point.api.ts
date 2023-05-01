@@ -117,6 +117,18 @@ const addPoint = async (
   image?: File,
   callback?: (isSuccess: boolean) => void
 ) => {
+
+  // Si hay imagen, comprobar que el tipo mime del fichero es una imagen
+  if (image) {
+    if (!image.type.includes("image") 
+    || image.type.includes("jpg") 
+    || image.type.includes("jpeg")
+    || image.type.includes("png")) {
+      throw new Error("El fichero subido no es una imagen");
+    }
+  }
+
+
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   const existsFolder = await checkContainerExists(session, "private/points/");
 

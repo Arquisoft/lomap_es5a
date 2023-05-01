@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { availableCategories } from "../../helpers/CategoryFilterHelper";
 import { CloseIcon } from "../../helpers/IconContants";
 import "../../public/css/components/popups/pointCategoryFilter/PointCategoryFilterPopup.scss";
@@ -19,10 +19,11 @@ function PointCategoryFilterPopup() {
     addFilter,
     removeFilter,
     filterPointsBySelectedFilters,
+    getAllPoints
   } = useAllPointsStore();
 
-  const { friends,imageUrl,name,webId } = useUserStore();
-  
+  const { friends } = useUserStore();
+
   /**
    * Número de resultados a mostrar en el botón de "Aplicar filtros"
    * @returns
@@ -66,7 +67,11 @@ function PointCategoryFilterPopup() {
   const handleSelectFriendCheckBox = (isChecked: boolean, friend: Friend) => {
     isChecked ? addFilter(friend) : removeFilter(friend);
   };
-  console.log(friends,imageUrl,name,webId);
+
+  useEffect(() => {
+    console.log("puntos: ", getAllPoints());
+  }, []);
+
   return (
     <div className="point-category-filter-popup-container" role="alertdialog">
       <CloseIcon
@@ -114,7 +119,7 @@ function PointCategoryFilterPopup() {
                       <input
                         type="checkbox"
                         onChange={(e) => {
-                          handleSelectFriendCheckBox(e.target.checked, friend);
+                          handleSelectFriendCheckBox(e.currentTarget.checked, friend);
                         }}
                         id="checkbox"
                       />

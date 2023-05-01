@@ -22,6 +22,7 @@ interface PointDetailsStore {
   setPointToShow: (point: Point) => void;
   resetPointInfo: () => void;
   getPointDetails: () => Point;
+  resetPointImage: () => void;
 }
 
 const pointInitilization: Point = {
@@ -101,35 +102,38 @@ const useAllPointsStore = create<AllPointsStore>((set, get) => ({
     set((state: any) => ({
       filters: [...state.filters, filter],
     })),
-  removeFilter: (filter: SingleCategory | Friend) =>
+  removeFilter: (filterToRemove: SingleCategory | Friend) =>
     set((state: any) => ({
       filters: state.filters.filter(
-        (filter: SingleCategory) => filter !== filter
+        (filter: SingleCategory) => filter !== filterToRemove
       ),
     })),
   makeFilteredPointsPreview: () => {
     set({ isFiltering: false });
     set((state: any) => ({
-      filteredPointsPreview: state.points.filter((point: Point) =>
-        state.filters
-          .map((filter: any) => {
-            filter?.code, filter?.webId
-          })
-          .filter((point: any) => point.category || point.webId)
-      ),
+      filteredPointsPreview: state.points.filter((pointToFilter: Point) => {
+        return state.filters.some((filter: SingleCategory | Friend) => {
+          if ((filter as SingleCategory).code) {
+            return pointToFilter.category === (filter as SingleCategory).code;
+          } else if ((filter as Friend).webId) {
+            return pointToFilter.owner.webId === (filter as Friend).webId;
+          }
+        });
+      }),
     }));
   },
   filterPointsBySelectedFilters: () => {
     set({ isFiltering: true });
     set((state: any) => ({
-      filteredPoints:
-        state.filters.length > 0
-          ? state.points.filter((point: Point) =>
-              state.filters
-                .map((filter: any) => {filter.code, filter.webId})
-                .filter((point: any) => point.category || point.webId)
-            )
-          : state.points,
+      filteredPoints: state.points.filter((pointToFilter: Point) => {
+        return state.filters.some((filter: SingleCategory | Friend) => {
+          if ((filter as SingleCategory).code) {
+            return pointToFilter.category === (filter as SingleCategory).code;
+          } else if ((filter as Friend).webId) {
+            return pointToFilter.owner.webId === (filter as Friend).webId;
+          }
+        });
+      }),
     }));
   },
   resetFilters: () => {
@@ -176,6 +180,8 @@ const usePointDetailsStore = create<PointDetailsStore>((set, get) => ({
   setPointToShow: (point: Point) => set({ pointToShow: point }),
 
   resetPointInfo: () => set({ info: pointInitilization }),
+
+  resetPointImage: () => set({ imageToUpload: undefined }),
 
   getPointDetails: () => get().pointToShow,
 }));

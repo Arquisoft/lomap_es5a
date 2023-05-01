@@ -6,6 +6,7 @@ node_modules
 .pnp.js
 
 # testing
+webapp/e2e/coverage
 webapp/coverage
 restapi/coverage
 

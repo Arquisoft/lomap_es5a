@@ -37,9 +37,10 @@ function FriendAvatar({ name, imgUrl, webId ,vista}: Props) {
     return null;
   }
   return (
+
     <div className="friend-component-aside">
     <div role="friend-comp" className="friend-comp">
-      <img role="friend-imagen" src={imgUrl} />
+      <img role="friend-imagen" className="friend-imagen" src={imgUrl} width={100} height={100}  />
       <p role="friend-name">{name}</p>
       {
       vista !== "vista-add-point" ? 
