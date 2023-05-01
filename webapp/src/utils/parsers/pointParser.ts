@@ -114,6 +114,7 @@ const parseFriends = (newFriends : any): Friend[] => {
   if(!newFriends){
     return [] as Friend[];
   }
+  console.log("Friends" + newFriends);
   return newFriends.map((friend: Friend) => {
 
     const {webId, name, imgUrl} = friend;
@@ -162,12 +163,12 @@ const parseLocation = (location: any): BaseLocation => {
  * @param reviews
  */
 const parseReviews = (reviews: any) :Review[] => {
-  if(!reviews){
+  if(!reviews){   
     return [] as Review [];
   }
-    
+  console.log(reviews);
   return reviews.map((review: Review) => {
-    
+    console.log("A veces llega??")
     const { _id, reviewer, rating, title, comment, createdAt,pointId } = review;
     
     if (!reviewer) {

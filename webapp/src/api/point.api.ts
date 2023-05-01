@@ -205,7 +205,7 @@ const addPoint = async (
             getPublicReviewsPointsUrl(session.info.webId).replace(
               "/public/reviews.json",
               "/public/"),
-            new Blob([JSON.stringify({ reviews: [] })], {
+            new Blob([JSON.stringify({ reviews: {} })], {
               type: "application/json",
             }),
             {
@@ -336,7 +336,7 @@ const addReviewPoint = async (
     });
     
     const totalReviews: Review[] = parseReviews(await originalReviews.json());
-
+    
     totalReviews.push(review)
     
     const blob = new Blob([JSON.stringify({ reviews: totalReviews })], {
