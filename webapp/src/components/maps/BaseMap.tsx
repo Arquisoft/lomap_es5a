@@ -60,6 +60,10 @@ function BaseMap({ position, styles, points, isClickableToAddNewPoint }: Props) 
           text="Mostrar todo"
           type="button-black button-absolute"
           title="Mostrar todos los puntos"
+          styles={{
+            width: "200px",
+            height: "50px",
+          }}
           onClick={(e) => resetFilters(e)}
         />
       )}
