@@ -12,9 +12,9 @@ const HTTP_PREFIX = "https";
 const PRIVATE_POINTS_PATH = "/private/points/points.json";
 
 // Fichero que contiene todas las reviews
-const PUBLIC_REVIEWS_PATH = "/public/reviews.json";
+const PUBLIC_REVIEWS_PATH = "/private/reviews.json";
 
-const PUBLIC_REVIEWS_FOLDER_PATH = "/public/";
+const PRIVATE_REVIEWS_FOLDER_PATH = "/private/";
 // Fichero que contiene todos los puntos guardados del usuario
 const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
 // Folder que contiene todos los subfolders con los puntos que comparte con cada
@@ -98,7 +98,7 @@ const getUserSharedPointsUrl = (myWedId?: string):string => {
  * @throws Error si no se proporciona una URL de perfil.
  */
 const getUserReviewsUrl = (myWedId?: string):string => {  
-  return contructPodUrl(myWedId ?? webId, PUBLIC_REVIEWS_FOLDER_PATH );
+  return contructPodUrl(myWedId ?? webId, PRIVATE_REVIEWS_FOLDER_PATH );
 };
 
 
