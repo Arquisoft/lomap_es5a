@@ -204,5 +204,5 @@ const parsePointToJson = (point: Point) => {
   };
 };
 
-export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary };
+export { parseJsonToPoint, parsePointToJson, parseJsonToPointSummary, parseReviews };
 

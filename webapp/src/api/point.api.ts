@@ -9,8 +9,10 @@ import {
 } from "../helpers/PodHelper";
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
-import { parseJsonToPoint } from "../utils/parsers/pointParser";
+import { parseJsonToPoint, parseReviews } from "../utils/parsers/pointParser";
 import { updateContent, writeContent } from "./util.api";
+import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
+import { url } from "inspector";
 
 /**
  * Obtener todos los puntos de interés.
@@ -314,7 +316,7 @@ const addReviewPoint = async (
       },
     });
 
-    const totalReviews = parseReviews(await originalReviews.json());
+    const totalReviews: Review[] = parseReviews(await originalReviews.json());
     
     totalReviews.push(review)
 
@@ -324,18 +326,31 @@ const addReviewPoint = async (
     );
   
     if (!existsFile) {
-      await writeContent(revies, 
-        getUserPrivatePointsUrl(session.info.webId).replace(
-          "/private/points/points.json",
-          "/private/points/"),
-        "points.json"
-      )
-      
-    } else {
-    
-      await updateContent(result, "reviews.json", getPublicReviewsPointsUrl(ownerWebId));
-    }
+      await saveFileInContainer(
+        getPublicReviewsPointsUrl(ownerWebId),
+        new Blob([JSON.stringify({ reviews: totalReviews })], {
+          type: "application/json",
+        }),
+        {
+          slug: "reviews.json",
+          contentType: "application/json",
+          fetch: fetch,
+        }
+      );
 
+    } else {
+
+      const blob = new Blob([JSON.stringify({ reviews: totalReviews })], {
+        type: "application/json",
+      });
+    
+      const fichero = new File([blob], "reviews.json", { type: blob.type });
+      
+      await overwriteFile(getPublicReviewsPointsUrl(ownerWebId), fichero, {
+          contentType: fichero.type,
+          fetch: fetch,
+      });    
+    }
   } catch (err) {
     throw new Error("Ha ocurrido un error al añadir la review")
   }
