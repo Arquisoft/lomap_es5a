@@ -112,6 +112,28 @@ Para añadir el nuevo punto, seguir los siguientes pasos:
 </a>
 <br><br />
 
+<hr>
+
+### Agregar / eliminar amigos
+A la hora de agregar amistades sera necesario acceder al perfil del usuario que esta en sesion o acceder a "guardados". A continuacion mostraremos los pasos a seguir tanto para añadir y eliminar amistades:
+<br/>
+![image](https://user-images.githubusercontent.com/91533653/235512839-dfe07a6d-6d9e-44d0-93f0-53d587e0e350.png)
+
+<br/>
+
+Una vez accedamos a la vista del perfil del usuario deberemos hacer Click en el boton de refrescar amistades para que se carguen. Esta decision se toma para evitar el excesivo uso de llamadas a los provedores.
+Para añadir seguiremos los siguientes pasos:
+- Escribir el nombre de tu amigo de la siguiente manera: ```<nombre_de_usuario>.<provider>``` para poner un ejemplo mas concreto: ```pepe.inrupt.net``` 
+- Hacer click en el boton para añadir el amigo. Si surge algun tipo de error un mensaje será mostrado al usuario dependiendo del error surgido.
+- A aprtir de este momento el amigo ya estara en el POD del usuario. Pero recordemos que para no sobrecargar el servidor hemos añadido un boton para poder recargar tus amistades.
+
+<br/>
+
+Para eliminar amigos debemos seguir estos pasos:
+- Hacer click sobre "la carta" del amigo y escoger eliminar.
+- Este proceso ya actualiza la lista se tus amistades y no hará falta actualizar la lista como se hacia anteriormente en "añadir".
+
+
 ## Colaboradores
 Este proyecto es posible gracias a los siguientes desarrolladores:
 
