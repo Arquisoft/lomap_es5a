@@ -11,6 +11,9 @@ const HTTP_PREFIX = "https";
 // Fichero que contiene todos los puntos del usuario
 const PRIVATE_POINTS_PATH = "/private/points/points.json";
 
+// Fichero que contiene todas las reviews
+const PUBLIC_REVIEWS_PATH = "/public/reviews.json";
+
 // Fichero que contiene todos los puntos guardados del usuario
 const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
 // Folder que contiene todos los subfolders con los puntos que comparte con cada
@@ -51,6 +54,16 @@ const getWebIdFromUrl = (url: string): string => {
  */
 const getUserPrivatePointsUrl = (myWedId?: string) => {
   return contructPodUrl(myWedId ?? webId, PRIVATE_POINTS_PATH);
+};
+
+/**
+ * Devuelve la URL de las reviews de la carpeta public
+ * @param webId WebId del usuario.
+ * @returns
+ * @throws Error si no se proporciona una URL de perfil.
+ */
+const getPublicReviewsPointsUrl = (myWedId?: string) => {
+  return contructPodUrl(myWedId ?? webId, PUBLIC_REVIEWS_PATH);
 };
 
 /**
@@ -147,6 +160,6 @@ export {
   constructWebIdFromUsername,
   getWebIdFromUrl,
   checkFileExists,
-  getUserSharedPointsUrl
+  getUserSharedPointsUrl, getPublicReviewsPointsUrl
 };
 

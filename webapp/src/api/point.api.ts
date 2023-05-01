@@ -5,6 +5,7 @@ import {
   createNewContainer,
   getUserPrivatePointsUrl,
   getWebIdFromUrl,
+  getPublicReviewsPointsUrl
 } from "../helpers/PodHelper";
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
@@ -296,30 +297,42 @@ const addReviewPoint = async (
   review: Review,
   webId: string,
   ownerWebId: string
-
 ) => {
-  const profileDocumentURI = encodeURI(getUserPrivatePointsUrl(webId));
+  const profileDocumentURI = encodeURI(getPublicReviewsPointsUrl(ownerWebId));
   const userInSessionName = getWebIdFromUrl(webId);
   review.reviewer.name = userInSessionName.split(".")[0];
   try {
-    const originalPoints = await fetch(profileDocumentURI, {
+    
+    getPublicReviewsPointsUrl(ownerWebId)
+    const originalReviews= await fetch(profileDocumentURI, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    const totalPoints = parseJsonToPoint(await originalPoints.json());
-    const pointsOriginal = totalPoints.filter((point) => point._id !== idPoint);
-    const punto = totalPoints.find((point) => point._id === idPoint);
-    punto?.reviews?.push(review); // añadimos la review
+    const totalReviews = parseReviews(await originalReviews.json());
+    
+    totalReviews.push(review)
 
-    if (!punto) {
-      console.log("No existe ningún punto con id = " + idPoint);
+    const existsFile = await checkFileExists(
+      session,
+      "public/reviews.json"
+    );
+  
+    if (!existsFile) {
+      await writeContent(revies, 
+        getUserPrivatePointsUrl(session.info.webId).replace(
+          "/private/points/points.json",
+          "/private/points/"),
+        "points.json"
+      )
+      
     } else {
-      const result: Point[] = [...pointsOriginal, punto]; // obtenemos el array de puntos
-      await updateContent(result, "points.json", getUserPrivatePointsUrl(webId));
+    
+      await updateContent(result, "reviews.json", getPublicReviewsPointsUrl(ownerWebId));
     }
+
   } catch (err) {
     throw new Error("Ha ocurrido un error al añadir la review")
   }
