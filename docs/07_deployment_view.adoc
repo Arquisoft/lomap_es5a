@@ -30,7 +30,7 @@ Mapping of Building Blocks to Infrastructure::
 
 === Infrastructure Level 2
 :imagesdir: images
-image::DIAGRAMA_DESPLIEGUE_extended_v2_LOMAP.svg[]
+image::DIAGRAMA_DESPLIEGUE_v3_LOMAP.svg[]
 
 
 Mapping of Building Blocks to Infrastructure::
