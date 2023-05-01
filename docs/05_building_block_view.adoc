@@ -9,7 +9,7 @@
 ----
 actor Usuario
 Component LoMap
-Component pod as "inrupt.net/solidcommunity.net"
+Component pod as "POD"
 
 Usuario -right-> LoMap: interactúa
 Usuario -right-> pod: tiene
@@ -28,7 +28,7 @@ Contained Building Blocks::
 | **Nombre** | **Responsabildad**
 | Usuario | Interactúa con la aplicación.
 | LoMap | Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.
-| inrupt.net/solidcommunity.net | Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
+| POD | Proveedor encargado de almacenar la información de cada usuario en un POD de forma descentralizada.
 |===
 
 === Level 1
@@ -38,9 +38,8 @@ Contained Building Blocks::
 actor Usuario
 Component LoMap {
   Component web as "WebApp"
-  Component api as "RestAPI"
 }
-Component pod as "inrupt.net/solidcommunity.net"
+Component pod as "POD"
 
 Usuario -right-> web: interactua
 Usuario -right-> pod: tiene
@@ -57,7 +56,6 @@ Contained Building Blocks::
 |===
 | **Nombre** | **Responsabildad**
 | WebApp | Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.
-| RestApi | En principio, no se va a emplear. 
 |===
 
 === Level 2
