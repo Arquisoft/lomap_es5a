@@ -94,6 +94,11 @@ npm run test:e2e
 npm run build
 ```
 
+### Desplegar de forma manual la aplicación en GitHub Pages
+``` shell
+npm run deploy
+```
+
 ### Añadir un nuevo punto
 Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción del menú de navegación superior denominada "Añadir punto", rellenar el formulario (Algunos campos son obligatorios, ver indicaciones).
 <br><br>
