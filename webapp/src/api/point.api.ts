@@ -194,29 +194,30 @@ const addPoint = async (
           },
         });
 
-        const existsReviews = await checkFileExists(
-          session,
-          "private/reviews.json"
-        );
+        const existsReviews = await checkContainerExists(session, "private/reviews/");
 
+        if (! existsReviews) {
+          await createNewContainer(session, "private/reviews/").then(async () => {
+            await saveFileInContainer(
+              getPublicReviewsPointsUrl(session.info.webId).replace(
+                "/private/reviews/reviews.json",
+                "/private/reviews/"),
+              new Blob([JSON.stringify({ reviews: [] })], {
+                type: "application/json",
+              }),
+              {
+                slug: "reviews.json",
+                contentType: "application/json",
+                fetch: fetch,
+              }
+            ).then(() => {
+              callback && callback(isSuccess);
+            });
       
-        if (!existsReviews) {
-          await saveFileInContainer(
-            getPublicReviewsPointsUrl(session.info.webId).replace(
-              "/private/reviews/reviews.json",
-              "/private/reviews/"),
-            new Blob([JSON.stringify({ reviews: [] })], {
-              type: "application/json",
-            }),
-            {
-              slug: "reviews.json",
-              contentType: "application/json",
-              fetch: fetch,
-            }
-          );
-          
+          });
         }
-
+        
+      
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
         await upImage(image, point);
