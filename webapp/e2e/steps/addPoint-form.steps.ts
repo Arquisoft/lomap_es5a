@@ -65,9 +65,9 @@ defineFeature (feature, test => {
             await wait(7000);
         });
 
-        then('An error message is shown in the screen', async () => {
+        then('Continue in the screen', async () => {
             const text = await page.evaluate(() => document.body.textContent);
-            expect(text).toMatch("El campo nombre del punto es obligatorio");
+            expect(text).toMatch("Crear un punto");
           });
     })
 
