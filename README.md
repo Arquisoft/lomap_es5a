@@ -107,7 +107,7 @@ Los nombres de las claves coinciden con los nombres establecidos para las variab
 ### Añadir un nuevo punto
 Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción del menú de navegación superior denominada "Añadir punto", rellenar el formulario (Algunos campos son obligatorios, ver indicaciones).
 <br><br>
-![imagen](https://user-images.githubusercontent.com/56480356/231787019-34695258-91ee-4d6c-a2f4-269a13e412b6.png)
+![imagen](https://user-images.githubusercontent.com/56480356/235653704-a17608f1-dbb4-4531-8e71-42b87dd8862a.png)
 <br><br>
 Para añadir el nuevo punto, seguir los siguientes pasos:
 - Escribir un nombre para el punto, que se utilizará como título de este.
@@ -120,6 +120,7 @@ Para añadir el nuevo punto, seguir los siguientes pasos:
    <img src="https://user-images.githubusercontent.com/56480356/231818798-5a50c952-131a-4c5f-a749-fadf2821f924.png" alt="thumbnail"
    width="80%" height="auto"/>
 </a>
+
 <br><br />
 
 <hr>
