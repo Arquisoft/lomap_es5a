@@ -172,7 +172,7 @@ const findSharedPointsByFriend = async (session:any, friendWebId:string) => {
 
     return parseJsonToPoint(await data.json());
   } catch (err) {
-    
+    // error
   }
   return new Array<Point>();
 }
