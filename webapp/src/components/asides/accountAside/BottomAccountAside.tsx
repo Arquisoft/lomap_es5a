@@ -8,6 +8,7 @@ import BaseTextInput from "../../inputs/BaseTextInput";
 import BaseButton from "../../buttons/BaseButton";
 import {addFriend,getAllFriends} from "../../../api/friends.api";
 
+
 function BottomAccountAside(){
 
     const { session } = useSession();
@@ -54,7 +55,7 @@ function BottomAccountAside(){
         <div className="friends-container-aside" role="friends-aside">
             <div className="top-acc-aside-title">Amigos</div>
             <BaseButton
-                data-testid="create-point-button"
+                data-testid="reload-friends-button"
                 type="button-blue"
                 text="Recargar amigos"
                 isLoading={isLoading}
@@ -79,7 +80,6 @@ function BottomAccountAside(){
                 <></>
             }
             <BaseButton
-                data-testid="create-point-button"
                 type="button-blue"
                 text="Agregar amigo"
                 onClick={handleAddFriend}
@@ -87,7 +87,7 @@ function BottomAccountAside(){
 
 
                 <label htmlFor={generateUUID()}></label>
-                <div className="friend-list-aside">
+                <div role="friend-list-aside" className="friend-list-aside">
                     {friends ? 
                             friends.map((friend) =>{ //realizar la construccion del amigo
                                 return(
