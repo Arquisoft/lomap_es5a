@@ -925,6 +925,14 @@ y negocios actuales de la ciudad.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jest</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework de pruebas para JavaScript.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puppeteer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Herramienta de automatización de pruebas para navegadores web desarrollada por Google. Permite controlar el navegador a través de una API.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cucumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Herramienta de automatización de pruebas de software empleada para realizar pruebas a partir de los criterios de aceptación. A través de Cucumber, se pueden definir un conjunto de casos de uso que permiten validar el desarrollo realizado.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -976,7 +984,7 @@ y negocios actuales de la ciudad.</p>
 <h3 id="_level_0_whitebox_of_the_overall_system">5.1. Level 0: Whitebox of the Overall System</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="682" height="138">
+<img src="./images/whitebox-overall-system.png" alt="whitebox overall system" width="528" height="136">
 </div>
 </div>
 <div class="dlist">
@@ -1011,8 +1019,8 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <td class="tableblock halign-left valign-top"><p class="tableblock"> Sistema con el que interactúa el usuario. Se comunica con el proveedor de PODs para obtener/almacenar información del usuario.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">inrupt.net/solidcommunity.net</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema encargado de almacenar la información de cada usuario en un POD de forma descentralizada.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proveedor encargado de almacenar la información de cada usuario en un POD de forma descentralizada.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1021,7 +1029,7 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <h3 id="_level_1">5.2. Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level-1.png" alt="level 1" width="349" height="289">
+<img src="./images/level-1.png" alt="level 1" width="299" height="236">
 </div>
 </div>
 <div class="dlist">
@@ -1049,10 +1057,6 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <td class="tableblock halign-left valign-top"><p class="tableblock">WebApp</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema con la que interactúa el usuario (Frontend). Además, es la parte encargada de comunicarse con los pods de los usuarios.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En principio, no se va a emplear.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1060,7 +1064,7 @@ La información personal del usuario se almacena de forma descentralizada en POD
 <h3 id="_level_2">5.3. Level 2</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level-2.png" alt="level 2" width="871" height="479">
+<img src="./images/level-2.png" alt="level 2" width="814" height="407">
 </div>
 </div>
 <div class="dlist">
@@ -1085,32 +1089,28 @@ La información personal del usuario se almacena de forma descentralizada en POD
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Log in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LoginPage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"> Parte del sistema encargada de redirigir al usuario al proveedor Solid seleccionado para llevar a cabo su autenticación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inicio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HomePage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra un mapa en el que se sitúan los puntos almacenados del usuario, así como los compartidos por sus amigos, si así lo desea. Permite filtrar los puntos a mostrar por su categoría. Además, permite acceder a cualquier parte de la aplicación.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Editar punto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario en sesión editar sus puntos.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CreatePointPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario en sesión crear un nuevo punto y compartirlo con sus amigos, si así lo desea.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Detalle punto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AboutPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra al usuario de la aplicación información acerca de ésta.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Amigos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario llevar a cabo la gestión de sus amigos (añadirlos/eliminarlos).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Puntos guardados</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SavedPointsPage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que ha decidido guardar.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mis puntos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario interactuar con los puntos que él/ella ha creado.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SinglePointDetailsPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite al usuario ver en detalle toda la información almacenada acerca de un punto dado. También permite ver en detalle toda la información de puntos que les han compartido sus amigos.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1335,7 +1335,7 @@ El usuario se comunica con el sistema Lomap y accede a su POD personal. Al intro
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="561" height="1088">
+<img src="./images/ModeloDeDominio.png" alt="ModeloDeDominio" width="575" height="1141">
 </div>
 </div>
 </div>
@@ -1428,9 +1428,9 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Styled-Components">ADR 07</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nos aseguramos tener una base de otras asignaturas y disponemos de credito</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A veces da bastantes problemas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Github pages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Es la tecnología utilizada para el control de versiones, y es posible integrarlo de una forma relativamente fácil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solo admite una instancia por repositorio, y actualmente la documentación técnica de la aplicación está desplegada en este servicio</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Despliegue-Aplicaci%C3%B3n-%5BCI-CD%5D">ADR 06</a></p></td>
 </tr>
 <tr>
@@ -1446,11 +1446,22 @@ Para que cada persona tenga el control de su información y puedan gestionarla, 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.---IDE">ADR 09</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JEST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test unitarios</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Buena documentación y recursos, paralización de test y facil configuración.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No tenemos conocimiento con esta libreria</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-Back-End">ADR 10</a>
-<a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Front-End">ADR 11</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Test-Unitarios">ADR 10</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cucumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje natural, Reutilización de código, Inntegración</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puede ser difícil de aprender, requiere conocimientos  de programación y una comprensión de los conceptos de pruebas.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-e2e">ADR 11</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Puppeter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control completo del navegador Chrome, fácil de usar, integración con otras herramientas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consumo de recursos del sistema, dependencia de la versión del navegador</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/lomap_es5a/wiki/ADR.-Tests-e2e">ADR 11</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zustand</p></td>
@@ -1709,7 +1720,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-03-24 15:08:41 +0100
+Last updated 2023-02-22 12:18:20 +0100
 </div>
 </div>
 </body>
