@@ -1,0 +1,10 @@
+{
+  "simulation": "verMisPuntos_50users",
+  "simulationId": "vermispuntos-50users-20230502181303294",
+  "start": 1683051183996,
+  "description": "",
+  "scenarios": ["verMisPuntos"],
+  "assertions": [
+
+  ]
+}

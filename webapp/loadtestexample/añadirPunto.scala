@@ -899,5 +899,6 @@ class añadirPunto extends Simulation {
             .headers(headers_71)
         )
     )
-	setUp(scn.inject(rampUsers(10) during(20))).protocols(httpProtocol)
+
+	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }

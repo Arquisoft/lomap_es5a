@@ -1,0 +1,10 @@
+{
+  "simulation": "GuardarPunto_100users",
+  "simulationId": "guardarpunto-100users-20230502165327413",
+  "start": 1683046410714,
+  "description": "",
+  "scenarios": ["GuardarPunto"],
+  "assertions": [
+
+  ]
+}

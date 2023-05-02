@@ -1,0 +1,10 @@
+{
+  "simulation": "añadirEliminarAmigo_50users",
+  "simulationId": "an-adireliminaramigo-50users-20230502171729962",
+  "start": 1683047850588,
+  "description": "",
+  "scenarios": ["añadirEliminarAmigo"],
+  "assertions": [
+
+  ]
+}

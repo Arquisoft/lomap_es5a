@@ -1,0 +1,10 @@
+{
+  "simulation": "añadirPunto_50users",
+  "simulationId": "an-adirpunto-50users-20230502172413536",
+  "start": 1683048254190,
+  "description": "",
+  "scenarios": ["añadirPunto"],
+  "assertions": [
+
+  ]
+}
