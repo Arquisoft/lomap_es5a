@@ -10,7 +10,7 @@ import {
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint, parseReviews,parseJsonToReview } from "../utils/parsers/pointParser";
-import { updateContent, writeContent } from "./util.api";
+import { updateContent, writeContent,writeReviews } from "./util.api";
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { giveAllPermsOfReviewsToFriend } from "./share.point.api";
 
@@ -197,7 +197,7 @@ const addPoint = async (
         const existsReviews = await checkContainerExists(session, "private/reviews/");
 
         if (! existsReviews) {
-          await createNewContainer(session, "private/reviews/").then(async () => {
+          await createNewContainer(session, "private/reviews/").then(async () => {       
             await saveFileInContainer(
               getPublicReviewsPointsUrl(session.info.webId).replace(
                 "/private/reviews/reviews.json",
@@ -210,10 +210,7 @@ const addPoint = async (
                 contentType: "application/json",
                 fetch: fetch,
               }
-            ).then(() => {
-              callback && callback(isSuccess);
-            });
-      
+            );    
           });
         }
         

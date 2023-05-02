@@ -1,5 +1,5 @@
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
-import { Point } from "../shared/shareddtypes";
+import { Point, Review } from "../shared/shareddtypes";
 import { fetch } from "@inrupt/solid-client-authn-browser";
 
 /**
@@ -22,6 +22,25 @@ const writeContent = async (points: Point[], url: string, folder: string) => {
         }
       );
 }
+/**
+ * 
+ * @param points 
+ * @param url 
+ * @param folder 
+ */
+const writeReviews = async (review: Review[], url: string, folder: string) => {
+  await saveFileInContainer(
+      url,
+      new Blob([JSON.stringify({ reviews: review })], {
+        type: "application/json",
+      }),
+      {
+        slug: folder,
+        contentType: "application/json",
+        fetch: fetch,
+      }
+    );
+}
 
 /**
  * Actualizar el contenido en la carpeta del POD correspondiente
@@ -43,4 +62,4 @@ const updateContent = async (filtro: Point[], folder: string, url: string) => {
     });
 }
 
-export { writeContent, updateContent };
+export { writeContent, updateContent , writeReviews};
