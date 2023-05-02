@@ -28,8 +28,8 @@ const deleteFriend = async (webId: string, friendWebId: string) => {
   });
   let userInSesionProfile = getThing(userDataset, webId) as Thing;
 
-  if (!checkIfExistsFriend(userInSesionProfile, getWebIdFromUrl(friendWebId))) {
-    console.log("No existe dicho amigo");
+  if (!checkIfExistsFriend(userInSesionProfile, getWebIdFromUrl(friendWebId))) { 
+    // no existe el amigo
   } else {
     userInSesionProfile = buildThing(userInSesionProfile)
       .removeUrl(FOAF.knows, friendWebId)
@@ -66,8 +66,7 @@ const addFriend = async (webId: string, friendUsername: string) => {
       `No existe el usuario = ${friendUsername}`
     );
   }
-
-  // Añadir un try/catch para propagar el error en caso de producirse alguno
+  
 
   try {
     const userInSesionProfileUrl: string = getUserProfileUrl(webId); // Obtiene el webid sin el #me
@@ -76,8 +75,8 @@ const addFriend = async (webId: string, friendUsername: string) => {
       fetch: fetch,
     });
     const userInSesionProfile = getThing(userDataset, webId) as Thing;
-    if (checkIfExistsFriend(userInSesionProfile, friendUsername)) {
-      console.log("Ya sois amigoss!!!");
+    if (checkIfExistsFriend(userInSesionProfile, friendUsername)) {   
+      // ya existe el amigo   
     } else {
       const newFriend = addUrl(
         userInSesionProfile,
@@ -142,8 +141,8 @@ const getAllFriends = async (webId: string) => {
       };
       myFriendsList.push(user);
     }
-  } catch (error) {
-    console.log("Error al obtener los amigos");
+  } catch (error) {    
+    // error
   }
 
   return myFriendsList;

@@ -42,6 +42,12 @@
 
 |Jest
 |Framework de pruebas para JavaScript. 
+
+|Puppeteer
+|Herramienta de automatización de pruebas para navegadores web desarrollada por Google. Permite controlar el navegador a través de una API.
+
+|Cucumber
+|Herramienta de automatización de pruebas de software empleada para realizar pruebas a partir de los criterios de aceptación. A través de Cucumber, se pueden definir un conjunto de casos de uso que permiten validar el desarrollo realizado.
 |===
 
 

@@ -84,26 +84,6 @@ describe("Comp NavBar", () => {
 
     
 
-    // test ("Comprobamos que si no estamos logeados se muestra el boton", async() => {
-    //     // Deshabilitamos el mock para esta prueba
-    //     await waitFor(() => jest.unmock("@inrupt/solid-ui-react"));
-
-
-    
-    //     // Renderizamos el componente
-    //     const {getByTestId} = render(
-    //         <Router>
-    //             <BaseNav/>
-    //         </Router>
-    //     );
-    
-    //     // Comprobamos que se muestra el BaseAvatar (NoImageSkeleton al no tener imagen)
-    //     const button = getByTestId("button");
-    //     expect(button).toBeInTheDocument();
-    
-    // });
-
-  
 });
 
 
