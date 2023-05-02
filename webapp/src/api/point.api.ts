@@ -10,7 +10,7 @@ import {
 import { uploadImage } from "../services/imageService";
 import { Category, Point, Review } from "../shared/shareddtypes";
 import { parseJsonToPoint, parseReviews,parseJsonToReview } from "../utils/parsers/pointParser";
-import { updateContent, writeContent } from "./util.api";
+import { updateContent, writeContent,writeReviews } from "./util.api";
 import { overwriteFile, saveFileInContainer } from "@inrupt/solid-client";
 import { giveAllPermsOfReviewsToFriend } from "./share.point.api";
 
@@ -131,6 +131,24 @@ const addPoint = async (
     }
   }
   
+  const existsReviews = await checkContainerExists(session, "private/reviews/");
+  if (! existsReviews) {
+    await createNewContainer(session, "private/reviews/").then(async () => {       
+      await saveFileInContainer(
+        getPublicReviewsPointsUrl(session.info.webId).replace(
+          "/private/reviews/reviews.json",
+          "/private/reviews/"),
+        new Blob([JSON.stringify({ reviews: [] })], {
+          type: "application/json",
+        }),
+        {
+          slug: "reviews.json",
+          contentType: "application/json",
+          fetch: fetch,
+        }
+      );    
+    });
+  }
 
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   const existsFolder = await checkContainerExists(session, "private/points/");
@@ -192,31 +210,7 @@ const addPoint = async (
           headers: {
             "Content-Type": "application/json",
           },
-        });
-
-        const existsReviews = await checkFileExists(
-          session,
-          "public/reviews.json"
-        );
-
-      
-        if (!existsReviews) {
-          await saveFileInContainer(
-            getPublicReviewsPointsUrl(session.info.webId).replace(
-              "/public/reviews.json",
-              "/public/"),
-            new Blob([JSON.stringify({ reviews: [] })], {
-              type: "application/json",
-            }),
-            {
-              slug: "reviews.json",
-              contentType: "application/json",
-              fetch: fetch,
-            }
-          );
-          
-        }
-
+        });      
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
         await upImage(image, point);
