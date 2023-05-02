@@ -4,8 +4,10 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es5a)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es5a&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es5a) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
+Lomap es una aplicación web descentralizada que permite compartir puntos de interés con tus amigos y conocidos. Se encuentra desplegada en [este repositorio](https://github.com/franciscocoya/lomapes05a_production)
 
-Lomap es una aplicación web descentralizada que permite compartir puntos de interés con tus amigos y conocidos. 
+Enlace a la aplicación:
+[https://franciscocoya.github.io/lomapes05a_production/](https://franciscocoya.github.io/lomapes05a_production/)
 
 ## Stack tecnológico
 
