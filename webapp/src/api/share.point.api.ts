@@ -81,7 +81,7 @@ const giveAllPermsOfReviewsToFriend = async (session:any, friendWebId:string) =>
   const pointsFileFriendAcl = setAgentDefaultAccess(
     resourceAcl,
     friendWebId,
-    {read:true, append:true, write:true, control:true}
+    {read:true, append:true, write:true, control:false}
   )
 
   // almacenamos el acl
