@@ -53,7 +53,7 @@ defineFeature (feature, test => {
             // seleccionamos el botón del login
             await expect(page).toClick('button', { text: 'Log In' });
         
-            await wait(7000);
+            await wait(5000);
             //Navego a la pagina de la creacion de punto
             await expect(page).toClick('a', {text: 'Añadir punto'});
 
@@ -62,7 +62,7 @@ defineFeature (feature, test => {
             //Clicko el boton publicar
             await expect(page).toClick('button', { text: 'Publicar' });
 
-            await wait(10000);
+            await wait(7000);
         });
 
         then('An error message is shown in the screen', async () => {
@@ -98,7 +98,7 @@ defineFeature (feature, test => {
             //Clicko el boton publicar
             await expect(page).toClick('button', { text: 'Publicar' });
 
-            await wait(8000);
+            await wait(7000);
         });
 
         then('I go to home page', async () => {
