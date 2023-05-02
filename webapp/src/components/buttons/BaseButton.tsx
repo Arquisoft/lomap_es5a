@@ -26,7 +26,7 @@ function BaseButton({
 }: Props) {
   const buttonText = () => {
     if (isLoading) {
-      return loadingText || "Cargando...";
+      return loadingText ?? "Cargando...";
     }
     if (isFinished) {
       return "Finalizado";
@@ -39,7 +39,7 @@ function BaseButton({
       data-testid="button"
       className={`${isLoading ? "button-disabled" : type}`}
       onClick={onClick}
-      disabled={isLoading || disabled}
+      disabled={isLoading ?? disabled}
       style={styles}
       title={title}
     >

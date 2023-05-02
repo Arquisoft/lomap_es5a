@@ -12,15 +12,15 @@ function AppLogo({ width, height, viewBox, fill, styles }: Props) {
   return (
     <div style={styles} data-testid="logo">
       <svg
-        width={width || 85} 
-        height={height || 36}
-        viewBox={viewBox || "0 0 85 36"}
+        width={width ?? 85} 
+        height={height ?? 36}
+        viewBox={viewBox ?? "0 0 85 36"}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M20 14.9348C20 19.8693 15.9706 30.6327 11 30.6327C6.02944 30.6327 2 19.8693 2 14.9348C2 10.0002 6.02944 6 11 6C15.9706 6 20 10.0002 20 14.9348Z"
-          fill={fill || "#ED3F3F"}
+          fill={fill ?? "#ED3F3F"}
         />
         <g filter="url(#filter0_d_12_16)">
           <ellipse
