@@ -94,6 +94,16 @@ npm run test:e2e
 npm run build
 ```
 
+### Desplegar de forma manual la aplicación en GitHub Pages
+``` shell
+npm run deploy
+```
+
+### Desplegar de forma automática mediante workflow de GitHub
+
+Para realizar el despliegue de forma automática, a partir de un flujo de trabajo de GitHub, es necesario tener las credenciales de aplicación (secrets del repositorio), enumeradas en el apartado **Variables de entorno** 
+Los nombres de las claves coinciden con los nombres establecidos para las variables de entorno.
+
 ### Añadir un nuevo punto
 Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción del menú de navegación superior denominada "Añadir punto", rellenar el formulario (Algunos campos son obligatorios, ver indicaciones).
 <br><br>
@@ -101,10 +111,10 @@ Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción d
 <br><br>
 Para añadir el nuevo punto, seguir los siguientes pasos:
 - Escribir un nombre para el punto, que se utilizará como título de este.
-- Arrastrar el marcador dentro del mapa, las coordenadas se autocompletarán en los respectivos campos latitud y longitud.
-- Seleccionar la categoría del punto.
+- Arrastrar el marcador dentro del mapa, para localizar el punto.
+- Seleccionar la categoría a la que pertenece.
 - Indicar una descripción (Opcional).
-- Seleccionar una imagen pulsando el botón "Subir imagen". Dicha imagen se mostrará en el popup del punto en mapa, entre otras ubicaciones. Esta acción también es opcional.
+- Seleccionar una imagen pulsando el botón "Subir imagen". Dicha imagen se mostrará en el popup del punto en mapa, entre otras ubicaciones. Esta acción también es opcional. 
 <br><br>
 <a href="https://youtu.be/bU9S6Q43PTw" target="_blank">
    <img src="https://user-images.githubusercontent.com/56480356/231818798-5a50c952-131a-4c5f-a749-fadf2821f924.png" alt="thumbnail"
