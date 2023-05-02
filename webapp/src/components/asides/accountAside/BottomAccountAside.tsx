@@ -1,5 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../public/css/components/asides/accountAside/BottomAccountAside.css";
 import { useUserStore } from "../../../store/user.store";
 import { generateUUID } from "../../../utils/stringUtils";
@@ -23,11 +23,6 @@ function BottomAccountAside(){
         setFriends(allfriends);
     };
     
-    //useEffect(() => {
-    //    loadAllFriends();
-    //}, [friends]);
-    
-
     useEffect(() => {
          setTimeout(() => {
            setError("");

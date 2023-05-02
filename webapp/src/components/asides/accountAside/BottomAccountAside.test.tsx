@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import BottomAccountAside from './BottomAccountAside';
 import { BrowserRouter as Router } from "react-router-dom";
 

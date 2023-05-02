@@ -1,6 +1,6 @@
 import FriendsCard from "./FriendsCard";
 
-import {getByText, render, waitFor} from "@testing-library/react"
+import { render} from "@testing-library/react"
 
 
 
@@ -18,7 +18,7 @@ describe("Tests unitarios para el componente FriendsCard",  () => {
        // Comentado para que pase el workflow
        
         // Renderizamos el componente con las propiedades que necesita
-        const {getByTestId, getAllByRole, getByRole} = render(<FriendsCard amigos = {friends} añadirAmigo={añadirAmigo} eliminarAmigo={eliminarAmigo} verificaAmigo={verificaAmigo}></FriendsCard>);
+        const {getByTestId, getByRole} = render(<FriendsCard amigos = {friends} añadirAmigo={añadirAmigo} eliminarAmigo={eliminarAmigo} verificaAmigo={verificaAmigo}></FriendsCard>);
         
         // Comprobamos que se renderiza la etiqueta
         expect(getByTestId("label-test")).toBeInTheDocument();
