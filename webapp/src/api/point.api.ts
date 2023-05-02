@@ -131,6 +131,24 @@ const addPoint = async (
     }
   }
   
+  const existsReviews = await checkContainerExists(session, "private/reviews/");
+  if (! existsReviews) {
+    await createNewContainer(session, "private/reviews/").then(async () => {       
+      await saveFileInContainer(
+        getPublicReviewsPointsUrl(session.info.webId).replace(
+          "/private/reviews/reviews.json",
+          "/private/reviews/"),
+        new Blob([JSON.stringify({ reviews: [] })], {
+          type: "application/json",
+        }),
+        {
+          slug: "reviews.json",
+          contentType: "application/json",
+          fetch: fetch,
+        }
+      );    
+    });
+  }
 
   const isSuccess = false; // Indicar a la vista si se ha añadido correctamente el punto
   const existsFolder = await checkContainerExists(session, "private/points/");
@@ -192,29 +210,7 @@ const addPoint = async (
           headers: {
             "Content-Type": "application/json",
           },
-        });
-
-        const existsReviews = await checkContainerExists(session, "private/reviews/");
-
-        if (! existsReviews) {
-          await createNewContainer(session, "private/reviews/").then(async () => {       
-            await saveFileInContainer(
-              getPublicReviewsPointsUrl(session.info.webId).replace(
-                "/private/reviews/reviews.json",
-                "/private/reviews/"),
-              new Blob([JSON.stringify({ reviews: [] })], {
-                type: "application/json",
-              }),
-              {
-                slug: "reviews.json",
-                contentType: "application/json",
-                fetch: fetch,
-              }
-            );    
-          });
-        }
-        
-      
+        });      
         const totalPoints = parseJsonToPoint(await originalPoints.json());
 
         await upImage(image, point);
