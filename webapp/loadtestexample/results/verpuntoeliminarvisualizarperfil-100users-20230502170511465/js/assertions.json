@@ -1,0 +1,10 @@
+{
+  "simulation": "VerPuntoEliminarVisualizarPerfil_100users",
+  "simulationId": "verpuntoeliminarvisualizarperfil-100users-20230502170511465",
+  "start": 1683047112933,
+  "description": "",
+  "scenarios": ["VerPuntoEliminarVisualizarPerfil"],
+  "assertions": [
+
+  ]
+}
