@@ -29,7 +29,7 @@
       "@typescript-eslint/no-explicit-any": "off",
       "react/jsx-uses-react": "error",
       "react/jsx-uses-vars": "error",
-      "@typescript/eslint/no-misused-promises": [2, {
+      "@typescript-eslint/no-misused-promises": [2, {
         "checksVoidReturn": {
           "attributes": false
         }
