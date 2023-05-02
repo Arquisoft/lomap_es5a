@@ -1,0 +1,60 @@
+[[appendices]]
+== Appendices
+
+[[appendix-a]]
+=== Appendix A
+Prototipos de las vistas de la aplicación realizados en Figma. 
+
+==== Página de inicio de sesión
+:imagesdir: images
+image::login_page_prototype.jpg[]
+
+==== Página de inicio
+:imagesdir: images
+image::home_page_prototype.jpg[]
+
+==== Página de añadir un nuevo punto
+:imagesdir: images
+image::add_point_page_prototype.jpg[]
+
+==== Página de puntos guardados
+El diseño es genérico para todas las vistas de la cuenta del usuario (Puntos guardados, perfil del usuario, etc.)
+
+:imagesdir: images
+image::saved_points_page_prototype.jpg[]
+
+==== Página de detalle de un punto de interés
+:imagesdir: images
+image::single_point_detail_page_prototype.jpg[]
+
+==== Página de acerca de
+:imagesdir: images
+image::about_page_prototype.jpg[]
+
+=== Appendix B
+Prototipos de componentes de la aplicación realizados en Figma.
+
+==== Popup de filtros de categoria y amigos
+Mostrado en la página de inicio.
+
+Vista I
+
+:imagesdir: images
+image::filters_popup_home_page_prototype.jpg[]
+
+Vista II
+
+:imagesdir: images
+image::filters_popup_complete_home_page_prototype.jpg[]
+
+==== Popup de añadir una valoración a un punto
+Mostrado en la página de detalle de un punto de interés.
+
+:imagesdir: images
+image::add_new_review_popup_prototype.jpg[]
+
+=== Appendix C
+Paleta de colores de la aplicación original. 
+
+:imagesdir: images
+image::original_color_pallete.png[]
