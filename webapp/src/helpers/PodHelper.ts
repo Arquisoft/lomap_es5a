@@ -12,9 +12,9 @@ const HTTP_PREFIX = "https";
 const PRIVATE_POINTS_PATH = "/private/points/points.json";
 
 // Fichero que contiene todas las reviews
-const PUBLIC_REVIEWS_PATH = "/private/reviews.json";
+const PUBLIC_REVIEWS_PATH = "/private/reviews/reviews.json";
 
-const PRIVATE_REVIEWS_FOLDER_PATH = "/private/";
+const PRIVATE_REVIEWS_FOLDER_PATH = "/private/reviews";
 // Fichero que contiene todos los puntos guardados del usuario
 const PRIVATE_SAVE_POINTS_PATH = "/private/savedPoints/savedPoints.json";
 // Folder que contiene todos los subfolders con los puntos que comparte con cada
