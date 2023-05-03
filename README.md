@@ -111,7 +111,7 @@ Iniciar sesión con una cuenta de SOLID. Una vez en sesión, pulsar la opción d
 <br><br>
 ![imagen](https://user-images.githubusercontent.com/56480356/235653704-a17608f1-dbb4-4531-8e71-42b87dd8862a.png)
 <br><br>
-Para añadir el nuevo punto, seguir los siguientes pasos:
+Para añadir el nuevo punto, seguir los siguientes pasos: (Obligatorio tener nombre en tu POD)
 - Escribir un nombre para el punto, que se utilizará como título de este.
 - Arrastrar el marcador dentro del mapa, para localizar el punto.
 - Seleccionar la categoría a la que pertenece.
